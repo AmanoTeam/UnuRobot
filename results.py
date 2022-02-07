@@ -149,9 +149,9 @@ def add_mode_sete(results):
     results.append(
         InlineQueryResultArticle(
             "mode_7-0",
-            title=_("7-0 mode"),
+            title=_("🔫 7-0 mode"),
             input_message_content=
-            InputTextMessageContent(_('Into the 7-0'))
+            InputTextMessageContent(_('Carioca mode on 🔫'))
         )
     )
 
