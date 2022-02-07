@@ -29,14 +29,14 @@ from telegram.ext.dispatcher import run_async
 import card as c
 import settings
 import simple_commands
-from actions import do_skip, do_play_card, do_draw, do_call_bluff, start_player_countdown
+from actions import subport, do_skip, do_play_card, remove_cards,do_draw, do_call_bluff, start_player_countdown
 from config import WAITING_TIME, DEFAULT_GAMEMODE, MIN_PLAYERS
 from errors import (NoGameInChatError, LobbyClosedError, AlreadyJoinedError,
                     NotEnoughPlayersError, DeckEmptyError)
 from internationalization import _, __, user_locale, game_locales
-from results import (add_call_bluff, add_choose_color, add_draw, add_gameinfo,
+from results import (add_call_bluff, add_choose_color, add_choose_player, add_draw, add_gameinfo,
                      add_no_game, add_not_started, add_other_cards, add_pass,
-                     add_card, add_mode_classic, add_mode_fast, add_mode_wild, add_mode_text)
+                     add_card, add_mode_classic, add_mode_fast, add_mode_wild, add_mode_text, add_mode_sete)
 from shared_vars import gm, updater, dispatcher
 from simple_commands import help_handler
 from start_bot import start_bot
@@ -596,6 +596,7 @@ def reply_to_query(bot, update):
                 add_mode_fast(results)
                 add_mode_wild(results)
                 add_mode_text(results)
+                add_mode_sete(results)
             else:
                 add_not_started(results)
 
@@ -604,6 +605,8 @@ def reply_to_query(bot, update):
             if game.choosing_color:
                 add_choose_color(results, game)
                 add_other_cards(player, results, game)
+            elif game.choosing_player:
+                add_choose_player(player.user.id, results, game)
             else:
                 if not player.drew:
                     add_draw(player, results)
@@ -663,7 +666,7 @@ def process_result(bot, update, job_queue):
     result_id, anti_cheat = result_id.split(':')
     last_anti_cheat = player.anti_cheat
     player.anti_cheat += 1
-
+    print(game.mode)
     if result_id in ('hand', 'gameinfo', 'nogame'):
         return
     elif result_id.startswith('mode_'):
@@ -683,11 +686,48 @@ def process_result(bot, update, job_queue):
     elif result_id == 'call_bluff':
         reset_waiting_time(bot, player)
         do_call_bluff(bot, player)
+    elif '7' in result_id and game.mode == "7-0" and not 'player' in result_id:
+        game.choosing_player=True
+        send_async(bot, chat.id, text='> Please choose a player to switch cards')
+        remove_cards(player, result_id)
+    elif '0' in result_id and game.mode == "7-0" and not 'player' in result_id:
+        reset_waiting_time(bot, player)
+        do_play_card(bot, player, result_id)
+        a = 0
+        b = {}
+        for i in game.players:
+            b[a] = i.cards
+            a += 1
+        print(b)
+        a = 1
+        for i in game.players:
+            if a in b:
+                i.cards = b[a]
+            else:
+                i.cards = b[0]
+            a += 1
     elif result_id == 'draw':
         reset_waiting_time(bot, player)
         do_draw(bot, player)
     elif result_id == 'pass':
         game.turn()
+    elif 'player' in result_id:
+        n = result_id[7:]
+        a = 0
+        for i in game.players:
+            if a == int(n):
+                print(i.user.first_name)
+                v = i.user.id
+            a += 1
+        pi = gm.userid_current[v]
+        pq = pi.cards
+        pn = player.cards
+        print(pq)
+        print(pn)
+        pi.cards = pn
+        player.cards = pq
+        game.choosing_player = False
+        subport(bot, player, pi)
     elif result_id in c.COLORS:
         game.choose_color(result_id)
     else:
