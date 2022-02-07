@@ -58,8 +58,7 @@ def show_settings(update, context):
 def kb_select(update, context):
     chat = update.message.chat
     user = update.message.from_user
-    groups = context.groups
-    option = groups[0]
+    option = context.matches[0].group(1)
 
     if option == '📊':
         us = UserSetting.get(id=user.id)
@@ -87,8 +86,7 @@ def kb_select(update, context):
 def locale_select(update, context):
     chat = update.message.chat
     user = update.message.from_user
-    groups = context.groups
-    option = groups[0]
+    option = context.matches[0].group(1)
 
     if option in available_locales:
         us = UserSetting.get(id=user.id)
