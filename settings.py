@@ -19,7 +19,7 @@
 
 
 from telegram import ReplyKeyboardMarkup
-from telegram.ext import CommandHandler, RegexHandler
+from telegram.ext import CommandHandler, MessageHandler, Filters
 
 from utils import send_async
 from user_setting import UserSetting
@@ -29,11 +29,11 @@ from internationalization import _, user_locale
 
 
 @user_locale
-def show_settings(bot, update):
+def show_settings(update, context):
     chat = update.message.chat
 
     if update.message.chat.type != 'private':
-        send_async(bot, chat.id,
+        send_async(context, chat.id,
                    text=_("Please edit your settings in a private chat with "
                           "the bot."))
         return
@@ -49,27 +49,28 @@ def show_settings(bot, update):
         stats = '❌' + ' ' + _("Delete all statistics")
 
     kb = [[stats], ['🌍' + ' ' + _("Language")]]
-    send_async(bot, chat.id, text='🔧' + ' ' + _("Settings"),
+    send_async(context, chat.id, text='🔧' + ' ' + _("Settings"),
                reply_markup=ReplyKeyboardMarkup(keyboard=kb,
                                                 one_time_keyboard=True))
 
 
 @user_locale
-def kb_select(bot, update, groups):
+def kb_select(update, context):
     chat = update.message.chat
     user = update.message.from_user
+    groups = context.groups
     option = groups[0]
 
     if option == '📊':
         us = UserSetting.get(id=user.id)
         us.stats = True
-        send_async(bot, chat.id, text=_("Enabled statistics!"))
+        send_async(context, chat.id, text=_("Enabled statistics!"))
 
     elif option == '🌍':
         kb = [[locale + ' - ' + descr]
               for locale, descr
               in sorted(available_locales.items())]
-        send_async(bot, chat.id, text=_("Select locale"),
+        send_async(context, chat.id, text=_("Select locale"),
                    reply_markup=ReplyKeyboardMarkup(keyboard=kb,
                                                     one_time_keyboard=True))
 
@@ -79,28 +80,27 @@ def kb_select(bot, update, groups):
         us.first_places = 0
         us.games_played = 0
         us.cards_played = 0
-        send_async(bot, chat.id, text=_("Deleted and disabled statistics!"))
+        send_async(context, chat.id, text=_("Deleted and disabled statistics!"))
 
 
 @user_locale
-def locale_select(bot, update, groups):
+def locale_select(update, context):
     chat = update.message.chat
     user = update.message.from_user
+    groups = context.groups
     option = groups[0]
 
     if option in available_locales:
         us = UserSetting.get(id=user.id)
         us.lang = option
         _.push(option)
-        send_async(bot, chat.id, text=_("Set locale!"))
+        send_async(context, chat.id, text=_("Set locale!"))
         _.pop()
 
 
 def register():
     dispatcher.add_handler(CommandHandler('settings', show_settings))
-    dispatcher.add_handler(RegexHandler('^([' + '📊' +
-                                        '🌍' +
-                                        '❌' + ']) .+$',
-                                        kb_select, pass_groups=True))
-    dispatcher.add_handler(RegexHandler(r'^(\w\w_\w\w) - .*',
-                                        locale_select, pass_groups=True))
+    dispatcher.add_handler(MessageHandler(Filters.regex(r'^([📊🌍❌]) .+$'),
+                                          kb_select))
+    dispatcher.add_handler(MessageHandler(Filters.regex(r'^(\w\w_\w\w) - .*'),
+                                          locale_select))

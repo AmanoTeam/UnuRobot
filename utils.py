@@ -79,31 +79,34 @@ def display_color_group(color, game):
 
 def error(update, context):
     """Simple error handler"""
-    logger.exception(context.error)
+    if isinstance(context, Exception):
+        logger.exception(context)
+    else:
+        logger.exception(context.error)
 
 
 @run_async
-def send_async(bot, *args, **kwargs):
+def send_async(context, *args, **kwargs):
     """Send a message asynchronously"""
     if 'timeout' not in kwargs:
         kwargs['timeout'] = TIMEOUT
 
     try:
-        bot.sendMessage(*args, **kwargs)
+        context.bot.sendMessage(*args, **kwargs)
     except Exception as e:
-        error(None, None, e)
+        error(None, e)
 
 
 @run_async
-def answer_async(bot, *args, **kwargs):
+def answer_async(context, *args, **kwargs):
     """Answer an inline query asynchronously"""
     if 'timeout' not in kwargs:
         kwargs['timeout'] = TIMEOUT
 
     try:
-        bot.answerInlineQuery(*args, **kwargs)
+        context.bot.answerInlineQuery(*args, **kwargs)
     except Exception as e:
-        error(None, None, e)
+        error(None, e)
 
 
 def game_is_running(game):
@@ -114,15 +117,15 @@ def user_is_creator(user, game):
     return user.id in game.owner
 
 
-def user_is_admin(user, bot, chat):
-    return user.id in get_admin_ids(bot, chat.id)
+def user_is_admin(user, context, chat):
+    return user.id in get_admin_ids(context, chat.id)
 
 
-def user_is_creator_or_admin(user, game, bot, chat):
-    return user_is_creator(user, game) or user_is_admin(user, bot, chat)
+def user_is_creator_or_admin(user, game, context, chat):
+    return user_is_creator(user, game) or user_is_admin(user, context, chat)
 
 
 @MWT(timeout=60*60)
-def get_admin_ids(bot, chat_id):
+def get_admin_ids(context, chat_id):
     """Returns a list of admin IDs for a given chat. Results are cached for 1 hour."""
-    return [admin.user.id for admin in bot.get_chat_administrators(chat_id)]
+    return [admin.user.id for admin in context.bot.get_chat_administrators(chat_id)]
