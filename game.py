@@ -30,6 +30,7 @@ class Game(object):
     current_player = None
     reversed = False
     choosing_color = False
+    choosing_player = False
     started = False
     draw_counter = 0
     players_won = 0
