@@ -34,7 +34,7 @@ def add_choose_player(name, results, game):
     """Add choose color options"""
     a = 0
     for i in game.players:
-        if name != i.user.id:
+        if name != i.user.id or len(game.players) == 1:
             results.append(
                 InlineQueryResultArticle(
                     id=f'player_{a}',
