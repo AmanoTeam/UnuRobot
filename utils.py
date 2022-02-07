@@ -77,9 +77,9 @@ def display_color_group(color, game):
             emoji='💛')
   
 
-def error(bot, update, error):
+def error(update, context):
     """Simple error handler"""
-    logger.exception(error)
+    logger.exception(context.error)
 
 
 @run_async

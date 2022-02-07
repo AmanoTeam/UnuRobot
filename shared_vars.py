@@ -21,7 +21,7 @@
 from config import TOKEN, WORKERS
 import logging
 import os
-from telegram.ext import Updater
+from telegram.ext import Updater, Dispatcher
 
 from game_manager import GameManager
 from database import db
@@ -31,4 +31,4 @@ db.generate_mapping(create_tables=True)
 
 gm = GameManager()
 updater = Updater(token=TOKEN, workers=WORKERS)
-dispatcher = updater.dispatcher
+dispatcher: Dispatcher = updater.dispatcher
