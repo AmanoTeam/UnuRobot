@@ -124,7 +124,10 @@ class Player(object):
         finally:
             self.game.draw_counter = 0
             self.drew = True
-
+    def rm(self, card):
+        """Plays a card and removes it from hand"""
+        self.cards.remove(card)
+        
     def play(self, card):
         """Plays a card and removes it from hand"""
         self.cards.remove(card)
