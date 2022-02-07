@@ -19,9 +19,8 @@
 
 
 from config import TOKEN, WORKERS
-import logging
 import os
-from telegram.ext import Updater, Dispatcher
+from telegram.ext import Updater, Dispatcher, Defaults
 
 from game_manager import GameManager
 from database import db
@@ -30,5 +29,5 @@ db.bind('sqlite', os.getenv('UNO_DB', 'uno.sqlite3'), create_db=True)
 db.generate_mapping(create_tables=True)
 
 gm = GameManager()
-updater = Updater(token=TOKEN, workers=WORKERS)
+updater = Updater(token=TOKEN, workers=WORKERS, defaults=Defaults(run_async=True))
 dispatcher: Dispatcher = updater.dispatcher

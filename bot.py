@@ -24,7 +24,6 @@ from telegram import ParseMode, InlineKeyboardMarkup, \
     InlineKeyboardButton
 from telegram.ext import InlineQueryHandler, ChosenInlineResultHandler, \
     CommandHandler, MessageHandler, Filters, CallbackQueryHandler
-from telegram.ext.dispatcher import run_async
 
 import card as c
 import settings
@@ -299,7 +298,6 @@ def select_game(update, context):
                    text=_("Game not found."))
         return
 
-    @run_async
     def selected(bot):
         back = [[InlineKeyboardButton(text=_("Back to last group"),
                                       switch_inline_query='')]]
@@ -385,7 +383,6 @@ def start_game(update, context):
                    multi=game.translate)
                 .format(name=display_name(game.current_player.user)))
 
-            @run_async
             def send_first():
                 """Send the first card and player"""
 
@@ -668,7 +665,6 @@ def process_result(update, context):
     result_id, anti_cheat = result_id.split(':')
     last_anti_cheat = player.anti_cheat
     player.anti_cheat += 1
-    print(game.mode)
     if result_id in ('hand', 'gameinfo', 'nogame'):
         return
     elif result_id.startswith('mode_'):
@@ -700,7 +696,6 @@ def process_result(update, context):
         for i in game.players:
             b[a] = i.cards
             a += 1
-        print(b)
         a = 1
         for i in game.players:
             if a in b:
@@ -718,14 +713,11 @@ def process_result(update, context):
         a = 0
         for i in game.players:
             if a == int(n):
-                print(i.user.first_name)
                 v = i.user.id
             a += 1
         pi = gm.userid_current[v]
         pq = pi.cards
         pn = player.cards
-        print(pq)
-        print(pn)
         pi.cards = pn
         player.cards = pq
         game.choosing_player = False

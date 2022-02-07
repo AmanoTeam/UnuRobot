@@ -20,8 +20,6 @@
 
 import logging
 
-from telegram.ext.dispatcher import run_async
-
 from internationalization import _, __
 from mwt import MWT
 from shared_vars import gm
@@ -85,7 +83,6 @@ def error(update, context):
         logger.exception(context.error)
 
 
-@run_async
 def send_async(context, *args, **kwargs):
     """Send a message asynchronously"""
     if 'timeout' not in kwargs:
@@ -97,7 +94,6 @@ def send_async(context, *args, **kwargs):
         error(None, e)
 
 
-@run_async
 def answer_async(context, *args, **kwargs):
     """Answer an inline query asynchronously"""
     if 'timeout' not in kwargs:
