@@ -30,6 +30,22 @@ from utils import display_color, display_color_group, display_name
 from internationalization import _, __
 
 
+def add_choose_player(name, results, game):
+    """Add choose color options"""
+    a = 0
+    for i in game.players:
+        if name != i.user.id:
+            results.append(
+                InlineQueryResultArticle(
+                    id=f'player_{a}',
+                    title=_("Choose Player"),
+                    description=f'{i.user.first_name} - {len(i.cards)}',
+                    input_message_content=
+                    InputTextMessageContent(i.user.first_name)
+                )
+            )
+        a += 1
+
 def add_choose_color(results, game):
     """Add choose color options"""
     for color in c.COLORS:
@@ -126,6 +142,16 @@ def add_mode_wild(results):
             title=_("🐉 Wild mode"),
             input_message_content=
             InputTextMessageContent(_('Into the Wild~ 🐉'))
+        )
+    )
+
+def add_mode_sete(results):
+    results.append(
+        InlineQueryResultArticle(
+            "mode_7-0",
+            title=_("7-0 mode"),
+            input_message_content=
+            InputTextMessageContent(_('Into the 7-0'))
         )
     )
 
