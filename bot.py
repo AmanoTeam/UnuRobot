@@ -720,7 +720,6 @@ def process_result(update, context):
         pn = player.cards
         pi.cards = pn
         player.cards = pq
-        game.choosing_player = False
         subport(context, player, pi)
     elif result_id in c.COLORS:
         game.choose_color(result_id)

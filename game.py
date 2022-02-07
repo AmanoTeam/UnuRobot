@@ -87,6 +87,7 @@ class Game(object):
         self.current_player.drew = False
         self.current_player.turn_started = datetime.now()
         self.choosing_color = False
+        self.choosing_player = False
 
     def _first_card_(self):
         # In case that the player did not select a game mode
