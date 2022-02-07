@@ -80,8 +80,63 @@ def do_skip(bot, player, job_queue=None):
 
             gm.end_game(chat, skipped_player.user)
 
+def remove_cards(player, result_id):
+    card = c.from_str(result_id)
+    player.rm(card)
 
+def subport(bot, player, pi):
+    game = player.game
+    user = player.user
+    
+    us = UserSetting.get(id=user.id)
+    if not us:
+        us = UserSetting(id=user.id)
 
+    if us.stats:
+        us.cards_played += 1
+    
+    verifi(bot, player)
+    verifi(bot, pi)
+    
+    game.turn()
+
+def verifi(bot, player):
+    game = player.game
+    chat = game.chat
+    user = player.user
+
+    us = UserSetting.get(id=user.id)
+    if not us:
+        us = UserSetting(id=user.id)
+
+    if len(player.cards) == 1:
+        send_async(bot, chat.id, text="UNO!")
+
+    if len(player.cards) == 0:
+        send_async(bot, chat.id,
+                   text=__("{name} won!", multi=game.translate)
+                   .format(name=user.first_name))
+
+        if us.stats:
+            us.games_played += 1
+
+            if game.players_won is 0:
+                us.first_places += 1
+
+        game.players_won += 1
+
+        try:
+            gm.leave_game(user, chat)
+        except NotEnoughPlayersError:
+            send_async(bot, chat.id,
+                       text=__("Game ended!", multi=game.translate))
+
+            us2 = UserSetting.get(id=game.current_player.user.id)
+            if us2 and us2.stats:
+                us2.games_played += 1
+
+            gm.end_game(chat, user)
+    
 def do_play_card(bot, player, result_id):
     """Plays the selected card and sends an update to the group if needed"""
     card = c.from_str(result_id)
