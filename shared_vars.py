@@ -18,7 +18,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-from config import TOKEN, WORKERS
+from config import BASE_URL, TOKEN, WORKERS
 import os
 from telegram.ext import Updater, Dispatcher, Defaults
 
@@ -29,5 +29,5 @@ db.bind('sqlite', os.getenv('UNO_DB', 'uno.sqlite3'), create_db=True)
 db.generate_mapping(create_tables=True)
 
 gm = GameManager()
-updater = Updater(token=TOKEN, workers=WORKERS, defaults=Defaults(run_async=True))
+updater = Updater(token=TOKEN, base_url=BASE_URL, workers=WORKERS, defaults=Defaults(run_async=True))
 dispatcher: Dispatcher = updater.dispatcher

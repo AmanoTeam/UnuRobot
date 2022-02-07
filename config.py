@@ -24,6 +24,7 @@ with open("config.json","r") as f:
     config = json.loads(f.read())
 
 TOKEN=config.get("token")
+BASE_URL=config.get("base_url", "https://api.telegram.org/bot")
 WORKERS=config.get("workers", 32)
 ADMIN_LIST = config.get("admin_list", None)
 OPEN_LOBBY = config.get("open_lobby", True)
