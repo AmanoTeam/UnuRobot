@@ -70,11 +70,13 @@ def help_handler(update, context):
 @user_locale
 def modes(update, context):
     """Handler for the /help command"""
-    modes_explanation = _("This UNO bot has four game modes: Classic, Sanic, Wild and Text.\n\n"
+    modes_explanation = _("This UNO bot has five game modes: Classic, Sanic, Wild, Text and 7-0.\n\n"
       " 🎻 The Classic mode uses the conventional UNO deck and there is no auto skip.\n"
       " 🚀 The Sanic mode uses the conventional UNO deck and the bot automatically skips a player if he/she takes too long to play its turn\n"
       " 🐉 The Wild mode uses a deck with more special cards, less number variety and no auto skip.\n"
-      " ✍️ The Text mode uses the conventional UNO deck but instead of stickers it uses the text.\n\n"
+      " ✍️ The Text mode uses the conventional UNO deck but instead of stickers it uses the text.\n"
+      " 🔫 The 7-0 mode uses the conventional UNO deck but when a player plays a 7, he/she can choose a player to swap cards with."
+      " When a player plays a 0, all cards will be swapped between the current players.\n\n"
       "To change the game mode, the GAME CREATOR has to type the bot nickname and a space, "
       "just like when playing a card, and all gamemode options should appear.")
     send_async(context, update.message.chat_id, text=modes_explanation,
