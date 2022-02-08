@@ -19,11 +19,12 @@
 
 
 import logging
-from config import ADMIN_LIST, OPEN_LOBBY, DEFAULT_GAMEMODE, ENABLE_TRANSLATIONS
 from datetime import datetime
 
-from deck import Deck
 import card as c
+from config import ADMIN_LIST, DEFAULT_GAMEMODE, ENABLE_TRANSLATIONS, OPEN_LOBBY
+from deck import Deck
+
 
 class Game(object):
     """ This class represents a game of UNO """

@@ -21,10 +21,11 @@
 import gettext
 from functools import wraps
 
-from locales import available_locales
 from pony.orm import db_session
-from user_setting import UserSetting
+
+from locales import available_locales
 from shared_vars import gm
+from user_setting import UserSetting
 
 GETTEXT_DOMAIN = 'unobot'
 GETTEXT_DIR = 'locales'
@@ -32,6 +33,7 @@ GETTEXT_DIR = 'locales'
 
 class _Underscore(object):
     """Class to emulate flufl.i18n behaviour, but with plural support"""
+
     def __init__(self):
         self.translators = {
             locale: gettext.GNUTranslations(
@@ -78,6 +80,7 @@ class _Underscore(object):
         else:
             return translator.ngettext(singular, plural, n)
 
+
 _ = _Underscore()
 
 
@@ -115,6 +118,7 @@ def user_locale(func):
         result = func(update, context, *pargs, **kwargs)
         _.pop()
         return result
+
     return wrapped
 
 
@@ -147,6 +151,7 @@ def game_locales(func):
             _.pop()
 
         return result
+
     return wrapped
 
 

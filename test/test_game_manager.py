@@ -20,15 +20,18 @@
 
 import unittest
 
-from telegram import User, Chat
+from telegram import Chat, User
 
+from errors import (
+    AlreadyJoinedError,
+    LobbyClosedError,
+    NoGameInChatError,
+    NotEnoughPlayersError,
+)
 from game_manager import GameManager
-from errors import AlreadyJoinedError, LobbyClosedError, NoGameInChatError, \
-    NotEnoughPlayersError
 
 
 class Test(unittest.TestCase):
-
     game = None
 
     def setUp(self):
@@ -50,7 +53,6 @@ class Test(unittest.TestCase):
         self.assertListEqual(self.gm.chatid_games[1], [g1])
 
     def test_join_game(self):
-
         self.assertRaises(NoGameInChatError,
                           self.gm.join_game,
                           *(self.user0, self.chat0))

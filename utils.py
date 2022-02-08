@@ -73,7 +73,7 @@ def display_color_group(color, game):
     if color == "y":
         return __("{emoji} Yellow", game.translate).format(
             emoji='💛')
-  
+
 
 def error(update, context):
     """Simple error handler"""
@@ -121,7 +121,7 @@ def user_is_creator_or_admin(user, game, context, chat):
     return user_is_creator(user, game) or user_is_admin(user, context, chat)
 
 
-@MWT(timeout=60*60)
+@MWT(timeout=60 * 60)
 def get_admin_ids(context, chat_id):
     """Returns a list of admin IDs for a given chat. Results are cached for 1 hour."""
     return [admin.user.id for admin in context.bot.get_chat_administrators(chat_id)]

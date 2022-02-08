@@ -18,12 +18,16 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-from config import BASE_URL, TOKEN, WORKERS
 import os
-from telegram.ext import Updater, Dispatcher, Defaults
 
-from game_manager import GameManager
+from telegram.ext import Defaults, Dispatcher, Updater
+
+from config import BASE_URL, TOKEN, WORKERS
 from database import db
+from game_manager import GameManager
+# Explicitly import UserSetting to avoid circular imports,
+# since UserSetting must be loaded before generating database mapping
+from user_setting import UserSetting as UserSetting  # noqa: F401
 
 db.bind('sqlite', os.getenv('UNO_DB', 'uno.sqlite3'), create_db=True)
 db.generate_mapping(create_tables=True)

@@ -19,13 +19,13 @@
 
 
 from telegram import ReplyKeyboardMarkup
-from telegram.ext import CommandHandler, MessageHandler, Filters
+from telegram.ext import CommandHandler, Filters, MessageHandler
 
-from utils import send_async
-from user_setting import UserSetting
-from shared_vars import dispatcher
-from locales import available_locales
 from internationalization import _, user_locale
+from locales import available_locales
+from shared_vars import dispatcher
+from user_setting import UserSetting
+from utils import send_async
 
 
 @user_locale

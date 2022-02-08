@@ -22,8 +22,8 @@ import logging
 from datetime import datetime
 
 import card as c
-from errors import DeckEmptyError
 from config import WAITING_TIME
+from errors import DeckEmptyError
 
 
 class Player(object):
@@ -124,10 +124,11 @@ class Player(object):
         finally:
             self.game.draw_counter = 0
             self.drew = True
+
     def rm(self, card):
         """Plays a card and removes it from hand"""
         self.cards.remove(card)
-        
+
     def play(self, card):
         """Plays a card and removes it from hand"""
         self.cards.remove(card)

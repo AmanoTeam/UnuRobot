@@ -1,20 +1,15 @@
-import random
-
 import logging
 
 import card as c
-from datetime import datetime
-
-from telegram import Message, Chat
-
-from config import TIME_REMOVAL_AFTER_SKIP, MIN_FAST_TURN_TIME
+from config import MIN_FAST_TURN_TIME, TIME_REMOVAL_AFTER_SKIP
 from errors import DeckEmptyError, NotEnoughPlayersError
-from internationalization import __, _
+from internationalization import __
 from shared_vars import gm
 from user_setting import UserSetting
-from utils import send_async, display_name, game_is_running
+from utils import display_name, game_is_running, send_async
 
 logger = logging.getLogger(__name__)
+
 
 class Countdown(object):
     player = None
@@ -47,11 +42,11 @@ def do_skip(context, player):
         n = skipped_player.waiting_time
         send_async(context, chat.id,
                    text=__("Waiting time to skip this player has "
-                        "been reduced to {time} seconds.\n"
-                        "Next player: {name}", multi=game.translate)
+                           "been reduced to {time} seconds.\n"
+                           "Next player: {name}", multi=game.translate)
                    .format(time=n,
                            name=display_name(next_player.user))
-        )
+                   )
         logger.info("{player} was skipped! "
                     .format(player=display_name(player.user)))
         game.turn()
@@ -63,12 +58,12 @@ def do_skip(context, player):
             gm.leave_game(skipped_player.user, chat)
             send_async(context, chat.id,
                        text=__("{name1} ran out of time "
-                            "and has been removed from the game!\n"
-                            "Next player: {name2}", multi=game.translate)
+                               "and has been removed from the game!\n"
+                               "Next player: {name2}", multi=game.translate)
                        .format(name1=display_name(skipped_player.user),
                                name2=display_name(next_player.user)))
             logger.info("{player} was skipped! "
-                    .format(player=display_name(player.user)))
+                        .format(player=display_name(player.user)))
             if job_queue:
                 start_player_countdown(context, game)
 
@@ -254,7 +249,7 @@ def start_player_countdown(context, game):
             game.job.schedule_removal()
 
         job = context.job_queue.run_once(
-            #lambda x,y: do_skip(context, player),
+            # lambda x,y: do_skip(context, player),
             skip_job,
             time,
             context=Countdown(player, context.job_queue)

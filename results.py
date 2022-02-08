@@ -22,12 +22,13 @@
 
 from uuid import uuid4
 
-from telegram import InlineQueryResultArticle, InputTextMessageContent, \
-    InlineQueryResultCachedSticker as Sticker
+from telegram import InlineQueryResultArticle
+from telegram import InlineQueryResultCachedSticker as Sticker
+from telegram import InputTextMessageContent
 
 import card as c
-from utils import display_color, display_color_group, display_name
 from internationalization import _, __
+from utils import display_color, display_color_group, display_name
 
 
 def add_choose_player(name, results, game):
@@ -45,6 +46,7 @@ def add_choose_player(name, results, game):
                 )
             )
         a += 1
+
 
 def add_choose_color(results, game):
     """Add choose color options"""
@@ -80,7 +82,7 @@ def player_list(game):
     return [_("{name} ({number} card)",
               "{name} ({number} cards)",
               len(player.cards))
-            .format(name=player.user.first_name, number=len(player.cards))
+                .format(name=player.user.first_name, number=len(player.cards))
             for player in game.players]
 
 
@@ -145,6 +147,7 @@ def add_mode_wild(results):
         )
     )
 
+
 def add_mode_sete(results):
     results.append(
         InlineQueryResultArticle(
@@ -166,8 +169,8 @@ def add_mode_text(results):
             InputTextMessageContent(_('Text ✍️'))
         )
     )
-    
-    
+
+
 def add_draw(player, results):
     """Add option to draw"""
     n = player.game.draw_counter or 1
@@ -228,11 +231,14 @@ def add_card(game, card, results, can_play):
         if game.mode != "text":
             results.append(
                 Sticker(str(card), sticker_file_id=c.STICKERS[str(card)])
-        )
+            )
         if game.mode == "text":
             results.append(
-                Sticker(str(card), sticker_file_id=c.STICKERS[str(card)], input_message_content=InputTextMessageContent("Card Played: {card}".format(card=repr(card).replace('Draw Four', '+4').replace('Draw', '+2').replace('Colorchooser', 'Color Chooser')))
-        ))
+                Sticker(str(card), sticker_file_id=c.STICKERS[str(card)], input_message_content=InputTextMessageContent(
+                    "Card Played: {card}".format(
+                        card=repr(card).replace('Draw Four', '+4').replace('Draw', '+2').replace('Colorchooser',
+                                                                                                 'Color Chooser')))
+                        ))
     else:
         results.append(
             Sticker(str(uuid4()), sticker_file_id=c.STICKERS_GREY[str(card)],

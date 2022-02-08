@@ -20,10 +20,14 @@
 
 import logging
 
+from errors import (
+    AlreadyJoinedError,
+    LobbyClosedError,
+    NoGameInChatError,
+    NotEnoughPlayersError,
+)
 from game import Game
 from player import Player
-from errors import (AlreadyJoinedError, LobbyClosedError, NoGameInChatError,
-                    NotEnoughPlayersError)
 
 
 class GameManager(object):

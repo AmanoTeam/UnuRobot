@@ -18,8 +18,8 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-from random import shuffle
 import logging
+from random import shuffle
 
 import card as c
 from card import Card
