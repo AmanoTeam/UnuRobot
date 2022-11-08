@@ -17,25 +17,26 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-
 from telegram import ReplyKeyboardMarkup
-from telegram.ext import CommandHandler, Filters, MessageHandler
+from telegram.ext import CommandHandler, ContextTypes, MessageHandler, filters
 
 from internationalization import _, user_locale
 from locales import available_locales
-from shared_vars import dispatcher
+from shared_vars import application
 from user_setting import UserSetting
 from utils import send_async
 
 
 @user_locale
-def show_settings(update, context):
+async def show_settings(update, context):
     chat = update.message.chat
 
-    if update.message.chat.type != 'private':
-        send_async(context, chat.id,
-                   text=_("Please edit your settings in a private chat with "
-                          "the bot."))
+    if update.message.chat.type != "private":
+        await send_async(
+            context,
+            chat.id,
+            text=_("Please edit your settings in a private chat with " "the bot."),
+        )
         return
 
     us = UserSetting.get(id=update.message.from_user.id)
@@ -44,46 +45,53 @@ def show_settings(update, context):
         us = UserSetting(id=update.message.from_user.id)
 
     if not us.stats:
-        stats = '📊' + ' ' + _("Enable statistics")
+        stats = "📊" + " " + _("Enable statistics")
     else:
-        stats = '❌' + ' ' + _("Delete all statistics")
+        stats = "❌" + " " + _("Delete all statistics")
 
-    kb = [[stats], ['🌍' + ' ' + _("Language")]]
-    send_async(context, chat.id, text='🔧' + ' ' + _("Settings"),
-               reply_markup=ReplyKeyboardMarkup(keyboard=kb,
-                                                one_time_keyboard=True))
+    kb = [[stats], ["🌍" + " " + _("Language")]]
+    await send_async(
+        context,
+        chat.id,
+        text="🔧" + " " + _("Settings"),
+        reply_markup=ReplyKeyboardMarkup(keyboard=kb, one_time_keyboard=True),
+    )
 
 
 @user_locale
-def kb_select(update, context):
+async def kb_select(update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.message.chat
     user = update.message.from_user
     option = context.matches[0].group(1)
 
-    if option == '📊':
+    if option == "📊":
         us = UserSetting.get(id=user.id)
         us.stats = True
-        send_async(context, chat.id, text=_("Enabled statistics!"))
+        await send_async(context, chat.id, text=_("Enabled statistics!"))
 
-    elif option == '🌍':
-        kb = [[locale + ' - ' + descr]
-              for locale, descr
-              in sorted(available_locales.items())]
-        send_async(context, chat.id, text=_("Select locale"),
-                   reply_markup=ReplyKeyboardMarkup(keyboard=kb,
-                                                    one_time_keyboard=True))
+    elif option == "🌍":
+        kb = [
+            [locale + " - " + descr]
+            for locale, descr in sorted(available_locales.items())
+        ]
+        await send_async(
+            context,
+            chat.id,
+            text=_("Select locale"),
+            reply_markup=ReplyKeyboardMarkup(keyboard=kb, one_time_keyboard=True),
+        )
 
-    elif option == '❌':
+    elif option == "❌":
         us = UserSetting.get(id=user.id)
         us.stats = False
         us.first_places = 0
         us.games_played = 0
         us.cards_played = 0
-        send_async(context, chat.id, text=_("Deleted and disabled statistics!"))
+        await send_async(context, chat.id, text=_("Deleted and disabled statistics!"))
 
 
 @user_locale
-def locale_select(update, context):
+async def locale_select(update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.message.chat
     user = update.message.from_user
     option = context.matches[0].group(1)
@@ -92,13 +100,13 @@ def locale_select(update, context):
         us = UserSetting.get(id=user.id)
         us.lang = option
         _.push(option)
-        send_async(context, chat.id, text=_("Set locale!"))
+        await send_async(context, chat.id, text=_("Set locale!"))
         _.pop()
 
 
 def register():
-    dispatcher.add_handler(CommandHandler('settings', show_settings))
-    dispatcher.add_handler(MessageHandler(Filters.regex(r'^([📊🌍❌]) .+$'),
-                                          kb_select))
-    dispatcher.add_handler(MessageHandler(Filters.regex(r'^(\w\w_\w\w) - .*'),
-                                          locale_select))
+    application.add_handler(CommandHandler("settings", show_settings))
+    application.add_handler(MessageHandler(filters.Regex(r"^([📊🌍❌]) .+$"), kb_select))
+    application.add_handler(
+        MessageHandler(filters.Regex(r"^(\w\w_\w\w) - .*"), locale_select)
+    )

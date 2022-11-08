@@ -6,6 +6,7 @@ import time
 
 class MWT(object):
     """Memoize With Timeout"""
+
     _caches = {}
     _timeouts = {}
 

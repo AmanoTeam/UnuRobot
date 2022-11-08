@@ -31,7 +31,7 @@ from player import Player
 
 
 class GameManager(object):
-    """ Manages all running games by using a confusing amount of dicts """
+    """Manages all running games by using a confusing amount of dicts"""
 
     def __init__(self):
         self.chatid_games = dict()
@@ -62,7 +62,7 @@ class GameManager(object):
         return game
 
     def join_game(self, user, chat):
-        """ Create a player from the Telegram user and add it to the game """
+        """Create a player from the Telegram user and add it to the game"""
         self.logger.info("Joining game with id " + str(chat.id))
 
         try:
@@ -104,7 +104,7 @@ class GameManager(object):
         self.userid_current[user.id] = player
 
     def leave_game(self, user, chat):
-        """ Remove a player from its current game """
+        """Remove a player from its current game"""
 
         player = self.player_for_user_in_chat(user, chat)
         players = self.userid_players.get(user.id, list())
@@ -158,8 +158,7 @@ class GameManager(object):
 
         # Clear game
         for player_in_game in game.players:
-            this_users_players = \
-                self.userid_players.get(player_in_game.user.id, list())
+            this_users_players = self.userid_players.get(player_in_game.user.id, list())
 
             try:
                 this_users_players.remove(player_in_game)

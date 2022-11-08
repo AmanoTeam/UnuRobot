@@ -97,13 +97,17 @@ class Test(unittest.TestCase):
     def test_playable_cards_simple(self):
         p = Player(self.game, "Player 0")
 
-        self.game.last_card = c.Card(c.RED, '5')
+        self.game.last_card = c.Card(c.RED, "5")
 
-        p.cards = [c.Card(c.RED, '0'), c.Card(c.RED, '5'), c.Card(c.BLUE, '0'),
-                   c.Card(c.GREEN, '5'), c.Card(c.GREEN, '8')]
+        p.cards = [
+            c.Card(c.RED, "0"),
+            c.Card(c.RED, "5"),
+            c.Card(c.BLUE, "0"),
+            c.Card(c.GREEN, "5"),
+            c.Card(c.GREEN, "8"),
+        ]
 
-        expected = [c.Card(c.RED, '0'), c.Card(c.RED, '5'),
-                    c.Card(c.GREEN, '5')]
+        expected = [c.Card(c.RED, "0"), c.Card(c.RED, "5"), c.Card(c.GREEN, "5")]
 
         self.assertListEqual(p.playable_cards(), expected)
 
@@ -113,9 +117,13 @@ class Test(unittest.TestCase):
         self.game.last_card = c.Card(c.RED, c.DRAW_TWO)
         self.game.draw_counter = 2
 
-        p.cards = [c.Card(c.RED, c.DRAW_TWO), c.Card(c.RED, '5'),
-                   c.Card(c.BLUE, '0'), c.Card(c.GREEN, '5'),
-                   c.Card(c.GREEN, c.DRAW_TWO)]
+        p.cards = [
+            c.Card(c.RED, c.DRAW_TWO),
+            c.Card(c.RED, "5"),
+            c.Card(c.BLUE, "0"),
+            c.Card(c.GREEN, "5"),
+            c.Card(c.GREEN, c.DRAW_TWO),
+        ]
 
         expected = [c.Card(c.RED, c.DRAW_TWO), c.Card(c.GREEN, c.DRAW_TWO)]
 
@@ -127,11 +135,15 @@ class Test(unittest.TestCase):
         self.game.last_card = c.Card(c.RED, None, c.DRAW_FOUR)
         self.game.draw_counter = 4
 
-        p.cards = [c.Card(c.RED, c.DRAW_TWO), c.Card(c.RED, '5'),
-                   c.Card(c.BLUE, '0'), c.Card(c.GREEN, '5'),
-                   c.Card(c.GREEN, c.DRAW_TWO),
-                   c.Card(None, None, c.DRAW_FOUR),
-                   c.Card(None, None, c.CHOOSE)]
+        p.cards = [
+            c.Card(c.RED, c.DRAW_TWO),
+            c.Card(c.RED, "5"),
+            c.Card(c.BLUE, "0"),
+            c.Card(c.GREEN, "5"),
+            c.Card(c.GREEN, c.DRAW_TWO),
+            c.Card(None, None, c.DRAW_FOUR),
+            c.Card(None, None, c.CHOOSE),
+        ]
 
         expected = list()
 
@@ -141,21 +153,29 @@ class Test(unittest.TestCase):
         p = Player(self.game, "Player 0")
         Player(self.game, "Player 01")
 
-        self.game.last_card = c.Card(c.RED, '1')
+        self.game.last_card = c.Card(c.RED, "1")
 
-        p.cards = [c.Card(c.RED, c.DRAW_TWO), c.Card(c.RED, '5'),
-                   c.Card(c.BLUE, '0'), c.Card(c.GREEN, '5'),
-                   c.Card(c.RED, '5'), c.Card(c.GREEN, c.DRAW_TWO),
-                   c.Card(None, None, c.DRAW_FOUR),
-                   c.Card(None, None, c.CHOOSE)]
+        p.cards = [
+            c.Card(c.RED, c.DRAW_TWO),
+            c.Card(c.RED, "5"),
+            c.Card(c.BLUE, "0"),
+            c.Card(c.GREEN, "5"),
+            c.Card(c.RED, "5"),
+            c.Card(c.GREEN, c.DRAW_TWO),
+            c.Card(None, None, c.DRAW_FOUR),
+            c.Card(None, None, c.CHOOSE),
+        ]
 
         p.playable_cards()
         self.assertTrue(p.bluffing)
 
-        p.cards = [c.Card(c.BLUE, '1'), c.Card(c.GREEN, '1'),
-                   c.Card(c.GREEN, c.DRAW_TWO),
-                   c.Card(None, None, c.DRAW_FOUR),
-                   c.Card(None, None, c.CHOOSE)]
+        p.cards = [
+            c.Card(c.BLUE, "1"),
+            c.Card(c.GREEN, "1"),
+            c.Card(c.GREEN, c.DRAW_TWO),
+            c.Card(None, None, c.DRAW_FOUR),
+            c.Card(None, None, c.CHOOSE),
+        ]
 
         p.playable_cards()
 

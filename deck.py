@@ -27,7 +27,7 @@ from errors import DeckEmptyError
 
 
 class Deck(object):
-    """ This class represents a deck of cards """
+    """This class represents a deck of cards"""
 
     def __init__(self):
         self.cards = list()

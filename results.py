@@ -38,11 +38,10 @@ def add_choose_player(name, results, game):
         if name != i.user.id or len(game.players) == 1:
             results.append(
                 InlineQueryResultArticle(
-                    id=f'player_{a}',
+                    id=f"player_{a}",
                     title=_("Choose Player"),
-                    description=f'{i.user.first_name} - {len(i.cards)}',
-                    input_message_content=
-                    InputTextMessageContent(i.user.first_name)
+                    description=f"{i.user.first_name} - {len(i.cards)}",
+                    input_message_content=InputTextMessageContent(i.user.first_name),
                 )
             )
         a += 1
@@ -56,8 +55,9 @@ def add_choose_color(results, game):
                 id=color,
                 title=_("Choose Color"),
                 description=display_color(color),
-                input_message_content=
-                InputTextMessageContent(display_color_group(color, game))
+                input_message_content=InputTextMessageContent(
+                    display_color_group(color, game)
+                ),
             )
         )
 
@@ -68,22 +68,25 @@ def add_other_cards(player, results, game):
     results.append(
         InlineQueryResultArticle(
             "hand",
-            title=_("Card (tap for game state):",
-                    "Cards (tap for game state):",
-                    len(player.cards)),
-            description=', '.join([repr(card) for card in player.cards]),
-            input_message_content=game_info(game)
+            title=_(
+                "Card (tap for game state):",
+                "Cards (tap for game state):",
+                len(player.cards),
+            ),
+            description=", ".join([repr(card) for card in player.cards]),
+            input_message_content=game_info(game),
         )
     )
 
 
 def player_list(game):
     """Generate list of player strings"""
-    return [_("{name} ({number} card)",
-              "{name} ({number} cards)",
-              len(player.cards))
-                .format(name=player.user.first_name, number=len(player.cards))
-            for player in game.players]
+    return [
+        _(
+            "{name} ({number} card)", "{name} ({number} cards)", len(player.cards)
+        ).format(name=player.user.first_name, number=len(player.cards))
+        for player in game.players
+    ]
 
 
 def add_no_game(results):
@@ -92,10 +95,13 @@ def add_no_game(results):
         InlineQueryResultArticle(
             "nogame",
             title=_("You are not playing"),
-            input_message_content=
-            InputTextMessageContent(_('Not playing right now. Use /new to '
-                                      'start a game or /join to join the '
-                                      'current game in this group'))
+            input_message_content=InputTextMessageContent(
+                _(
+                    "Not playing right now. Use /new to "
+                    "start a game or /join to join the "
+                    "current game in this group"
+                )
+            ),
         )
     )
 
@@ -106,8 +112,9 @@ def add_not_started(results):
         InlineQueryResultArticle(
             "nogame",
             title=_("The game wasn't started yet"),
-            input_message_content=
-            InputTextMessageContent(_('Start the game with /start'))
+            input_message_content=InputTextMessageContent(
+                _("Start the game with /start")
+            ),
         )
     )
 
@@ -118,8 +125,7 @@ def add_mode_classic(results):
         InlineQueryResultArticle(
             "mode_classic",
             title=_("🎻 Classic mode"),
-            input_message_content=
-            InputTextMessageContent(_('Classic 🎻'))
+            input_message_content=InputTextMessageContent(_("Classic 🎻")),
         )
     )
 
@@ -130,8 +136,7 @@ def add_mode_fast(results):
         InlineQueryResultArticle(
             "mode_fast",
             title=_("🚀 Sanic mode"),
-            input_message_content=
-            InputTextMessageContent(_('Gotta go fast! 🚀'))
+            input_message_content=InputTextMessageContent(_("Gotta go fast! 🚀")),
         )
     )
 
@@ -142,8 +147,7 @@ def add_mode_wild(results):
         InlineQueryResultArticle(
             "mode_wild",
             title=_("🐉 Wild mode"),
-            input_message_content=
-            InputTextMessageContent(_('Into the Wild~ 🐉'))
+            input_message_content=InputTextMessageContent(_("Into the Wild~ 🐉")),
         )
     )
 
@@ -153,8 +157,7 @@ def add_mode_sete(results):
         InlineQueryResultArticle(
             "mode_7-0",
             title=_("🔫 7-0 mode"),
-            input_message_content=
-            InputTextMessageContent(_('Carioca mode on 🔫'))
+            input_message_content=InputTextMessageContent(_("Carioca mode on 🔫")),
         )
     )
 
@@ -165,8 +168,7 @@ def add_mode_text(results):
         InlineQueryResultArticle(
             "mode_text",
             title=_("✍️ Text mode"),
-            input_message_content=
-            InputTextMessageContent(_('Text ✍️'))
+            input_message_content=InputTextMessageContent(_("Text ✍️")),
         )
     )
 
@@ -177,12 +179,16 @@ def add_draw(player, results):
 
     results.append(
         Sticker(
-            "draw", sticker_file_id=c.STICKERS['option_draw'],
-            input_message_content=
-            InputTextMessageContent(__('Drawing {number} card',
-                                       'Drawing {number} cards', n,
-                                       multi=player.game.translate)
-                                    .format(number=n))
+            "draw",
+            sticker_file_id=c.STICKERS["option_draw"],
+            input_message_content=InputTextMessageContent(
+                __(
+                    "Drawing {number} card",
+                    "Drawing {number} cards",
+                    n,
+                    multi=player.game.translate,
+                ).format(number=n)
+            ),
         )
     )
 
@@ -193,8 +199,8 @@ def add_gameinfo(game, results):
     results.append(
         Sticker(
             "gameinfo",
-            sticker_file_id=c.STICKERS['option_info'],
-            input_message_content=game_info(game)
+            sticker_file_id=c.STICKERS["option_info"],
+            input_message_content=game_info(game),
         )
     )
 
@@ -203,10 +209,11 @@ def add_pass(results, game):
     """Add option to pass"""
     results.append(
         Sticker(
-            "pass", sticker_file_id=c.STICKERS['option_pass'],
+            "pass",
+            sticker_file_id=c.STICKERS["option_pass"],
             input_message_content=InputTextMessageContent(
-                __('Pass', multi=game.translate)
-            )
+                __("Pass", multi=game.translate)
+            ),
         )
     )
 
@@ -216,10 +223,10 @@ def add_call_bluff(results, game):
     results.append(
         Sticker(
             "call_bluff",
-            sticker_file_id=c.STICKERS['option_bluff'],
-            input_message_content=
-            InputTextMessageContent(__("I'm calling your bluff!",
-                                       multi=game.translate))
+            sticker_file_id=c.STICKERS["option_bluff"],
+            input_message_content=InputTextMessageContent(
+                __("I'm calling your bluff!", multi=game.translate)
+            ),
         )
     )
 
@@ -229,33 +236,40 @@ def add_card(game, card, results, can_play):
 
     if can_play:
         if game.mode != "text":
-            results.append(
-                Sticker(str(card), sticker_file_id=c.STICKERS[str(card)])
-            )
+            results.append(Sticker(str(card), sticker_file_id=c.STICKERS[str(card)]))
         if game.mode == "text":
             results.append(
-                Sticker(str(card), sticker_file_id=c.STICKERS[str(card)], input_message_content=InputTextMessageContent(
-                    "Card Played: {card}".format(
-                        card=repr(card).replace('Draw Four', '+4').replace('Draw', '+2').replace('Colorchooser',
-                                                                                                 'Color Chooser')))
-                        ))
+                Sticker(
+                    str(card),
+                    sticker_file_id=c.STICKERS[str(card)],
+                    input_message_content=InputTextMessageContent(
+                        "Card Played: {card}".format(
+                            card=repr(card)
+                            .replace("Draw Four", "+4")
+                            .replace("Draw", "+2")
+                            .replace("Colorchooser", "Color Chooser")
+                        )
+                    ),
+                )
+            )
     else:
         results.append(
-            Sticker(str(uuid4()), sticker_file_id=c.STICKERS_GREY[str(card)],
-                    input_message_content=game_info(game))
+            Sticker(
+                str(uuid4()),
+                sticker_file_id=c.STICKERS_GREY[str(card)],
+                input_message_content=game_info(game),
+            )
         )
 
 
 def game_info(game):
     players = player_list(game)
     return InputTextMessageContent(
-        _("Current player: {name}")
-        .format(name=display_name(game.current_player.user)) +
-        "\n" +
-        _("Last card: {card}").format(card=repr(game.last_card)) +
-        "\n" +
-        _("Player: {player_list}",
-          "Players: {player_list}",
-          len(players))
-        .format(player_list=" -> ".join(players))
+        _("Current player: {name}").format(name=display_name(game.current_player.user))
+        + "\n"
+        + _("Last card: {card}").format(card=repr(game.last_card))
+        + "\n"
+        + _("Player: {player_list}", "Players: {player_list}", len(players)).format(
+            player_list=" -> ".join(players)
+        )
     )

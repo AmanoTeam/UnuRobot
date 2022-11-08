@@ -20,18 +20,18 @@
 
 import os
 
-from telegram.ext import Defaults, Dispatcher, Updater
+from telegram.ext import Application
 
-from config import BASE_URL, TOKEN, WORKERS
+from config import BASE_URL, TOKEN
 from database import db
 from game_manager import GameManager
+
 # Explicitly import UserSetting to avoid circular imports,
 # since UserSetting must be loaded before generating database mapping
 from user_setting import UserSetting as UserSetting  # noqa: F401
 
-db.bind('sqlite', os.getenv('UNO_DB', 'uno.sqlite3'), create_db=True)
+db.bind("sqlite", os.getenv("UNO_DB", "uno.sqlite3"), create_db=True)
 db.generate_mapping(create_tables=True)
 
 gm = GameManager()
-updater = Updater(token=TOKEN, base_url=BASE_URL, workers=WORKERS, defaults=Defaults(run_async=True))
-dispatcher: Dispatcher = updater.dispatcher
+application = Application.builder().token(TOKEN).base_url(BASE_URL).build()

@@ -21,7 +21,7 @@ class Countdown(object):
 
 
 # TODO do_skip() could get executed in another thread (it can be a job), so it looks like it can't use game.translate?
-def do_skip(context, player):
+async def do_skip(context, player):
     game = player.game
     chat = game.chat
     skipped_player = game.current_player
@@ -31,7 +31,7 @@ def do_skip(context, player):
     if skipped_player.waiting_time > 0:
         skipped_player.anti_cheat += 1
         skipped_player.waiting_time -= TIME_REMOVAL_AFTER_SKIP
-        if (skipped_player.waiting_time < 0):
+        if skipped_player.waiting_time < 0:
             skipped_player.waiting_time = 0
 
         try:
@@ -40,15 +40,17 @@ def do_skip(context, player):
             pass
 
         n = skipped_player.waiting_time
-        send_async(context, chat.id,
-                   text=__("Waiting time to skip this player has "
-                           "been reduced to {time} seconds.\n"
-                           "Next player: {name}", multi=game.translate)
-                   .format(time=n,
-                           name=display_name(next_player.user))
-                   )
-        logger.info("{player} was skipped! "
-                    .format(player=display_name(player.user)))
+        await send_async(
+            context,
+            chat.id,
+            text=__(
+                "Waiting time to skip this player has "
+                "been reduced to {time} seconds.\n"
+                "Next player: {name}",
+                multi=game.translate,
+            ).format(time=n, name=display_name(next_player.user)),
+        )
+        logger.info("{player} was skipped! ".format(player=display_name(player.user)))
         game.turn()
         if job_queue:
             start_player_countdown(context, game)
@@ -56,23 +58,36 @@ def do_skip(context, player):
     else:
         try:
             gm.leave_game(skipped_player.user, chat)
-            send_async(context, chat.id,
-                       text=__("{name1} ran out of time "
-                               "and has been removed from the game!\n"
-                               "Next player: {name2}", multi=game.translate)
-                       .format(name1=display_name(skipped_player.user),
-                               name2=display_name(next_player.user)))
-            logger.info("{player} was skipped! "
-                        .format(player=display_name(player.user)))
+            await send_async(
+                context,
+                chat.id,
+                text=__(
+                    "{name1} ran out of time "
+                    "and has been removed from the game!\n"
+                    "Next player: {name2}",
+                    multi=game.translate,
+                ).format(
+                    name1=display_name(skipped_player.user),
+                    name2=display_name(next_player.user),
+                ),
+            )
+            logger.info(
+                "{player} was skipped! ".format(player=display_name(player.user))
+            )
             if job_queue:
                 start_player_countdown(context, game)
 
         except NotEnoughPlayersError:
-            send_async(context, chat.id,
-                       text=__("{name} ran out of time "
-                               "and has been removed from the game!\n"
-                               "The game ended.", multi=game.translate)
-                       .format(name=display_name(skipped_player.user)))
+            await send_async(
+                context,
+                chat.id,
+                text=__(
+                    "{name} ran out of time "
+                    "and has been removed from the game!\n"
+                    "The game ended.",
+                    multi=game.translate,
+                ).format(name=display_name(skipped_player.user)),
+            )
 
             gm.end_game(chat, skipped_player.user)
 
@@ -82,7 +97,7 @@ def remove_cards(player, result_id):
     player.rm(card)
 
 
-def subport(context, player, pi):
+async def subport(context, player, pi):
     game = player.game
     user = player.user
 
@@ -93,13 +108,13 @@ def subport(context, player, pi):
     if us.stats:
         us.cards_played += 1
 
-    verifi(context, player)
-    verifi(context, pi)
+    await verifi(context, player)
+    await verifi(context, pi)
 
     game.turn()
 
 
-def verifi(context, player):
+async def verifi(context, player):
     game = player.game
     chat = game.chat
     user = player.user
@@ -109,12 +124,14 @@ def verifi(context, player):
         us = UserSetting(id=user.id)
 
     if len(player.cards) == 1:
-        send_async(context, chat.id, text="UNO!")
+        await send_async(context, chat.id, text="UNO!")
 
     if len(player.cards) == 0:
-        send_async(context, chat.id,
-                   text=__("{name} won!", multi=game.translate)
-                   .format(name=user.first_name))
+        await send_async(
+            context,
+            chat.id,
+            text=__("{name} won!", multi=game.translate).format(name=user.first_name),
+        )
 
         if us.stats:
             us.games_played += 1
@@ -127,8 +144,9 @@ def verifi(context, player):
         try:
             gm.leave_game(user, chat)
         except NotEnoughPlayersError:
-            send_async(context, chat.id,
-                       text=__("Game ended!", multi=game.translate))
+            await send_async(
+                context, chat.id, text=__("Game ended!", multi=game.translate)
+            )
 
             us2 = UserSetting.get(id=game.current_player.user.id)
             if us2 and us2.stats:
@@ -137,7 +155,7 @@ def verifi(context, player):
             gm.end_game(chat, user)
 
 
-def do_play_card(context, player, result_id):
+async def do_play_card(context, player, result_id):
     """Plays the selected card and sends an update to the group if needed"""
     card = c.from_str(result_id)
     player.play(card)
@@ -153,15 +171,19 @@ def do_play_card(context, player, result_id):
         us.cards_played += 1
 
     if game.choosing_color:
-        send_async(context, chat.id, text=__("Please choose a color", multi=game.translate))
+        await send_async(
+            context, chat.id, text=__("Please choose a color", multi=game.translate)
+        )
 
     if len(player.cards) == 1:
-        send_async(context, chat.id, text="UNO!")
+        await send_async(context, chat.id, text="UNO!")
 
     if len(player.cards) == 0:
-        send_async(context, chat.id,
-                   text=__("{name} won!", multi=game.translate)
-                   .format(name=user.first_name))
+        await send_async(
+            context,
+            chat.id,
+            text=__("{name} won!", multi=game.translate).format(name=user.first_name),
+        )
 
         if us.stats:
             us.games_played += 1
@@ -174,8 +196,9 @@ def do_play_card(context, player, result_id):
         try:
             gm.leave_game(user, chat)
         except NotEnoughPlayersError:
-            send_async(context, chat.id,
-                       text=__("Game ended!", multi=game.translate))
+            await send_async(
+                context, chat.id, text=__("Game ended!", multi=game.translate)
+            )
 
             us2 = UserSetting.get(id=game.current_player.user.id)
             if us2 and us2.stats:
@@ -184,7 +207,7 @@ def do_play_card(context, player, result_id):
             gm.end_game(chat, user)
 
 
-def do_draw(context, player):
+async def do_draw(context, player):
     """Does the drawing"""
     game = player.game
     draw_counter_before = game.draw_counter
@@ -192,47 +215,58 @@ def do_draw(context, player):
     try:
         player.draw()
     except DeckEmptyError:
-        send_async(context, player.game.chat.id,
-                   text=__("There are no more cards in the deck.",
-                           multi=game.translate))
+        await send_async(
+            context,
+            player.game.chat.id,
+            text=__("There are no more cards in the deck.", multi=game.translate),
+        )
 
-    if (game.last_card.value == c.DRAW_TWO or
-        game.last_card.special == c.DRAW_FOUR) and \
-            draw_counter_before > 0:
+    if (
+        game.last_card.value == c.DRAW_TWO or game.last_card.special == c.DRAW_FOUR
+    ) and draw_counter_before > 0:
         game.turn()
 
 
-def do_call_bluff(context, player):
+async def do_call_bluff(context, player):
     """Handles the bluff calling"""
     game = player.game
     chat = game.chat
 
     if player.prev.bluffing:
-        send_async(context, chat.id,
-                   text=__("Bluff called! Giving 4 cards to {name}",
-                           multi=game.translate)
-                   .format(name=player.prev.user.first_name))
+        await send_async(
+            context,
+            chat.id,
+            text=__(
+                "Bluff called! Giving 4 cards to {name}", multi=game.translate
+            ).format(name=player.prev.user.first_name),
+        )
 
         try:
             player.prev.draw()
         except DeckEmptyError:
-            send_async(context, player.game.chat.id,
-                       text=__("There are no more cards in the deck.",
-                               multi=game.translate))
+            await send_async(
+                context,
+                player.game.chat.id,
+                text=__("There are no more cards in the deck.", multi=game.translate),
+            )
 
     else:
         game.draw_counter += 2
-        send_async(context, chat.id,
-                   text=__("{name1} didn't bluff! Giving 6 cards to {name2}",
-                           multi=game.translate)
-                   .format(name1=player.prev.user.first_name,
-                           name2=player.user.first_name))
+        await send_async(
+            context,
+            chat.id,
+            text=__(
+                "{name1} didn't bluff! Giving 6 cards to {name2}", multi=game.translate
+            ).format(name1=player.prev.user.first_name, name2=player.user.first_name),
+        )
         try:
             player.draw()
         except DeckEmptyError:
-            send_async(context, player.game.chat.id,
-                       text=__("There are no more cards in the deck.",
-                               multi=game.translate))
+            await send_async(
+                context,
+                player.game.chat.id,
+                text=__("There are no more cards in the deck.", multi=game.translate),
+            )
 
     game.turn()
 
@@ -244,7 +278,7 @@ def start_player_countdown(context, game):
     if time < MIN_FAST_TURN_TIME:
         time = MIN_FAST_TURN_TIME
 
-    if game.mode == 'fast':
+    if game.mode == "fast":
         if game.job:
             game.job.schedule_removal()
 
@@ -252,16 +286,19 @@ def start_player_countdown(context, game):
             # lambda x,y: do_skip(context, player),
             skip_job,
             time,
-            context=Countdown(player, context.job_queue)
+            context=Countdown(player, context.job_queue),
         )
 
-        logger.info("Started countdown for player: {player}. {time} seconds."
-                    .format(player=display_name(player.user), time=time))
+        logger.info(
+            "Started countdown for player: {player}. {time} seconds.".format(
+                player=display_name(player.user), time=time
+            )
+        )
         player.game.job = job
 
 
-def skip_job(context):
-    player = context.job.context.player
+async def skip_job(context):
+    player = context.job.data.player
     game = player.game
     if game_is_running(game):
-        do_skip(context, player)
+        await do_skip(context, player)

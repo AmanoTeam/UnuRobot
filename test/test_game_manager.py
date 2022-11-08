@@ -37,13 +37,13 @@ class Test(unittest.TestCase):
     def setUp(self):
         self.gm = GameManager()
 
-        self.chat0 = Chat(0, 'group')
-        self.chat1 = Chat(1, 'group')
-        self.chat2 = Chat(2, 'group')
+        self.chat0 = Chat(0, "group")
+        self.chat1 = Chat(1, "group")
+        self.chat2 = Chat(2, "group")
 
-        self.user0 = User(0, 'user0')
-        self.user1 = User(1, 'user1')
-        self.user2 = User(2, 'user2')
+        self.user0 = User(0, "user0")
+        self.user1 = User(1, "user1")
+        self.user2 = User(2, "user2")
 
     def test_new_game(self):
         g0 = self.gm.new_game(self.chat0)
@@ -53,9 +53,9 @@ class Test(unittest.TestCase):
         self.assertListEqual(self.gm.chatid_games[1], [g1])
 
     def test_join_game(self):
-        self.assertRaises(NoGameInChatError,
-                          self.gm.join_game,
-                          *(self.user0, self.chat0))
+        self.assertRaises(
+            NoGameInChatError, self.gm.join_game, *(self.user0, self.chat0)
+        )
 
         g0 = self.gm.new_game(self.chat0)
 
@@ -66,14 +66,14 @@ class Test(unittest.TestCase):
         self.assertEqual(len(g0.players), 2)
 
         g0.open = False
-        self.assertRaises(LobbyClosedError,
-                          self.gm.join_game,
-                          *(self.user2, self.chat0))
+        self.assertRaises(
+            LobbyClosedError, self.gm.join_game, *(self.user2, self.chat0)
+        )
 
         g0.open = True
-        self.assertRaises(AlreadyJoinedError,
-                          self.gm.join_game,
-                          *(self.user1, self.chat0))
+        self.assertRaises(
+            AlreadyJoinedError, self.gm.join_game, *(self.user1, self.chat0)
+        )
 
     def test_leave_game(self):
         self.gm.new_game(self.chat0)
@@ -81,16 +81,16 @@ class Test(unittest.TestCase):
         self.gm.join_game(self.user0, self.chat0)
         self.gm.join_game(self.user1, self.chat0)
 
-        self.assertRaises(NotEnoughPlayersError,
-                          self.gm.leave_game,
-                          *(self.user1, self.chat0))
+        self.assertRaises(
+            NotEnoughPlayersError, self.gm.leave_game, *(self.user1, self.chat0)
+        )
 
         self.gm.join_game(self.user2, self.chat0)
         self.gm.leave_game(self.user0, self.chat0)
 
-        self.assertRaises(NoGameInChatError,
-                          self.gm.leave_game,
-                          *(self.user0, self.chat0))
+        self.assertRaises(
+            NoGameInChatError, self.gm.leave_game, *(self.user0, self.chat0)
+        )
 
     def test_end_game(self):
         self.gm.new_game(self.chat0)

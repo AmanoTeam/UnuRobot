@@ -17,8 +17,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-
 import logging
+
+from telegram.ext import ContextTypes
 
 from internationalization import _, __
 from mwt import MWT
@@ -30,7 +31,7 @@ TIMEOUT = 2.5
 
 
 def list_subtract(list1, list2):
-    """ Helper function to subtract two lists and return the sorted result """
+    """Helper function to subtract two lists and return the sorted result"""
     list1 = list1.copy()
 
     for x in list2:
@@ -40,42 +41,38 @@ def list_subtract(list1, list2):
 
 
 def display_name(user):
-    """ Get the current players name including their username, if possible """
+    """Get the current players name including their username, if possible"""
     user_name = user.first_name
     if user.username:
-        user_name += ' (@' + user.username + ')'
+        user_name += " (@" + user.username + ")"
     return user_name
 
 
 def display_color(color):
-    """ Convert a color code to actual color name """
+    """Convert a color code to actual color name"""
     if color == "r":
-        return _("{emoji} Red").format(emoji='❤️')
+        return _("{emoji} Red").format(emoji="❤️")
     if color == "b":
-        return _("{emoji} Blue").format(emoji='💙')
+        return _("{emoji} Blue").format(emoji="💙")
     if color == "g":
-        return _("{emoji} Green").format(emoji='💚')
+        return _("{emoji} Green").format(emoji="💚")
     if color == "y":
-        return _("{emoji} Yellow").format(emoji='💛')
+        return _("{emoji} Yellow").format(emoji="💛")
 
 
 def display_color_group(color, game):
-    """ Convert a color code to actual color name """
+    """Convert a color code to actual color name"""
     if color == "r":
-        return __("{emoji} Red", game.translate).format(
-            emoji='❤️')
+        return __("{emoji} Red", game.translate).format(emoji="❤️")
     if color == "b":
-        return __("{emoji} Blue", game.translate).format(
-            emoji='💙')
+        return __("{emoji} Blue", game.translate).format(emoji="💙")
     if color == "g":
-        return __("{emoji} Green", game.translate).format(
-            emoji='💚')
+        return __("{emoji} Green", game.translate).format(emoji="💚")
     if color == "y":
-        return __("{emoji} Yellow", game.translate).format(
-            emoji='💛')
+        return __("{emoji} Yellow", game.translate).format(emoji="💛")
 
 
-def error(update, context):
+def error(update, context: ContextTypes.DEFAULT_TYPE):
     """Simple error handler"""
     if isinstance(context, Exception):
         logger.exception(context)
@@ -83,24 +80,18 @@ def error(update, context):
         logger.exception(context.error)
 
 
-def send_async(context, *args, **kwargs):
+async def send_async(context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
     """Send a message asynchronously"""
-    if 'timeout' not in kwargs:
-        kwargs['timeout'] = TIMEOUT
-
     try:
-        context.bot.sendMessage(*args, **kwargs)
+        await context.bot.send_message(*args, **kwargs)
     except Exception as e:
         error(None, e)
 
 
-def answer_async(context, *args, **kwargs):
+async def answer_async(context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
     """Answer an inline query asynchronously"""
-    if 'timeout' not in kwargs:
-        kwargs['timeout'] = TIMEOUT
-
     try:
-        context.bot.answerInlineQuery(*args, **kwargs)
+        await context.bot.answer_inline_query(*args, **kwargs)
     except Exception as e:
         error(None, e)
 
@@ -122,6 +113,8 @@ def user_is_creator_or_admin(user, game, context, chat):
 
 
 @MWT(timeout=60 * 60)
-def get_admin_ids(context, chat_id):
+async def get_admin_ids(context, chat_id):
     """Returns a list of admin IDs for a given chat. Results are cached for 1 hour."""
-    return [admin.user.id for admin in context.bot.get_chat_administrators(chat_id)]
+    return [
+        admin.user.id for admin in await context.bot.get_chat_administrators(chat_id)
+    ]

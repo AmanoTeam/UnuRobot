@@ -27,7 +27,8 @@ from deck import Deck
 
 
 class Game(object):
-    """ This class represents a game of UNO """
+    """This class represents a game of UNO"""
+
     current_player = None
     reversed = False
     choosing_color = False
