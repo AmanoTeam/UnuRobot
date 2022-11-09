@@ -286,7 +286,7 @@ def start_player_countdown(context, game):
             # lambda x,y: do_skip(context, player),
             skip_job,
             time,
-            context=Countdown(player, context.job_queue),
+            data=Countdown(player, context.job_queue),
         )
 
         logger.info(
