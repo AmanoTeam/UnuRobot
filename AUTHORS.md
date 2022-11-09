@@ -1,6 +1,8 @@
 # Credits
 
-`mau_mau_bot` is written and maintained by [Jannes Höke](https://github.com/jh0ker)
+`mau_mau_bot` was originally written and maintained by [Jannes Höke](https://github.com/jh0ker)
+
+`UnuRobot` is now maintained by [Amano LLC](https://github.com/AmanoTeam)
 
 ## Contributors
 

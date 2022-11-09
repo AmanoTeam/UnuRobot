@@ -36,8 +36,8 @@ async def help_handler(update, context: ContextTypes.DEFAULT_TYPE):
         " running game with /join\n"
         "3. After at least two players have joined, start the game with"
         " /start\n"
-        "4. Type <code>@unobot</code> into your chat box and hit "
-        "<b>space</b>, or click the <code>via @unobot</code> text "
+        "4. Type <code>@UnuRobot</code> into your chat box and hit "
+        "<b>space</b>, or click the <code>via @UnuRobot</code> text "
         "next to messages. You will see your cards (some greyed out), "
         "any extra options like drawing, and a <b>?</b> to see the "
         "current game state. The <b>greyed out cards</b> are those you "
@@ -61,9 +61,9 @@ async def help_handler(update, context: ContextTypes.DEFAULT_TYPE):
         "Press the <code>Current game: ...</code> button and select the "
         "group you want to play a card in.\n"
         "If you enjoy this bot, "
-        '<a href="https://telegram.me/storebot?start=mau_mau_bot">'
+        '<a href="https://t.me/storebot?start=UnuRobot">'
         "rate me</a>, join the "
-        '<a href="https://telegram.me/unobotupdates">update channel</a>'
+        '<a href="https://t.me/UnuRobotUpdates">update channel</a>'
         " and buy an UNO card game."
     )
 
@@ -105,7 +105,7 @@ async def source(update, context: ContextTypes.DEFAULT_TYPE):
     source_text = _(
         "This bot is Free Software and licensed under the AGPL. "
         "The code is available here: \n"
-        "https://github.com/jh0ker/mau_mau_bot"
+        "https://github.com/AmanoTeam/UnuRobot"
     )
     attributions = _(
         "Attributions:\n"
@@ -132,7 +132,7 @@ async def news(update, context: ContextTypes.DEFAULT_TYPE):
     await send_async(
         context,
         update.message.chat_id,
-        text=_("All news here: https://telegram.me/unobotupdates"),
+        text=_("All news here: https://t.me/UnuRobotUpdates"),
         disable_web_page_preview=True,
     )
 
