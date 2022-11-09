@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This script compiles the unobot.po file for all languages.
 
 if [ ${PWD##*/} = "locales" ];
