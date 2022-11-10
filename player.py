@@ -172,15 +172,15 @@ class Player(object):
                 not card.special):
             self.logger.debug("Card's color or value doesn't match")
             is_playable = False
-        elif last.value == c.DRAW_TWO and not \
-                card.value == c.DRAW_TWO and self.game.draw_counter:
+        elif last.value == 'draw' and not \
+                card.value == 'draw' and self.game.draw_counter:
             self.logger.debug("Player has to draw and can't counter")
             is_playable = False
-        elif last.special == c.DRAW_FOUR and self.game.draw_counter:
+        elif last.special == 'draw_four' and self.game.draw_counter:
             self.logger.debug("Player has to draw and can't counter")
             is_playable = False
-        elif (last.special == c.CHOOSE or last.special == c.DRAW_FOUR) and \
-                (card.special == c.CHOOSE or card.special == c.DRAW_FOUR):
+        elif (last.special == 'colorchooser' or last.special == 'draw_four') and \
+                (card.special == 'colorchooser' or card.special == 'draw_four'):
             self.logger.debug("Can't play colorchooser on another one")
             is_playable = False
         elif not last.color:

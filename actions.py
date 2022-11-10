@@ -77,8 +77,8 @@ def do_skip(context, player):
             gm.end_game(chat, skipped_player.user)
 
 
-def remove_cards(player, result_id):
-    card = c.from_str(result_id)
+def remove_cards(player, result_id, theme):
+    card = c.from_str(result_id, theme)
     player.rm(card)
 
 
@@ -96,6 +96,8 @@ def subport(context, player, pi):
     verifi(context, player)
     verifi(context, pi)
 
+    game.choosing_player = False
+    
     game.turn()
 
 
@@ -139,7 +141,8 @@ def verifi(context, player):
 
 def do_play_card(context, player, result_id):
     """Plays the selected card and sends an update to the group if needed"""
-    card = c.from_str(result_id)
+    game = player.game
+    card = c.from_str(result_id, game.theme)
     player.play(card)
     game = player.game
     chat = game.chat
@@ -196,8 +199,8 @@ def do_draw(context, player):
                    text=__("There are no more cards in the deck.",
                            multi=game.translate))
 
-    if (game.last_card.value == c.DRAW_TWO or
-        game.last_card.special == c.DRAW_FOUR) and \
+    if (game.last_card.value == 'drawn' or
+        game.last_card.special == 'draw_four') and \
             draw_counter_before > 0:
         game.turn()
 

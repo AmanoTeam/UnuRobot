@@ -31,14 +31,14 @@ from internationalization import _, __
 from utils import display_color, display_color_group, display_name
 
 
-def add_choose_player(name, results, game):
+def add_choose_player(name, results, game, pef):
     """Add choose color options"""
     a = 0
     for i in game.players:
         if name != i.user.id or len(game.players) == 1:
             results.append(
                 InlineQueryResultArticle(
-                    id=f'player_{a}',
+                    id=f'{pef}_{a}',
                     title=_("Choose Player"),
                     description=f'{i.user.first_name} - {len(i.cards)}',
                     input_message_content=
@@ -158,6 +158,16 @@ def add_mode_sete(results):
         )
     )
 
+def add_change_theme(results):
+    results.append(
+        InlineQueryResultArticle(
+            "change_theme",
+            title=_("Change cards theme"),
+            input_message_content=
+            InputTextMessageContent(_('Essa carta não'))
+        )
+    )
+
 
 def add_mode_text(results):
     """Change mode to text"""
@@ -230,7 +240,7 @@ def add_card(game, card, results, can_play):
     if can_play:
         if game.mode != "text":
             results.append(
-                Sticker(str(card), sticker_file_id=c.STICKERS[str(card)])
+                Sticker(str(card), sticker_file_id=c.cards[list(c.cards)[game.theme]]["STICKERS"][str(card)])
             )
         if game.mode == "text":
             results.append(
@@ -241,7 +251,7 @@ def add_card(game, card, results, can_play):
                         ))
     else:
         results.append(
-            Sticker(str(uuid4()), sticker_file_id=c.STICKERS_GREY[str(card)],
+            Sticker(str(uuid4()), sticker_file_id=c.cards[list(c.cards)[game.theme]]["STICKERS_GREY"][str(card)],
                     input_message_content=game_info(game))
         )
 

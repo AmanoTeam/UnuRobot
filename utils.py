@@ -100,6 +100,8 @@ def answer_async(context, *args, **kwargs):
         kwargs['timeout'] = TIMEOUT
 
     try:
+        print(*args)
+        print('\n\n/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\\n\n')
         context.bot.answerInlineQuery(*args, **kwargs)
     except Exception as e:
         error(None, e)

@@ -63,6 +63,7 @@ from results import (
     add_mode_sete,
     add_mode_text,
     add_mode_wild,
+    add_change_theme,
     add_no_game,
     add_not_started,
     add_other_cards,
@@ -427,9 +428,8 @@ def start_game(update, context):
 
             def send_first():
                 """Send the first card and player"""
-
                 context.bot.sendSticker(chat.id,
-                                        sticker=c.STICKERS[str(game.last_card)],
+                                        sticker=c.cards[list(c.cards)[game.theme]]["STICKERS"][str(game.last_card)],
                                         timeout=TIMEOUT)
 
                 context.bot.sendMessage(chat.id,
@@ -638,16 +638,18 @@ def reply_to_query(update, context):
                 add_mode_wild(results)
                 add_mode_text(results)
                 add_mode_sete(results)
+                add_change_theme(results)
             else:
                 add_not_started(results)
 
 
         elif user_id == game.current_player.user.id:
+            print(game.choosing_player)
             if game.choosing_color:
                 add_choose_color(results, game)
                 add_other_cards(player, results, game)
             elif game.choosing_player:
-                add_choose_player(player.user.id, results, game)
+                add_choose_player(player.user.id, results, game, game.choosing_player)
             else:
                 if not player.drew:
                     add_draw(player, results)
@@ -655,12 +657,12 @@ def reply_to_query(update, context):
                 else:
                     add_pass(results, game)
 
-                if game.last_card.special == c.DRAW_FOUR and game.draw_counter:
+                if game.last_card.special == 'draw_four' and game.draw_counter:
                     add_call_bluff(results, game)
 
                 playable = player.playable_cards()
                 added_ids = list()  # Duplicates are not allowed
-
+    
                 for card in sorted(player.cards):
                     add_card(game, card, results,
                              can_play=(card in playable and
@@ -709,6 +711,14 @@ def process_result(update, context):
     player.anti_cheat += 1
     if result_id in ('hand', 'gameinfo', 'nogame'):
         return
+    elif result_id == "change_theme":
+        if game.theme+1 > len(c.cards)-1:
+            theme = 0
+        else:
+            theme = game.theme+1
+        game.set_theme(theme)
+        send_async(context, chat.id, text=f"Tema atual: {list(c.cards)[theme]}")
+        return
     elif result_id.startswith('mode_'):
         # First 5 characters are 'mode_', the rest is the gamemode.
         mode = result_id[5:]
@@ -727,9 +737,9 @@ def process_result(update, context):
         reset_waiting_time(context, player)
         do_call_bluff(context, player)
     elif '7' in result_id and game.mode == "7-0" and not 'player' in result_id:
-        game.choosing_player = True
+        game.choosing_player = "player"
         send_async(context, chat.id, text='Please choose a player to switch cards')
-        remove_cards(player, result_id)
+        remove_cards(player, result_id, game.theme)
     elif '0' in result_id and game.mode == "7-0" and not 'player' in result_id:
         reset_waiting_time(context, player)
         do_play_card(context, player, result_id)
@@ -766,6 +776,8 @@ def process_result(update, context):
     elif result_id in c.COLORS:
         game.choose_color(result_id)
     else:
+        if game.theme != "classic":
+            exec(f'from scards.{list(c.cards)[game.theme]} import spcard\nspcard(update, context)')
         reset_waiting_time(context, player)
         do_play_card(context, player, result_id)
 

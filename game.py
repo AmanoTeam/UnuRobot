@@ -31,12 +31,13 @@ class Game(object):
     current_player = None
     reversed = False
     choosing_color = False
-    choosing_player = False
+    choosing_player = None
     started = False
     draw_counter = 0
     players_won = 0
     starter = None
     mode = DEFAULT_GAMEMODE
+    theme = 1
     job = None
     owner = ADMIN_LIST
     open = OPEN_LOBBY
@@ -67,15 +68,18 @@ class Game(object):
 
     def start(self):
         if self.mode == None or self.mode != "wild":
-            self.deck._fill_classic_()
+            self.deck._fill_classic_(self.theme)
         else:
-            self.deck._fill_wild_()
+            self.deck._fill_wild_(self.theme)
 
         self._first_card_()
         self.started = True
 
     def set_mode(self, mode):
         self.mode = mode
+    
+    def set_theme(self, theme):
+        self.theme = theme
 
     def reverse(self):
         """Reverses the direction of game"""
@@ -88,7 +92,6 @@ class Game(object):
         self.current_player.drew = False
         self.current_player.turn_started = datetime.now()
         self.choosing_color = False
-        self.choosing_player = False
 
     def _first_card_(self):
         # In case that the player did not select a game mode
@@ -114,15 +117,15 @@ class Game(object):
         self.last_card = card
 
         self.logger.info("Playing card " + repr(card))
-        if card.value == c.SKIP:
+        if card.value == 'skip':
             self.turn()
-        elif card.special == c.DRAW_FOUR:
+        elif card.special == 'draw_four':
             self.draw_counter += 4
             self.logger.debug("Draw counter increased by 4")
-        elif card.value == c.DRAW_TWO:
+        elif card.value == 'draw':
             self.draw_counter += 2
             self.logger.debug("Draw counter increased by 2")
-        elif card.value == c.REVERSE:
+        elif card.value == 'reverse':
             # Special rule for two players
             if self.current_player is self.current_player.next.next:
                 self.turn()
@@ -130,7 +133,7 @@ class Game(object):
                 self.reverse()
 
         # Don't turn if the current player has to choose a color
-        if card.special not in (c.CHOOSE, c.DRAW_FOUR):
+        if card.special not in ("colorchooser", "draw_four"):
             self.turn()
         else:
             self.logger.debug("Choosing Color...")
