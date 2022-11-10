@@ -20,6 +20,8 @@
 
 import logging
 
+from telegram import Chat
+
 from errors import (
     AlreadyJoinedError,
     LobbyClosedError,
@@ -41,14 +43,14 @@ class GameManager(object):
 
         self.logger = logging.getLogger(__name__)
 
-    def new_game(self, chat):
+    def new_game(self, chat: Chat, thread_id: int = None):
         """
         Create a new game in this chat
         """
         chat_id = chat.id
 
         self.logger.debug("Creating new game in chat " + str(chat_id))
-        game = Game(chat)
+        game = Game(chat, thread_id)
 
         if chat_id not in self.chatid_games:
             self.chatid_games[chat_id] = list()

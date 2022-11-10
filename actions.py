@@ -43,8 +43,7 @@ async def do_skip(context: ContextTypes.DEFAULT_TYPE, player):
 
         n = skipped_player.waiting_time
         await send_async(
-            context,
-            chat.id,
+            game,
             text=__(
                 "Waiting time to skip this player has "
                 "been reduced to {time} seconds.\n"
@@ -61,8 +60,7 @@ async def do_skip(context: ContextTypes.DEFAULT_TYPE, player):
         try:
             gm.leave_game(skipped_player.user, chat)
             await send_async(
-                context,
-                chat.id,
+                game,
                 text=__(
                     "{name1} ran out of time "
                     "and has been removed from the game!\n"
@@ -81,8 +79,7 @@ async def do_skip(context: ContextTypes.DEFAULT_TYPE, player):
 
         except NotEnoughPlayersError:
             await send_async(
-                context,
-                chat.id,
+                game,
                 text=__(
                     "{name} ran out of time "
                     "and has been removed from the game!\n"
@@ -126,12 +123,11 @@ async def verifi(context: ContextTypes.DEFAULT_TYPE, player):
         us = UserSetting(id=user.id)
 
     if len(player.cards) == 1:
-        await send_async(context, chat.id, text="UNO!")
+        await send_async(game, text="UNO!")
 
     if len(player.cards) == 0:
         await send_async(
-            context,
-            chat.id,
+            game,
             text=__("{name} won!", multi=game.translate).format(name=user.first_name),
         )
 
@@ -146,9 +142,7 @@ async def verifi(context: ContextTypes.DEFAULT_TYPE, player):
         try:
             gm.leave_game(user, chat)
         except NotEnoughPlayersError:
-            await send_async(
-                context, chat.id, text=__("Game ended!", multi=game.translate)
-            )
+            await send_async(game, text=__("Game ended!", multi=game.translate))
 
             us2 = UserSetting.get(id=game.current_player.user.id)
             if us2 and us2.stats:
@@ -173,17 +167,14 @@ async def do_play_card(context: ContextTypes.DEFAULT_TYPE, player, result_id):
         us.cards_played += 1
 
     if game.choosing_color:
-        await send_async(
-            context, chat.id, text=__("Please choose a color", multi=game.translate)
-        )
+        await send_async(game, text=__("Please choose a color", multi=game.translate))
 
     if len(player.cards) == 1:
-        await send_async(context, chat.id, text="UNO!")
+        await send_async(game, text="UNO!")
 
     if len(player.cards) == 0:
         await send_async(
-            context,
-            chat.id,
+            game,
             text=__("{name} won!", multi=game.translate).format(name=user.first_name),
         )
 
@@ -198,9 +189,7 @@ async def do_play_card(context: ContextTypes.DEFAULT_TYPE, player, result_id):
         try:
             gm.leave_game(user, chat)
         except NotEnoughPlayersError:
-            await send_async(
-                context, chat.id, text=__("Game ended!", multi=game.translate)
-            )
+            await send_async(game, text=__("Game ended!", multi=game.translate))
 
             us2 = UserSetting.get(id=game.current_player.user.id)
             if us2 and us2.stats:
@@ -212,14 +201,14 @@ async def do_play_card(context: ContextTypes.DEFAULT_TYPE, player, result_id):
 async def do_draw(context: ContextTypes.DEFAULT_TYPE, player):
     """Does the drawing"""
     game = player.game
+    chat = game.chat
     draw_counter_before = game.draw_counter
 
     try:
         player.draw()
     except DeckEmptyError:
         await send_async(
-            context,
-            player.game.chat.id,
+            game,
             text=__("There are no more cards in the deck.", multi=game.translate),
         )
 
@@ -236,8 +225,7 @@ async def do_call_bluff(context: ContextTypes.DEFAULT_TYPE, player):
 
     if player.prev.bluffing:
         await send_async(
-            context,
-            chat.id,
+            game,
             text=__(
                 "Bluff called! Giving 4 cards to {name}", multi=game.translate
             ).format(name=player.prev.user.first_name),
@@ -247,16 +235,14 @@ async def do_call_bluff(context: ContextTypes.DEFAULT_TYPE, player):
             player.prev.draw()
         except DeckEmptyError:
             await send_async(
-                context,
-                player.game.chat.id,
+                game,
                 text=__("There are no more cards in the deck.", multi=game.translate),
             )
 
     else:
         game.draw_counter += 2
         await send_async(
-            context,
-            chat.id,
+            game,
             text=__(
                 "{name1} didn't bluff! Giving 6 cards to {name2}", multi=game.translate
             ).format(name1=player.prev.user.first_name, name2=player.user.first_name),
@@ -265,8 +251,7 @@ async def do_call_bluff(context: ContextTypes.DEFAULT_TYPE, player):
             player.draw()
         except DeckEmptyError:
             await send_async(
-                context,
-                player.game.chat.id,
+                game,
                 text=__("There are no more cards in the deck.", multi=game.translate),
             )
 

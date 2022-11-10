@@ -69,10 +69,10 @@ async def help_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
     await send_async(
-        context,
-        update.message.chat_id,
+        update.message.chat,
         text=help_text,
         parse_mode=ParseMode.HTML,
+        message_thread_id=update.message.message_thread_id,
         disable_web_page_preview=True,
     )
 
@@ -92,10 +92,10 @@ async def modes(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "just like when playing a card, and all gamemode options should appear."
     )
     await send_async(
-        context,
-        update.message.chat_id,
+        update.message.chat,
         text=modes_explanation,
         parse_mode=ParseMode.HTML,
+        message_thread_id=update.message.message_thread_id,
         disable_web_page_preview=True,
     )
 
@@ -119,10 +119,10 @@ async def source(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
     await send_async(
-        context,
-        update.message.chat_id,
+        update.message.chat,
         text=source_text + "\n" + attributions,
         parse_mode=ParseMode.HTML,
+        message_thread_id=update.message.message_thread_id,
         disable_web_page_preview=True,
     )
 
@@ -131,9 +131,9 @@ async def source(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def news(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /news command"""
     await send_async(
-        context,
-        update.message.chat_id,
+        update.message.chat,
         text=_("All news here: https://t.me/UnuRobotUpdates"),
+        message_thread_id=update.message.message_thread_id,
         disable_web_page_preview=True,
     )
 
@@ -141,15 +141,16 @@ async def news(update: Update, context: ContextTypes.DEFAULT_TYPE):
 @user_locale
 async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.message.from_user
+    chat = update.message.chat
     us = UserSetting.get(id=user.id)
     if not us or not us.stats:
         await send_async(
-            context,
-            update.message.chat_id,
+            chat,
             text=_(
                 "You did not enable statistics. Use /settings in "
                 "a private chat with the bot to enable them."
             ),
+            message_thread_id=update.message.message_thread_id,
         )
     else:
         stats_text = list()
@@ -174,7 +175,11 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
             _("{number} card played", "{number} cards played", n).format(number=n)
         )
 
-        await send_async(context, update.message.chat_id, text="\n".join(stats_text))
+        await send_async(
+            chat,
+            text="\n".join(stats_text),
+            message_thread_id=update.message.message_thread_id,
+        )
 
 
 def register():

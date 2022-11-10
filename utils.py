@@ -18,10 +18,12 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+from typing import Union
 
-from telegram import Update
+from telegram import Chat, Update, User
 from telegram.ext import ContextTypes
 
+from game import Game
 from internationalization import _, __
 from mwt import MWT
 from shared_vars import gm
@@ -81,10 +83,19 @@ def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
         logger.exception(context.error)
 
 
-async def send_async(context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
+async def send_async(context: Union[Game, Chat, User], *args, **kwargs):
     """Send a message asynchronously"""
+
+    if isinstance(context, Game) and not kwargs.get("message_thread_id"):
+        kwargs["message_thread_id"] = context.thread_id
+
+    if isinstance(context, Game):
+        chat = context.chat
+    else:
+        chat = context
+
     try:
-        await context.bot.send_message(*args, **kwargs)
+        await chat.send_message(*args, **kwargs)
     except Exception as e:
         error(None, e)
 

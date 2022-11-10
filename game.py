@@ -21,12 +21,14 @@
 import logging
 from datetime import datetime
 
+from telegram import Chat
+
 import card as c
 from config import ADMIN_LIST, DEFAULT_GAMEMODE, ENABLE_TRANSLATIONS, OPEN_LOBBY
 from deck import Deck
 
 
-class Game(object):
+class Game:
     """This class represents a game of UNO"""
 
     current_player = None
@@ -43,8 +45,10 @@ class Game(object):
     open = OPEN_LOBBY
     translate = ENABLE_TRANSLATIONS
 
-    def __init__(self, chat):
+    def __init__(self, chat: Chat, thread_id: int):
         self.chat = chat
+        self.thread_id = thread_id
+
         self.last_card = None
 
         self.deck = Deck()
