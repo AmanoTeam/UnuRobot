@@ -20,7 +20,7 @@
 import logging
 from datetime import datetime
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.constants import ParseMode
 from telegram.ext import (
     CallbackQueryHandler,
@@ -90,7 +90,7 @@ logger = logging.getLogger(__name__)
 
 
 @user_locale
-async def notify_me(update, context: ContextTypes.DEFAULT_TYPE):
+async def notify_me(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for /notify_me command, pm people for next game"""
     chat_id = update.message.chat_id
     if update.message.chat.type == "private":
@@ -110,7 +110,7 @@ async def notify_me(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_locale
-async def new_game(update, context: ContextTypes.DEFAULT_TYPE):
+async def new_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /new command"""
     chat_id = update.message.chat_id
 
@@ -146,7 +146,7 @@ async def new_game(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_locale
-async def kill_game(update, context: ContextTypes.DEFAULT_TYPE):
+async def kill_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /kill command"""
     chat = update.message.chat
     user = update.message.from_user
@@ -195,7 +195,7 @@ async def kill_game(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_locale
-async def join_game(update, context: ContextTypes.DEFAULT_TYPE):
+async def join_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /join command"""
     chat = update.message.chat
 
@@ -246,7 +246,7 @@ async def join_game(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_locale
-async def leave_game(update, context: ContextTypes.DEFAULT_TYPE):
+async def leave_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /leave command"""
     chat = update.message.chat
     user = update.message.from_user
@@ -302,7 +302,7 @@ async def leave_game(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_locale
-async def kick_player(update, context: ContextTypes.DEFAULT_TYPE):
+async def kick_player(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /kick command"""
 
     if update.message.chat.type == "private":
@@ -414,7 +414,7 @@ async def kick_player(update, context: ContextTypes.DEFAULT_TYPE):
         )
 
 
-async def select_game(update, context: ContextTypes.DEFAULT_TYPE):
+async def select_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for callback queries to select the current game"""
 
     chat_id = int(update.callback_query.data)
@@ -456,7 +456,7 @@ async def select_game(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @game_locales
-async def status_update(update, context: ContextTypes.DEFAULT_TYPE):
+async def status_update(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Remove player from game if user leaves the group"""
     chat = update.message.chat
 
@@ -486,7 +486,7 @@ async def status_update(update, context: ContextTypes.DEFAULT_TYPE):
 
 @game_locales
 @user_locale
-async def start_game(update, context: ContextTypes.DEFAULT_TYPE):
+async def start_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /start command"""
 
     args = context.args
@@ -586,7 +586,7 @@ async def start_game(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_locale
-async def close_game(update, context: ContextTypes.DEFAULT_TYPE):
+async def close_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /close command"""
     chat = update.message.chat
     user = update.message.from_user
@@ -622,7 +622,7 @@ async def close_game(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_locale
-async def open_game(update, context: ContextTypes.DEFAULT_TYPE):
+async def open_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /open command"""
     chat = update.message.chat
     user = update.message.from_user
@@ -657,7 +657,7 @@ async def open_game(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_locale
-async def enable_translations(update, context: ContextTypes.DEFAULT_TYPE):
+async def enable_translations(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /enable_translations command"""
     chat = update.message.chat
     user = update.message.from_user
@@ -693,7 +693,7 @@ async def enable_translations(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_locale
-async def disable_translations(update, context: ContextTypes.DEFAULT_TYPE):
+async def disable_translations(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /disable_translations command"""
     chat = update.message.chat
     user = update.message.from_user
@@ -734,7 +734,7 @@ async def disable_translations(update, context: ContextTypes.DEFAULT_TYPE):
 
 @game_locales
 @user_locale
-async def skip_player(update, context: ContextTypes.DEFAULT_TYPE):
+async def skip_player(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /skip command"""
     chat = update.message.chat
     user = update.message.from_user
@@ -771,7 +771,7 @@ async def skip_player(update, context: ContextTypes.DEFAULT_TYPE):
 
 @game_locales
 @user_locale
-async def reply_to_query(update, context: ContextTypes.DEFAULT_TYPE):
+async def reply_to_query(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """
     Handler for inline queries.
     Builds the result list for inline queries and answers to the client.
@@ -856,7 +856,7 @@ async def reply_to_query(update, context: ContextTypes.DEFAULT_TYPE):
 
 @game_locales
 @user_locale
-async def process_result(update, context: ContextTypes.DEFAULT_TYPE):
+async def process_result(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """
     Handler for chosen inline results.
     Checks the players actions and acts accordingly.

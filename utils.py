@@ -19,6 +19,7 @@
 
 import logging
 
+from telegram import Update
 from telegram.ext import ContextTypes
 
 from internationalization import _, __
@@ -72,7 +73,7 @@ def display_color_group(color, game):
         return __("{emoji} Yellow", game.translate).format(emoji="💛")
 
 
-def error(update, context: ContextTypes.DEFAULT_TYPE):
+def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Simple error handler"""
     if isinstance(context, Exception):
         logger.exception(context)

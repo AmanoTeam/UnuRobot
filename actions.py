@@ -1,5 +1,7 @@
 import logging
 
+from telegram.ext import ContextTypes
+
 import card as c
 from config import MIN_FAST_TURN_TIME, TIME_REMOVAL_AFTER_SKIP
 from errors import DeckEmptyError, NotEnoughPlayersError
@@ -21,7 +23,7 @@ class Countdown(object):
 
 
 # TODO do_skip() could get executed in another thread (it can be a job), so it looks like it can't use game.translate?
-async def do_skip(context, player):
+async def do_skip(context: ContextTypes.DEFAULT_TYPE, player):
     game = player.game
     chat = game.chat
     skipped_player = game.current_player
@@ -97,7 +99,7 @@ def remove_cards(player, result_id):
     player.rm(card)
 
 
-async def subport(context, player, pi):
+async def subport(context: ContextTypes.DEFAULT_TYPE, player, pi):
     game = player.game
     user = player.user
 
@@ -114,7 +116,7 @@ async def subport(context, player, pi):
     game.turn()
 
 
-async def verifi(context, player):
+async def verifi(context: ContextTypes.DEFAULT_TYPE, player):
     game = player.game
     chat = game.chat
     user = player.user
@@ -155,7 +157,7 @@ async def verifi(context, player):
             gm.end_game(chat, user)
 
 
-async def do_play_card(context, player, result_id):
+async def do_play_card(context: ContextTypes.DEFAULT_TYPE, player, result_id):
     """Plays the selected card and sends an update to the group if needed"""
     card = c.from_str(result_id)
     player.play(card)
@@ -207,7 +209,7 @@ async def do_play_card(context, player, result_id):
             gm.end_game(chat, user)
 
 
-async def do_draw(context, player):
+async def do_draw(context: ContextTypes.DEFAULT_TYPE, player):
     """Does the drawing"""
     game = player.game
     draw_counter_before = game.draw_counter
@@ -227,7 +229,7 @@ async def do_draw(context, player):
         game.turn()
 
 
-async def do_call_bluff(context, player):
+async def do_call_bluff(context: ContextTypes.DEFAULT_TYPE, player):
     """Handles the bluff calling"""
     game = player.game
     chat = game.chat
@@ -271,7 +273,7 @@ async def do_call_bluff(context, player):
     game.turn()
 
 
-def start_player_countdown(context, game):
+def start_player_countdown(context: ContextTypes.DEFAULT_TYPE, game):
     player = game.current_player
     time = player.waiting_time
 
@@ -297,7 +299,7 @@ def start_player_countdown(context, game):
         player.game.job = job
 
 
-async def skip_job(context):
+async def skip_job(context: ContextTypes.DEFAULT_TYPE):
     player = context.job.data.player
     game = player.game
     if game_is_running(game):

@@ -17,6 +17,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+from telegram import Update
 from telegram.constants import ParseMode
 from telegram.ext import CommandHandler, ContextTypes
 
@@ -27,7 +28,7 @@ from utils import send_async
 
 
 @user_locale
-async def help_handler(update, context: ContextTypes.DEFAULT_TYPE):
+async def help_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /help command"""
     help_text = _(
         "Follow these steps:\n\n"
@@ -77,7 +78,7 @@ async def help_handler(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_locale
-async def modes(update, context: ContextTypes.DEFAULT_TYPE):
+async def modes(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /help command"""
     modes_explanation = _(
         "This UNO bot has five game modes: Classic, Sanic, Wild, Text and 7-0.\n\n"
@@ -100,7 +101,7 @@ async def modes(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_locale
-async def source(update, context: ContextTypes.DEFAULT_TYPE):
+async def source(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /help command"""
     source_text = _(
         "This bot is Free Software and licensed under the AGPL. "
@@ -127,7 +128,7 @@ async def source(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_locale
-async def news(update, context: ContextTypes.DEFAULT_TYPE):
+async def news(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /news command"""
     await send_async(
         context,
@@ -138,7 +139,7 @@ async def news(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_locale
-async def stats(update, context: ContextTypes.DEFAULT_TYPE):
+async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.message.from_user
     us = UserSetting.get(id=user.id)
     if not us or not us.stats:

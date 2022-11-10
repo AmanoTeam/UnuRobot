@@ -22,6 +22,8 @@ import gettext
 from functools import wraps
 
 from pony.orm import db_session
+from telegram import Update
+from telegram.ext import ContextTypes
 
 from locales import available_locales
 from shared_vars import gm
@@ -102,7 +104,9 @@ def __(singular, plural=None, n=1, multi=False):
 
 def user_locale(func):
     @wraps(func)
-    async def wrapped(update, context, *pargs, **kwargs):
+    async def wrapped(
+        update: Update, context: ContextTypes.DEFAULT_TYPE, *pargs, **kwargs
+    ):
         user = _user_chat_from_update(update)[0]
 
         with db_session:
@@ -122,7 +126,9 @@ def user_locale(func):
 
 def game_locales(func):
     @wraps(func)
-    async def wrapped(update, context, *pargs, **kwargs):
+    async def wrapped(
+        update: Update, context: ContextTypes.DEFAULT_TYPE, *pargs, **kwargs
+    ):
         user, chat = _user_chat_from_update(update)
         player = gm.player_for_user_in_chat(user, chat)
         locales = list()

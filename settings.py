@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from telegram import ReplyKeyboardMarkup
+from telegram import ReplyKeyboardMarkup, Update
 from telegram.ext import CommandHandler, ContextTypes, MessageHandler, filters
 
 from internationalization import _, user_locale
@@ -28,7 +28,7 @@ from utils import send_async
 
 
 @user_locale
-async def show_settings(update, context):
+async def show_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.message.chat
 
     if update.message.chat.type != "private":
@@ -59,7 +59,7 @@ async def show_settings(update, context):
 
 
 @user_locale
-async def kb_select(update, context: ContextTypes.DEFAULT_TYPE):
+async def kb_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.message.chat
     user = update.message.from_user
     option = context.matches[0].group(1)
@@ -91,7 +91,7 @@ async def kb_select(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_locale
-async def locale_select(update, context: ContextTypes.DEFAULT_TYPE):
+async def locale_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.message.chat
     user = update.message.from_user
     option = context.matches[0].group(1)
