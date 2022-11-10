@@ -450,29 +450,28 @@ async def status_update(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Remove player from game if user leaves the group"""
     chat = update.message.chat
 
-    if update.message.left_chat_member:
-        user = update.message.left_chat_member
+    user = update.message.left_chat_member
 
-        try:
-            gm.leave_game(user, chat)
-            game = gm.player_for_user_in_chat(user, chat).game
+    try:
+        gm.leave_game(user, chat)
+        game = gm.player_for_user_in_chat(user, chat).game
 
-        except NoGameInChatError:
-            pass
-        except NotEnoughPlayersError:
-            gm.end_game(chat, user)
-            await send_async(
-                chat,
-                text=__("Game ended!", multi=game.translate),
-                message_thread_id=update.message.message_thread_id,
-            )
-        else:
-            await send_async(
-                game,
-                text=__("Removing {name} from the game", multi=game.translate).format(
-                    name=display_name(user)
-                ),
-            )
+    except NoGameInChatError:
+        pass
+    except NotEnoughPlayersError:
+        gm.end_game(chat, user)
+        await send_async(
+            chat,
+            text=__("Game ended!", multi=game.translate),
+            message_thread_id=update.message.message_thread_id,
+        )
+    else:
+        await send_async(
+            game,
+            text=__("Removing {name} from the game", multi=game.translate).format(
+                name=display_name(user)
+            ),
+        )
 
 
 @game_locales
@@ -982,7 +981,9 @@ application.add_handler(CommandHandler("skip", skip_player))
 application.add_handler(CommandHandler("notify_me", notify_me))
 simple_commands.register()
 settings.register()
-application.add_handler(MessageHandler(filters.StatusUpdate, status_update))
+application.add_handler(
+    MessageHandler(filters.StatusUpdate.LEFT_CHAT_MEMBER, status_update)
+)
 application.add_error_handler(error)
 
 # start the bot
