@@ -26,7 +26,7 @@ from config import WAITING_TIME
 from errors import DeckEmptyError
 
 
-class Player(object):
+class Player:
     """
     This class represents a player.
     It is basically a doubly-linked ring list with the option to reverse the
@@ -35,7 +35,7 @@ class Player(object):
     """
 
     def __init__(self, game, user):
-        self.cards = list()
+        self.cards = []
         self.game = game
         self.user = user
         self.logger = logging.getLogger(__name__)
@@ -80,7 +80,7 @@ class Player(object):
         for card in self.cards:
             self.game.deck.dismiss(card)
 
-        self.cards = list()
+        self.cards = []
 
     def __repr__(self):
         return repr(self.user)
@@ -137,7 +137,7 @@ class Player(object):
     def playable_cards(self):
         """Returns a list of the cards this player can play right now"""
 
-        playable = list()
+        playable = []
         last = self.game.last_card
 
         self.logger.debug("Last card was " + str(last))
@@ -157,7 +157,7 @@ class Player(object):
 
         # You may not play a chooser or +4 as your last card
         if len(self.cards) == 1 and self.cards[0].special:
-            return list()
+            return []
 
         return playable
 

@@ -145,7 +145,7 @@ class Test(unittest.TestCase):
             c.Card(None, None, c.CHOOSE),
         ]
 
-        expected = list()
+        expected = []
 
         self.assertListEqual(p.playable_cards(), expected)
 

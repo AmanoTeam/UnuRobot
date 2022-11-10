@@ -109,7 +109,7 @@ async def answer_async(context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
 
 
 def game_is_running(game):
-    return game in gm.chatid_games.get(game.chat.id, list())
+    return game in gm.chatid_games.get(game.chat.id, [])
 
 
 def user_is_creator(user, game):

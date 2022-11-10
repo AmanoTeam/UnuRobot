@@ -33,7 +33,7 @@ GETTEXT_DOMAIN = "unobot"
 GETTEXT_DIR = "locales"
 
 
-class _Underscore(object):
+class _Underscore:
     """Class to emulate flufl.i18n behaviour, but with plural support"""
 
     def __init__(self):
@@ -43,10 +43,10 @@ class _Underscore(object):
                     gettext.find(GETTEXT_DOMAIN, GETTEXT_DIR, languages=[locale]), "rb"
                 )
             )
-            for locale in available_locales.keys()
+            for locale in available_locales
             if locale != "en_US"  # No translation file for en_US
         }
-        self.locale_stack = list()
+        self.locale_stack = []
 
     def push(self, locale):
         self.locale_stack.append(locale)
@@ -87,7 +87,7 @@ _ = _Underscore()
 
 def __(singular, plural=None, n=1, multi=False):
     """Translates text into all locales on the stack"""
-    translations = list()
+    translations = []
 
     if not multi and len(set(_.locale_stack)) >= 1:
         translations.append(_(singular, plural, n, "en_US"))
@@ -131,7 +131,7 @@ def game_locales(func):
     ):
         user, chat = _user_chat_from_update(update)
         player = gm.player_for_user_in_chat(user, chat)
-        locales = list()
+        locales = []
 
         if player:
             for player in player.game.players:

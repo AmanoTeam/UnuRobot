@@ -13,7 +13,7 @@ from utils import display_name, game_is_running, send_async
 logger = logging.getLogger(__name__)
 
 
-class Countdown(object):
+class Countdown:
     player = None
     job_queue = None
 
@@ -51,7 +51,7 @@ async def do_skip(context: ContextTypes.DEFAULT_TYPE, player):
                 multi=game.translate,
             ).format(time=n, name=display_name(next_player.user)),
         )
-        logger.info("{player} was skipped! ".format(player=display_name(player.user)))
+        logger.info("%s was skipped!", display_name(player.user))
         game.turn()
         if job_queue:
             start_player_countdown(context, game)
@@ -71,9 +71,7 @@ async def do_skip(context: ContextTypes.DEFAULT_TYPE, player):
                     name2=display_name(next_player.user),
                 ),
             )
-            logger.info(
-                "{player} was skipped! ".format(player=display_name(player.user))
-            )
+            logger.info("%s was skipped!", display_name(player.user))
             if job_queue:
                 start_player_countdown(context, game)
 
@@ -262,8 +260,7 @@ def start_player_countdown(context: ContextTypes.DEFAULT_TYPE, game):
     player = game.current_player
     time = player.waiting_time
 
-    if time < MIN_FAST_TURN_TIME:
-        time = MIN_FAST_TURN_TIME
+    time = max(time, MIN_FAST_TURN_TIME)
 
     if game.mode == "fast":
         if game.job:
@@ -277,9 +274,9 @@ def start_player_countdown(context: ContextTypes.DEFAULT_TYPE, game):
         )
 
         logger.info(
-            "Started countdown for player: {player}. {time} seconds.".format(
-                player=display_name(player.user), time=time
-            )
+            "Started countdown for player: %s. %s seconds.",
+            display_name(player.user),
+            time,
         )
         player.game.job = job
 

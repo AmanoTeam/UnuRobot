@@ -550,7 +550,7 @@ async def start_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif len(args) and args[0] == "select":
         players = gm.userid_players[update.message.from_user.id]
 
-        groups = list()
+        groups = []
         for player in players:
             title = player.game.chat.title
 
@@ -767,7 +767,7 @@ async def reply_to_query(update: Update, context: ContextTypes.DEFAULT_TYPE):
     Handler for inline queries.
     Builds the result list for inline queries and answers to the client.
     """
-    results = list()
+    results = []
     switch = None
 
     try:
@@ -809,7 +809,7 @@ async def reply_to_query(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     add_call_bluff(results, game)
 
                 playable = player.playable_cards()
-                added_ids = list()  # Duplicates are not allowed
+                added_ids = []  # Duplicates are not allowed
 
                 for card in sorted(player.cards):
                     add_card(
@@ -872,7 +872,7 @@ async def process_result(update: Update, context: ContextTypes.DEFAULT_TYPE):
         # First 5 characters are 'mode_', the rest is the gamemode.
         mode = result_id[5:]
         game.set_mode(mode)
-        logger.info("Gamemode changed to {mode}".format(mode=mode))
+        logger.info("Gamemode changed to %s", mode)
         await send_async(game, text=__("Gamemode changed to {mode}".format(mode=mode)))
         return
     elif len(result_id) == 36:  # UUID result

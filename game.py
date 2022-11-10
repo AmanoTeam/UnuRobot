@@ -58,7 +58,7 @@ class Game:
     @property
     def players(self):
         """Returns a list of all players in this game"""
-        players = list()
+        players = []
         if not self.current_player:
             return players
 
@@ -118,7 +118,7 @@ class Game:
         self.deck.dismiss(self.last_card)
         self.last_card = card
 
-        self.logger.info("Playing card " + repr(card))
+        self.logger.info("Playing card %s", card)
         if card.value == c.SKIP:
             self.turn()
         elif card.special == c.DRAW_FOUR:

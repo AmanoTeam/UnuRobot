@@ -186,7 +186,7 @@ STICKERS_GREY = {
 }
 
 
-class Card(object):
+class Card:
     """This class represents an UNO card"""
 
     def __init__(self, color, value, special=None):

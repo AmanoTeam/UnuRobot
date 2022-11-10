@@ -26,12 +26,12 @@ from card import Card
 from errors import DeckEmptyError
 
 
-class Deck(object):
+class Deck:
     """This class represents a deck of cards"""
 
     def __init__(self):
-        self.cards = list()
-        self.graveyard = list()
+        self.cards = []
+        self.graveyard = []
         self.logger = logging.getLogger(__name__)
 
         self.logger.debug(self.cards)
@@ -48,8 +48,8 @@ class Deck(object):
             self.logger.debug("Drawing card " + str(card))
             return card
         except IndexError:
-            if len(self.graveyard):
-                while len(self.graveyard):
+            if self.graveyard:
+                while self.graveyard:
                     self.cards.append(self.graveyard.pop())
                 self.shuffle()
                 return self.draw()

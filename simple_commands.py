@@ -153,7 +153,7 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
             message_thread_id=update.message.message_thread_id,
         )
     else:
-        stats_text = list()
+        stats_text = []
 
         n = us.games_played
         stats_text.append(
