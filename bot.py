@@ -163,7 +163,7 @@ async def kill_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     game = games[-1]
 
-    if user_is_creator_or_admin(user, game, context, chat):
+    if await user_is_creator_or_admin(user, game, context, chat):
 
         try:
             gm.end_game(chat, user)
@@ -331,7 +331,7 @@ async def kick_player(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return
 
-    if user_is_creator_or_admin(user, game, context, chat):
+    if await user_is_creator_or_admin(user, game, context, chat):
 
         if update.message.reply_to_message:
             kicked = update.message.reply_to_message.from_user

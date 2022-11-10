@@ -112,12 +112,12 @@ def user_is_creator(user, game):
     return user.id in game.owner
 
 
-def user_is_admin(user, context, chat):
-    return user.id in get_admin_ids(context, chat.id)
+async def user_is_admin(user, context, chat):
+    return user.id in await get_admin_ids(context, chat.id)
 
 
-def user_is_creator_or_admin(user, game, context, chat):
-    return user_is_creator(user, game) or user_is_admin(user, context, chat)
+async def user_is_creator_or_admin(user, game, context, chat):
+    return user_is_creator(user, game) or await user_is_admin(user, context, chat)
 
 
 @MWT(timeout=60 * 60)
