@@ -1,3 +1,4 @@
+import contextlib
 import logging
 
 from telegram.ext import ContextTypes
@@ -25,7 +26,6 @@ class Countdown:
 # TODO do_skip() could get executed in another thread (it can be a job), so it looks like it can't use game.translate?
 async def do_skip(context: ContextTypes.DEFAULT_TYPE, player):
     game = player.game
-    chat = game.chat
     skipped_player = game.current_player
     next_player = game.current_player.next
     job_queue = context.job_queue
@@ -33,14 +33,9 @@ async def do_skip(context: ContextTypes.DEFAULT_TYPE, player):
     if skipped_player.waiting_time > 0:
         skipped_player.anti_cheat += 1
         skipped_player.waiting_time -= TIME_REMOVAL_AFTER_SKIP
-        if skipped_player.waiting_time < 0:
-            skipped_player.waiting_time = 0
-
-        try:
+        skipped_player.waiting_time = max(skipped_player.waiting_time, 0)
+        with contextlib.suppress(DeckEmptyError):
             skipped_player.draw()
-        except DeckEmptyError:
-            pass
-
         n = skipped_player.waiting_time
         await send_async(
             game,
@@ -57,6 +52,7 @@ async def do_skip(context: ContextTypes.DEFAULT_TYPE, player):
             start_player_countdown(context, game)
 
     else:
+        chat = game.chat
         try:
             gm.leave_game(skipped_player.user, chat)
             await send_async(

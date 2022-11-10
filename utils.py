@@ -47,7 +47,7 @@ def display_name(user):
     """Get the current players name including their username, if possible"""
     user_name = user.first_name
     if user.username:
-        user_name += " (@" + user.username + ")"
+        user_name += f" (@{user.username})"
     return user_name
 
 
@@ -89,11 +89,7 @@ async def send_async(context: Union[Game, Chat, User], *args, **kwargs):
     if isinstance(context, Game) and not kwargs.get("message_thread_id"):
         kwargs["message_thread_id"] = context.thread_id
 
-    if isinstance(context, Game):
-        chat = context.chat
-    else:
-        chat = context
-
+    chat = context.chat if isinstance(context, Game) else context
     try:
         await chat.send_message(*args, **kwargs)
     except Exception as e:

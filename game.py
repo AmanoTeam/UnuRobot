@@ -17,7 +17,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-
 import logging
 from datetime import datetime
 
@@ -71,7 +70,7 @@ class Game:
         return players
 
     def start(self):
-        if self.mode == None or self.mode != "wild":
+        if self.mode is None or self.mode != "wild":
             self.deck._fill_classic_()
         else:
             self.deck._fill_wild_()

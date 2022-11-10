@@ -153,12 +153,10 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
             message_thread_id=update.message.message_thread_id,
         )
     else:
-        stats_text = []
-
         n = us.games_played
-        stats_text.append(
+        stats_text = [
             _("{number} game played", "{number} games played", n).format(number=n)
-        )
+        ]
 
         n = us.first_places
         m = round((us.first_places / us.games_played) * 100) if us.games_played else 0

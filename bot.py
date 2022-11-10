@@ -73,7 +73,6 @@ from results import (
 from shared_vars import application, gm
 from simple_commands import help_handler
 from utils import (
-    TIMEOUT,
     answer_async,
     display_name,
     error,
@@ -93,6 +92,7 @@ logger = logging.getLogger(__name__)
 async def notify_me(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for /notify_me command, pm people for next game"""
     chat = update.message.chat
+
     if update.message.chat.type == "private":
         await send_async(
             chat,
@@ -112,7 +112,6 @@ async def notify_me(update: Update, context: ContextTypes.DEFAULT_TYPE):
 @user_locale
 async def new_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handler for the /new command"""
-    chat = update.message.chat
 
     if update.message.chat.type == "private":
         await help_handler(update, context)
@@ -488,7 +487,7 @@ async def start_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
             game = gm.chatid_games[chat.id][-1]
         except (KeyError, IndexError):
             await send_async(
-                game,
+                chat,
                 text=_(
                     "There is no game running in this chat. Create "
                     "a new one with /new"
@@ -554,7 +553,7 @@ async def start_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
             title = player.game.chat.title
 
             if player is gm.userid_current[update.message.from_user.id]:
-                title = "- %s -" % player.game.chat.title
+                title = f"- {player.game.chat.title} -"
 
             groups.append(
                 [
@@ -597,8 +596,6 @@ async def close_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
             game,
             text=_("Closed the lobby. " "No more players can join this game."),
         )
-        return
-
     else:
         await send_async(
             game,
@@ -607,7 +604,8 @@ async def close_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
             ),
             reply_to_message_id=update.message.message_id,
         )
-        return
+
+    return
 
 
 @user_locale
@@ -633,7 +631,6 @@ async def open_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
             game,
             text=_("Opened the lobby. " "New players may /join the game."),
         )
-        return
     else:
         await send_async(
             game,
@@ -642,7 +639,8 @@ async def open_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
             ),
             reply_to_message_id=update.message.message_id,
         )
-        return
+
+    return
 
 
 @user_locale
@@ -668,8 +666,6 @@ async def enable_translations(update: Update, context: ContextTypes.DEFAULT_TYPE
             game,
             text=_("Enabled multi-translations. " "Disable with /disable_translations"),
         )
-        return
-
     else:
         await send_async(
             game,
@@ -678,7 +674,8 @@ async def enable_translations(update: Update, context: ContextTypes.DEFAULT_TYPE
             ),
             reply_to_message_id=update.message.message_id,
         )
-        return
+
+    return
 
 
 @user_locale
@@ -708,8 +705,6 @@ async def disable_translations(update: Update, context: ContextTypes.DEFAULT_TYP
                 "/enable_translations"
             ),
         )
-        return
-
     else:
         await send_async(
             game,
@@ -718,7 +713,8 @@ async def disable_translations(update: Update, context: ContextTypes.DEFAULT_TYP
             ),
             reply_to_message_id=update.message.message_id,
         )
-        return
+
+    return
 
 
 @game_locales
@@ -821,12 +817,9 @@ async def reply_to_query(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
                 add_gameinfo(game, results)
 
-        elif user_id != game.current_player.user.id or not game.started:
+        else:
             for card in sorted(player.cards):
                 add_card(game, card, results, can_play=False)
-
-        else:
-            add_gameinfo(game, results)
 
         for result in results:
             result.id += ":%d" % player.anti_cheat
@@ -860,7 +853,7 @@ async def process_result(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except (KeyError, AttributeError):
         return
 
-    logger.debug("Selected result: " + result_id)
+    logger.debug("Selected result: %s", result_id)
 
     result_id, anti_cheat = result_id.split(":")
     last_anti_cheat = player.anti_cheat
@@ -887,25 +880,16 @@ async def process_result(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif result_id == "call_bluff":
         await reset_waiting_time(context, player)
         await do_call_bluff(context, player)
-    elif "7" in result_id and game.mode == "7-0" and not "player" in result_id:
+    elif "7" in result_id and game.mode == "7-0" and "player" not in result_id:
         game.choosing_player = True
         await send_async(game, text="Please choose a player to switch cards")
         remove_cards(player, result_id)
-    elif "0" in result_id and game.mode == "7-0" and not "player" in result_id:
+    elif "0" in result_id and game.mode == "7-0" and "player" not in result_id:
         await reset_waiting_time(context, player)
         await do_play_card(context, player, result_id)
-        a = 0
-        b = {}
-        for i in game.players:
-            b[a] = i.cards
-            a += 1
-        a = 1
-        for i in game.players:
-            if a in b:
-                i.cards = b[a]
-            else:
-                i.cards = b[0]
-            a += 1
+        b = {a: i.cards for a, i in enumerate(game.players)}
+        for a, i in enumerate(game.players, start=1):
+            i.cards = b.get(a, b[0])
     elif result_id == "draw":
         await reset_waiting_time(context, player)
         await do_draw(context, player)
@@ -913,11 +897,9 @@ async def process_result(update: Update, context: ContextTypes.DEFAULT_TYPE):
         game.turn()
     elif "player" in result_id:
         n = result_id[7:]
-        a = 0
-        for i in game.players:
+        for a, i in enumerate(game.players):
             if a == int(n):
                 v = i.user.id
-            a += 1
         pi = gm.userid_current[v]
         pq = pi.cards
         pn = player.cards

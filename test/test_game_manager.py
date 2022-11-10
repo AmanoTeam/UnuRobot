@@ -17,7 +17,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-
 import unittest
 
 from telegram import Chat, User
@@ -76,11 +75,7 @@ class Test(unittest.TestCase):
         )
 
     def test_leave_game(self):
-        self.gm.new_game(self.chat0)
-
-        self.gm.join_game(self.user0, self.chat0)
-        self.gm.join_game(self.user1, self.chat0)
-
+        self.start_and_join()
         self.assertRaises(
             NotEnoughPlayersError, self.gm.leave_game, *(self.user1, self.chat0)
         )
@@ -93,11 +88,7 @@ class Test(unittest.TestCase):
         )
 
     def test_end_game(self):
-        self.gm.new_game(self.chat0)
-
-        self.gm.join_game(self.user0, self.chat0)
-        self.gm.join_game(self.user1, self.chat0)
-
+        self.start_and_join()
         self.assertEqual(len(self.gm.userid_players[0]), 1)
 
         self.gm.new_game(self.chat0)
@@ -111,3 +102,8 @@ class Test(unittest.TestCase):
         self.assertFalse(0 in self.gm.userid_players)
         self.assertFalse(1 in self.gm.userid_players)
         self.assertFalse(2 in self.gm.userid_players)
+
+    def start_and_join(self):
+        self.gm.new_game(self.chat0)
+        self.gm.join_game(self.user0, self.chat0)
+        self.gm.join_game(self.user1, self.chat0)

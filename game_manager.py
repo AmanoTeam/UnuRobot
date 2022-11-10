@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-
+import contextlib
 import logging
 
 from telegram import Chat
@@ -49,7 +49,7 @@ class GameManager:
         """
         chat_id = chat.id
 
-        self.logger.debug("Creating new game in chat " + str(chat_id))
+        self.logger.debug("Creating new game in chat %s", str(chat_id))
         game = Game(chat, thread_id)
 
         if chat_id not in self.chatid_games:
@@ -69,8 +69,8 @@ class GameManager:
 
         try:
             game = self.chatid_games[chat.id][-1]
-        except (KeyError, IndexError):
-            raise NoGameInChatError()
+        except (KeyError, IndexError) as e:
+            raise NoGameInChatError() from e
 
         if not game.open:
             raise LobbyClosedError()
@@ -162,34 +162,22 @@ class GameManager:
         for player_in_game in game.players:
             this_users_players = self.userid_players.get(player_in_game.user.id, [])
 
-            try:
+            with contextlib.suppress(ValueError):
                 this_users_players.remove(player_in_game)
-            except ValueError:
-                pass
-
             if this_users_players:
-                try:
+                with contextlib.suppress(KeyError):
                     self.userid_current[player_in_game.user.id] = this_users_players[0]
-                except KeyError:
-                    pass
             else:
-                try:
+                with contextlib.suppress(KeyError):
                     del self.userid_players[player_in_game.user.id]
-                except KeyError:
-                    pass
-
-                try:
+                with contextlib.suppress(KeyError):
                     del self.userid_current[player_in_game.user.id]
-                except KeyError:
-                    pass
-
         self.chatid_games[chat.id].remove(game)
         if not self.chatid_games[chat.id]:
             del self.chatid_games[chat.id]
 
     def player_for_user_in_chat(self, user, chat):
         players = self.userid_players.get(user.id, [])
-        for player in players:
-            if player.game.chat.id == chat.id:
-                return player
-        return None
+        return next(
+            (player for player in players if player.game.chat.id == chat.id), None
+        )

@@ -44,10 +44,11 @@ async def show_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not us:
         us = UserSetting(id=update.message.from_user.id)
 
-    if not us.stats:
-        stats = "📊" + " " + _("Enable statistics")
-    else:
-        stats = "❌" + " " + _("Delete all statistics")
+    stats = (
+        "❌" + " " + _("Delete all statistics")
+        if us.stats
+        else "📊" + " " + _("Enable statistics")
+    )
 
     kb = [[stats], ["🌍" + " " + _("Language")]]
     await send_async(
@@ -70,9 +71,10 @@ async def kb_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif option == "🌍":
         kb = [
-            [locale + " - " + descr]
+            [f"{locale} - {descr}"]
             for locale, descr in sorted(available_locales.items())
         ]
+
         await send_async(
             chat,
             text=_("Select locale"),

@@ -17,7 +17,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-
 import logging
 from datetime import datetime
 
@@ -90,7 +89,7 @@ class Player:
 
     @property
     def next(self):
-        return self._next if not self.game.reversed else self._prev
+        return self._prev if self.game.reversed else self._next
 
     @next.setter
     def next(self, player):
@@ -101,7 +100,7 @@ class Player:
 
     @property
     def prev(self):
-        return self._prev if not self.game.reversed else self._next
+        return self._next if self.game.reversed else self._prev
 
     @prev.setter
     def prev(self, player):
@@ -140,7 +139,7 @@ class Player:
         playable = []
         last = self.game.last_card
 
-        self.logger.debug("Last card was " + str(last))
+        self.logger.debug("Last card was %s", str(last))
 
         cards = self.cards
         if self.drew:
@@ -156,24 +155,21 @@ class Player:
                 self.bluffing = self.bluffing or card.color == last.color
 
         # You may not play a chooser or +4 as your last card
-        if len(self.cards) == 1 and self.cards[0].special:
-            return []
-
-        return playable
+        return [] if len(self.cards) == 1 and self.cards[0].special else playable
 
     def _card_playable(self, card):
         """Check a single card if it can be played"""
 
         is_playable = True
         last = self.game.last_card
-        self.logger.debug("Checking card " + str(card))
+        self.logger.debug("Checking card %s", str(card))
 
         if card.color != last.color and card.value != last.value and not card.special:
             self.logger.debug("Card's color or value doesn't match")
             is_playable = False
         elif (
             last.value == c.DRAW_TWO
-            and not card.value == c.DRAW_TWO
+            and card.value != c.DRAW_TWO
             and self.game.draw_counter
         ):
             self.logger.debug("Player has to draw and can't counter")
@@ -181,9 +177,10 @@ class Player:
         elif last.special == c.DRAW_FOUR and self.game.draw_counter:
             self.logger.debug("Player has to draw and can't counter")
             is_playable = False
-        elif (last.special == c.CHOOSE or last.special == c.DRAW_FOUR) and (
-            card.special == c.CHOOSE or card.special == c.DRAW_FOUR
-        ):
+        elif last.special in [c.CHOOSE, c.DRAW_FOUR] and card.special in [
+            c.CHOOSE,
+            c.DRAW_FOUR,
+        ]:
             self.logger.debug("Can't play colorchooser on another one")
             is_playable = False
         elif not last.color:

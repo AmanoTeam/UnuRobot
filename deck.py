@@ -17,7 +17,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-
 import logging
 from random import shuffle
 
@@ -45,16 +44,15 @@ class Deck:
         """Draws a card from this deck"""
         try:
             card = self.cards.pop()
-            self.logger.debug("Drawing card " + str(card))
+            self.logger.debug("Drawing card %s", str(card))
             return card
-        except IndexError:
-            if self.graveyard:
-                while self.graveyard:
-                    self.cards.append(self.graveyard.pop())
-                self.shuffle()
-                return self.draw()
-            else:
-                raise DeckEmptyError()
+        except IndexError as e:
+            if not self.graveyard:
+                raise DeckEmptyError() from e
+            while self.graveyard:
+                self.cards.append(self.graveyard.pop())
+            self.shuffle()
+            return self.draw()
 
     def dismiss(self, card):
         """Returns a card to the deck"""
@@ -68,7 +66,7 @@ class Deck:
         for color in c.COLORS:
             for value in c.VALUES:
                 self.cards.append(Card(color, value))
-                if not value == c.ZERO:
+                if value != c.ZERO:
                     self.cards.append(Card(color, value))
         for special in c.SPECIALS:
             for _ in range(4):

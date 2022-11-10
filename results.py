@@ -17,7 +17,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-
 """Defines helper functions to build the inline result list"""
 
 from uuid import uuid4
@@ -33,8 +32,7 @@ from utils import display_color, display_color_group, display_name
 
 def add_choose_player(name, results, game):
     """Add choose color options"""
-    a = 0
-    for i in game.players:
+    for a, i in enumerate(game.players):
         if name != i.user.id or len(game.players) == 1:
             results.append(
                 InlineQueryResultArticle(
@@ -44,7 +42,6 @@ def add_choose_player(name, results, game):
                     input_message_content=InputTextMessageContent(i.user.first_name),
                 )
             )
-        a += 1
 
 
 def add_choose_color(results, game):
