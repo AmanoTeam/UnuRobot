@@ -18,15 +18,16 @@ msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-10 20:22-0300\n"
-"PO-Revision-Date: 2016-05-22 21:20-0600\n"
-"Last-Translator: \n"
-"Language-Team: en <uno@jhoeke.de>\n"
-"Language: es\n"
+"PO-Revision-Date: 2022-11-11 00:59+0000\n"
+"Last-Translator: Alisson Lauffer <alissonvitortc@gmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/unurobot/bot/es/>"
+"\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: actions.py:43
 #, python-brace-format
@@ -34,6 +35,9 @@ msgid ""
 "Waiting time to skip this player has been reduced to {time} seconds.\n"
 "Next player: {name}"
 msgstr ""
+"El tiempo de espera para saltar a este jugador se ha reducido a {time} "
+"segundos.\n"
+"Siguiente jugador: {name}"
 
 #: actions.py:61
 #, python-brace-format
@@ -41,6 +45,8 @@ msgid ""
 "{name1} ran out of time and has been removed from the game!\n"
 "Next player: {name2}"
 msgstr ""
+"¡{name1} se quedó sin tiempo y ha sido eliminado de la partida!\n"
+"Siguiente jugador: {name2}"
 
 #: actions.py:78
 #, python-brace-format
@@ -48,6 +54,8 @@ msgid ""
 "{name} ran out of time and has been removed from the game!\n"
 "The game ended."
 msgstr ""
+"¡{name} se ha quedado sin tiempo y ha sido eliminado de la partida!\n"
+"La partida terminó."
 
 #: actions.py:125 actions.py:172
 #, python-brace-format
@@ -80,11 +88,13 @@ msgstr "¡{name1} no se había tirado un farol!, {name2} recibe 6 cartas."
 msgid ""
 "Send this command in a group to be notified when a new game is started there."
 msgstr ""
+"Envía este comando en un grupo para recibir una notificación cuando comience "
+"una nueva partida allí."
 
 #: bot.py:124
 #, python-brace-format
 msgid "A new game has been started in {title}"
-msgstr ""
+msgstr "Se ha iniciado una nueva partida en {title}"
 
 #: bot.py:138
 msgid ""
@@ -102,11 +112,13 @@ msgid ""
 "The game is not started yet. Join the game with /join and start the game "
 "with /start"
 msgstr ""
+"La partida aún no ha comenzado. Únete al partida con /join y comienza la "
+"partida con /start"
 
 #: bot.py:184 bot.py:396 bot.py:601 bot.py:636 bot.py:671 bot.py:710
 #, python-brace-format
 msgid "Only the game creator ({name}) and admin can do that."
-msgstr ""
+msgstr "Solo el creador del juego ({name}) y el administrador pueden hacer eso."
 
 #: bot.py:206
 msgid "The lobby is closed"
@@ -123,6 +135,7 @@ msgstr "Ya te uniste a esta partida. Comienza la partida con /start."
 #: bot.py:230
 msgid "There are not enough cards left in the deck for new players to join."
 msgstr ""
+"No quedan suficientes cartas en el mazo para que se unan nuevos jugadores."
 
 #: bot.py:240
 msgid "Joined the game"
@@ -140,21 +153,22 @@ msgstr "Okay. Siguiente Jugador: {name}"
 #: bot.py:293
 #, python-brace-format
 msgid "{name} left the game before it started."
-msgstr ""
+msgstr "{name} abandonó la partida antes de que empezara."
 
 #: bot.py:345
 #, python-brace-format
 msgid "Player {name} is not found in the current game."
-msgstr ""
+msgstr "El jugador {name} no se encuentra en la partida actual."
 
 #: bot.py:358 bot.py:369
 #, python-brace-format
 msgid "{0} was kicked by {1}"
-msgstr ""
+msgstr "{0} fue pateado por {1}"
 
 #: bot.py:379
 msgid "Please reply to the person you want to kick and type /kick again."
 msgstr ""
+"Por favor, responde a la persona que quieres patear y escribe /kick de nuevo."
 
 #: bot.py:416
 msgid "Game not found."
@@ -200,7 +214,7 @@ msgstr ""
 
 #: bot.py:518 bot.py:921
 msgid "Make your choice!"
-msgstr ""
+msgstr "¡Haz tu elección!"
 
 #: bot.py:523
 #, python-brace-format
@@ -245,18 +259,18 @@ msgstr "No estás jugando una partida en este chat."
 #, python-brace-format
 msgid "Please wait {time} second"
 msgid_plural "Please wait {time} seconds"
-msgstr[0] "Por favor, espere un segundo."
+msgstr[0] "Por favor, espere {time} segundo."
 msgstr[1] "Por favor, espere {time} segundos."
 
 #: bot.py:827
 #, python-brace-format
 msgid "Current game: {game}"
-msgstr ""
+msgstr "Partida actual: {game}"
 
 #: bot.py:867
 #, python-brace-format
 msgid "Gamemode changed to {mode}"
-msgstr ""
+msgstr "El modo de juego ha cambiado a {mode}"
 
 #: bot.py:874
 #, python-brace-format
@@ -275,7 +289,7 @@ msgstr "El tiempo de espera para {name} se ha reiniciado a {time} segundos"
 
 #: results.py:37
 msgid "Choose Player"
-msgstr ""
+msgstr "Elegir jugador"
 
 #: results.py:50
 msgid "Choose Color"
@@ -284,8 +298,8 @@ msgstr "Selecciona un color"
 #: results.py:66
 msgid "Card (tap for game state):"
 msgid_plural "Cards (tap for game state):"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Carta (toque para el estado del juego):"
+msgstr[1] "Cartas (toque para el estado del juego):"
 
 #: results.py:80
 #, python-brace-format
@@ -316,43 +330,43 @@ msgstr "Comienza la partida con /start."
 
 #: results.py:121
 msgid "🎻 Classic mode"
-msgstr ""
+msgstr "🎻 Modo clásico"
 
 #: results.py:122
 msgid "Classic 🎻"
-msgstr ""
+msgstr "Clásico 🎻"
 
 #: results.py:132
 msgid "🚀 Sanic mode"
-msgstr ""
+msgstr "🚀 Modo Sanic"
 
 #: results.py:133
 msgid "Gotta go fast! 🚀"
-msgstr ""
+msgstr "¡Hay que ir rápido! 🚀"
 
 #: results.py:143
 msgid "🐉 Wild mode"
-msgstr ""
+msgstr "🐉 Modo salvaje"
 
 #: results.py:144
 msgid "Into the Wild~ 🐉"
-msgstr ""
+msgstr "Hacia lo salvaje~ 🐉"
 
 #: results.py:153
 msgid "🔫 7-0 mode"
-msgstr ""
+msgstr "🔫 Modo 7-0"
 
 #: results.py:154
 msgid "Carioca mode on 🔫"
-msgstr ""
+msgstr "Modo carioca activado 🔫"
 
 #: results.py:164
 msgid "✍️ Text mode"
-msgstr ""
+msgstr "✍️ Modo texto"
 
 #: results.py:165
 msgid "Text ✍️"
-msgstr ""
+msgstr "Texto ✍️"
 
 #: results.py:180
 #, python-brace-format
@@ -416,7 +430,7 @@ msgstr "Selecciona tu idioma"
 
 #: settings.py:87
 msgid "Deleted and disabled statistics!"
-msgstr "¡Estadísticas borradas y deshabilitadas! "
+msgstr "¡Estadísticas borradas y deshabilitadas!"
 
 #: settings.py:100
 msgid "Set locale!"
