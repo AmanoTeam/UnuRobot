@@ -18,15 +18,16 @@ msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-10 20:22-0300\n"
-"PO-Revision-Date: 2016-05-23 01:39+0200\n"
-"Last-Translator: \n"
-"Language-Team: en <uno@jhoeke.de>\n"
+"PO-Revision-Date: 2022-11-11 01:28+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/unurobot/bot/it/>"
+"\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: actions.py:43
 #, python-brace-format
@@ -90,8 +91,8 @@ msgstr ""
 msgid ""
 "Created a new game! Join the game with /join and start the game with /start"
 msgstr ""
-"È stata creata una nuova partita! Unisciti con /join e inizia a giocare con /"
-"start"
+"È stata creata una nuova partita! Unisciti con /join e inizia a giocare con "
+"/start"
 
 #: bot.py:158 bot.py:585 bot.py:620 bot.py:655 bot.py:690
 msgid "There is no running game in this chat."
@@ -184,8 +185,7 @@ msgstr "Sto rimuovendo {name} dalla partita"
 
 #: bot.py:491
 msgid "There is no game running in this chat. Create a new one with /new"
-msgstr ""
-"Non c'è alcuna partita aperta in questa chat. Creane una nuova con /new"
+msgstr "Non c'è alcuna partita aperta in questa chat. Creane una nuova con /new"
 
 #: bot.py:498
 msgid "The game has already started"
