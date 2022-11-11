@@ -18,15 +18,16 @@ msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-10 20:22-0300\n"
-"PO-Revision-Date: 2016-05-22 21:20-0600\n"
-"Last-Translator: \n"
-"Language-Team: en <uno@jhoeke.de>\n"
-"Language: ca\n"
+"PO-Revision-Date: 2022-11-11 01:28+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Catalan <https://hosted.weblate.org/projects/unurobot/bot/"
+"ca_CA/>\n"
+"Language: ca_CA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: actions.py:43
 #, python-brace-format
@@ -114,8 +115,8 @@ msgstr "La sala està tancada."
 #: bot.py:213 bot.py:316
 msgid "No game is running at the moment. Create a new game with /new"
 msgstr ""
-"En aquest moment no hi ha cap partida en marxa. Crea una partida nova amb /"
-"new"
+"En aquest moment no hi ha cap partida en marxa. Crea una partida nova amb "
+"/new"
 
 #: bot.py:221
 msgid "You already joined the game. Start the game with /start"
