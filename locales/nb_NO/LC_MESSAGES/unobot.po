@@ -7,14 +7,16 @@ msgstr ""
 "Project-Id-Version: uno_bot 1.0\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-10 20:22-0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-11-12 03:34+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"unurobot/bot/nb_NO/>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: actions.py:43
 #, python-brace-format
@@ -112,21 +114,21 @@ msgstr ""
 
 #: bot.py:240
 msgid "Joined the game"
-msgstr ""
+msgstr "Tok del i spillet"
 
 #: bot.py:257 bot.py:272
 msgid "You are not playing in a game in this group."
-msgstr ""
+msgstr "Du er ikke delaktig i noe spill i denne gruppen."
 
 #: bot.py:284 bot.py:387
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Okay. Next Player: {name}"
-msgstr ""
+msgstr "OK. Neste avspiller: {name}"
 
 #: bot.py:293
 #, python-brace-format
 msgid "{name} left the game before it started."
-msgstr ""
+msgstr "{name} forlot spillet før det startet."
 
 #: bot.py:345
 #, python-brace-format
