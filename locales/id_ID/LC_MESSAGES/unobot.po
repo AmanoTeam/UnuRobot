@@ -20,15 +20,16 @@ msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-10 20:22-0300\n"
-"PO-Revision-Date: 2016-05-23 12:43+0200\n"
-"Last-Translator: Jannes Höke <uno@jhoeke.de>\n"
-"Language-Team: Deutsch <uno@jhoeke.de>\n"
-"Language: in_ID\n"
+"PO-Revision-Date: 2022-11-11 01:28+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/unurobot/bot/"
+"id/>\n"
+"Language: id_ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: utf-8\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: actions.py:43
 #, python-brace-format
@@ -119,8 +120,8 @@ msgstr "Lobby ditutup"
 #: bot.py:213 bot.py:316
 msgid "No game is running at the moment. Create a new game with /new"
 msgstr ""
-"Tidak ada permainan yang berlangsung. Buat permainan baru dengan perintah /"
-"new"
+"Tidak ada permainan yang berlangsung. Buat permainan baru dengan perintah "
+"/new"
 
 #: bot.py:221
 msgid "You already joined the game. Start the game with /start"
@@ -235,15 +236,15 @@ msgstr "Membuka lobby. Pemain baru bisa bergabung dengan perintah /join."
 #: bot.py:666
 msgid "Enabled multi-translations. Disable with /disable_translations"
 msgstr ""
-"Mengaktifkan translasi multi bahasa. Non-aktifkan dengan /"
-"disable_translations"
+"Mengaktifkan translasi multi bahasa. Non-aktifkan dengan "
+"/disable_translations"
 
 #: bot.py:702
 msgid ""
 "Disabled multi-translations. Enable them again with /enable_translations"
 msgstr ""
-"Menon-aktifkan translasi multi bahasa. Nyalakan kembali dengan perintah /"
-"enable_translations"
+"Menon-aktifkan translasi multi bahasa. Nyalakan kembali dengan perintah "
+"/enable_translations"
 
 #: bot.py:730
 msgid "You are not playing in a game in this chat."
