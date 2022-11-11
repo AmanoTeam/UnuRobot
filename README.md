@@ -1,6 +1,7 @@
-# UNO Bot
+# UnuRobot
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](./LICENSE)
+[![Translation status](https://hosted.weblate.org/widgets/unurobot/-/bot/svg-badge.svg)](https://hosted.weblate.org/engage/unurobot/)
 
 Telegram Bot that allows you to play the popular card game UNO via inline queries. The bot currently runs as [@UnuRobot](http://t.me/UnuRobot).
 
@@ -20,8 +21,13 @@ To run the bot yourself, you will need:
 - Install requirements (using a `virtualenv` is recommended): `pip install -r requirements.txt`
 
 You can change some gameplay parameters like turn times, minimum amount of players and default gamemode in `config.json`.
-Current gamemodes available: classic, fast and wild. Check the details with the `/modes` command.
+Current gamemodes available: Classic, Fast (Sanic), Wild, Text and 7-0. Check the details with the `/modes` command.
 
 Then run the bot with `python3 bot.py`.
 
 Code documentation is minimal but there.
+
+## Translating
+
+- Our translations are being done at our [Weblate](https://hosted.weblate.org/projects/unurobot/bot/) project.
+  You can contribute to the currently supported languages or translate to a new language.
