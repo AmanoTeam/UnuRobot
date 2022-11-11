@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-10 20:22-0300\n"
-"PO-Revision-Date: 2022-11-11 00:03+0000\n"
+"PO-Revision-Date: 2022-11-11 00:59+0000\n"
 "Last-Translator: Alisson Lauffer <alissonvitortc@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "unurobot/bot/pt_BR/>\n"
@@ -44,7 +44,7 @@ msgid ""
 "{name1} ran out of time and has been removed from the game!\n"
 "Next player: {name2}"
 msgstr ""
-"{name1} ficou sem tempo e foi removido do jogo!\n"
+"{name1} ficou sem tempo e foi removido da partida!\n"
 "Próximo jogador: {name2}"
 
 #: actions.py:78
@@ -53,8 +53,8 @@ msgid ""
 "{name} ran out of time and has been removed from the game!\n"
 "The game ended."
 msgstr ""
-"{name} ficou sem tempo e foi removido do jogo!\n"
-"O jogo terminou."
+"{name} ficou sem tempo e foi removido da partida!\n"
+"A partida acabou."
 
 #: actions.py:125 actions.py:172
 #, python-brace-format
@@ -63,7 +63,7 @@ msgstr "{name} venceu!"
 
 #: actions.py:139 actions.py:186 bot.py:169 bot.py:278 bot.py:363 bot.py:463
 msgid "Game ended!"
-msgstr "Fim de jogo!"
+msgstr "Fim de partida!"
 
 #: actions.py:164
 msgid "Please choose a color"
@@ -87,18 +87,18 @@ msgstr "{name1} não blefou! Dando 6 cartas para {name2}"
 msgid ""
 "Send this command in a group to be notified when a new game is started there."
 msgstr ""
-"Envie este comando em um grupo para ser notificado quando um novo jogo for "
-"iniciado."
+"Envie este comando em um grupo para ser notificado quando uma nova partida "
+"for iniciada."
 
 #: bot.py:124
 #, python-brace-format
 msgid "A new game has been started in {title}"
-msgstr "Um novo jogo foi iniciado no grupo {title}"
+msgstr "Uma nova partida foi iniciada no grupo {title}"
 
 #: bot.py:138
 msgid ""
 "Created a new game! Join the game with /join and start the game with /start"
-msgstr "Novo jogo criado! Entre no jogo com /join e inicie o jogo com /start"
+msgstr "Nova partida criada! Entre na partida com /join e inicie-a com /start"
 
 #: bot.py:158 bot.py:585 bot.py:620 bot.py:655 bot.py:690
 msgid "There is no running game in this chat."
@@ -109,13 +109,13 @@ msgid ""
 "The game is not started yet. Join the game with /join and start the game "
 "with /start"
 msgstr ""
-"O jogo ainda não foi iniciado. Junte-se ao jogo com /join e comece o jogo "
-"com /start"
+"A partida ainda não iniciou. Junte-se a partida com /join e inicie-a com "
+"/start"
 
 #: bot.py:184 bot.py:396 bot.py:601 bot.py:636 bot.py:671 bot.py:710
 #, python-brace-format
 msgid "Only the game creator ({name}) and admin can do that."
-msgstr "Somente o criador do jogo ({name}) e o administrador podem fazer isso."
+msgstr "Somente o criador do jogo ({name}) e administradores podem fazer isso."
 
 #: bot.py:206
 msgid "The lobby is closed"
@@ -123,11 +123,11 @@ msgstr "O lobby está fechado"
 
 #: bot.py:213 bot.py:316
 msgid "No game is running at the moment. Create a new game with /new"
-msgstr "Nenhuma partida está sendo jogada. Crie um novo jogo com /new"
+msgstr "Nenhuma partida está sendo jogada. Crie uma nova partida com /new"
 
 #: bot.py:221
 msgid "You already joined the game. Start the game with /start"
-msgstr "Você já entrou na partida. Inicie o jogo com /start"
+msgstr "Você já entrou na partida. Inicie-a com /start"
 
 #: bot.py:230
 msgid "There are not enough cards left in the deck for new players to join."
@@ -151,7 +151,7 @@ msgstr "Ok. Próximo(a) jogador(a): {name}"
 #: bot.py:293
 #, python-brace-format
 msgid "{name} left the game before it started."
-msgstr "{name} deixou o jogo antes de ele começar."
+msgstr "{name} deixou a partida antes de ela começar."
 
 #: bot.py:345
 #, python-brace-format
@@ -171,7 +171,7 @@ msgstr ""
 
 #: bot.py:416
 msgid "Game not found."
-msgstr "Jogo não encontrado."
+msgstr "Partida não encontrada."
 
 #: bot.py:423
 msgid "Back to last group"
@@ -198,7 +198,8 @@ msgstr "Removendo {name} da partida"
 #: bot.py:491
 msgid "There is no game running in this chat. Create a new one with /new"
 msgstr ""
-"Não há uma partida sendo jogada nesta conversa. Crie um novo jogo com /new"
+"Não há nenhuma partida sendo jogada nesta conversa. Crie um nova partida com "
+"/new"
 
 #: bot.py:498
 msgid "The game has already started"
@@ -209,8 +210,8 @@ msgstr "A partida já começou"
 msgid ""
 "At least {minplayers} players must /join the game before you can start it"
 msgstr ""
-"Pelo menos {minplayers} jogadores devem se juntar (/join) ao jogo antes de "
-"poder iniciá-lo"
+"Pelo menos {minplayers} jogadores devem se juntar (/join) a partida antes de "
+"poder iniciá-la"
 
 #: bot.py:518 bot.py:921
 msgid "Make your choice!"
@@ -266,12 +267,12 @@ msgstr[1] "Por favor, aguarde {time} segundos"
 #: bot.py:827
 #, python-brace-format
 msgid "Current game: {game}"
-msgstr "Jogo atual: {game}"
+msgstr "Partida atual: {game}"
 
 #: bot.py:867
 #, python-brace-format
 msgid "Gamemode changed to {mode}"
-msgstr "Modo de jogo mudou para {mode}"
+msgstr "Modo de jogo alterado para {mode}"
 
 #: bot.py:874
 #, python-brace-format
@@ -363,7 +364,7 @@ msgstr "Modo carioca ativo 🔫"
 
 #: results.py:164
 msgid "✍️ Text mode"
-msgstr "✍️ Modo de texto"
+msgstr "✍️ Modo texto"
 
 #: results.py:165
 msgid "Text ✍️"
@@ -474,6 +475,39 @@ msgid ""
 "me</a>, join the <a href=\"https://t.me/UnuRobotUpdates\">update channel</a> "
 "and buy an UNO card game."
 msgstr ""
+"Siga esses passos:\n"
+"\n"
+"1. Adicione este bot a um grupo\n"
+"2. No grupo, inicie uma nova partida com /new ou entre em uma partida já em "
+"execução com /join\n"
+"3. Após a entrada de pelo menos dois jogadores, inicie a partida com /start\n"
+"4. Digite <code>@UnuRobot</code> em sua caixa de bate-papo e pressione "
+"<b>espaço</b>, ou clique no texto <code>via @UnuRobot</code> ao lado das "
+"mensagens. Você verá suas cartas (algumas esmaecidas), opções extras como "
+"desenhar e um <b>?</b> para ver o estado atual do jogo. As cartas "
+"<b>acinzentadas</b> são aquelas que você <b>não pode jogar</b> no momento. "
+"Toque em uma opção para executar a ação selecionada.\n"
+"Os jogadores podem entrar na partida a qualquer momento. Para sair de uma "
+"partida, use /leave. Se um jogador demorar mais de 90 segundos para jogar, "
+"você pode usar /skip para pular esse jogador. Use /notify_me para receber "
+"uma mensagem privada quando um novo jogo for iniciado.\n"
+"\n"
+"<b>Idioma</b> e outras configurações: /settings\n"
+"Outros comandos (somente criador do jogo):\n"
+"/close - Fechar lobby\n"
+"/open - Abrir lobby\n"
+"/kill - Termina o jogo\n"
+"/kick - Selecione um jogador para chutar respondendo a ele\n"
+"/enable_translations - Traduz textos relevantes para todos os idiomas "
+"falados em um jogo\n"
+"/disable_translations - Use inglês para esses textos\n"
+"\n"
+"<b>Experimental:</b> Jogue em vários grupos ao mesmo tempo. Pressione o "
+"botão <code>Partida atual: ...</code> e selecione o grupo no qual deseja "
+"jogar uma carta.\n"
+"Se você gosta deste bot, <a href=\"https://t.me/storebot?start=UnuRobot\""
+">avalie-me</a>, entre no <a href=\"https://t.me/UnuRobotUpdates\">canal de "
+"atualização</a> e compre um jogo de cartas UNO."
 
 #: simple_commands.py:81
 msgid ""
@@ -494,6 +528,24 @@ msgid ""
 "To change the game mode, the GAME CREATOR has to type the bot nickname and a "
 "space, just like when playing a card, and all gamemode options should appear."
 msgstr ""
+"Este bot do UNO tem cinco modos de jogo: Clássico, Sanico, Selvagem, Texto e "
+"7-0.\n"
+"\n"
+" 🎻 O modo Clássico utiliza o deck convencional UNO e não há pulo automático "
+"de jogadores.\n"
+" 🚀 O modo Sanico usa o deck UNO convencional e o bot pula automaticamente "
+"um jogador se ele demorar muito tempo para jogar sua vez.\n"
+" 🐉 O modo Selvagem usa um baralho com mais cartas especiais, menos "
+"variedade de números e sem pulo automático.\n"
+" ✍️ O modo Texto usa o baralho convencional UNO, mas em vez de stickers, usa "
+"texto.\n"
+" 🔫 O modo 7-0 usa o baralho convencional UNO, mas quando um jogador joga um "
+"7, ele pode escolher um jogador para trocar as cartas. Quando um jogador "
+"joga um 0, todas as cartas serão trocadas entre os jogadores atuais.\n"
+"\n"
+"Para mudar o modo de jogo, o CRIADOR DO JOGO tem que digitar o username do "
+"bot e um espaço, assim como quando se joga uma carta, e todas as opções de "
+"modo de jogo devem aparecer."
 
 #: simple_commands.py:104
 msgid ""
@@ -513,6 +565,13 @@ msgid ""
 "Originals available on http://game-icons.net\n"
 "Icons edited by ɳick"
 msgstr ""
+"Atribuições:\n"
+"Ícone de retirada de cartas feito por <a href=\"http://www.faithtoken.com/\""
+">Faithtoken</a>\n"
+"Ícone de passe feito pot por <a href=\"http://delapouite.com/\""
+">Delapouite</a>\n"
+"Originais disponíveis em http://game-icons.net\n"
+"Ícones editados por ɳick"
 
 #: simple_commands.py:132
 msgid "All news here: https://t.me/UnuRobotUpdates"
