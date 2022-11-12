@@ -20,8 +20,8 @@ msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-12 02:46-0300\n"
-"PO-Revision-Date: 2022-11-11 01:28+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2022-11-12 05:22+0000\n"
+"Last-Translator: Alisson Lauffer <alissonvitortc@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/unurobot/bot/"
 "id/>\n"
 "Language: id_ID\n"
@@ -204,7 +204,7 @@ msgstr ""
 
 #: bot.py:508
 msgid "The game has already started"
-msgstr "Permainan sudah dimulai."
+msgstr "Permainan sudah dimulai"
 
 #: bot.py:514
 #, python-brace-format
@@ -217,7 +217,7 @@ msgid "Make your choice!"
 msgstr ""
 
 #: bot.py:533
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "First player: {name}\n"
 "Use /close to stop people from joining the game.\n"
@@ -319,7 +319,7 @@ msgid ""
 "game in this group"
 msgstr ""
 "Saat ini sedang tidak ada permainan. Gunakan perintah /new untuk memulai "
-"permainan atau /join  untuk bergabung dengan permainan yang sedang "
+"permainan atau /join untuk bergabung dengan permainan yang sedang "
 "berlangsung di grup ini"
 
 #: results.py:108
@@ -432,7 +432,7 @@ msgstr "Memilih lokasi"
 
 #: settings.py:87
 msgid "Deleted and disabled statistics!"
-msgstr "Menghapus dan menonaktifkan statisk"
+msgstr "Menghapus dan menonaktifkan statisk!"
 
 #: settings.py:100
 msgid "Set locale!"
