@@ -20,10 +20,10 @@ msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-12 02:46-0300\n"
-"PO-Revision-Date: 2022-11-11 01:28+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/unurobot/bot/de/"
-">\n"
+"PO-Revision-Date: 2022-11-12 05:22+0000\n"
+"Last-Translator: Alisson Lauffer <alissonvitortc@gmail.com>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/unurobot/bot/de/>"
+"\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,12 +72,12 @@ msgstr "Es sind keine Karten mehr im Deck."
 #: actions.py:224
 #, python-brace-format
 msgid "Bluff called! Giving 4 cards to {name}"
-msgstr "Bluff gecalled! {name} bekommt 4 Karten."
+msgstr "Bluff gecalled! {name} bekommt 4 Karten"
 
 #: actions.py:241
 #, python-brace-format
 msgid "{name1} didn't bluff! Giving 6 cards to {name2}"
-msgstr "{name1} hat nicht geblufft! {name2} bekommt 6 Karten."
+msgstr "{name1} hat nicht geblufft! {name2} bekommt 6 Karten"
 
 #: bot.py:99
 msgid ""
@@ -212,14 +212,15 @@ msgid "Make your choice!"
 msgstr ""
 
 #: bot.py:533
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "First player: {name}\n"
 "Use /close to stop people from joining the game.\n"
 "Enable multi-translations with /enable_translations"
 msgstr ""
 "Erster Spieler: {name}\n"
-"Benutze /close, um zu verhindern, dass weitere Spieler beitreten."
+"Benutze /close, um zu verhindern, dass weitere Spieler beitreten.\n"
+"Aktivieren Sie Mehrfachübersetzungen mit /enable_translations"
 
 #: bot.py:577
 msgid "Please select the group you want to play in."
@@ -269,7 +270,7 @@ msgstr ""
 #: bot.py:884
 #, python-brace-format
 msgid "Cheat attempt by {name}"
-msgstr "{name} hat versucht zu schummeln!"
+msgstr "{name} hat versucht zu schummeln"
 
 #: bot.py:925
 #, python-brace-format
@@ -312,11 +313,11 @@ msgid ""
 "game in this group"
 msgstr ""
 "Du spielst gerade nicht. Benutze /new um ein neues Spiel zu starten oder /"
-"join, um einem bestehenden Spiel beizutreten."
+"join, um einem bestehenden Spiel beizutreten"
 
 #: results.py:108
 msgid "The game wasn't started yet"
-msgstr "Das Spiel wurde noch nicht gestartet."
+msgstr "Das Spiel wurde noch nicht gestartet"
 
 #: results.py:110
 msgid "Start the game with /start"
