@@ -18,10 +18,10 @@ msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-12 02:46-0300\n"
-"PO-Revision-Date: 2022-11-11 01:28+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Italian <https://hosted.weblate.org/projects/unurobot/bot/it/"
-">\n"
+"PO-Revision-Date: 2022-11-12 05:22+0000\n"
+"Last-Translator: Alisson Lauffer <alissonvitortc@gmail.com>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/unurobot/bot/it/>"
+"\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,12 +70,12 @@ msgstr "Non ci sono più carte sul tavolo."
 #: actions.py:224
 #, python-brace-format
 msgid "Bluff called! Giving 4 cards to {name}"
-msgstr "Il baro è stato scoperto! {name} deve pescare 4 carte!"
+msgstr "Il baro è stato scoperto! {name} deve pescare 4 carte"
 
 #: actions.py:241
 #, python-brace-format
 msgid "{name1} didn't bluff! Giving 6 cards to {name2}"
-msgstr "{name1} non ha barato! {name2} deve pescare 6 carte!"
+msgstr "{name1} non ha barato! {name2} deve pescare 6 carte"
 
 #: bot.py:99
 msgid ""
@@ -117,7 +117,7 @@ msgstr ""
 
 #: bot.py:216
 msgid "The lobby is closed"
-msgstr "La stanza è chiusa. Nessun nuovo giocatore può unirsi alla partita."
+msgstr "La stanza è chiusa. Nessun nuovo giocatore può unirsi alla partita"
 
 #: bot.py:223 bot.py:326
 msgid "No game is running at the moment. Create a new game with /new"
@@ -169,7 +169,7 @@ msgstr "Partita non trovata."
 
 #: bot.py:433
 msgid "Back to last group"
-msgstr "Vai all'ultimo gruppo."
+msgstr "Vai all'ultimo gruppo"
 
 #: bot.py:437
 msgid "Please switch to the group you selected!"
@@ -231,7 +231,7 @@ msgstr ""
 #: bot.py:641
 msgid "Opened the lobby. New players may /join the game."
 msgstr ""
-"La stanza è aperta. Nuovi giocatori possono unirsi alla partita con /join"
+"La stanza è aperta. Nuovi giocatori possono unirsi alla partita con /join."
 
 #: bot.py:676
 msgid "Enabled multi-translations. Disable with /disable_translations"
@@ -244,13 +244,13 @@ msgstr "Multi-traduzione disabilitata. Abilitala con /enable_translations"
 
 #: bot.py:740
 msgid "You are not playing in a game in this chat."
-msgstr "Non stai giocando alcuna partita in questa chat. "
+msgstr "Non stai giocando alcuna partita in questa chat."
 
 #: bot.py:758
 #, python-brace-format
 msgid "Please wait {time} second"
 msgid_plural "Please wait {time} seconds"
-msgstr[0] "Per favore, attendi {time} secondi"
+msgstr[0] "Per favore, attendi {time} secondo"
 msgstr[1] "Per favore, attendi {time} secondi"
 
 #: bot.py:837
@@ -266,7 +266,7 @@ msgstr ""
 #: bot.py:884
 #, python-brace-format
 msgid "Cheat attempt by {name}"
-msgstr "{name} ha tentato di barare!"
+msgstr "{name} ha tentato di barare"
 
 #: bot.py:925
 #, python-brace-format
@@ -301,7 +301,7 @@ msgstr[1] "{name} ({number} carte)"
 
 #: results.py:91
 msgid "You are not playing"
-msgstr "Non stai giocando in questa partita."
+msgstr "Non stai giocando in questa partita"
 
 #: results.py:94
 msgid ""
