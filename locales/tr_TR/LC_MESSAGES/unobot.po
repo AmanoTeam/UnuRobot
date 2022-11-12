@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: uno_bot 1.0\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-12 02:46-0300\n"
-"PO-Revision-Date: 2022-11-11 01:28+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Turkish <https://hosted.weblate.org/projects/unurobot/bot/tr/"
-">\n"
+"PO-Revision-Date: 2022-11-12 05:22+0000\n"
+"Last-Translator: Alisson Lauffer <alissonvitortc@gmail.com>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/unurobot/bot/tr/>"
+"\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,12 +65,12 @@ msgstr "Destede yeterli kart kalmadı."
 #: actions.py:224
 #, python-brace-format
 msgid "Bluff called! Giving 4 cards to {name}"
-msgstr "Blöf yapıyor! {name}’a 4 kart ver."
+msgstr "Blöf yapıyor! {name}’a 4 kart ver"
 
 #: actions.py:241
 #, python-brace-format
 msgid "{name1} didn't bluff! Giving 6 cards to {name2}"
-msgstr "{name1} blöf yapmıyordu! {name2}’a 6 kart ver."
+msgstr "{name1} blöf yapmıyordu! {name2}’a 6 kart ver"
 
 #: bot.py:99
 msgid ""
@@ -95,11 +95,11 @@ msgid ""
 "Created a new game! Join the game with /join and start the game with /start"
 msgstr ""
 "Yeni bir oyun oluşturuldu! Oyuna katılmak için /join yaz ve oyunu başlatmak "
-"için /start komutunu gönder."
+"için /start komutunu gönder"
 
 #: bot.py:168 bot.py:595 bot.py:630 bot.py:665 bot.py:700
 msgid "There is no running game in this chat."
-msgstr "Bu sohbette başlamış bir oyun yok"
+msgstr "Bu sohbette başlamış bir oyun yok."
 
 #: bot.py:185 bot.py:336
 msgid ""
@@ -107,7 +107,7 @@ msgid ""
 "with /start"
 msgstr ""
 "Oyun henüz başlamadı. Oyuna katılmak için /join yazve oyunu başlatmak için /"
-"start komutunu gönder."
+"start komutunu gönder"
 
 #: bot.py:194 bot.py:406 bot.py:611 bot.py:646 bot.py:681 bot.py:720
 #, python-brace-format
@@ -120,7 +120,7 @@ msgstr "Girişler kapatıldı"
 
 #: bot.py:223 bot.py:326
 msgid "No game is running at the moment. Create a new game with /new"
-msgstr "Şu anda oyun mevcut değil. /new ile yeni bir oyun oluşturabilirsin."
+msgstr "Şu anda oyun mevcut değil. /new ile yeni bir oyun oluşturabilirsin"
 
 #: bot.py:231
 msgid "You already joined the game. Start the game with /start"
@@ -156,7 +156,7 @@ msgstr "Oyuncu {name} mevcut oyunda bulunamadı."
 #: bot.py:368 bot.py:379
 #, python-brace-format
 msgid "{0} was kicked by {1}"
-msgstr "{0}, {1} tarafından atıldı!"
+msgstr "{0}, {1} tarafından atıldı"
 
 #: bot.py:389
 msgid "Please reply to the person you want to kick and type /kick again."
@@ -186,22 +186,22 @@ msgstr ""
 #: bot.py:479
 #, python-brace-format
 msgid "Removing {name} from the game"
-msgstr "{name} oyundan silindi."
+msgstr "{name} oyundan silindi"
 
 #: bot.py:501
 msgid "There is no game running in this chat. Create a new one with /new"
-msgstr "Bu sohbette şu an oyun yok. /new ile yeni bir oyun oluşturabilirsin."
+msgstr "Bu sohbette şu an oyun yok. /new ile yeni bir oyun oluşturabilirsin"
 
 #: bot.py:508
 msgid "The game has already started"
-msgstr "Oyun zaten başladı!"
+msgstr "Oyun zaten başladı"
 
 #: bot.py:514
 #, python-brace-format
 msgid ""
 "At least {minplayers} players must /join the game before you can start it"
 msgstr ""
-"Oyun başlatmak için en az {minplayers} kişi oyuna /join yazarak katılmalı."
+"Oyun başlatmak için en az {minplayers} kişi oyuna /join yazarak katılmalı"
 
 #: bot.py:528 bot.py:931
 msgid "Make your choice!"
@@ -216,11 +216,11 @@ msgid ""
 msgstr ""
 "İlk oyuncu: {name}\n"
 "/close yazarak oyuna daha fazla kişinin katılmasını kapatabilirsin.\n"
-"Çoklu dili etkinleştirmek için /enable_translations yaz."
+"Çoklu dili etkinleştirmek için /enable_translations yaz"
 
 #: bot.py:577
 msgid "Please select the group you want to play in."
-msgstr "Lütfen oynamak istediğiniz grubu seçin"
+msgstr "Lütfen oynamak istediğiniz grubu seçin."
 
 #: bot.py:606
 msgid "Closed the lobby. No more players can join this game."
@@ -232,12 +232,12 @@ msgstr "Girişler açıldı. Yeni oyuncular /join yazarak oyuna katılabilir."
 
 #: bot.py:676
 msgid "Enabled multi-translations. Disable with /disable_translations"
-msgstr "Çoklu dil etkinleştirildi. Kapatmak için /disable_translations yaz."
+msgstr "Çoklu dil etkinleştirildi. Kapatmak için /disable_translations yaz"
 
 #: bot.py:712
 msgid ""
 "Disabled multi-translations. Enable them again with /enable_translations"
-msgstr "Çoklu dil kapatıldı. Açmak için /enable_translations yaz."
+msgstr "Çoklu dil kapatıldı. Açmak için /enable_translations yaz"
 
 #: bot.py:740
 msgid "You are not playing in a game in this chat."
@@ -263,7 +263,7 @@ msgstr "Oyun modu değiştirildi: {mode}"
 #: bot.py:884
 #, python-brace-format
 msgid "Cheat attempt by {name}"
-msgstr "{name}, hile yapmaya çalıştı!"
+msgstr "{name}, hile yapmaya çalıştı"
 
 #: bot.py:925
 #, python-brace-format
@@ -273,7 +273,7 @@ msgstr "Sıradaki oyuncu: {name}"
 #: bot.py:951
 #, python-brace-format
 msgid "Waiting time for {name} has been reset to {time} seconds"
-msgstr "{name} için bekleme süresi {time} saniye olarak sıfırlandı."
+msgstr "{name} için bekleme süresi {time} saniye olarak sıfırlandı"
 
 #: results.py:37
 msgid "Choose Player"
@@ -298,7 +298,7 @@ msgstr[1] "{name}’ın ({number} kartı kaldı.)"
 
 #: results.py:91
 msgid "You are not playing"
-msgstr "Oyunda değilsin."
+msgstr "Oyunda değilsin"
 
 #: results.py:94
 msgid ""
@@ -306,7 +306,7 @@ msgid ""
 "game in this group"
 msgstr ""
 "Şu anda bir oyunda yoksun. Yeni bir oyun kurmak için /new, mevcut oyuna "
-"katılmak için /join yaz."
+"katılmak için /join yaz"
 
 #: results.py:108
 msgid "The game wasn't started yet"
@@ -514,7 +514,7 @@ msgid ""
 "to enable them."
 msgstr ""
 "İstatistikleri etkinleştirmediniz. Bota özel sohbetten/settings komutunu "
-"gönderve istatistik ayarını aç"
+"gönderve istatistik ayarını aç."
 
 #: simple_commands.py:153
 #, python-brace-format
