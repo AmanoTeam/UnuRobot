@@ -18,10 +18,10 @@ msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-12 02:46-0300\n"
-"PO-Revision-Date: 2022-11-11 01:28+0000\n"
+"PO-Revision-Date: 2022-11-12 03:55+0000\n"
 "Last-Translator: Alisson Lauffer <alissonvitortc@gmail.com>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/unurobot/bot/es/"
-">\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/unurobot/bot/es/>"
+"\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -77,12 +77,12 @@ msgstr "No hay más cartas en la baraja."
 #: actions.py:224
 #, python-brace-format
 msgid "Bluff called! Giving 4 cards to {name}"
-msgstr "¡Era un farol! {name} recibe 4 cartas."
+msgstr "¡Era un farol! {name} recibe 4 cartas"
 
 #: actions.py:241
 #, python-brace-format
 msgid "{name1} didn't bluff! Giving 6 cards to {name2}"
-msgstr "¡{name1} no se había tirado un farol!, {name2} recibe 6 cartas."
+msgstr "¡{name1} no se había tirado un farol!, {name2} recibe 6 cartas"
 
 #: bot.py:99
 msgid ""
@@ -96,6 +96,8 @@ msgid ""
 "Okay, you will be notified in a private message when the next game is "
 "started in this chat. Make sure that I' m allowed to send you messages."
 msgstr ""
+"Ok, serás notificado en un mensaje privado cuando una nueva partida se "
+"inicie en este chat. Asegúrate de que tengo permiso para enviarte mensajes."
 
 #: bot.py:134
 #, python-brace-format
@@ -107,7 +109,7 @@ msgid ""
 "Created a new game! Join the game with /join and start the game with /start"
 msgstr ""
 "¡Nueva partida creada! Únete con /join. Cuando estéis todos listos, haz /"
-"start para empezar."
+"start para empezar"
 
 #: bot.py:168 bot.py:595 bot.py:630 bot.py:665 bot.py:700
 msgid "There is no running game in this chat."
@@ -129,15 +131,15 @@ msgstr ""
 
 #: bot.py:216
 msgid "The lobby is closed"
-msgstr "La sala está cerrada."
+msgstr "La sala está cerrada"
 
 #: bot.py:223 bot.py:326
 msgid "No game is running at the moment. Create a new game with /new"
-msgstr "No hay ninguna partida en curso. Crea una partida con /new."
+msgstr "No hay ninguna partida en curso. Crea una partida con /new"
 
 #: bot.py:231
 msgid "You already joined the game. Start the game with /start"
-msgstr "Ya te uniste a esta partida. Comienza la partida con /start."
+msgstr "Ya te uniste a esta partida. Comienza la partida con /start"
 
 #: bot.py:240
 msgid "There are not enough cards left in the deck for new players to join."
@@ -146,7 +148,7 @@ msgstr ""
 
 #: bot.py:250
 msgid "Joined the game"
-msgstr "Te uniste a la partida."
+msgstr "Te uniste a la partida"
 
 #: bot.py:267 bot.py:282
 msgid "You are not playing in a game in this group."
@@ -183,7 +185,7 @@ msgstr "Partida no encontrada."
 
 #: bot.py:433
 msgid "Back to last group"
-msgstr "De vuelta al último grupo."
+msgstr "De vuelta al último grupo"
 
 #: bot.py:437
 msgid "Please switch to the group you selected!"
@@ -201,15 +203,15 @@ msgstr ""
 #: bot.py:479
 #, python-brace-format
 msgid "Removing {name} from the game"
-msgstr "Eliminando a {name} de la partida."
+msgstr "Eliminando a {name} de la partida"
 
 #: bot.py:501
 msgid "There is no game running in this chat. Create a new one with /new"
-msgstr "No hay ninguna partida en curso en este chat. Crea una nueva con /new."
+msgstr "No hay ninguna partida en curso en este chat. Crea una nueva con /new"
 
 #: bot.py:508
 msgid "The game has already started"
-msgstr "La partida ya ha comenzado."
+msgstr "La partida ya ha comenzado"
 
 #: bot.py:514
 #, python-brace-format
@@ -217,7 +219,7 @@ msgid ""
 "At least {minplayers} players must /join the game before you can start it"
 msgstr ""
 "Antes de iniciar la partida, al menos {minplayers} jugadores deben unirse "
-"usando /join."
+"usando /join"
 
 #: bot.py:528 bot.py:931
 msgid "Make your choice!"
@@ -232,7 +234,7 @@ msgid ""
 msgstr ""
 "Primer Jugador: {name}\n"
 "Usa /close para evitar que la gente se una a la partida.\n"
-"Habilita multi-traducciones con /enable_translations."
+"Habilita multi-traducciones con /enable_translations"
 
 #: bot.py:577
 msgid "Please select the group you want to play in."
@@ -249,14 +251,14 @@ msgstr "Sala abierta. Ahora pueden unirse nuevos jugadores usando /join."
 #: bot.py:676
 msgid "Enabled multi-translations. Disable with /disable_translations"
 msgstr ""
-"Multi-traducciones habilitadas. Deshabilítalas con /disable_translations."
+"Multi-traducciones habilitadas. Deshabilítalas con /disable_translations"
 
 #: bot.py:712
 msgid ""
 "Disabled multi-translations. Enable them again with /enable_translations"
 msgstr ""
-"Multi-traducciones deshabilitadas. Habilítalas de nuevo con /"
-"enable_translations."
+"Multi-traducciones deshabilitadas. Habilítalas de nuevo con "
+"/enable_translations"
 
 #: bot.py:740
 msgid "You are not playing in a game in this chat."
@@ -266,8 +268,8 @@ msgstr "No estás jugando una partida en este chat."
 #, python-brace-format
 msgid "Please wait {time} second"
 msgid_plural "Please wait {time} seconds"
-msgstr[0] "Por favor, espere {time} segundo."
-msgstr[1] "Por favor, espere {time} segundos."
+msgstr[0] "Por favor, espere {time} segundo"
+msgstr[1] "Por favor, espere {time} segundos"
 
 #: bot.py:837
 #, python-brace-format
@@ -282,12 +284,12 @@ msgstr "El modo de juego ha cambiado a {mode}"
 #: bot.py:884
 #, python-brace-format
 msgid "Cheat attempt by {name}"
-msgstr "{name} intentó hacer trampa."
+msgstr "{name} intentó hacer trampa"
 
 #: bot.py:925
 #, python-brace-format
 msgid "Next player: {name}"
-msgstr "Siguiente Jugador: {name}."
+msgstr "Siguiente Jugador: {name}"
 
 #: bot.py:951
 #, python-brace-format
@@ -317,7 +319,7 @@ msgstr[1] "{name} ({number} cartas)"
 
 #: results.py:91
 msgid "You are not playing"
-msgstr "No estás jugando."
+msgstr "No estás jugando"
 
 #: results.py:94
 msgid ""
@@ -325,15 +327,15 @@ msgid ""
 "game in this group"
 msgstr ""
 "No estás jugando en este momento. Usa /new para comenzar una partida o /join "
-"si hay una partida en curso en este grupo."
+"si hay una partida en curso en este grupo"
 
 #: results.py:108
 msgid "The game wasn't started yet"
-msgstr "La partida no ha comenzado todavía."
+msgstr "La partida no ha comenzado todavía"
 
 #: results.py:110
 msgid "Start the game with /start"
-msgstr "Comienza la partida con /start."
+msgstr "Comienza la partida con /start"
 
 #: results.py:121
 msgid "🎻 Classic mode"
@@ -379,8 +381,8 @@ msgstr "Texto ✍️"
 #, python-brace-format
 msgid "Drawing {number} card"
 msgid_plural "Drawing {number} cards"
-msgstr[0] "Robando {number} carta."
-msgstr[1] "Robando {number} cartas."
+msgstr[0] "Robando {number} carta"
+msgstr[1] "Robando {number} cartas"
 
 #: results.py:209
 msgid "Pass"
@@ -393,12 +395,12 @@ msgstr "¡Es un farol!"
 #: results.py:262
 #, python-brace-format
 msgid "Current player: {name}"
-msgstr "Jugador actual: {name}."
+msgstr "Jugador actual: {name}"
 
 #: results.py:264
 #, python-brace-format
 msgid "Last card: {card}"
-msgstr "Última carta: {card}."
+msgstr "Última carta: {card}"
 
 #: results.py:266
 #, python-brace-format
@@ -534,22 +536,22 @@ msgstr ""
 #, python-brace-format
 msgid "{number} game played"
 msgid_plural "{number} games played"
-msgstr[0] "{number} partida jugada."
-msgstr[1] "{number} partidas jugadas."
+msgstr[0] "{number} partida jugada"
+msgstr[1] "{number} partidas jugadas"
 
 #: simple_commands.py:160
 #, python-brace-format
 msgid "{number} first place ({percent}%)"
 msgid_plural "{number} first places ({percent}%)"
-msgstr[0] "{number} primer lugar ({percent}%)."
-msgstr[1] "{number} primeros lugares ({percent}%)."
+msgstr[0] "{number} primer lugar ({percent}%)"
+msgstr[1] "{number} primeros lugares ({percent}%)"
 
 #: simple_commands.py:168
 #, python-brace-format
 msgid "{number} card played"
 msgid_plural "{number} cards played"
-msgstr[0] "{number} carta jugada."
-msgstr[1] "{number} cartas jugadas."
+msgstr[0] "{number} carta jugada"
+msgstr[1] "{number} cartas jugadas"
 
 #: utils.py:54 utils.py:66
 #, python-brace-format

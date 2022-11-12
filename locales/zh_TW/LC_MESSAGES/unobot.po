@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-12 02:46-0300\n"
-"PO-Revision-Date: 2022-11-11 01:28+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2022-11-12 05:22+0000\n"
+"Last-Translator: Alisson Lauffer <alissonvitortc@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "unurobot/bot/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -67,7 +67,7 @@ msgstr "遊戲結束!"
 
 #: actions.py:164
 msgid "Please choose a color"
-msgstr "請選擇顏色。"
+msgstr "請選擇顏色"
 
 #: actions.py:206 actions.py:233 actions.py:249
 msgid "There are no more cards in the deck."
@@ -76,12 +76,12 @@ msgstr "卡堆中已經沒牌了。"
 #: actions.py:224
 #, python-brace-format
 msgid "Bluff called! Giving 4 cards to {name}"
-msgstr "已確定為虛張聲勢! 給 {name} 4 張牌。"
+msgstr "已確定為虛張聲勢! 給 {name} 4 張牌"
 
 #: actions.py:241
 #, python-brace-format
 msgid "{name1} didn't bluff! Giving 6 cards to {name2}"
-msgstr "{name1} 並未虛張聲勢! 給 {name2} 6 張牌。"
+msgstr "{name1} 並未虛張聲勢! 給 {name2} 6 張牌"
 
 #: bot.py:99
 msgid ""
@@ -102,7 +102,7 @@ msgstr "新遊戲已經在 {title} 開始!"
 #: bot.py:148
 msgid ""
 "Created a new game! Join the game with /join and start the game with /start"
-msgstr "已建立新遊戲! 使用 /join 加入遊戲，並使用 /start 開始遊戲。"
+msgstr "已建立新遊戲! 使用 /join 加入遊戲，並使用 /start 開始遊戲"
 
 #: bot.py:168 bot.py:595 bot.py:630 bot.py:665 bot.py:700
 msgid "There is no running game in this chat."
@@ -112,7 +112,7 @@ msgstr "此聊天室尚無進行中的遊戲。"
 msgid ""
 "The game is not started yet. Join the game with /join and start the game "
 "with /start"
-msgstr "遊戲尚未開始。請使用 /join 加入遊戲，並使用 /start 開始遊戲。"
+msgstr "遊戲尚未開始。請使用 /join 加入遊戲，並使用 /start 開始遊戲"
 
 #: bot.py:194 bot.py:406 bot.py:611 bot.py:646 bot.py:681 bot.py:720
 #, python-brace-format
@@ -121,15 +121,15 @@ msgstr "只有遊戲建立者 ({name}) 及管理員才能執行。"
 
 #: bot.py:216
 msgid "The lobby is closed"
-msgstr "遊戲大廳已關閉。"
+msgstr "遊戲大廳已關閉"
 
 #: bot.py:223 bot.py:326
 msgid "No game is running at the moment. Create a new game with /new"
-msgstr "目前沒有進行中的遊戲。請使用 /new 建立新遊戲。"
+msgstr "目前沒有進行中的遊戲。請使用 /new 建立新遊戲"
 
 #: bot.py:231
 msgid "You already joined the game. Start the game with /start"
-msgstr "您已加入遊戲。請使用 /start 開始遊戲。"
+msgstr "您已加入遊戲。請使用 /start 開始遊戲"
 
 #: bot.py:240
 msgid "There are not enough cards left in the deck for new players to join."
@@ -161,7 +161,7 @@ msgstr "未在目前遊戲找到 {name} 玩家。"
 #: bot.py:368 bot.py:379
 #, python-brace-format
 msgid "{0} was kicked by {1}"
-msgstr "{0} 被 {1} 踢出。"
+msgstr "{0} 被 {1} 踢出"
 
 #: bot.py:389
 msgid "Please reply to the person you want to kick and type /kick again."
@@ -195,17 +195,17 @@ msgstr "將 {name} 從遊戲移除"
 
 #: bot.py:501
 msgid "There is no game running in this chat. Create a new one with /new"
-msgstr "此聊天室目前沒有進行中的遊戲，使用 /new 開始新遊戲。"
+msgstr "此聊天室目前沒有進行中的遊戲，使用 /new 開始新遊戲"
 
 #: bot.py:508
 msgid "The game has already started"
-msgstr "遊戲已經開始。"
+msgstr "遊戲已經開始"
 
 #: bot.py:514
 #, python-brace-format
 msgid ""
 "At least {minplayers} players must /join the game before you can start it"
-msgstr "必須至少要有 {minplayers} 個人 /join 才能開始遊戲。"
+msgstr "必須至少要有 {minplayers} 個人 /join 才能開始遊戲"
 
 #: bot.py:528 bot.py:931
 msgid "Make your choice!"
@@ -220,7 +220,7 @@ msgid ""
 msgstr ""
 "第一位玩家: {name}\n"
 "可使用 /close 防止玩家加入此場遊戲。\n"
-"請使用 /enable_translations 開啟多翻譯模式。"
+"請使用 /enable_translations 開啟多翻譯模式"
 
 #: bot.py:577
 msgid "Please select the group you want to play in."
@@ -236,7 +236,7 @@ msgstr "已開啟遊戲大廳。新玩家可以使用 /join 加入此場遊戲�
 
 #: bot.py:676
 msgid "Enabled multi-translations. Disable with /disable_translations"
-msgstr "已啟用多翻譯模式。可使用 /disable_translations 停用。"
+msgstr "已啟用多翻譯模式。可使用 /disable_translations 停用"
 
 #: bot.py:712
 msgid ""
@@ -266,7 +266,7 @@ msgstr "遊戲模式已變更成 {mode}"
 #: bot.py:884
 #, python-brace-format
 msgid "Cheat attempt by {name}"
-msgstr "{name} 嘗試作弊。"
+msgstr "{name} 嘗試作弊"
 
 #: bot.py:925
 #, python-brace-format
@@ -299,22 +299,21 @@ msgstr[0] "{name} (有 {number} 張牌)"
 
 #: results.py:91
 msgid "You are not playing"
-msgstr "您不在遊戲中。"
+msgstr "您不在遊戲中"
 
 #: results.py:94
 msgid ""
 "Not playing right now. Use /new to start a game or /join to join the current "
 "game in this group"
-msgstr ""
-"您現在不在遊戲中。請使用 /new 開始新遊戲，或使用 /join 加入目前此群組的遊戲。"
+msgstr "您現在不在遊戲中。請使用 /new 開始新遊戲，或使用 /join 加入目前此群組的遊戲"
 
 #: results.py:108
 msgid "The game wasn't started yet"
-msgstr "遊戲尚未開始。"
+msgstr "遊戲尚未開始"
 
 #: results.py:110
 msgid "Start the game with /start"
-msgstr "請使用 /start 開始遊戲。"
+msgstr "請使用 /start 開始遊戲"
 
 #: results.py:121
 msgid "🎻 Classic mode"
