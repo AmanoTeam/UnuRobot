@@ -58,9 +58,7 @@ async def help_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "<b>Experimental:</b> Play in multiple groups at the same time. "
         "Press the <code>Current game: ...</code> button and select the "
         "group you want to play a card in.\n"
-        "If you enjoy this bot, "
-        '<a href="https://t.me/storebot?start=UnuRobot">'
-        "rate me</a>, join the "
+        "If you enjoy this bot, join the "
         '<a href="https://t.me/UnuRobotUpdates">update channel</a>'
         " and buy an UNO card game."
     )

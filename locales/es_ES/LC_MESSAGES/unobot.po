@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
-"POT-Creation-Date: 2022-11-10 20:22-0300\n"
+"POT-Creation-Date: 2022-11-12 02:46-0300\n"
 "PO-Revision-Date: 2022-11-11 01:28+0000\n"
 "Last-Translator: Alisson Lauffer <alissonvitortc@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/unurobot/bot/es/"
@@ -62,7 +62,7 @@ msgstr ""
 msgid "{name} won!"
 msgstr "¡{name} ganó!"
 
-#: actions.py:139 actions.py:186 bot.py:169 bot.py:278 bot.py:363 bot.py:463
+#: actions.py:139 actions.py:186 bot.py:179 bot.py:288 bot.py:373 bot.py:473
 msgid "Game ended!"
 msgstr "¡Fin de la partida!"
 
@@ -91,23 +91,29 @@ msgstr ""
 "Envía este comando en un grupo para recibir una notificación cuando comience "
 "una nueva partida allí."
 
-#: bot.py:124
+#: bot.py:113
+msgid ""
+"Okay, you will be notified in a private message when the next game is "
+"started in this chat. Make sure that I' m allowed to send you messages."
+msgstr ""
+
+#: bot.py:134
 #, python-brace-format
 msgid "A new game has been started in {title}"
 msgstr "Se ha iniciado una nueva partida en {title}"
 
-#: bot.py:138
+#: bot.py:148
 msgid ""
 "Created a new game! Join the game with /join and start the game with /start"
 msgstr ""
 "¡Nueva partida creada! Únete con /join. Cuando estéis todos listos, haz /"
 "start para empezar."
 
-#: bot.py:158 bot.py:585 bot.py:620 bot.py:655 bot.py:690
+#: bot.py:168 bot.py:595 bot.py:630 bot.py:665 bot.py:700
 msgid "There is no running game in this chat."
 msgstr "No hay ninguna partida en curso en este grupo."
 
-#: bot.py:175 bot.py:326
+#: bot.py:185 bot.py:336
 msgid ""
 "The game is not started yet. Join the game with /join and start the game "
 "with /start"
@@ -115,75 +121,75 @@ msgstr ""
 "La partida aún no ha comenzado. Únete al partida con /join y comienza la "
 "partida con /start"
 
-#: bot.py:184 bot.py:396 bot.py:601 bot.py:636 bot.py:671 bot.py:710
+#: bot.py:194 bot.py:406 bot.py:611 bot.py:646 bot.py:681 bot.py:720
 #, python-brace-format
 msgid "Only the game creator ({name}) and admin can do that."
 msgstr ""
 "Solo el creador del juego ({name}) y el administrador pueden hacer eso."
 
-#: bot.py:206
+#: bot.py:216
 msgid "The lobby is closed"
 msgstr "La sala está cerrada."
 
-#: bot.py:213 bot.py:316
+#: bot.py:223 bot.py:326
 msgid "No game is running at the moment. Create a new game with /new"
 msgstr "No hay ninguna partida en curso. Crea una partida con /new."
 
-#: bot.py:221
+#: bot.py:231
 msgid "You already joined the game. Start the game with /start"
 msgstr "Ya te uniste a esta partida. Comienza la partida con /start."
 
-#: bot.py:230
+#: bot.py:240
 msgid "There are not enough cards left in the deck for new players to join."
 msgstr ""
 "No quedan suficientes cartas en el mazo para que se unan nuevos jugadores."
 
-#: bot.py:240
+#: bot.py:250
 msgid "Joined the game"
 msgstr "Te uniste a la partida."
 
-#: bot.py:257 bot.py:272
+#: bot.py:267 bot.py:282
 msgid "You are not playing in a game in this group."
 msgstr "No estas jugando a una partida en este grupo."
 
-#: bot.py:284 bot.py:387
+#: bot.py:294 bot.py:397
 #, python-brace-format
 msgid "Okay. Next Player: {name}"
 msgstr "Okay. Siguiente Jugador: {name}"
 
-#: bot.py:293
+#: bot.py:303
 #, python-brace-format
 msgid "{name} left the game before it started."
 msgstr "{name} abandonó la partida antes de que empezara."
 
-#: bot.py:345
+#: bot.py:355
 #, python-brace-format
 msgid "Player {name} is not found in the current game."
 msgstr "El jugador {name} no se encuentra en la partida actual."
 
-#: bot.py:358 bot.py:369
+#: bot.py:368 bot.py:379
 #, python-brace-format
 msgid "{0} was kicked by {1}"
 msgstr "{0} fue pateado por {1}"
 
-#: bot.py:379
+#: bot.py:389
 msgid "Please reply to the person you want to kick and type /kick again."
 msgstr ""
 "Por favor, responde a la persona que quieres patear y escribe /kick de nuevo."
 
-#: bot.py:416
+#: bot.py:426
 msgid "Game not found."
 msgstr "Partida no encontrada."
 
-#: bot.py:423
+#: bot.py:433
 msgid "Back to last group"
 msgstr "De vuelta al último grupo."
 
-#: bot.py:427
+#: bot.py:437
 msgid "Please switch to the group you selected!"
 msgstr "¡Por favor ve al grupo seleccionado!"
 
-#: bot.py:435
+#: bot.py:445
 #, python-brace-format
 msgid ""
 "Selected group: {group}\n"
@@ -192,20 +198,20 @@ msgstr ""
 "Grupo seleccionado: {group}\n"
 "<b>¡Asegúrate de haber cambiado al grupo correcto!</b>"
 
-#: bot.py:469
+#: bot.py:479
 #, python-brace-format
 msgid "Removing {name} from the game"
 msgstr "Eliminando a {name} de la partida."
 
-#: bot.py:491
+#: bot.py:501
 msgid "There is no game running in this chat. Create a new one with /new"
 msgstr "No hay ninguna partida en curso en este chat. Crea una nueva con /new."
 
-#: bot.py:498
+#: bot.py:508
 msgid "The game has already started"
 msgstr "La partida ya ha comenzado."
 
-#: bot.py:504
+#: bot.py:514
 #, python-brace-format
 msgid ""
 "At least {minplayers} players must /join the game before you can start it"
@@ -213,11 +219,11 @@ msgstr ""
 "Antes de iniciar la partida, al menos {minplayers} jugadores deben unirse "
 "usando /join."
 
-#: bot.py:518 bot.py:921
+#: bot.py:528 bot.py:931
 msgid "Make your choice!"
 msgstr "¡Haz tu elección!"
 
-#: bot.py:523
+#: bot.py:533
 #, python-brace-format
 msgid ""
 "First player: {name}\n"
@@ -228,62 +234,62 @@ msgstr ""
 "Usa /close para evitar que la gente se una a la partida.\n"
 "Habilita multi-traducciones con /enable_translations."
 
-#: bot.py:567
+#: bot.py:577
 msgid "Please select the group you want to play in."
 msgstr "Elige el grupo en el que deseas jugar."
 
-#: bot.py:596
+#: bot.py:606
 msgid "Closed the lobby. No more players can join this game."
 msgstr "Sala cerrada. No podrán unirse más jugadores a la partida."
 
-#: bot.py:631
+#: bot.py:641
 msgid "Opened the lobby. New players may /join the game."
 msgstr "Sala abierta. Ahora pueden unirse nuevos jugadores usando /join."
 
-#: bot.py:666
+#: bot.py:676
 msgid "Enabled multi-translations. Disable with /disable_translations"
 msgstr ""
 "Multi-traducciones habilitadas. Deshabilítalas con /disable_translations."
 
-#: bot.py:702
+#: bot.py:712
 msgid ""
 "Disabled multi-translations. Enable them again with /enable_translations"
 msgstr ""
 "Multi-traducciones deshabilitadas. Habilítalas de nuevo con /"
 "enable_translations."
 
-#: bot.py:730
+#: bot.py:740
 msgid "You are not playing in a game in this chat."
 msgstr "No estás jugando una partida en este chat."
 
-#: bot.py:748
+#: bot.py:758
 #, python-brace-format
 msgid "Please wait {time} second"
 msgid_plural "Please wait {time} seconds"
 msgstr[0] "Por favor, espere {time} segundo."
 msgstr[1] "Por favor, espere {time} segundos."
 
-#: bot.py:827
+#: bot.py:837
 #, python-brace-format
 msgid "Current game: {game}"
 msgstr "Partida actual: {game}"
 
-#: bot.py:867
+#: bot.py:877
 #, python-brace-format
 msgid "Gamemode changed to {mode}"
 msgstr "El modo de juego ha cambiado a {mode}"
 
-#: bot.py:874
+#: bot.py:884
 #, python-brace-format
 msgid "Cheat attempt by {name}"
 msgstr "{name} intentó hacer trampa."
 
-#: bot.py:915
+#: bot.py:925
 #, python-brace-format
 msgid "Next player: {name}"
 msgstr "Siguiente Jugador: {name}."
 
-#: bot.py:941
+#: bot.py:951
 #, python-brace-format
 msgid "Waiting time for {name} has been reset to {time} seconds"
 msgstr "El tiempo de espera para {name} se ha reiniciado a {time} segundos"
@@ -469,12 +475,11 @@ msgid ""
 "<b>Experimental:</b> Play in multiple groups at the same time. Press the "
 "<code>Current game: ...</code> button and select the group you want to play "
 "a card in.\n"
-"If you enjoy this bot, <a href=\"https://t.me/storebot?start=UnuRobot\">rate "
-"me</a>, join the <a href=\"https://t.me/UnuRobotUpdates\">update channel</a> "
-"and buy an UNO card game."
+"If you enjoy this bot, join the <a href=\"https://t.me/"
+"UnuRobotUpdates\">update channel</a> and buy an UNO card game."
 msgstr ""
 
-#: simple_commands.py:81
+#: simple_commands.py:79
 msgid ""
 "This UNO bot has five game modes: Classic, Sanic, Wild, Text and 7-0.\n"
 "\n"
@@ -494,7 +499,7 @@ msgid ""
 "space, just like when playing a card, and all gamemode options should appear."
 msgstr ""
 
-#: simple_commands.py:104
+#: simple_commands.py:102
 msgid ""
 "This bot is Free Software and licensed under the AGPL. The code is available "
 "here: \n"
@@ -504,7 +509,7 @@ msgstr ""
 "disponible aquí:\n"
 "https://github.com/AmanoTeam/UnuRobot"
 
-#: simple_commands.py:109
+#: simple_commands.py:107
 msgid ""
 "Attributions:\n"
 "Draw icon by <a href=\"http://www.faithtoken.com/\">Faithtoken</a>\n"
@@ -513,11 +518,11 @@ msgid ""
 "Icons edited by ɳick"
 msgstr ""
 
-#: simple_commands.py:132
+#: simple_commands.py:130
 msgid "All news here: https://t.me/UnuRobotUpdates"
 msgstr "Todas las noticias aquí: https://t.me/UnuRobotUpdates"
 
-#: simple_commands.py:147
+#: simple_commands.py:145
 msgid ""
 "You did not enable statistics. Use /settings in a private chat with the bot "
 "to enable them."
@@ -525,21 +530,21 @@ msgstr ""
 "Tus estadísticas no están habilitadas. Usa /settings en un chat privado con "
 "el bot para habilitarlas."
 
-#: simple_commands.py:155
+#: simple_commands.py:153
 #, python-brace-format
 msgid "{number} game played"
 msgid_plural "{number} games played"
 msgstr[0] "{number} partida jugada."
 msgstr[1] "{number} partidas jugadas."
 
-#: simple_commands.py:162
+#: simple_commands.py:160
 #, python-brace-format
 msgid "{number} first place ({percent}%)"
 msgid_plural "{number} first places ({percent}%)"
 msgstr[0] "{number} primer lugar ({percent}%)."
 msgstr[1] "{number} primeros lugares ({percent}%)."
 
-#: simple_commands.py:170
+#: simple_commands.py:168
 #, python-brace-format
 msgid "{number} card played"
 msgid_plural "{number} cards played"
@@ -565,116 +570,3 @@ msgstr "{emoji} Verde"
 #, python-brace-format
 msgid "{emoji} Yellow"
 msgstr "{emoji} Amarillo"
-
-#~ msgid ""
-#~ "Follow these steps:\n"
-#~ "\n"
-#~ "1. Add this bot to a group\n"
-#~ "2. In the group, start a new game with /new or join an already running "
-#~ "game with /join\n"
-#~ "3. After at least two players have joined, start the game with /start\n"
-#~ "4. Type <code>@UnuRobot</code> into your chat box and hit <b>space</b>, "
-#~ "or click the <code>via @UnuRobot</code> text next to messages. You will "
-#~ "see your cards (some greyed out), any extra options like drawing, and a "
-#~ "<b>?</b> to see the current game state. The <b>greyed out cards</b> are "
-#~ "those you <b>can not play</b> at the moment. Tap an option to execute the "
-#~ "selected action.\n"
-#~ "Players can join the game at any time. To leave a game, use /leave. If a "
-#~ "player takes more than 90 seconds to play, you can use /skip to skip that "
-#~ "player.\n"
-#~ "\n"
-#~ "<b>Language</b> and other settings: /settings\n"
-#~ "Other commands (only game creator):\n"
-#~ "/close - Close lobby\n"
-#~ "/open - Open lobby\n"
-#~ "/enable_translations - Translate relevant texts into all languages spoken "
-#~ "in a game\n"
-#~ "/disable_translations - Use English for those texts\n"
-#~ "\n"
-#~ "<b>Experimental:</b> Play in multiple groups at the same time. Press the "
-#~ "<code>Current game: ...</code> button and select the group you want to "
-#~ "play a card in.\n"
-#~ "If you enjoy this bot, <a href=\"https://t.me/storebot?start=UnuRobot"
-#~ "\">rate me</a>, join the <a href=\"https://t.me/UnuRobotUpdates\">update "
-#~ "channel</a> and buy an UNO card game."
-#~ msgstr ""
-#~ "Sigue estos pasos:\n"
-#~ "\n"
-#~ "1. Añade este bot a un grupo\n"
-#~ "2. En el grupo, crea una partida nueva con /new o únete a una iniciada "
-#~ "con /join\n"
-#~ "3. Después de que al menos dos jugadores se han unido, comienza la "
-#~ "partida con /start\n"
-#~ "4. Escribe <code>@UnuRobot</code> en la caja de texto y presiona  "
-#~ "<b>espacio</b> o haz clic en el texto <code>via @UnuRobot</code>junto a "
-#~ "los mensajes. Verás tus cartas (algunas de tono grisáceo), cualquier "
-#~ "opción adicional como robar y un <b>?</b> para ver el estado actual de la "
-#~ "partida. Las <b>cartas grisáceas</b> son aquellas <b>no pueden usarse</b> "
-#~ "en el momento. Presiona una opción para ejecutar la acción seleccionada.\n"
-#~ "Los jugadores pueden unirse en cualquier momento. Para abandonar una "
-#~ "partida, usa /leave. Si un jugador se tarda más de 90 segundos en jugar, "
-#~ "puedes usar el /skip para saltar ese jugador.\n"
-#~ "\n"
-#~ "<b>Idioma</b> y otros ajustes: /settings\n"
-#~ "Otros comandos (solo el creador de la partida puede usar):\n"
-#~ "/close - Cerrar sala\n"
-#~ "/open - Abrir sala\t\n"
-#~ "/enable_translations - Traducir mensajes importantes a todos los idiomas "
-#~ "disponibles en la partida\n"
-#~ "/disable_translations - Usar el idioma por defecto (idioma inglés) \n"
-#~ "\n"
-#~ "<b>Experimental:</b> Para jugar en múltiples grupos al mismo tiempo. "
-#~ "Presiona el botón <code>Current game: ...</code>  y selecciona el grupo "
-#~ "en el que deseas realizar una jugada.\n"
-#~ "Si te gusta el bot <a href=\"https://t.me/storebot?start=UnuRobot\">rate "
-#~ "me</a>, únete al <a href=\"https://t.me/UnuRobotUpdates\">canal de "
-#~ "actualizaciones </a> y compra el juego de cartas UNO."
-
-#, python-format
-#~ msgid "Only the game creator ({name}) can do that."
-#~ msgstr "Solo el creador de la partida ({name}) puede hacer eso."
-
-#, python-format
-#~ msgid ""
-#~ "Waiting time to skip this player has been reduced to {time} second.\n"
-#~ "Next player: {name}"
-#~ msgid_plural ""
-#~ "Waiting time to skip this player has been reduced to {time} seconds.\n"
-#~ "Next player: {name}"
-#~ msgstr[0] ""
-#~ "El tiempo de espera para saltar al jugador actual se ha reducido {time} "
-#~ "segundo.\n"
-#~ "Siguiente jugador: {name}"
-#~ msgstr[1] ""
-#~ "El tiempo de espera para saltar al jugador actual se ha reducido {time} "
-#~ "segundos.\n"
-#~ "Siguiente jugador: {name}"
-
-#, python-format
-#~ msgid ""
-#~ "{name1} was skipped four times in a row and has been removed from the "
-#~ "game.\n"
-#~ "Next player: {name2}"
-#~ msgstr ""
-#~ "{name1} fue saltado cuatro veces consecutivas y ha sido eliminado de la "
-#~ "partida.\n"
-#~ "Siguiente Jugador {name2}"
-
-#, python-format
-#~ msgid ""
-#~ "{name} was skipped four times in a row and has been removed from the "
-#~ "game.\n"
-#~ "The game ended."
-#~ msgstr ""
-#~ "{name} fue saltado cuatro veces consecutivas y ha sido eliminado de la "
-#~ "partida.\n"
-#~ "Partida finalizada."
-
-#, python-format
-#~ msgid "Current game: {group}"
-#~ msgstr "Partida actual: {group}"
-
-#~ msgid "Last card (tap for game state):"
-#~ msgid_plural "Cards (tap for game state):"
-#~ msgstr[0] "Última carta (pulsa para ver el estado de la partida):"
-#~ msgstr[1] "Cartas (pulsa para ver el estado de la partida):"

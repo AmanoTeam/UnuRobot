@@ -103,9 +103,19 @@ async def notify_me(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
     else:
         try:
-            gm.remind_dict[chat.id].add(update.message.from_user.id)
+            gm.remind_dict[chat.id].add(update.message.from_user)
         except KeyError:
-            gm.remind_dict[chat.id] = {update.message.from_user.id}
+            gm.remind_dict[chat.id] = {update.message.from_user}
+
+        await send_async(
+            chat,
+            text=_(
+                "Okay, you will be notified in a private message "
+                "when the next game is started in this chat. "
+                "Make sure that I' m allowed to send you messages."
+            ),
+            message_thread_id=update.message.message_thread_id,
+        )
 
 
 @user_locale

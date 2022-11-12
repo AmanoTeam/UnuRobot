@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
-"POT-Creation-Date: 2022-11-10 20:22-0300\n"
+"POT-Creation-Date: 2022-11-12 02:46-0300\n"
 "PO-Revision-Date: 2022-11-11 01:28+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -61,7 +61,7 @@ msgstr ""
 msgid "{name} won!"
 msgstr "{name} 贏了!"
 
-#: actions.py:139 actions.py:186 bot.py:169 bot.py:278 bot.py:363 bot.py:463
+#: actions.py:139 actions.py:186 bot.py:179 bot.py:288 bot.py:373 bot.py:473
 msgid "Game ended!"
 msgstr "遊戲結束!"
 
@@ -88,92 +88,98 @@ msgid ""
 "Send this command in a group to be notified when a new game is started there."
 msgstr "請將這個指令傳到群組中，以在新遊戲開始時通知您。"
 
-#: bot.py:124
+#: bot.py:113
+msgid ""
+"Okay, you will be notified in a private message when the next game is "
+"started in this chat. Make sure that I' m allowed to send you messages."
+msgstr ""
+
+#: bot.py:134
 #, python-brace-format
 msgid "A new game has been started in {title}"
 msgstr "新遊戲已經在 {title} 開始!"
 
-#: bot.py:138
+#: bot.py:148
 msgid ""
 "Created a new game! Join the game with /join and start the game with /start"
 msgstr "已建立新遊戲! 使用 /join 加入遊戲，並使用 /start 開始遊戲。"
 
-#: bot.py:158 bot.py:585 bot.py:620 bot.py:655 bot.py:690
+#: bot.py:168 bot.py:595 bot.py:630 bot.py:665 bot.py:700
 msgid "There is no running game in this chat."
 msgstr "此聊天室尚無進行中的遊戲。"
 
-#: bot.py:175 bot.py:326
+#: bot.py:185 bot.py:336
 msgid ""
 "The game is not started yet. Join the game with /join and start the game "
 "with /start"
 msgstr "遊戲尚未開始。請使用 /join 加入遊戲，並使用 /start 開始遊戲。"
 
-#: bot.py:184 bot.py:396 bot.py:601 bot.py:636 bot.py:671 bot.py:710
+#: bot.py:194 bot.py:406 bot.py:611 bot.py:646 bot.py:681 bot.py:720
 #, python-brace-format
 msgid "Only the game creator ({name}) and admin can do that."
 msgstr "只有遊戲建立者 ({name}) 及管理員才能執行。"
 
-#: bot.py:206
+#: bot.py:216
 msgid "The lobby is closed"
 msgstr "遊戲大廳已關閉。"
 
-#: bot.py:213 bot.py:316
+#: bot.py:223 bot.py:326
 msgid "No game is running at the moment. Create a new game with /new"
 msgstr "目前沒有進行中的遊戲。請使用 /new 建立新遊戲。"
 
-#: bot.py:221
+#: bot.py:231
 msgid "You already joined the game. Start the game with /start"
 msgstr "您已加入遊戲。請使用 /start 開始遊戲。"
 
-#: bot.py:230
+#: bot.py:240
 msgid "There are not enough cards left in the deck for new players to join."
 msgstr "卡堆中已經沒有足夠給新進玩家的牌了。"
 
-#: bot.py:240
+#: bot.py:250
 msgid "Joined the game"
 msgstr "已加入遊戲"
 
-#: bot.py:257 bot.py:272
+#: bot.py:267 bot.py:282
 msgid "You are not playing in a game in this group."
 msgstr "您不在此群組的遊戲中。"
 
-#: bot.py:284 bot.py:387
+#: bot.py:294 bot.py:397
 #, python-brace-format
 msgid "Okay. Next Player: {name}"
 msgstr "好的。下一位玩家: {name}"
 
-#: bot.py:293
+#: bot.py:303
 #, python-brace-format
 msgid "{name} left the game before it started."
 msgstr "{name} 在遊戲開始前就離開遊戲了。"
 
-#: bot.py:345
+#: bot.py:355
 #, python-brace-format
 msgid "Player {name} is not found in the current game."
 msgstr "未在目前遊戲找到 {name} 玩家。"
 
-#: bot.py:358 bot.py:369
+#: bot.py:368 bot.py:379
 #, python-brace-format
 msgid "{0} was kicked by {1}"
 msgstr "{0} 被 {1} 踢出。"
 
-#: bot.py:379
+#: bot.py:389
 msgid "Please reply to the person you want to kick and type /kick again."
 msgstr "請回覆要踢出的人，並再次輸入 /kick 。"
 
-#: bot.py:416
+#: bot.py:426
 msgid "Game not found."
 msgstr "找不到遊戲。"
 
-#: bot.py:423
+#: bot.py:433
 msgid "Back to last group"
 msgstr "回到上一個群組"
 
-#: bot.py:427
+#: bot.py:437
 msgid "Please switch to the group you selected!"
 msgstr "請切換到您選取的群組!"
 
-#: bot.py:435
+#: bot.py:445
 #, python-brace-format
 msgid ""
 "Selected group: {group}\n"
@@ -182,30 +188,30 @@ msgstr ""
 "已選擇的群組: {group}\n"
 "<b>請確保您已切換到正確群組!</b>"
 
-#: bot.py:469
+#: bot.py:479
 #, python-brace-format
 msgid "Removing {name} from the game"
 msgstr "將 {name} 從遊戲移除"
 
-#: bot.py:491
+#: bot.py:501
 msgid "There is no game running in this chat. Create a new one with /new"
 msgstr "此聊天室目前沒有進行中的遊戲，使用 /new 開始新遊戲。"
 
-#: bot.py:498
+#: bot.py:508
 msgid "The game has already started"
 msgstr "遊戲已經開始。"
 
-#: bot.py:504
+#: bot.py:514
 #, python-brace-format
 msgid ""
 "At least {minplayers} players must /join the game before you can start it"
 msgstr "必須至少要有 {minplayers} 個人 /join 才能開始遊戲。"
 
-#: bot.py:518 bot.py:921
+#: bot.py:528 bot.py:931
 msgid "Make your choice!"
 msgstr ""
 
-#: bot.py:523
+#: bot.py:533
 #, python-brace-format
 msgid ""
 "First player: {name}\n"
@@ -216,58 +222,58 @@ msgstr ""
 "可使用 /close 防止玩家加入此場遊戲。\n"
 "請使用 /enable_translations 開啟多翻譯模式。"
 
-#: bot.py:567
+#: bot.py:577
 msgid "Please select the group you want to play in."
 msgstr "請選擇你要遊玩的群組。"
 
-#: bot.py:596
+#: bot.py:606
 msgid "Closed the lobby. No more players can join this game."
 msgstr "已關閉遊戲大廳。其他玩家無法再加入此場遊戲。"
 
-#: bot.py:631
+#: bot.py:641
 msgid "Opened the lobby. New players may /join the game."
 msgstr "已開啟遊戲大廳。新玩家可以使用 /join 加入此場遊戲。"
 
-#: bot.py:666
+#: bot.py:676
 msgid "Enabled multi-translations. Disable with /disable_translations"
 msgstr "已啟用多翻譯模式。可使用 /disable_translations 停用。"
 
-#: bot.py:702
+#: bot.py:712
 msgid ""
 "Disabled multi-translations. Enable them again with /enable_translations"
 msgstr "已停用多翻譯模式。可使用 /enable_translations 再次啟用。"
 
-#: bot.py:730
+#: bot.py:740
 msgid "You are not playing in a game in this chat."
 msgstr "您不在此聊天室的遊戲中。"
 
-#: bot.py:748
+#: bot.py:758
 #, python-brace-format
 msgid "Please wait {time} second"
 msgid_plural "Please wait {time} seconds"
 msgstr[0] "請等待 {time} 秒"
 
-#: bot.py:827
+#: bot.py:837
 #, python-brace-format
 msgid "Current game: {game}"
 msgstr "目前遊戲: {game}"
 
-#: bot.py:867
+#: bot.py:877
 #, python-brace-format
 msgid "Gamemode changed to {mode}"
 msgstr "遊戲模式已變更成 {mode}"
 
-#: bot.py:874
+#: bot.py:884
 #, python-brace-format
 msgid "Cheat attempt by {name}"
 msgstr "{name} 嘗試作弊。"
 
-#: bot.py:915
+#: bot.py:925
 #, python-brace-format
 msgid "Next player: {name}"
 msgstr "輪到: {name}"
 
-#: bot.py:941
+#: bot.py:951
 #, python-brace-format
 msgid "Waiting time for {name} has been reset to {time} seconds"
 msgstr "{name} 的等待時間已重設成 {time} 秒"
@@ -299,7 +305,8 @@ msgstr "您不在遊戲中。"
 msgid ""
 "Not playing right now. Use /new to start a game or /join to join the current "
 "game in this group"
-msgstr "您現在不在遊戲中。請使用 /new 開始新遊戲，或使用 /join 加入目前此群組的遊戲。"
+msgstr ""
+"您現在不在遊戲中。請使用 /new 開始新遊戲，或使用 /join 加入目前此群組的遊戲。"
 
 #: results.py:108
 msgid "The game wasn't started yet"
@@ -447,42 +454,11 @@ msgid ""
 "<b>Experimental:</b> Play in multiple groups at the same time. Press the "
 "<code>Current game: ...</code> button and select the group you want to play "
 "a card in.\n"
-"If you enjoy this bot, <a href=\"https://t.me/storebot?start=UnuRobot\">rate "
-"me</a>, join the <a href=\"https://t.me/UnuRobotUpdates\">update channel</a> "
-"and buy an UNO card game."
+"If you enjoy this bot, join the <a href=\"https://t.me/"
+"UnuRobotUpdates\">update channel</a> and buy an UNO card game."
 msgstr ""
-"請遵循以下步驟:\n"
-"\n"
-"1. 將機器人加入群組。\n"
-"2. 在群組中，請使用 /new 開始一場新遊戲，或是使用 /join 加入已經開始的遊戲。"
-"\n"
-"3. 在至少兩個玩家加入之後使用 /start 開始遊戲\n"
-"4. 將 <code>@UnuRobot</code> 輸入到聊天列中，並按下 <b>空白</b> 鍵，"
-"或者是按下訊息旁的 <code>[via @UnuRobot]</code> 文字。您將會看見您的卡牌 "
-"(部分是灰的)、延伸功能 (例如抽牌)，以及可用來檢視目前遊戲狀態的 "
-"<b>?</b>。<b>灰色卡牌</b>為您現在<b>不能使用</b>的卡牌。"
-"按一下選項以執行選取的動作\n"
-"玩家可隨時加入遊戲。若要離開遊戲，請使用 /leave。如果一名玩家停滯了超過 90 "
-"秒，您可使用 /skip 跳過該名玩家。請使用 /notify_me "
-"以在新一局遊戲開始時收到私訊。\n"
-"\n"
-"<b>語言</b>及其他設定: /settings\n"
-"其他指令 (僅遊戲建立者可使用):\n"
-"/close - 關閉遊戲大廳\n"
-"/open - 開啟遊戲大廳\n"
-"/kill - 終止遊戲\n"
-"/kick - 透過回覆以踢出玩家\n"
-"/enable_translations - 將對應文字翻譯成遊戲中所有使用的語言。\n"
-"/disable_translations - 僅顯示對應文字的英文版本。\n"
-"\n"
-"<b>實驗性功能:</b> 同時在多個群組遊玩。請按下 <code>[目前遊戲: ...]</code> "
-"按鈕，並選取你想玩的群組。\n"
-"\n"
-"如果你享受這台機器人，請<a href=\"https://t.me/storebot?start=UnuRobot\""
-">評價這台機器人</a>、加入<a href=\"https://t.me/UnuRobotUpdates\">更新頻道</"
-"a>並買一款 UNO 卡牌遊戲。"
 
-#: simple_commands.py:81
+#: simple_commands.py:79
 msgid ""
 "This UNO bot has five game modes: Classic, Sanic, Wild, Text and 7-0.\n"
 "\n"
@@ -502,7 +478,7 @@ msgid ""
 "space, just like when playing a card, and all gamemode options should appear."
 msgstr ""
 
-#: simple_commands.py:104
+#: simple_commands.py:102
 msgid ""
 "This bot is Free Software and licensed under the AGPL. The code is available "
 "here: \n"
@@ -511,7 +487,7 @@ msgstr ""
 "這台機器人是自由軟體，使用 AGPL 授權。程式碼可在此處取得:\n"
 "https://github.com/AmanoTeam/UnuRobot"
 
-#: simple_commands.py:109
+#: simple_commands.py:107
 msgid ""
 "Attributions:\n"
 "Draw icon by <a href=\"http://www.faithtoken.com/\">Faithtoken</a>\n"
@@ -520,36 +496,37 @@ msgid ""
 "Icons edited by ɳick"
 msgstr ""
 "來源:\n"
-"抽牌 (Draw) 圖示來自 <a href=\"http://www.faithtoken.com/\">Faithtoken</a>。"
-"\n"
+"抽牌 (Draw) 圖示來自 <a href=\"http://www.faithtoken.com/\">Faithtoken</"
+"a>。\n"
 "跳過 (Pass) 圖示來自 <a href=\"http://delapouite.com/\">Delapouite</a>。\n"
 "原始圖示可在 http://game-icons.net 取得。\n"
 "圖示由 ɳick 編輯。"
 
-#: simple_commands.py:132
+#: simple_commands.py:130
 msgid "All news here: https://t.me/UnuRobotUpdates"
 msgstr "新聞頻道: https://t.me/UnuRobotUpdates"
 
-#: simple_commands.py:147
+#: simple_commands.py:145
 msgid ""
 "You did not enable statistics. Use /settings in a private chat with the bot "
 "to enable them."
-msgstr "您尚未啟用統計資料。請在這台機器人的私人對話中傳送 <code>/settings</code> "
-"以啟用。"
+msgstr ""
+"您尚未啟用統計資料。請在這台機器人的私人對話中傳送 <code>/settings</code> 以"
+"啟用。"
 
-#: simple_commands.py:155
+#: simple_commands.py:153
 #, python-brace-format
 msgid "{number} game played"
 msgid_plural "{number} games played"
 msgstr[0] "已遊玩 {number} 場遊戲"
 
-#: simple_commands.py:162
+#: simple_commands.py:160
 #, python-brace-format
 msgid "{number} first place ({percent}%)"
 msgid_plural "{number} first places ({percent}%)"
 msgstr[0] "拿了 {number} 次第一名 ({percent}%)"
 
-#: simple_commands.py:170
+#: simple_commands.py:168
 #, python-brace-format
 msgid "{number} card played"
 msgid_plural "{number} cards played"
@@ -574,34 +551,3 @@ msgstr "{emoji} 綠色"
 #, python-brace-format
 msgid "{emoji} Yellow"
 msgstr "{emoji} 黃色"
-
-#, python-brace-format
-#~ msgid "{player} was skipped! "
-#~ msgstr "{player} 已被跳過! "
-
-#~ msgid ""
-#~ "This UNO bot has three game modes: Classic, Sanic and Wild.\n"
-#~ "\n"
-#~ " 🎻 The Classic mode uses the conventional UNO deck and there is no auto "
-#~ "skip.\n"
-#~ " 🚀 The Sanic mode uses the conventional UNO deck and the bot "
-#~ "automatically skips a player if he/she takes too long to play its turn\n"
-#~ " 🐉 The Wild mode uses a deck with more special cards, less number "
-#~ "variety and no auto skip.\n"
-#~ "\n"
-#~ "To change the game mode, the GAME CREATOR has to type the bot nickname "
-#~ "and a space, just like when playing a card, and all gamemode options "
-#~ "should appear."
-#~ msgstr ""
-#~ "這台 UNO 機器人有三種遊戲模式: 傳統、Sanic 及野外 (Wild) 模式。\n"
-#~ "\n"
-#~ " 🎻 傳統模式使用常見的 UNO 卡牌組合，且不會自動跳過。\n"
-#~ " 🚀 Sanic 模式使用常見的 UNO 卡牌組合，且機器人會自動跳過閒置過久的玩"
-#~ "家。\n"
-#~ " 🐉 野外 (Wild) 模式使用較多功能牌且較少數字牌的卡片組合且不會自動跳過。\n"
-#~ "\n"
-#~ "若要變更遊戲模式，遊戲建立者必須輸入機器人的使用者名稱 + 空白，就像玩遊戲"
-#~ "那樣，之後應該就會顯示出所有遊戲模式選項。"
-
-#~ msgid "{player} was skipped!. "
-#~ msgstr "{player} 已被跳過!"
