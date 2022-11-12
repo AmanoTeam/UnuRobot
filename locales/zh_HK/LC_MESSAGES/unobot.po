@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-12 02:46-0300\n"
-"PO-Revision-Date: 2022-11-11 01:28+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2022-11-12 05:22+0000\n"
+"Last-Translator: Alisson Lauffer <alissonvitortc@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/"
 "projects/unurobot/bot/zh_Hant_HK/>\n"
 "Language: zh_HK\n"
@@ -100,7 +100,7 @@ msgstr "已經開始咗新一盤! 用/join加入同埋/start去開始"
 
 #: bot.py:168 bot.py:595 bot.py:630 bot.py:665 bot.py:700
 msgid "There is no running game in this chat."
-msgstr "呢個對話入面冇嘢玩緊喎"
+msgstr "呢個對話入面冇嘢玩緊喎。"
 
 #: bot.py:185 bot.py:336
 msgid ""
@@ -170,8 +170,9 @@ msgid "Back to last group"
 msgstr "去返前一個group"
 
 #: bot.py:437
+#, fuzzy
 msgid "Please switch to the group you selected!"
-msgstr "請轉去你揀咗果個group"
+msgstr "請轉去你揀咗果個group！"
 
 #: bot.py:445
 #, python-brace-format
@@ -239,7 +240,7 @@ msgstr "已經停用咗其他語言, 想重新嘅話可以揀 /enable_translatio
 
 #: bot.py:740
 msgid "You are not playing in a game in this chat."
-msgstr "你冇喺呢個對話入面玩"
+msgstr "你冇喺呢個對話入面玩。"
 
 #: bot.py:758
 #, python-brace-format
@@ -364,9 +365,9 @@ msgid "I'm calling your bluff!"
 msgstr "我call你bluff"
 
 #: results.py:262
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Current player: {name}"
-msgstr "宜家嘅玩家"
+msgstr "宜家嘅玩家: {name}"
 
 #: results.py:264
 #, python-brace-format
@@ -409,11 +410,11 @@ msgstr "請揀個區域"
 
 #: settings.py:87
 msgid "Deleted and disabled statistics!"
-msgstr "已經熄咗同埋delete咗數據記錄"
+msgstr "已經熄咗同埋delete咗數據記錄!"
 
 #: settings.py:100
 msgid "Set locale!"
-msgstr "Set咗個區域"
+msgstr "Set咗個區域!"
 
 #: simple_commands.py:31
 msgid ""
@@ -498,7 +499,7 @@ msgstr "所有update都喺晒度: https://t.me/UnuRobotUpdates"
 msgid ""
 "You did not enable statistics. Use /settings in a private chat with the bot "
 "to enable them."
-msgstr "你冇啓用數據記錄, pm個bot去啓用"
+msgstr "你冇啓用數據記錄, pm個bot去啓用。"
 
 #: simple_commands.py:153
 #, python-brace-format
