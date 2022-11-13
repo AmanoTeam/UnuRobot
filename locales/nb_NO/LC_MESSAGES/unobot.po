@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: uno_bot 1.0\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-13 01:49-0300\n"
-"PO-Revision-Date: 2022-11-12 03:34+0000\n"
+"PO-Revision-Date: 2022-11-13 18:47+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "unurobot/bot/nb_NO/>\n"
@@ -50,11 +50,11 @@ msgstr ""
 
 #: actions.py:164
 msgid "Please choose a color"
-msgstr ""
+msgstr "Velg en farge"
 
 #: actions.py:206 actions.py:233 actions.py:249
 msgid "There are no more cards in the deck."
-msgstr ""
+msgstr "Ingen flere kort i kortstokken."
 
 #: actions.py:224
 #, python-brace-format
@@ -62,9 +62,9 @@ msgid "Bluff called! Giving 4 cards to {name}"
 msgstr ""
 
 #: actions.py:241
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "{name1} didn't bluff! Giving 6 cards to {name2}"
-msgstr ""
+msgstr "{name1} bløffet ikke. Gir seks kort til {name2}."
 
 #: bot.py:99
 msgid ""
@@ -80,7 +80,7 @@ msgstr ""
 #: bot.py:134
 #, python-brace-format
 msgid "A new game has been started in {title}"
-msgstr ""
+msgstr "Et nytt spill har blitt startet i {title}"
 
 #: bot.py:148
 msgid ""
@@ -88,14 +88,18 @@ msgid ""
 msgstr ""
 
 #: bot.py:168 bot.py:595 bot.py:630 bot.py:665 bot.py:700
+#, fuzzy
 msgid "There is no running game in this chat."
-msgstr ""
+msgstr "Ingen kjørende spill i denne sludringen."
 
 #: bot.py:185 bot.py:336
+#, fuzzy
 msgid ""
 "The game is not started yet. Join the game with /join and start the game "
 "with /start"
 msgstr ""
+"Spillet har ikke startet enda. Ta del i spillet med «/join» og start det ed "
+"«/start»."
 
 #: bot.py:194 bot.py:406 bot.py:611 bot.py:646 bot.py:681 bot.py:720
 #, python-brace-format
@@ -104,15 +108,17 @@ msgstr ""
 
 #: bot.py:216
 msgid "The lobby is closed"
-msgstr ""
+msgstr "Lobbyen er lukket"
 
 #: bot.py:223 bot.py:326
+#, fuzzy
 msgid "No game is running at the moment. Create a new game with /new"
-msgstr ""
+msgstr "Ingen spill kjører for øyeblikket. Start et nytt spill med «/new»."
 
 #: bot.py:231
+#, fuzzy
 msgid "You already joined the game. Start the game with /start"
-msgstr ""
+msgstr "Du har allerede tatt del i spillet. Start spillet med «/start»."
 
 #: bot.py:240
 msgid "There are not enough cards left in the deck for new players to join."
@@ -144,7 +150,7 @@ msgstr ""
 #: bot.py:368 bot.py:379
 #, python-brace-format
 msgid "{0} was kicked by {1}"
-msgstr ""
+msgstr "{0} ble kastet ut av {1}"
 
 #: bot.py:389
 msgid "Please reply to the person you want to kick and type /kick again."
@@ -156,11 +162,11 @@ msgstr ""
 
 #: bot.py:433
 msgid "Back to last group"
-msgstr ""
+msgstr "Tilbake til forrige gruppe"
 
 #: bot.py:437
 msgid "Please switch to the group you selected!"
-msgstr ""
+msgstr "Bytt til gruppen du valgte."
 
 #: bot.py:445
 #, python-brace-format
@@ -170,9 +176,9 @@ msgid ""
 msgstr ""
 
 #: bot.py:479
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Removing {name} from the game"
-msgstr ""
+msgstr "Ferner {name} fra spillet …"
 
 #: bot.py:501
 msgid "There is no game running in this chat. Create a new one with /new"
@@ -180,7 +186,7 @@ msgstr ""
 
 #: bot.py:508
 msgid "The game has already started"
-msgstr ""
+msgstr "Spillet har allerede startet"
 
 #: bot.py:514
 #, python-brace-format
@@ -229,18 +235,18 @@ msgstr ""
 #, python-brace-format
 msgid "Please wait {time} second"
 msgid_plural "Please wait {time} seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vent {time} sekund"
+msgstr[1] "Vent {time} sekunder"
 
 #: bot.py:837
 #, python-brace-format
 msgid "Current game: {game}"
-msgstr ""
+msgstr "Nåværende spill: {game}"
 
 #: bot.py:877
 #, python-brace-format
 msgid "Gamemode changed to {mode}"
-msgstr ""
+msgstr "Spillmodus endret til {mode}"
 
 #: bot.py:884
 #, python-brace-format
@@ -250,7 +256,7 @@ msgstr ""
 #: bot.py:925
 #, python-brace-format
 msgid "Next player: {name}"
-msgstr ""
+msgstr "Neste avspiller: {name}"
 
 #: bot.py:951
 #, python-brace-format
@@ -259,11 +265,11 @@ msgstr ""
 
 #: results.py:37
 msgid "Choose Player"
-msgstr ""
+msgstr "Velg avspiller"
 
 #: results.py:50
 msgid "Choose Color"
-msgstr ""
+msgstr "Velg farge"
 
 #: results.py:66
 msgid "Card (tap for game state):"
@@ -393,8 +399,9 @@ msgid "Enabled statistics!"
 msgstr ""
 
 #: settings.py:77
+#, fuzzy
 msgid "Select locale"
-msgstr ""
+msgstr "Velg språk"
 
 #: settings.py:87
 msgid "Deleted and disabled statistics!"
