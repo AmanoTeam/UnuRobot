@@ -72,7 +72,7 @@ def display_color_group(color, game):
         return __("{emoji} Yellow", game.translate).format(emoji="💛")
 
 
-def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Simple error handler"""
     if isinstance(context, Exception):
         logger.exception(context)
