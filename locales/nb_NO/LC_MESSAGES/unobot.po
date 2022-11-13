@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uno_bot 1.0\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
-"POT-Creation-Date: 2022-11-12 02:46-0300\n"
+"POT-Creation-Date: 2022-11-13 01:49-0300\n"
 "PO-Revision-Date: 2022-11-12 03:34+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
@@ -74,7 +74,7 @@ msgstr ""
 #: bot.py:113
 msgid ""
 "Okay, you will be notified in a private message when the next game is "
-"started in this chat. Make sure that I' m allowed to send you messages."
+"started in this chat. Make sure that I'm allowed to send you messages."
 msgstr ""
 
 #: bot.py:134

@@ -112,7 +112,7 @@ async def notify_me(update: Update, context: ContextTypes.DEFAULT_TYPE):
             text=_(
                 "Okay, you will be notified in a private message "
                 "when the next game is started in this chat. "
-                "Make sure that I' m allowed to send you messages."
+                "Make sure that I'm allowed to send you messages."
             ),
             message_thread_id=update.message.message_thread_id,
         )

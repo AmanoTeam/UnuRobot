@@ -85,7 +85,7 @@ msgstr ""
 #: bot.py:113
 msgid ""
 "Okay, you will be notified in a private message when the next game is "
-"started in this chat. Make sure that I' m allowed to send you messages."
+"started in this chat. Make sure that I'm allowed to send you messages."
 msgstr ""
 
 #: bot.py:134

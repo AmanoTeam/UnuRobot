@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
-"POT-Creation-Date: 2022-11-12 02:46-0300\n"
+"POT-Creation-Date: 2022-11-13 01:49-0300\n"
 "PO-Revision-Date: 2022-11-12 05:22+0000\n"
 "Last-Translator: Alisson Lauffer <alissonvitortc@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/unurobot/bot/"
@@ -89,7 +89,7 @@ msgstr ""
 #: bot.py:113
 msgid ""
 "Okay, you will be notified in a private message when the next game is "
-"started in this chat. Make sure that I' m allowed to send you messages."
+"started in this chat. Make sure that I'm allowed to send you messages."
 msgstr ""
 
 #: bot.py:134
