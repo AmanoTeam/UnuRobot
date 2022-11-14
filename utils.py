@@ -90,7 +90,7 @@ async def send_async(context: Union[Game, Chat, User], *args, **kwargs):
     try:
         await chat.send_message(*args, **kwargs)
     except Exception as e:
-        error(None, e)
+        await error(None, e)
 
 
 async def answer_async(context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
@@ -98,7 +98,7 @@ async def answer_async(context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
     try:
         await context.bot.answer_inline_query(*args, **kwargs)
     except Exception as e:
-        error(None, e)
+        await error(None, e)
 
 
 def game_is_running(game):
