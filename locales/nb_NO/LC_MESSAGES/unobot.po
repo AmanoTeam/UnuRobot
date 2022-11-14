@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: uno_bot 1.0\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-13 01:49-0300\n"
-"PO-Revision-Date: 2022-11-14 02:47+0000\n"
+"PO-Revision-Date: 2022-11-14 05:48+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "unurobot/bot/nb_NO/>\n"
@@ -42,11 +42,11 @@ msgstr ""
 #: actions.py:125 actions.py:172
 #, python-brace-format
 msgid "{name} won!"
-msgstr ""
+msgstr "{name} har vunnet."
 
 #: actions.py:139 actions.py:186 bot.py:179 bot.py:288 bot.py:373 bot.py:473
 msgid "Game ended!"
-msgstr ""
+msgstr "Spillet er over."
 
 #: actions.py:164
 msgid "Please choose a color"
@@ -104,7 +104,7 @@ msgstr ""
 #: bot.py:194 bot.py:406 bot.py:611 bot.py:646 bot.py:681 bot.py:720
 #, python-brace-format
 msgid "Only the game creator ({name}) and admin can do that."
-msgstr ""
+msgstr "Kun spillskaperen ({name}) og administratorer kan gjøre dette."
 
 #: bot.py:216
 msgid "The lobby is closed"
@@ -122,7 +122,7 @@ msgstr "Du har allerede tatt del i spillet. Start spillet med «/start»."
 
 #: bot.py:240
 msgid "There are not enough cards left in the deck for new players to join."
-msgstr ""
+msgstr "Ikke nok kort igjen i kortstokken til at nye spillere kan ta del."
 
 #: bot.py:250
 msgid "Joined the game"
@@ -145,7 +145,7 @@ msgstr "{name} forlot spillet før det startet."
 #: bot.py:355
 #, python-brace-format
 msgid "Player {name} is not found in the current game."
-msgstr ""
+msgstr "Fant ikke spilleren «{name}» i nåværende spill."
 
 #: bot.py:368 bot.py:379
 #, python-brace-format
@@ -158,7 +158,7 @@ msgstr ""
 
 #: bot.py:426
 msgid "Game not found."
-msgstr ""
+msgstr "Fant ikke spillet."
 
 #: bot.py:433
 msgid "Back to last group"
@@ -208,7 +208,7 @@ msgstr ""
 
 #: bot.py:577
 msgid "Please select the group you want to play in."
-msgstr ""
+msgstr "Velg gruppen du vil spille i."
 
 #: bot.py:606
 msgid "Closed the lobby. No more players can join this game."
@@ -296,19 +296,19 @@ msgstr ""
 
 #: results.py:108
 msgid "The game wasn't started yet"
-msgstr ""
+msgstr "Spillet har ikke startet enda"
 
 #: results.py:110
 msgid "Start the game with /start"
-msgstr ""
+msgstr "Start spillet med «/start»"
 
 #: results.py:121
 msgid "🎻 Classic mode"
-msgstr ""
+msgstr "🎻 Klassisk modus"
 
 #: results.py:122
 msgid "Classic 🎻"
-msgstr ""
+msgstr "Klassisk 🎻"
 
 #: results.py:132
 msgid "🚀 Sanic mode"
@@ -336,18 +336,18 @@ msgstr ""
 
 #: results.py:164
 msgid "✍️ Text mode"
-msgstr ""
+msgstr "✍️ Tekst-modus"
 
 #: results.py:165
 msgid "Text ✍️"
-msgstr ""
+msgstr "Tekst ✍️"
 
 #: results.py:180
 #, python-brace-format
 msgid "Drawing {number} card"
 msgid_plural "Drawing {number} cards"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Trekker {number} kort"
+msgstr[1] "Trekker {number} kort"
 
 #: results.py:209
 msgid "Pass"
@@ -371,8 +371,8 @@ msgstr ""
 #, python-brace-format
 msgid "Player: {player_list}"
 msgid_plural "Players: {player_list}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Spiller: {player_list}"
+msgstr[1] "Spillere: {player_list}"
 
 #: settings.py:34
 msgid "Please edit your settings in a private chat with the bot."
@@ -388,11 +388,11 @@ msgstr ""
 
 #: settings.py:50
 msgid "Language"
-msgstr ""
+msgstr "Språk"
 
 #: settings.py:53
 msgid "Settings"
-msgstr ""
+msgstr "Innstillinger"
 
 #: settings.py:67
 msgid "Enabled statistics!"
