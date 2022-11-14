@@ -23,6 +23,8 @@ compile id_ID
 compile it_IT
 # Portuguese
 compile pt_BR
+# Norwegian Bokmål
+compile nb_NO
 # Russian
 compile ru_RU
 # Turkish
