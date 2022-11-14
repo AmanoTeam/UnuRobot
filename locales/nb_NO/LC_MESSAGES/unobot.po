@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: uno_bot 1.0\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-13 01:49-0300\n"
-"PO-Revision-Date: 2022-11-14 05:48+0000\n"
+"PO-Revision-Date: 2022-11-14 17:00+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "unurobot/bot/nb_NO/>\n"
@@ -24,6 +24,8 @@ msgid ""
 "Waiting time to skip this player has been reduced to {time} seconds.\n"
 "Next player: {name}"
 msgstr ""
+"Ventetid før denne spilleren hoppes over er redusert til {time} sekunder.\n"
+"Neste spiller: {name}"
 
 #: actions.py:61
 #, python-brace-format
@@ -31,6 +33,8 @@ msgid ""
 "{name1} ran out of time and has been removed from the game!\n"
 "Next player: {name2}"
 msgstr ""
+"{name1} slapp opp for tid og har blitt fjernet fra spillet.\n"
+"Neste spiller: {name2}"
 
 #: actions.py:78
 #, python-brace-format
@@ -38,6 +42,8 @@ msgid ""
 "{name} ran out of time and has been removed from the game!\n"
 "The game ended."
 msgstr ""
+"{name} slapp opp for tid og har blitt fjernet fra spillet.\n"
+"Spillet er over."
 
 #: actions.py:125 actions.py:172
 #, python-brace-format
@@ -59,7 +65,7 @@ msgstr "Ingen flere kort i kortstokken."
 #: actions.py:224
 #, python-brace-format
 msgid "Bluff called! Giving 4 cards to {name}"
-msgstr ""
+msgstr "Bløff sett. Gir 4 kort til {name}."
 
 #: actions.py:241
 #, fuzzy, python-brace-format
@@ -70,12 +76,17 @@ msgstr "{name1} bløffet ikke. Gir seks kort til {name2}."
 msgid ""
 "Send this command in a group to be notified when a new game is started there."
 msgstr ""
+"Send denne kommandoen i en gruppe du vil varsle når et nytt spill starter "
+"her."
 
 #: bot.py:113
+#, fuzzy
 msgid ""
 "Okay, you will be notified in a private message when the next game is "
 "started in this chat. Make sure that I'm allowed to send you messages."
 msgstr ""
+"OK. Du vil få en privat melding når neste spill starter i denne sludringen. "
+"Sørg for at jeg kan sende deg meldinger."
 
 #: bot.py:134
 #, python-brace-format
@@ -86,6 +97,8 @@ msgstr "Et nytt spill har blitt startet i {title}"
 msgid ""
 "Created a new game! Join the game with /join and start the game with /start"
 msgstr ""
+"Opprettet nytt spill. Ta del i spillet med «/join» og start spillet med "
+"«/start»."
 
 #: bot.py:168 bot.py:595 bot.py:630 bot.py:665 bot.py:700
 #, fuzzy
@@ -154,7 +167,7 @@ msgstr "{0} ble kastet ut av {1}"
 
 #: bot.py:389
 msgid "Please reply to the person you want to kick and type /kick again."
-msgstr ""
+msgstr "Svar personen du vil kaste ut og skriv «/kick» igjen."
 
 #: bot.py:426
 msgid "Game not found."
@@ -174,6 +187,8 @@ msgid ""
 "Selected group: {group}\n"
 "<b>Make sure that you switch to the correct group!</b>"
 msgstr ""
+"Valgt gruppe: {group}\n"
+"<b>Sørg for at du har byttet til riktig gruppe.</b>"
 
 #: bot.py:479
 #, fuzzy, python-brace-format
@@ -182,7 +197,7 @@ msgstr "Ferner {name} fra spillet …"
 
 #: bot.py:501
 msgid "There is no game running in this chat. Create a new one with /new"
-msgstr ""
+msgstr "Ingen aktive spill i denne sludringen. Opprett et med «/new»."
 
 #: bot.py:508
 msgid "The game has already started"
@@ -193,18 +208,23 @@ msgstr "Spillet har allerede startet"
 msgid ""
 "At least {minplayers} players must /join the game before you can start it"
 msgstr ""
+"Minst {minplayers} spillere må skrive «/join» for å ta del i spillet før du "
+"kan starte det."
 
 #: bot.py:528 bot.py:931
 msgid "Make your choice!"
-msgstr ""
+msgstr "Gjør ditt valg."
 
 #: bot.py:533
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid ""
 "First player: {name}\n"
 "Use /close to stop people from joining the game.\n"
 "Enable multi-translations with /enable_translations"
 msgstr ""
+"Første spiller: {name}\n"
+"Bruk «/close» for å stoppe folk fra å ta del i spillet.\n"
+"Skru på multi-oversettelser med «/enable_translations»."
 
 #: bot.py:577
 msgid "Please select the group you want to play in."
@@ -212,24 +232,24 @@ msgstr "Velg gruppen du vil spille i."
 
 #: bot.py:606
 msgid "Closed the lobby. No more players can join this game."
-msgstr ""
+msgstr "Lukket lobbyen. Ingen flere spillere kan ta del i spillet."
 
 #: bot.py:641
 msgid "Opened the lobby. New players may /join the game."
-msgstr ""
+msgstr "Åpnet lobbyen. Nye spillere kan skrive «/join» for å ta del i spillet."
 
 #: bot.py:676
 msgid "Enabled multi-translations. Disable with /disable_translations"
-msgstr ""
+msgstr "Multi-oversettelser påskrudd. Skru av med «/disable_translations»."
 
 #: bot.py:712
 msgid ""
 "Disabled multi-translations. Enable them again with /enable_translations"
-msgstr ""
+msgstr "Multi-oversettelser avskrudd. Skru på igjen med «/enable_translations»."
 
 #: bot.py:740
 msgid "You are not playing in a game in this chat."
-msgstr ""
+msgstr "Du spiller ikke i noe spill i denne sludringen."
 
 #: bot.py:758
 #, python-brace-format
@@ -251,7 +271,7 @@ msgstr "Spillmodus endret til {mode}"
 #: bot.py:884
 #, python-brace-format
 msgid "Cheat attempt by {name}"
-msgstr ""
+msgstr "Forsøk på juks av {name}."
 
 #: bot.py:925
 #, python-brace-format
@@ -261,7 +281,7 @@ msgstr "Neste avspiller: {name}"
 #: bot.py:951
 #, python-brace-format
 msgid "Waiting time for {name} has been reset to {time} seconds"
-msgstr ""
+msgstr "Ventetid for {name} har blitt tilbakestilt til {time} sekunder."
 
 #: results.py:37
 msgid "Choose Player"
@@ -272,10 +292,11 @@ msgid "Choose Color"
 msgstr "Velg farge"
 
 #: results.py:66
+#, fuzzy
 msgid "Card (tap for game state):"
 msgid_plural "Cards (tap for game state):"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kort (trykk for spilltilstand):"
+msgstr[1] "Kort (trykk for spilltilstand):"
 
 #: results.py:80
 #, python-brace-format
@@ -286,13 +307,15 @@ msgstr[1] "{name} ({number} kort)"
 
 #: results.py:91
 msgid "You are not playing"
-msgstr ""
+msgstr "Du spiller ikke."
 
 #: results.py:94
 msgid ""
 "Not playing right now. Use /new to start a game or /join to join the current "
 "game in this group"
 msgstr ""
+"Spiller ikke akkurat nå. Bruk «/new» for å starte et spill, eller «/join» "
+"for å ta del i nåværende spill i denne gruppen."
 
 #: results.py:108
 msgid "The game wasn't started yet"
@@ -312,27 +335,27 @@ msgstr "Klassisk 🎻"
 
 #: results.py:132
 msgid "🚀 Sanic mode"
-msgstr ""
+msgstr "🚀 Sanic-modus"
 
 #: results.py:133
 msgid "Gotta go fast! 🚀"
-msgstr ""
+msgstr "Hurtighet først! 🚀"
 
 #: results.py:143
 msgid "🐉 Wild mode"
-msgstr ""
+msgstr "🐉 Vilt modus"
 
 #: results.py:144
 msgid "Into the Wild~ 🐉"
-msgstr ""
+msgstr "Inn i naturen~ 🐉"
 
 #: results.py:153
 msgid "🔫 7-0 mode"
-msgstr ""
+msgstr "🔫 7-0 -modus"
 
 #: results.py:154
 msgid "Carioca mode on 🔫"
-msgstr ""
+msgstr "Carioca-modus påslått 🔫"
 
 #: results.py:164
 msgid "✍️ Text mode"
@@ -351,21 +374,21 @@ msgstr[1] "Trekker {number} kort"
 
 #: results.py:209
 msgid "Pass"
-msgstr ""
+msgstr "Pass"
 
 #: results.py:222
 msgid "I'm calling your bluff!"
-msgstr ""
+msgstr "Jeg ser bløffen din."
 
 #: results.py:262
 #, python-brace-format
 msgid "Current player: {name}"
-msgstr ""
+msgstr "Nåværende spiller: {name}"
 
 #: results.py:264
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Last card: {card}"
-msgstr ""
+msgstr "Siste kort: {card}"
 
 #: results.py:266
 #, python-brace-format
@@ -376,15 +399,15 @@ msgstr[1] "Spillere: {player_list}"
 
 #: settings.py:34
 msgid "Please edit your settings in a private chat with the bot."
-msgstr ""
+msgstr "Rediger innstillingene dine i en privat sludring med botten."
 
 #: settings.py:45
 msgid "Delete all statistics"
-msgstr ""
+msgstr "Slett all statistikk"
 
 #: settings.py:47
 msgid "Enable statistics"
-msgstr ""
+msgstr "Skru på statistikk"
 
 #: settings.py:50
 msgid "Language"
@@ -396,7 +419,7 @@ msgstr "Innstillinger"
 
 #: settings.py:67
 msgid "Enabled statistics!"
-msgstr ""
+msgstr "Statistikk påskrudd."
 
 #: settings.py:77
 #, fuzzy
@@ -405,11 +428,12 @@ msgstr "Velg språk"
 
 #: settings.py:87
 msgid "Deleted and disabled statistics!"
-msgstr ""
+msgstr "Statistikk slettet og avskrudd."
 
 #: settings.py:100
+#, fuzzy
 msgid "Set locale!"
-msgstr ""
+msgstr "Sett språk."
 
 #: simple_commands.py:31
 msgid ""
@@ -446,6 +470,39 @@ msgid ""
 "If you enjoy this bot, join the <a href=\"https://t.me/"
 "UnuRobotUpdates\">update channel</a> and buy an UNO card game."
 msgstr ""
+"Følg disse stegene:\n"
+"\n"
+"1. Legg til denne botten i en gruppe\n"
+"2. I gruppen kan du starte et nytt spill med «/new», eller ta del i et "
+"allerede kjørende spill med «/join»\n"
+"3. Etter at minst to spillere har blitt med kan du starte spillet med "
+"«/start»\n"
+"4. Skriv <code>@UnuRobot</code> i sludringsboksen og trykk <b>mellomrom</b>, "
+"eller klikk på <code>via @UnuRobot</code>-teksten ved siden av meldinger. Du "
+"vil se kortene dine (noen utgrået), noen ekstra alternativer som tegning og "
+"et <b>?</b> for å se gjeldende spilltilstand. <b>Utgråede kort</b> er dem du "
+"<b>ikke kan spille</b> for øyeblikket. Trykk på et alternativ for å utføre "
+"valgt handling.\n"
+"Spillere kan bli med i spillet når som helst. For å forlate et spill, bruker "
+"du «/leave». Hvis en spiller bruker mer enn 90 sekunder på å spille, kan du "
+"bruke «/skip» for å hoppe over den spilleren. Bruk «/notify_me» for å motta "
+"en privat melding når et nytt spill startes.\n"
+"\n"
+"<b> Språk</b> og andre innstillinger: /settings\n"
+"Andre kommandoer (kun for spillskaperen):\n"
+"«/close» - Lukk lobbyen\n"
+"«/open» - Åpne lobbyen\n"
+"«/kill» - Avslutt spillet\n"
+"«/kick» - Velg en spiller å sparke ved å svare vedkommende\n"
+"«/enable_translations» - Oversett relevante tekster til alle språk som "
+"snakkes i et spill\n"
+"«/disable_translations» - Bruk engelsk for disse tekstene\n"
+"\n"
+"<b> Eksperimentelt:</b> Spill i flere grupper samtidig. Trykk på "
+"<code>Gjeldende spill: ...</code>-knappen og velg gruppen du vil spille et "
+"kort i.\n"
+"Hvis du liker denne botten, kan du bli med i <a href=\"https://t.me/"
+"UnuRobotUpdates\">oppdateringskanalen</a> og kjøpe et UNO-kortspill."
 
 #: simple_commands.py:79
 msgid ""
@@ -466,6 +523,24 @@ msgid ""
 "To change the game mode, the GAME CREATOR has to type the bot nickname and a "
 "space, just like when playing a card, and all gamemode options should appear."
 msgstr ""
+"Denne UNO-boten har fem spillmodus: Klassisk, Sanic, vilt, tekst og 7-0.\n"
+"\n"
+" 🎻 Klassisk modus bruker den konvensjonelle UNO-kortstokken og ingen hoppes "
+"over automatisk.\n"
+" 🚀 Sanic-modus bruker den konvensjonelle UNO-kortstokken og botten hopper "
+"automatisk over en spiller hvis vedkommende bruker for lang tid på sin tur.\n"
+" 🐉 Vilt modus bruker en kortstokk med flere spesialkort, mindre "
+"tallvariasjon, og ingen hoppes over automatisk.\n"
+" ✍️ Tekstmodus bruker den konvensjonelle UNO-kortstokken, men i stedet for "
+"klistremerker bruker den tekst.\n"
+" 🔫 7-0 -modus bruker den konvensjonelle UNO-kortstokken, men når en spiller "
+"legger ned en 7-er, kan vedkommende velge en spiller å bytte kort med. Når "
+"en spiller legger ned et 0-kort, vil alle kort byttes mellom de nåværende "
+"spillerne.\n"
+"\n"
+"For å endre spillmodus må spillskaperen skrive inn kallenavnet og et "
+"mellomrom, akkurat som når du spiller et kort, og alle "
+"spillmodusalternativer vises."
 
 #: simple_commands.py:102
 msgid ""
@@ -473,8 +548,12 @@ msgid ""
 "here: \n"
 "https://github.com/AmanoTeam/UnuRobot"
 msgstr ""
+"Denne botten er fri programvare, lisensiert AGPLv3+. Kildekoden er "
+"tilgjengelig på\n"
+"https://github.com/AmanoTeam/UnuRobot"
 
 #: simple_commands.py:107
+#, fuzzy
 msgid ""
 "Attributions:\n"
 "Draw icon by <a href=\"http://www.faithtoken.com/\">Faithtoken</a>\n"
@@ -482,54 +561,61 @@ msgid ""
 "Originals available on http://game-icons.net\n"
 "Icons edited by ɳick"
 msgstr ""
+"Bidragsytere:\n"
+"Korttrekkingsikon av <a href=\"https://www.faithtoken.com/\">Faithtoken</a>\n"
+"Pass-ikon av <a href=\"https://delapouite.com/\">Delapouite</a>\n"
+"Originaler tilgjengelig på https://game-icons.net\n"
+"Ikoner redigert av ɳick"
 
 #: simple_commands.py:130
 msgid "All news here: https://t.me/UnuRobotUpdates"
-msgstr ""
+msgstr "Alle nyheter her: https://t.me/UnuRobotUpdates"
 
 #: simple_commands.py:145
 msgid ""
 "You did not enable statistics. Use /settings in a private chat with the bot "
 "to enable them."
 msgstr ""
+"Du har ikke skrudd på statistikk. Bruk «/settings» i et privat "
+"sludringsvindu med botten for å skru dette på."
 
 #: simple_commands.py:153
 #, python-brace-format
 msgid "{number} game played"
 msgid_plural "{number} games played"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number} spill spilt"
+msgstr[1] "{number} spill spilt"
 
 #: simple_commands.py:160
 #, python-brace-format
 msgid "{number} first place ({percent}%)"
 msgid_plural "{number} first places ({percent}%)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number} førsteplass ({percent}%)"
+msgstr[1] "{number} førsteplasser ({percent}%)"
 
 #: simple_commands.py:168
 #, python-brace-format
 msgid "{number} card played"
 msgid_plural "{number} cards played"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number} kort spilt"
+msgstr[1] "{number} kort spilt"
 
 #: utils.py:54 utils.py:66
 #, python-brace-format
 msgid "{emoji} Red"
-msgstr ""
+msgstr "{emoji} Rød"
 
 #: utils.py:56 utils.py:68
 #, python-brace-format
 msgid "{emoji} Blue"
-msgstr ""
+msgstr "{emoji} Blå"
 
 #: utils.py:58 utils.py:70
 #, python-brace-format
 msgid "{emoji} Green"
-msgstr ""
+msgstr "{emoji} Grønn"
 
 #: utils.py:60 utils.py:72
 #, python-brace-format
 msgid "{emoji} Yellow"
-msgstr ""
+msgstr "{emoji} Gul"
