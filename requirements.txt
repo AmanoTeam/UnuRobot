@@ -1,2 +1,2 @@
-git+https://github.com/python-telegram-bot/python-telegram-bot@api_6.3_update
+python-telegram-bot>=20.0a5,<21.0
 pony
