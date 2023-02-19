@@ -21,8 +21,10 @@ compile es_ES
 compile id_ID
 # Italian
 compile it_IT
-# Portuguese
+# Portuguese (Brazil)
 compile pt_BR
+# Portuguese
+compile pt
 # Norwegian Bokmål
 compile nb_NO
 # Russian

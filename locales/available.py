@@ -31,6 +31,7 @@ available_locales = {
     "id_ID": flag("ID") + " Bahasa Indonesia",
     "it_IT": flag("IT") + " Italiano",
     "pt_BR": flag("BR") + " Português Brasileiro",
+    "pt": flag("PT") + " Português",
     "nb_NO": flag("NO") + " norsk",
     "ru_RU": flag("RU") + " Русский язык",
     "tr_TR": flag("TR") + " Türkçe",

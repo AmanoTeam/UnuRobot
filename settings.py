@@ -105,5 +105,5 @@ def register():
     application.add_handler(CommandHandler("settings", show_settings))
     application.add_handler(MessageHandler(filters.Regex(r"^([📊🌍❌]) .+$"), kb_select))
     application.add_handler(
-        MessageHandler(filters.Regex(r"^(\w\w_\w\w) - .*"), locale_select)
+        MessageHandler(filters.Regex(r"^(\w\w(_\w\w)?) - .*"), locale_select)
     )
