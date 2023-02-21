@@ -1,0 +1,526 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: uno_bot 1.0\n"
+"Report-Msgid-Bugs-To: uno@jhoeke.de\n"
+"POT-Creation-Date: 2022-11-13 01:49-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: alt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: actions.py:43
+#, python-brace-format
+msgid ""
+"Waiting time to skip this player has been reduced to {time} seconds.\n"
+"Next player: {name}"
+msgstr ""
+
+#: actions.py:61
+#, python-brace-format
+msgid ""
+"{name1} ran out of time and has been removed from the game!\n"
+"Next player: {name2}"
+msgstr ""
+
+#: actions.py:78
+#, python-brace-format
+msgid ""
+"{name} ran out of time and has been removed from the game!\n"
+"The game ended."
+msgstr ""
+
+#: actions.py:125 actions.py:172
+#, python-brace-format
+msgid "{name} won!"
+msgstr ""
+
+#: actions.py:139 actions.py:186 bot.py:179 bot.py:288 bot.py:373 bot.py:473
+msgid "Game ended!"
+msgstr ""
+
+#: actions.py:164
+msgid "Please choose a color"
+msgstr ""
+
+#: actions.py:206 actions.py:233 actions.py:249
+msgid "There are no more cards in the deck."
+msgstr ""
+
+#: actions.py:224
+#, python-brace-format
+msgid "Bluff called! Giving 4 cards to {name}"
+msgstr ""
+
+#: actions.py:241
+#, python-brace-format
+msgid "{name1} didn't bluff! Giving 6 cards to {name2}"
+msgstr ""
+
+#: bot.py:99
+msgid ""
+"Send this command in a group to be notified when a new game is started there."
+msgstr ""
+
+#: bot.py:113
+msgid ""
+"Okay, you will be notified in a private message when the next game is "
+"started in this chat. Make sure that I'm allowed to send you messages."
+msgstr ""
+
+#: bot.py:134
+#, python-brace-format
+msgid "A new game has been started in {title}"
+msgstr ""
+
+#: bot.py:148
+msgid ""
+"Created a new game! Join the game with /join and start the game with /start"
+msgstr ""
+
+#: bot.py:168 bot.py:595 bot.py:630 bot.py:665 bot.py:700
+msgid "There is no running game in this chat."
+msgstr ""
+
+#: bot.py:185 bot.py:336
+msgid ""
+"The game is not started yet. Join the game with /join and start the game "
+"with /start"
+msgstr ""
+
+#: bot.py:194 bot.py:406 bot.py:611 bot.py:646 bot.py:681 bot.py:720
+#, python-brace-format
+msgid "Only the game creator ({name}) and admin can do that."
+msgstr ""
+
+#: bot.py:216
+msgid "The lobby is closed"
+msgstr ""
+
+#: bot.py:223 bot.py:326
+msgid "No game is running at the moment. Create a new game with /new"
+msgstr ""
+
+#: bot.py:231
+msgid "You already joined the game. Start the game with /start"
+msgstr ""
+
+#: bot.py:240
+msgid "There are not enough cards left in the deck for new players to join."
+msgstr ""
+
+#: bot.py:250
+msgid "Joined the game"
+msgstr ""
+
+#: bot.py:267 bot.py:282
+msgid "You are not playing in a game in this group."
+msgstr ""
+
+#: bot.py:294 bot.py:397
+#, python-brace-format
+msgid "Okay. Next Player: {name}"
+msgstr ""
+
+#: bot.py:303
+#, python-brace-format
+msgid "{name} left the game before it started."
+msgstr ""
+
+#: bot.py:355
+#, python-brace-format
+msgid "Player {name} is not found in the current game."
+msgstr ""
+
+#: bot.py:368 bot.py:379
+#, python-brace-format
+msgid "{0} was kicked by {1}"
+msgstr ""
+
+#: bot.py:389
+msgid "Please reply to the person you want to kick and type /kick again."
+msgstr ""
+
+#: bot.py:426
+msgid "Game not found."
+msgstr ""
+
+#: bot.py:433
+msgid "Back to last group"
+msgstr ""
+
+#: bot.py:437
+msgid "Please switch to the group you selected!"
+msgstr ""
+
+#: bot.py:445
+#, python-brace-format
+msgid ""
+"Selected group: {group}\n"
+"<b>Make sure that you switch to the correct group!</b>"
+msgstr ""
+
+#: bot.py:479
+#, python-brace-format
+msgid "Removing {name} from the game"
+msgstr ""
+
+#: bot.py:501
+msgid "There is no game running in this chat. Create a new one with /new"
+msgstr ""
+
+#: bot.py:508
+msgid "The game has already started"
+msgstr ""
+
+#: bot.py:514
+#, python-brace-format
+msgid ""
+"At least {minplayers} players must /join the game before you can start it"
+msgstr ""
+
+#: bot.py:528 bot.py:931
+msgid "Make your choice!"
+msgstr ""
+
+#: bot.py:533
+#, python-brace-format
+msgid ""
+"First player: {name}\n"
+"Use /close to stop people from joining the game.\n"
+"Enable multi-translations with /enable_translations"
+msgstr ""
+
+#: bot.py:577
+msgid "Please select the group you want to play in."
+msgstr ""
+
+#: bot.py:606
+msgid "Closed the lobby. No more players can join this game."
+msgstr ""
+
+#: bot.py:641
+msgid "Opened the lobby. New players may /join the game."
+msgstr ""
+
+#: bot.py:676
+msgid "Enabled multi-translations. Disable with /disable_translations"
+msgstr ""
+
+#: bot.py:712
+msgid ""
+"Disabled multi-translations. Enable them again with /enable_translations"
+msgstr ""
+
+#: bot.py:740
+msgid "You are not playing in a game in this chat."
+msgstr ""
+
+#: bot.py:758
+#, python-brace-format
+msgid "Please wait {time} second"
+msgid_plural "Please wait {time} seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#: bot.py:837
+#, python-brace-format
+msgid "Current game: {game}"
+msgstr ""
+
+#: bot.py:877
+#, python-brace-format
+msgid "Gamemode changed to {mode}"
+msgstr ""
+
+#: bot.py:884
+#, python-brace-format
+msgid "Cheat attempt by {name}"
+msgstr ""
+
+#: bot.py:925
+#, python-brace-format
+msgid "Next player: {name}"
+msgstr ""
+
+#: bot.py:951
+#, python-brace-format
+msgid "Waiting time for {name} has been reset to {time} seconds"
+msgstr ""
+
+#: results.py:37
+msgid "Choose Player"
+msgstr ""
+
+#: results.py:50
+msgid "Choose Color"
+msgstr ""
+
+#: results.py:66
+msgid "Card (tap for game state):"
+msgid_plural "Cards (tap for game state):"
+msgstr[0] ""
+msgstr[1] ""
+
+#: results.py:80
+#, python-brace-format
+msgid "{name} ({number} card)"
+msgid_plural "{name} ({number} cards)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: results.py:91
+msgid "You are not playing"
+msgstr ""
+
+#: results.py:94
+msgid ""
+"Not playing right now. Use /new to start a game or /join to join the current "
+"game in this group"
+msgstr ""
+
+#: results.py:108
+msgid "The game wasn't started yet"
+msgstr ""
+
+#: results.py:110
+msgid "Start the game with /start"
+msgstr ""
+
+#: results.py:121
+msgid "🎻 Classic mode"
+msgstr ""
+
+#: results.py:122
+msgid "Classic 🎻"
+msgstr ""
+
+#: results.py:132
+msgid "🚀 Sanic mode"
+msgstr ""
+
+#: results.py:133
+msgid "Gotta go fast! 🚀"
+msgstr ""
+
+#: results.py:143
+msgid "🐉 Wild mode"
+msgstr ""
+
+#: results.py:144
+msgid "Into the Wild~ 🐉"
+msgstr ""
+
+#: results.py:153
+msgid "🔫 7-0 mode"
+msgstr ""
+
+#: results.py:154
+msgid "Carioca mode on 🔫"
+msgstr ""
+
+#: results.py:164
+msgid "✍️ Text mode"
+msgstr ""
+
+#: results.py:165
+msgid "Text ✍️"
+msgstr ""
+
+#: results.py:180
+#, python-brace-format
+msgid "Drawing {number} card"
+msgid_plural "Drawing {number} cards"
+msgstr[0] ""
+msgstr[1] ""
+
+#: results.py:209
+msgid "Pass"
+msgstr ""
+
+#: results.py:222
+msgid "I'm calling your bluff!"
+msgstr ""
+
+#: results.py:262
+#, python-brace-format
+msgid "Current player: {name}"
+msgstr ""
+
+#: results.py:264
+#, python-brace-format
+msgid "Last card: {card}"
+msgstr ""
+
+#: results.py:266
+#, python-brace-format
+msgid "Player: {player_list}"
+msgid_plural "Players: {player_list}"
+msgstr[0] ""
+msgstr[1] ""
+
+#: settings.py:34
+msgid "Please edit your settings in a private chat with the bot."
+msgstr ""
+
+#: settings.py:45
+msgid "Delete all statistics"
+msgstr ""
+
+#: settings.py:47
+msgid "Enable statistics"
+msgstr ""
+
+#: settings.py:50
+msgid "Language"
+msgstr ""
+
+#: settings.py:53
+msgid "Settings"
+msgstr ""
+
+#: settings.py:67
+msgid "Enabled statistics!"
+msgstr ""
+
+#: settings.py:77
+msgid "Select locale"
+msgstr ""
+
+#: settings.py:87
+msgid "Deleted and disabled statistics!"
+msgstr ""
+
+#: settings.py:100
+msgid "Set locale!"
+msgstr ""
+
+#: simple_commands.py:31
+msgid ""
+"Follow these steps:\n"
+"\n"
+"1. Add this bot to a group\n"
+"2. In the group, start a new game with /new or join an already running game "
+"with /join\n"
+"3. After at least two players have joined, start the game with /start\n"
+"4. Type <code>@UnuRobot</code> into your chat box and hit <b>space</b>, or "
+"click the <code>via @UnuRobot</code> text next to messages. You will see "
+"your cards (some greyed out), any extra options like drawing, and a <b>?</b> "
+"to see the current game state. The <b>greyed out cards</b> are those you "
+"<b>can not play</b> at the moment. Tap an option to execute the selected "
+"action.\n"
+"Players can join the game at any time. To leave a game, use /leave. If a "
+"player takes more than 90 seconds to play, you can use /skip to skip that "
+"player. Use /notify_me to receive a private message when a new game is "
+"started.\n"
+"\n"
+"<b>Language</b> and other settings: /settings\n"
+"Other commands (only game creator):\n"
+"/close - Close lobby\n"
+"/open - Open lobby\n"
+"/kill - Terminate the game\n"
+"/kick - Select a player to kick by replying to him or her\n"
+"/enable_translations - Translate relevant texts into all languages spoken in "
+"a game\n"
+"/disable_translations - Use English for those texts\n"
+"\n"
+"<b>Experimental:</b> Play in multiple groups at the same time. Press the "
+"<code>Current game: ...</code> button and select the group you want to play "
+"a card in.\n"
+"If you enjoy this bot, join the <a href=\"https://t.me/"
+"UnuRobotUpdates\">update channel</a> and buy an UNO card game."
+msgstr ""
+
+#: simple_commands.py:79
+msgid ""
+"This UNO bot has five game modes: Classic, Sanic, Wild, Text and 7-0.\n"
+"\n"
+" 🎻 The Classic mode uses the conventional UNO deck and there is no auto "
+"skip.\n"
+" 🚀 The Sanic mode uses the conventional UNO deck and the bot automatically "
+"skips a player if he/she takes too long to play its turn\n"
+" 🐉 The Wild mode uses a deck with more special cards, less number variety "
+"and no auto skip.\n"
+" ✍️ The Text mode uses the conventional UNO deck but instead of stickers it "
+"uses the text.\n"
+" 🔫 The 7-0 mode uses the conventional UNO deck but when a player plays a 7, "
+"he/she can choose a player to swap cards with. When a player plays a 0, all "
+"cards will be swapped between the current players.\n"
+"\n"
+"To change the game mode, the GAME CREATOR has to type the bot nickname and a "
+"space, just like when playing a card, and all gamemode options should appear."
+msgstr ""
+
+#: simple_commands.py:102
+msgid ""
+"This bot is Free Software and licensed under the AGPL. The code is available "
+"here: \n"
+"https://github.com/AmanoTeam/UnuRobot"
+msgstr ""
+
+#: simple_commands.py:107
+msgid ""
+"Attributions:\n"
+"Draw icon by <a href=\"http://www.faithtoken.com/\">Faithtoken</a>\n"
+"Pass icon by <a href=\"http://delapouite.com/\">Delapouite</a>\n"
+"Originals available on http://game-icons.net\n"
+"Icons edited by ɳick"
+msgstr ""
+
+#: simple_commands.py:130
+msgid "All news here: https://t.me/UnuRobotUpdates"
+msgstr ""
+
+#: simple_commands.py:145
+msgid ""
+"You did not enable statistics. Use /settings in a private chat with the bot "
+"to enable them."
+msgstr ""
+
+#: simple_commands.py:153
+#, python-brace-format
+msgid "{number} game played"
+msgid_plural "{number} games played"
+msgstr[0] ""
+msgstr[1] ""
+
+#: simple_commands.py:160
+#, python-brace-format
+msgid "{number} first place ({percent}%)"
+msgid_plural "{number} first places ({percent}%)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: simple_commands.py:168
+#, python-brace-format
+msgid "{number} card played"
+msgid_plural "{number} cards played"
+msgstr[0] ""
+msgstr[1] ""
+
+#: utils.py:54 utils.py:66
+#, python-brace-format
+msgid "{emoji} Red"
+msgstr ""
+
+#: utils.py:56 utils.py:68
+#, python-brace-format
+msgid "{emoji} Blue"
+msgstr ""
+
+#: utils.py:58 utils.py:70
+#, python-brace-format
+msgid "{emoji} Green"
+msgstr ""
+
+#: utils.py:60 utils.py:72
+#, python-brace-format
+msgid "{emoji} Yellow"
+msgstr ""
