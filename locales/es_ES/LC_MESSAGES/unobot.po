@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-13 01:49-0300\n"
-"PO-Revision-Date: 2022-11-14 17:00+0000\n"
+"PO-Revision-Date: 2023-02-22 10:39+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/unurobot/bot/es/>"
 "\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: actions.py:43
 #, python-brace-format
@@ -157,7 +157,7 @@ msgstr "No estas jugando a una partida en este grupo."
 #: bot.py:294 bot.py:397
 #, python-brace-format
 msgid "Okay. Next Player: {name}"
-msgstr "Okay. Siguiente Jugador: {name}"
+msgstr "Bueno. Siguiente jugador: {name}"
 
 #: bot.py:303
 #, python-brace-format
@@ -172,12 +172,11 @@ msgstr "El jugador {name} no se encuentra en la partida actual."
 #: bot.py:368 bot.py:379
 #, python-brace-format
 msgid "{0} was kicked by {1}"
-msgstr "{0} fue pateado por {1}"
+msgstr "{0} fue expulsado por {1}"
 
 #: bot.py:389
 msgid "Please reply to the person you want to kick and type /kick again."
-msgstr ""
-"Por favor, responde a la persona que quieres patear y escribe /kick de nuevo."
+msgstr "Responda a la persona que desea expulsar y escriba /kick nuevamente."
 
 #: bot.py:426
 msgid "Game not found."
