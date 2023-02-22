@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-13 01:49-0300\n"
-"PO-Revision-Date: 2022-11-14 17:00+0000\n"
+"PO-Revision-Date: 2023-02-22 18:37+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/unurobot/bot/es/>"
 "\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: actions.py:43
 #, python-brace-format
@@ -157,7 +157,7 @@ msgstr "No estas jugando a una partida en este grupo."
 #: bot.py:294 bot.py:397
 #, python-brace-format
 msgid "Okay. Next Player: {name}"
-msgstr "Okay. Siguiente Jugador: {name}"
+msgstr "Bueno. Siguiente jugador: {name}"
 
 #: bot.py:303
 #, python-brace-format
@@ -172,12 +172,11 @@ msgstr "El jugador {name} no se encuentra en la partida actual."
 #: bot.py:368 bot.py:379
 #, python-brace-format
 msgid "{0} was kicked by {1}"
-msgstr "{0} fue pateado por {1}"
+msgstr "{0} fue expulsado por {1}"
 
 #: bot.py:389
 msgid "Please reply to the person you want to kick and type /kick again."
-msgstr ""
-"Por favor, responde a la persona que quieres patear y escribe /kick de nuevo."
+msgstr "Responda a la persona que desea expulsar y escriba /kick nuevamente."
 
 #: bot.py:426
 msgid "Game not found."
@@ -185,11 +184,11 @@ msgstr "Partida no encontrada."
 
 #: bot.py:433
 msgid "Back to last group"
-msgstr "De vuelta al último grupo"
+msgstr "Volver al último grupo"
 
 #: bot.py:437
 msgid "Please switch to the group you selected!"
-msgstr "¡Por favor ve al grupo seleccionado!"
+msgstr "¡Por favor, cambie al grupo que seleccionó!"
 
 #: bot.py:445
 #, python-brace-format
@@ -232,9 +231,9 @@ msgid ""
 "Use /close to stop people from joining the game.\n"
 "Enable multi-translations with /enable_translations"
 msgstr ""
-"Primer Jugador: {name}\n"
-"Usa /close para evitar que la gente se una a la partida.\n"
-"Habilita multi-traducciones con /enable_translations"
+"Primer jugador: {name}\n"
+"Utiliza /close para impedir que la gente se una a la partida.\n"
+"Activa las multitraducciones con /enable_translations"
 
 #: bot.py:577
 msgid "Please select the group you want to play in."
@@ -251,13 +250,13 @@ msgstr "Sala abierta. Ahora pueden unirse nuevos jugadores usando /join."
 #: bot.py:676
 msgid "Enabled multi-translations. Disable with /disable_translations"
 msgstr ""
-"Multi-traducciones habilitadas. Deshabilítalas con /disable_translations"
+"Traducciones múltiples habilitadas. Deshabilitar con /disable_translations"
 
 #: bot.py:712
 msgid ""
 "Disabled multi-translations. Enable them again with /enable_translations"
 msgstr ""
-"Multi-traducciones deshabilitadas. Habilítalas de nuevo con "
+"Multitraducciones deshabilitadas. Habilítelos de nuevo con "
 "/enable_translations"
 
 #: bot.py:740
