@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-13 01:49-0300\n"
-"PO-Revision-Date: 2023-02-22 13:39+0000\n"
+"PO-Revision-Date: 2023-02-22 18:37+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/unurobot/bot/es/>"
 "\n"
@@ -188,7 +188,7 @@ msgstr "Volver al último grupo"
 
 #: bot.py:437
 msgid "Please switch to the group you selected!"
-msgstr "¡Por favor ve al grupo seleccionado!"
+msgstr "¡Por favor, cambie al grupo que seleccionó!"
 
 #: bot.py:445
 #, python-brace-format
@@ -231,9 +231,9 @@ msgid ""
 "Use /close to stop people from joining the game.\n"
 "Enable multi-translations with /enable_translations"
 msgstr ""
-"Primer Jugador: {name}\n"
-"Usa /close para evitar que la gente se una a la partida.\n"
-"Habilita multi-traducciones con /enable_translations"
+"Primer jugador: {name}\n"
+"Utiliza /close para impedir que la gente se una a la partida.\n"
+"Activa las multitraducciones con /enable_translations"
 
 #: bot.py:577
 msgid "Please select the group you want to play in."
