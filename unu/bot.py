@@ -2,7 +2,7 @@ import pyrogram
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from config import API_HASH, API_ID, BOT_TOKEN, WORKERS
+from config import API_HASH, API_ID, BOT_TOKEN, MIN_PLAYERS, WORKERS
 
 from .core import UnoGame
 
@@ -46,11 +46,54 @@ async def join_handler(c: Client, m: Message):
         )
         return
 
+    for player in game.players:
+        if player.player.id == m.from_user.id:
+            await m.reply_text("You are already in the game.")
+            return
+
     # Add the player to the game
     game.add_player(m.from_user)
 
     # Send the game's current state to the chat
+    await m.reply_text(
+        "Joined the game. Use /play to start.\n\n" + game.get_players_list()
+    )
+
+
+# Handler for the "/skip" command
+@app.on_message(filters.command("skip"))
+async def skip_handler(c: Client, m: Message):
+    try:
+        game = games[m.chat.id]
+    except KeyError:
+        await m.reply_text(
+            "There is no game in this chat. Use /new to start a new game."
+        )
+        return
+
+    # Skip the current player
+    game.next_player()
+
+    # Send the game's current state to the chat
     await m.reply_text(game.state())
+
+
+# Handler for the "/leave" command
+@app.on_message(filters.command("leave"))
+async def leave_handler(c: Client, m: Message):
+    try:
+        game = games[m.chat.id]
+    except KeyError:
+        await m.reply_text(
+            "There is no game in this chat. Use /new to start a new game."
+        )
+        return
+
+    # Remove the player from the game
+    game.remove_player(m.from_user)
+
+    # Send the game's current state to the chat
+    await m.reply_text("Alright, no problem.\n\n" + game.state())
 
 
 # Handler for the "/play" command
@@ -62,6 +105,14 @@ async def play_handler(c: Client, m: Message):
         await m.reply_text(
             "There is no game in this chat. Use /new to start a new game."
         )
+        return
+
+    if game.started:
+        await m.reply_text("The game has already started.")
+        return
+
+    if len(game.players) < MIN_PLAYERS:
+        await m.reply_text("You need at least two players to start the game.")
         return
 
     # Start the game

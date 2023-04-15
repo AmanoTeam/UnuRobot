@@ -2,6 +2,8 @@ import random
 
 from pyrogram.types import User
 
+from .utils import color_name_to_emoji
+
 
 class UnoCard:
     """This class represents a card in the game."""
@@ -11,7 +13,7 @@ class UnoCard:
         self.number = number
 
     def __repr__(self):
-        return f"{self.color} {self.number}"
+        return f"{color_name_to_emoji(self.color)} {self.number}"
 
 
 class UnoPlayer:
@@ -49,6 +51,7 @@ class UnoPlayer:
 class UnoGame:
     def __init__(self):
         self.players: list[UnoPlayer] = []
+        self.started = False
         self.deck: list[UnoCard] = []
         self.last_card: UnoCard = None
         self.current_player = 0
@@ -76,10 +79,30 @@ class UnoGame:
         return (
             f"Current player: {self.players[self.current_player].player.first_name}\n"
             + f"Last card: {self.last_card}\n\n"
-            + "\n".join(
-                f"{player.player.first_name}: {player.cards}" for player in self.players
-            )
+            + self.get_players_list()
         )
+
+    def get_players_list(self):
+        return "Players:\n" + "\n".join(
+            f"{player.player.first_name} ({len(player.cards)} cards)"
+            if player.cards
+            else f"{player.player.first_name}"
+            for player in self.players
+        )
+
+    def remove_player(self, player: User):
+        for i, p in enumerate(self.players):
+            if p.player.id == player.id:
+                self.players.pop(i)
+                break
+
+    def next_player(self):
+        self.current_player += self.direction
+
+        if self.current_player >= len(self.players):
+            self.current_player = 0
+        elif self.current_player < 0:
+            self.current_player = len(self.players) - 1
 
     def play_card(self, card_index: int):
         player = self.players[self.current_player]
@@ -112,5 +135,7 @@ class UnoGame:
         self.distribute_cards()
 
         self.last_card = self.get_random_card()
+
+        self.started = True
 
         return self.state()
