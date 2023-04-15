@@ -24,6 +24,10 @@ async def start_handler(c: Client, m: Message):
 # Handler for the "/new" command
 @app.on_message(filters.command("new"))
 async def new_handler(c: Client, m: Message):
+    if m.chat.id in games:
+        await m.reply_text("There is already a game in this chat. Join it with /join.")
+        return
+
     # Start a new game
     games[m.chat.id] = UnoGame()
 
