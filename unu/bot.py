@@ -178,41 +178,33 @@ async def inline_handler(c: Client, m: InlineQuery):
     cards = current_player.cards
 
     # Create a list of results
-    results = []
+    results = [
+        InlineQueryResultArticle(
+            id="pass",
+            title="Pass",
+            input_message_content=InputTextMessageContent("Pass"),
+        ),
+        InlineQueryResultArticle(
+            id="draw",
+            title="Draw a card",
+            input_message_content=InputTextMessageContent("Draw a card"),
+        ),
+    ]
 
-    # Add draw card and pass buttons
     results.extend(
-        [
-            InlineQueryResultArticle(
-                id="pass",
-                title="Pass",
-                input_message_content=InputTextMessageContent("Pass"),
-            ),
-            InlineQueryResultArticle(
-                id="draw",
-                title="Draw a card",
-                input_message_content=InputTextMessageContent("Draw a card"),
-            ),
-        ]
-    )
-
-    for i, card in enumerate(cards):
-        results.append(
-            InlineQueryResultArticle(
-                id=f"{i}",
-                title=f"{card}",
-                input_message_content=InputTextMessageContent(f"Played {card}"),
-            )
+        InlineQueryResultArticle(
+            id=f"{i}",
+            title=f"{card}",
+            input_message_content=InputTextMessageContent(f"Played {card}"),
         )
-
+        for i, card in enumerate(cards)
+    )
     # Send the results to the user
     await m.answer(results=results, cache_time=0, is_personal=True)
 
 
 @app.on_chosen_inline_result(
-    filters.create(
-        lambda _, __, query: query.result_id == "pass" or query.result_id == "draw"
-    )
+    filters.create(lambda _, __, query: query.result_id in ["pass", "draw"])
 )
 async def pass_or_draw(c: Client, m: ChosenInlineResult):
     # Get the first game a player is in

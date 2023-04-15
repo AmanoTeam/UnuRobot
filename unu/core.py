@@ -42,10 +42,7 @@ class UnoPlayer:
         if card.color == game.last_card.color:
             return True
 
-        if card.number == game.last_card.number:
-            return True
-
-        return False
+        return card.number == game.last_card.number
 
 
 class UnoGame:
