@@ -1,6 +1,6 @@
 import random
 
-from pyrogram.types import User
+from pyrogram.types import Chat, User
 
 from .utils import color_name_to_emoji
 
@@ -49,11 +49,12 @@ class UnoPlayer:
 
 
 class UnoGame:
-    def __init__(self):
+    def __init__(self, chat: Chat):
         self.players: list[UnoPlayer] = []
         self.started = False
+        self.chat = chat
         self.deck: list[UnoCard] = []
-        self.last_card: UnoCard = None
+        self.last_card: UnoCard = self.get_random_card()
         self.current_player = 0
         self.direction = 1
 
@@ -104,6 +105,11 @@ class UnoGame:
         elif self.current_player < 0:
             self.current_player = len(self.players) - 1
 
+    def draw_card(self):
+        player = self.players[self.current_player]
+        player.add_cards(self.deck[:1])
+        self.deck = self.deck[1:]
+
     def play_card(self, card_index: int):
         player = self.players[self.current_player]
         card = player.get_card(card_index)
@@ -111,9 +117,9 @@ class UnoGame:
         if player.can_play_in_game(card, self):
             player.cards.remove(card)
             self.last_card = card
-            return "Played card."
+            return True
         else:
-            return "Invalid move."
+            return False
 
     def get_random_card(self):
         return UnoCard(
@@ -133,8 +139,6 @@ class UnoGame:
         self.direction = 1
 
         self.distribute_cards()
-
-        self.last_card = self.get_random_card()
 
         self.started = True
 

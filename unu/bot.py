@@ -1,6 +1,14 @@
 import pyrogram
 from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram.types import (
+    ChosenInlineResult,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    InlineQuery,
+    InlineQueryResultArticle,
+    InputTextMessageContent,
+    Message,
+)
 
 from config import API_HASH, API_ID, BOT_TOKEN, MIN_PLAYERS, WORKERS
 
@@ -29,7 +37,7 @@ async def new_handler(c: Client, m: Message):
         return
 
     # Start a new game
-    games[m.chat.id] = UnoGame()
+    games[m.chat.id] = UnoGame(m.chat)
 
     # Add the player to the game
     await m.reply_text("Started a new game. Use /join to join and /play to start.")
@@ -112,28 +120,176 @@ async def play_handler(c: Client, m: Message):
         return
 
     if len(game.players) < MIN_PLAYERS:
-        await m.reply_text("You need at least two players to start the game.")
+        await m.reply_text(
+            f"You need at least {MIN_PLAYERS} players to start the game."
+        )
         return
 
     # Start the game
     game.start_game()
 
     # Send the game's current state to the chat
-    await m.reply_text(game.state())
+    await m.reply_text(
+        game.state(),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "Play a card",
+                        switch_inline_query_current_chat="",
+                    )
+                ]
+            ]
+        ),
+    )
 
 
-# Handler for regular messages
-@app.on_message(filters.text)
-async def text_handler(c: Client, m: Message):
-    try:
-        game = games[m.chat.id]
-    except KeyError:
+# List player cards in inline mode
+@app.on_inline_query()
+async def inline_handler(c: Client, m: InlineQuery):
+    # Get the first game a player is in
+    current_game = None
+    current_player = None
+
+    for game in games.values():
+        for player in game.players:
+            if player.player.id == m.from_user.id:
+                current_game = game
+                current_player = player
+                break
+
+    if current_game is None or current_player is None:
+        await m.answer(
+            results=[
+                InlineQueryResultArticle(
+                    id="not_in_game",
+                    title="Not in a game",
+                    input_message_content=InputTextMessageContent(
+                        "You are not in a game."
+                    ),
+                )
+            ],
+            cache_time=0,
+            is_personal=True,
+        )
         return
 
-    # Ignore messages that are not commands or player moves
-    if not m.text.startswith("/") and m.text.isdigit():
-        # Try to play the card the player chose
-        result = game.play_card(int(m.text))
+    # Get the player's cards
+    cards = current_player.cards
 
-        # Send the game's current state to the chat
-        await m.reply_text(result + "\n\n" + game.state())
+    # Create a list of results
+    results = []
+
+    # Add draw card and pass buttons
+    results.extend(
+        [
+            InlineQueryResultArticle(
+                id="pass",
+                title="Pass",
+                input_message_content=InputTextMessageContent("Pass"),
+            ),
+            InlineQueryResultArticle(
+                id="draw",
+                title="Draw a card",
+                input_message_content=InputTextMessageContent("Draw a card"),
+            ),
+        ]
+    )
+
+    for i, card in enumerate(cards):
+        results.append(
+            InlineQueryResultArticle(
+                id=f"{i}",
+                title=f"{card}",
+                input_message_content=InputTextMessageContent(f"Played {card}"),
+            )
+        )
+
+    # Send the results to the user
+    await m.answer(results=results, cache_time=0, is_personal=True)
+
+
+@app.on_chosen_inline_result(
+    filters.create(
+        lambda _, __, query: query.result_id == "pass" or query.result_id == "draw"
+    )
+)
+async def pass_or_draw(c: Client, m: ChosenInlineResult):
+    # Get the first game a player is in
+    current_game = None
+    current_player = None
+
+    for game in games.values():
+        for player in game.players:
+            if player.player.id == m.from_user.id:
+                current_game = game
+                current_player = player
+                break
+
+    if current_game is None or current_player is None:
+        return
+
+    if m.result_id == "pass":
+        current_game.next_player()
+    elif m.result_id == "draw":
+        current_game.draw_card()
+
+    await c.send_message(
+        chat_id=current_game.chat.id,
+        text=current_game.state(),
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("Play a card", switch_inline_query_current_chat="")]]
+        ),
+    )
+
+
+# Handler for inline query results
+@app.on_chosen_inline_result(
+    filters.create(lambda _, __, query: query.result_id.isdigit())
+)
+async def chosen_inline_handler(c: Client, m: ChosenInlineResult):
+    # Get the first game a player is in
+    current_game = None
+    current_player = None
+
+    for game in games.values():
+        for player in game.players:
+            if player.player.id == m.from_user.id:
+                current_game = game
+                current_player = player
+                break
+
+    if current_game is None or current_player is None:
+        return
+
+    # Play the card
+    if current_game.play_card(int(m.result_id)):
+        current_game.next_player()
+
+        await c.send_message(
+            chat_id=current_game.chat.id,
+            text=current_game.state(),
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            "Play a card", switch_inline_query_current_chat=""
+                        )
+                    ]
+                ]
+            ),
+        )
+    else:
+        await c.send_message(
+            chat_id=current_game.chat.id,
+            text="You can't play that card. Try another one.",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            "Play a card", switch_inline_query_current_chat=""
+                        )
+                    ]
+                ]
+            ),
+        )
