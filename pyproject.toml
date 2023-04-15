@@ -1,0 +1,26 @@
+[project]
+name = "unu"
+version = "0.0.0"
+description = "A Telegram bot for playing Uno with your friends."
+readme = "README.rst"
+
+dependencies = [
+    "httpx[http2]>=0.18.1,<1.0.0",
+    # Using Amano's Pyrogram fork
+    "pyrogram @ https://github.com/AmanoTeam/pyrogram/archive/master.zip",
+    "tgcrypto",
+]
+requires-python = ">=3.7"
+
+authors = [
+    { name = "Amano LLC", email = "contact@amanoteam.com" }
+]
+license = { text = "MIT" }
+
+
+[project.urls]
+homepage = "https://github.com/AmanoTeam/UnuRobot"
+
+[tool.setuptools]
+# Empty because the project is not a package
+packages = []
