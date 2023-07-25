@@ -831,7 +831,9 @@ async def reply_to_query(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 add_card(game, card, results, can_play=False)
 
         for result in results:
+            result._frozen = False
             result.id += ":%d" % player.anti_cheat
+            result._frozen = True
 
         if players and game and len(players) > 1:
             switch = _("Current game: {game}").format(game=game.chat.title)
