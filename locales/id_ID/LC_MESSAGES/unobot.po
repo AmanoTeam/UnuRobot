@@ -20,8 +20,8 @@ msgstr ""
 "Project-Id-Version: uno_bot 0.1\n"
 "Report-Msgid-Bugs-To: uno@jhoeke.de\n"
 "POT-Creation-Date: 2022-11-13 01:49-0300\n"
-"PO-Revision-Date: 2022-11-12 05:22+0000\n"
-"Last-Translator: Alisson Lauffer <alissonvitortc@gmail.com>\n"
+"PO-Revision-Date: 2023-06-24 02:40+0000\n"
+"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/unurobot/bot/"
 "id/>\n"
 "Language: id_ID\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: utf-8\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.18.1\n"
 
 #: actions.py:43
 #, python-brace-format
@@ -46,6 +46,8 @@ msgid ""
 "{name1} ran out of time and has been removed from the game!\n"
 "Next player: {name2}"
 msgstr ""
+"{name1} kehabisan waktu dan telah dikeluarkan dari permainan!\n"
+"Pemain berikutnya: {name2}"
 
 #: actions.py:78
 #, python-brace-format
@@ -53,6 +55,8 @@ msgid ""
 "{name} ran out of time and has been removed from the game!\n"
 "The game ended."
 msgstr ""
+"{name} kehabisan waktu dan telah dikeluarkan dari permainan!\n"
+"Permainan berakhir."
 
 #: actions.py:125 actions.py:172
 #, python-brace-format
@@ -85,17 +89,22 @@ msgstr "{name1} tidak hanya menggertak! Memberikan 6 kartu kepada {name2}"
 msgid ""
 "Send this command in a group to be notified when a new game is started there."
 msgstr ""
+"Kirim perintah ini dalam grup untuk mendapatkan notifikasi ketika game baru "
+"dimulai di sana."
 
 #: bot.py:113
 msgid ""
 "Okay, you will be notified in a private message when the next game is "
 "started in this chat. Make sure that I'm allowed to send you messages."
 msgstr ""
+"Oke, Anda akan diberitahu melalui pesan pribadi ketika permainan berikutnya "
+"dimulai dalam obrolan ini. Pastikan bahwa saya diizinkan untuk mengirimi "
+"Anda pesan."
 
 #: bot.py:134
 #, python-brace-format
 msgid "A new game has been started in {title}"
-msgstr ""
+msgstr "Permainan baru telah dimulai di {title}"
 
 #: bot.py:148
 msgid ""
@@ -113,11 +122,13 @@ msgid ""
 "The game is not started yet. Join the game with /join and start the game "
 "with /start"
 msgstr ""
+"Permainan belum dimulai. Bergabunglah dengan permainan dengan /gabung dan "
+"mulai permainan dengan /mulai"
 
 #: bot.py:194 bot.py:406 bot.py:611 bot.py:646 bot.py:681 bot.py:720
 #, python-brace-format
 msgid "Only the game creator ({name}) and admin can do that."
-msgstr ""
+msgstr "Hanya pembuat game ({name}) dan admin yang dapat melakukannya."
 
 #: bot.py:216
 msgid "The lobby is closed"
@@ -137,6 +148,7 @@ msgstr ""
 #: bot.py:240
 msgid "There are not enough cards left in the deck for new players to join."
 msgstr ""
+"Tidak ada cukup kartu yang tersisa di dek untuk pemain baru untuk bergabung."
 
 #: bot.py:250
 msgid "Joined the game"
@@ -154,21 +166,21 @@ msgstr "Baiklah. Pemain berikutnya: {name}"
 #: bot.py:303
 #, python-brace-format
 msgid "{name} left the game before it started."
-msgstr ""
+msgstr "{name} meninggalkan pertandingan sebelum pertandingan dimulai."
 
 #: bot.py:355
 #, python-brace-format
 msgid "Player {name} is not found in the current game."
-msgstr ""
+msgstr "Pemain {name} tidak ditemukan dalam permainan saat ini."
 
 #: bot.py:368 bot.py:379
 #, python-brace-format
 msgid "{0} was kicked by {1}"
-msgstr ""
+msgstr "{0} ditendang oleh {1}"
 
 #: bot.py:389
 msgid "Please reply to the person you want to kick and type /kick again."
-msgstr ""
+msgstr "Silakan balas orang yang ingin Anda tendang dan ketik /tendang lagi."
 
 #: bot.py:426
 msgid "Game not found."
