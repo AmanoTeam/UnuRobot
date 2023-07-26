@@ -23,14 +23,13 @@ from errors import DeckEmptyError
 
 
 class Player:
-    """
-    This class represents a player.
+    """This class represents a player.
     It is basically a doubly-linked ring list with the option to reverse the
     direction. On initialization, it will connect itself to a game and its
     other players by placing itself behind the current player.
     """
 
-    def __init__(self, game, user):
+    def __init__(self, game, user) -> None:
         self.cards = []
         self.game = game
         self.user = user
@@ -64,7 +63,7 @@ class Player:
             raise
 
     def leave(self):
-        """Removes player from the game and closes the gap in the list"""
+        """Removes player from the game and closes the gap in the list."""
         if self.next is self:
             return
 
@@ -78,10 +77,10 @@ class Player:
 
         self.cards = []
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return repr(self.user)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(self.user)
 
     @property
@@ -107,7 +106,7 @@ class Player:
             self._next = player
 
     def draw(self):
-        """Draws 1+ cards from the deck, depending on the draw counter"""
+        """Draws 1+ cards from the deck, depending on the draw counter."""
         _amount = self.game.draw_counter or 1
 
         try:
@@ -122,17 +121,16 @@ class Player:
             self.drew = True
 
     def rm(self, card):
-        """Plays a card and removes it from hand"""
+        """Plays a card and removes it from hand."""
         self.cards.remove(card)
 
     def play(self, card):
-        """Plays a card and removes it from hand"""
+        """Plays a card and removes it from hand."""
         self.cards.remove(card)
         self.game.play_card(card)
 
     def playable_cards(self):
-        """Returns a list of the cards this player can play right now"""
-
+        """Returns a list of the cards this player can play right now."""
         playable = []
         last = self.game.last_card
 
@@ -155,8 +153,7 @@ class Player:
         return [] if len(self.cards) == 1 and self.cards[0].special else playable
 
     def _card_playable(self, card):
-        """Check a single card if it can be played"""
-
+        """Check a single card if it can be played."""
         is_playable = True
         last = self.game.last_card
         self.logger.debug("Checking card %s", str(card))

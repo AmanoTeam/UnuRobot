@@ -30,14 +30,15 @@ GETTEXT_DIR = "locales"
 
 
 class _Underscore:
-    """Class to emulate flufl.i18n behaviour, but with plural support"""
+    """Class to emulate flufl.i18n behaviour, but with plural support."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.translators = {
             locale: gettext.GNUTranslations(
                 open(
-                    gettext.find(GETTEXT_DOMAIN, GETTEXT_DIR, languages=[locale]), "rb"
-                )
+                    gettext.find(GETTEXT_DOMAIN, GETTEXT_DIR, languages=[locale]),
+                    "rb",
+                ),
             )
             for locale in available_locales
             if locale != "en_US"  # No translation file for en_US
@@ -72,7 +73,7 @@ _ = _Underscore()
 
 
 def __(singular, plural=None, n=1, multi=False):
-    """Translates text into all locales on the stack"""
+    """Translates text into all locales on the stack."""
     translations = []
 
     if not multi and set(_.locale_stack):
@@ -91,7 +92,10 @@ def __(singular, plural=None, n=1, multi=False):
 def user_locale(func):
     @wraps(func)
     async def wrapped(
-        update: Update, context: ContextTypes.DEFAULT_TYPE, *pargs, **kwargs
+        update: Update,
+        context: ContextTypes.DEFAULT_TYPE,
+        *pargs,
+        **kwargs,
     ):
         user = _user_chat_from_update(update)[0]
 
@@ -113,7 +117,10 @@ def user_locale(func):
 def game_locales(func):
     @wraps(func)
     async def wrapped(
-        update: Update, context: ContextTypes.DEFAULT_TYPE, *pargs, **kwargs
+        update: Update,
+        context: ContextTypes.DEFAULT_TYPE,
+        *pargs,
+        **kwargs,
     ):
         user, chat = _user_chat_from_update(update)
         player = gm.player_for_user_in_chat(user, chat)

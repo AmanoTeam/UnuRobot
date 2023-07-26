@@ -24,7 +24,7 @@ from game_manager import GameManager
 
 # Explicitly import UserSetting to avoid circular imports,
 # since UserSetting must be loaded before generating database mapping
-from user_setting import UserSetting as UserSetting  # noqa: F401
+from user_setting import UserSetting  # noqa: F401
 
 db.bind("sqlite", os.getenv("UNO_DB", "uno.sqlite3"), create_db=True)
 db.generate_mapping(create_tables=True)

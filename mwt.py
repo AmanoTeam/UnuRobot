@@ -4,16 +4,16 @@ import time
 
 
 class MWT:
-    """Memoize With Timeout"""
+    """Memoize With Timeout."""
 
     _caches = {}
     _timeouts = {}
 
-    def __init__(self, timeout=2):
+    def __init__(self, timeout=2) -> None:
         self.timeout = timeout
 
     def collect(self):
-        """Clear cache of results which have timed out"""
+        """Clear cache of results which have timed out."""
         for func in self._caches:
             cache = {
                 key: self._caches[func][key]

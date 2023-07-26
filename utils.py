@@ -31,17 +31,17 @@ TIMEOUT = 2.5
 
 
 def list_subtract(list1, list2):
-    """Helper function to subtract two lists and return the sorted result"""
+    """Helper function to subtract two lists and return the sorted result."""
     list1 = list1.copy()
 
     for x in list2:
         list1.remove(x)
 
-    return list(sorted(list1))
+    return sorted(list1)
 
 
 def display_name(user):
-    """Get the current players name including their username, if possible"""
+    """Get the current players name including their username, if possible."""
     user_name = user.first_name
     if user.username:
         user_name += f" (@{user.username})"
@@ -49,7 +49,7 @@ def display_name(user):
 
 
 def display_color(color):
-    """Convert a color code to actual color name"""
+    """Convert a color code to actual color name."""
     if color == "r":
         return _("{emoji} Red").format(emoji="❤️")
     if color == "b":
@@ -58,10 +58,11 @@ def display_color(color):
         return _("{emoji} Green").format(emoji="💚")
     if color == "y":
         return _("{emoji} Yellow").format(emoji="💛")
+    return None
 
 
 def display_color_group(color, game):
-    """Convert a color code to actual color name"""
+    """Convert a color code to actual color name."""
     if color == "r":
         return __("{emoji} Red", game.translate).format(emoji="❤️")
     if color == "b":
@@ -70,10 +71,11 @@ def display_color_group(color, game):
         return __("{emoji} Green", game.translate).format(emoji="💚")
     if color == "y":
         return __("{emoji} Yellow", game.translate).format(emoji="💛")
+    return None
 
 
 async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Simple error handler"""
+    """Simple error handler."""
     if isinstance(context, Exception):
         logger.exception(context)
     else:
@@ -81,8 +83,7 @@ async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def send_async(context: Union[Game, Chat, User], *args, **kwargs):
-    """Send a message asynchronously"""
-
+    """Send a message asynchronously."""
     if isinstance(context, Game) and not kwargs.get("message_thread_id"):
         kwargs["message_thread_id"] = context.thread_id
 
@@ -94,7 +95,7 @@ async def send_async(context: Union[Game, Chat, User], *args, **kwargs):
 
 
 async def answer_async(context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
-    """Answer an inline query asynchronously"""
+    """Answer an inline query asynchronously."""
     try:
         await context.bot.answer_inline_query(*args, **kwargs)
     except Exception as e:

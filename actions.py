@@ -18,7 +18,7 @@ class Countdown:
     player = None
     job_queue = None
 
-    def __init__(self, player, job_queue):
+    def __init__(self, player, job_queue) -> None:
         self.player = player
         self.job_queue = job_queue
 
@@ -94,9 +94,7 @@ async def subport(context: ContextTypes.DEFAULT_TYPE, player, pi):
     game = player.game
     user = player.user
 
-    us = UserSetting.get(id=user.id)
-    if not us:
-        us = UserSetting(id=user.id)
+    us = UserSetting.get(id=user.id) or UserSetting(id=user.id)
 
     if us.stats:
         us.cards_played += 1
@@ -112,9 +110,7 @@ async def verifi(context: ContextTypes.DEFAULT_TYPE, player):
     chat = game.chat
     user = player.user
 
-    us = UserSetting.get(id=user.id)
-    if not us:
-        us = UserSetting(id=user.id)
+    us = UserSetting.get(id=user.id) or UserSetting(id=user.id)
 
     if len(player.cards) == 1:
         await send_async(game, text="UNO!")
@@ -146,16 +142,14 @@ async def verifi(context: ContextTypes.DEFAULT_TYPE, player):
 
 
 async def do_play_card(context: ContextTypes.DEFAULT_TYPE, player, result_id):
-    """Plays the selected card and sends an update to the group if needed"""
+    """Plays the selected card and sends an update to the group if needed."""
     card = c.from_str(result_id)
     player.play(card)
     game = player.game
     chat = game.chat
     user = player.user
 
-    us = UserSetting.get(id=user.id)
-    if not us:
-        us = UserSetting(id=user.id)
+    us = UserSetting.get(id=user.id) or UserSetting(id=user.id)
 
     if us.stats:
         us.cards_played += 1
@@ -193,9 +187,8 @@ async def do_play_card(context: ContextTypes.DEFAULT_TYPE, player, result_id):
 
 
 async def do_draw(context: ContextTypes.DEFAULT_TYPE, player):
-    """Does the drawing"""
+    """Does the drawing."""
     game = player.game
-    chat = game.chat
     draw_counter_before = game.draw_counter
 
     try:
@@ -213,15 +206,15 @@ async def do_draw(context: ContextTypes.DEFAULT_TYPE, player):
 
 
 async def do_call_bluff(context: ContextTypes.DEFAULT_TYPE, player):
-    """Handles the bluff calling"""
+    """Handles the bluff calling."""
     game = player.game
-    chat = game.chat
 
     if player.prev.bluffing:
         await send_async(
             game,
             text=__(
-                "Bluff called! Giving 4 cards to {name}", multi=game.translate
+                "Bluff called! Giving 4 cards to {name}",
+                multi=game.translate,
             ).format(name=player.prev.user.first_name),
         )
 
@@ -238,7 +231,8 @@ async def do_call_bluff(context: ContextTypes.DEFAULT_TYPE, player):
         await send_async(
             game,
             text=__(
-                "{name1} didn't bluff! Giving 6 cards to {name2}", multi=game.translate
+                "{name1} didn't bluff! Giving 6 cards to {name2}",
+                multi=game.translate,
             ).format(name1=player.prev.user.first_name, name2=player.user.first_name),
         )
         try:
@@ -263,7 +257,6 @@ def start_player_countdown(context: ContextTypes.DEFAULT_TYPE, game):
             game.job.schedule_removal()
 
         job = context.job_queue.run_once(
-            # lambda x,y: do_skip(context, player),
             skip_job,
             time,
             data=Countdown(player, context.job_queue),

@@ -15,7 +15,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-"""Defines a dict of all available locales to the language name"""
+"""Defines a dict of all available locales to the language name."""
 
 OFFSET = 127462 - ord("A")
 

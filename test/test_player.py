@@ -32,13 +32,13 @@ class Test(unittest.TestCase):
         p1 = Player(self.game, "Player 1")
         p2 = Player(self.game, "Player 2")
 
-        self.assertEqual(p0, p2.next)
-        self.assertEqual(p1, p0.next)
-        self.assertEqual(p2, p1.next)
+        assert p0 == p2.next
+        assert p1 == p0.next
+        assert p2 == p1.next
 
-        self.assertEqual(p0.prev, p2)
-        self.assertEqual(p1.prev, p0)
-        self.assertEqual(p2.prev, p1)
+        assert p0.prev == p2
+        assert p1.prev == p0
+        assert p2.prev == p1
 
     def test_reverse(self):
         p0 = Player(self.game, "Player 0")
@@ -47,15 +47,15 @@ class Test(unittest.TestCase):
         self.game.reverse()
         p3 = Player(self.game, "Player 3")
 
-        self.assertEqual(p0, p3.next)
-        self.assertEqual(p1, p2.next)
-        self.assertEqual(p2, p0.next)
-        self.assertEqual(p3, p1.next)
+        assert p0 == p3.next
+        assert p1 == p2.next
+        assert p2 == p0.next
+        assert p3 == p1.next
 
-        self.assertEqual(p0, p2.prev)
-        self.assertEqual(p1, p3.prev)
-        self.assertEqual(p2, p1.prev)
-        self.assertEqual(p3, p0.prev)
+        assert p0 == p2.prev
+        assert p1 == p3.prev
+        assert p2 == p1.prev
+        assert p3 == p0.prev
 
     def test_leave(self):
         p0 = Player(self.game, "Player 0")
@@ -64,8 +64,8 @@ class Test(unittest.TestCase):
 
         p1.leave()
 
-        self.assertEqual(p0, p2.next)
-        self.assertEqual(p2, p0.next)
+        assert p0 == p2.next
+        assert p2 == p0.next
 
     def test_draw(self):
         p = Player(self.game, "Player 0")
@@ -76,8 +76,8 @@ class Test(unittest.TestCase):
 
         p.draw()
 
-        self.assertEqual(top_card, p.cards[-1])
-        self.assertEqual(deck_before, len(self.game.deck.cards) + 1)
+        assert top_card == p.cards[-1]
+        assert deck_before == len(self.game.deck.cards) + 1
 
     def test_draw_two(self):
         p = Player(self.game, "Player 0")
@@ -88,7 +88,7 @@ class Test(unittest.TestCase):
 
         p.draw()
 
-        self.assertEqual(deck_before, len(self.game.deck.cards) + 2)
+        assert deck_before == len(self.game.deck.cards) + 2
 
     def test_playable_cards_simple(self):
         p = Player(self.game, "Player 0")
@@ -163,7 +163,7 @@ class Test(unittest.TestCase):
         ]
 
         p.playable_cards()
-        self.assertTrue(p.bluffing)
+        assert p.bluffing
 
         p.cards = [
             c.Card(c.BLUE, "1"),
@@ -178,4 +178,4 @@ class Test(unittest.TestCase):
         p.play(c.Card(None, None, c.DRAW_FOUR))
         self.game.choose_color(c.GREEN)
 
-        self.assertFalse(self.game.current_player.prev.bluffing)
+        assert not self.game.current_player.prev.bluffing

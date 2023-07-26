@@ -16,6 +16,7 @@
 
 import contextlib
 import logging
+from typing import Optional
 
 from telegram import Chat
 
@@ -30,9 +31,9 @@ from player import Player
 
 
 class GameManager:
-    """Manages all running games by using a confusing amount of dicts"""
+    """Manages all running games by using a confusing amount of dicts."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.chatid_games = {}
         self.userid_players = {}
         self.userid_current = {}
@@ -40,10 +41,8 @@ class GameManager:
 
         self.logger = logging.getLogger(__name__)
 
-    def new_game(self, chat: Chat, thread_id: int = None):
-        """
-        Create a new game in this chat
-        """
+    def new_game(self, chat: Chat, thread_id: Optional[int] = None):
+        """Create a new game in this chat."""
         chat_id = chat.id
 
         self.logger.debug("Creating new game in chat %s", str(chat_id))
@@ -61,16 +60,16 @@ class GameManager:
         return game
 
     def join_game(self, user, chat):
-        """Create a player from the Telegram user and add it to the game"""
+        """Create a player from the Telegram user and add it to the game."""
         self.logger.info("Joining game with id %s", chat.id)
 
         try:
             game = self.chatid_games[chat.id][-1]
         except (KeyError, IndexError) as e:
-            raise NoGameInChatError() from e
+            raise NoGameInChatError from e
 
         if not game.open:
-            raise LobbyClosedError()
+            raise LobbyClosedError
 
         if user.id not in self.userid_players:
             self.userid_players[user.id] = []
@@ -81,7 +80,7 @@ class GameManager:
         # this chat, if he is in one of them
         for player in players:
             if player in game.players:
-                raise AlreadyJoinedError()
+                raise AlreadyJoinedError
 
         try:
             self.leave_game(user, chat)
@@ -103,8 +102,7 @@ class GameManager:
         self.userid_current[user.id] = player
 
     def leave_game(self, user, chat):
-        """Remove a player from its current game"""
-
+        """Remove a player from its current game."""
         player = self.player_for_user_in_chat(user, chat)
         players = self.userid_players.get(user.id, [])
 
@@ -124,7 +122,7 @@ class GameManager:
         game = player.game
 
         if len(game.players) < 3:
-            raise NotEnoughPlayersError()
+            raise NotEnoughPlayersError
 
         if player is game.current_player:
             game.turn()
@@ -141,10 +139,7 @@ class GameManager:
                 del self.userid_players[user.id]
 
     def end_game(self, chat, user):
-        """
-        End a game
-        """
-
+        """End a game."""
         self.logger.info("Game in chat %s ended", chat.id)
 
         # Find the correct game instance to end
@@ -176,5 +171,6 @@ class GameManager:
     def player_for_user_in_chat(self, user, chat):
         players = self.userid_players.get(user.id, [])
         return next(
-            (player for player in players if player.game.chat.id == chat.id), None
+            (player for player in players if player.game.chat.id == chat.id),
+            None,
         )

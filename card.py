@@ -183,17 +183,17 @@ STICKERS_GREY = {
 
 
 class Card:
-    """This class represents an UNO card"""
+    """This class represents an UNO card."""
 
-    def __init__(self, color, value, special=None):
+    def __init__(self, color, value, special=None) -> None:
         self.color = color
         self.value = value
         self.special = special
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.special or f"{self.color}_{self.value}"
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         if self.special:
             return f'{COLOR_ICONS.get(self.color, "")}{COLOR_ICONS[BLACK]}{" ".join([s.capitalize() for s in self.special.split("_")])}'
 
@@ -201,16 +201,16 @@ class Card:
             return f"{COLOR_ICONS[self.color]}{self.value.capitalize()}"
 
     def __eq__(self, other):
-        """Needed for sorting the cards"""
+        """Needed for sorting the cards."""
         return str(self) == str(other)
 
     def __lt__(self, other):
-        """Needed for sorting the cards"""
+        """Needed for sorting the cards."""
         return str(self) < str(other)
 
 
 def from_str(string):
-    """Decodes a Card object from a string"""
+    """Decodes a Card object from a string."""
     if string in SPECIALS:
         return Card(None, None, string)
     color, value = string.split("_")

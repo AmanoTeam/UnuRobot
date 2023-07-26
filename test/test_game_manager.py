@@ -50,55 +50,65 @@ class Test(unittest.TestCase):
 
     def test_join_game(self):
         self.assertRaises(
-            NoGameInChatError, self.gm.join_game, *(self.user0, self.chat0)
+            NoGameInChatError,
+            self.gm.join_game,
+            *(self.user0, self.chat0),
         )
 
         g0 = self.gm.new_game(self.chat0)
 
         self.gm.join_game(self.user0, self.chat0)
-        self.assertEqual(len(g0.players), 1)
+        assert len(g0.players) == 1
 
         self.gm.join_game(self.user1, self.chat0)
-        self.assertEqual(len(g0.players), 2)
+        assert len(g0.players) == 2
 
         g0.open = False
         self.assertRaises(
-            LobbyClosedError, self.gm.join_game, *(self.user2, self.chat0)
+            LobbyClosedError,
+            self.gm.join_game,
+            *(self.user2, self.chat0),
         )
 
         g0.open = True
         self.assertRaises(
-            AlreadyJoinedError, self.gm.join_game, *(self.user1, self.chat0)
+            AlreadyJoinedError,
+            self.gm.join_game,
+            *(self.user1, self.chat0),
         )
 
     def test_leave_game(self):
         self.start_and_join()
         self.assertRaises(
-            NotEnoughPlayersError, self.gm.leave_game, *(self.user1, self.chat0)
+            NotEnoughPlayersError,
+            self.gm.leave_game,
+            *(self.user1, self.chat0),
         )
 
         self.gm.join_game(self.user2, self.chat0)
         self.gm.leave_game(self.user0, self.chat0)
 
         self.assertRaises(
-            NoGameInChatError, self.gm.leave_game, *(self.user0, self.chat0)
+            NoGameInChatError,
+            self.gm.leave_game,
+            *(self.user0, self.chat0),
         )
 
     def test_end_game(self):
         self.start_and_join()
-        self.assertEqual(len(self.gm.userid_players[0]), 1)
+        assert len(self.gm.userid_players[0]) == 1
 
         self.gm.new_game(self.chat0)
         self.gm.join_game(self.user2, self.chat0)
 
         self.gm.end_game(self.chat0, self.user0)
-        self.assertEqual(len(self.gm.chatid_games[0]), 1)
+        assert len(self.gm.chatid_games[0]) == 1
 
         self.gm.end_game(self.chat0, self.user2)
-        self.assertFalse(0 in self.gm.chatid_games)
-        self.assertFalse(0 in self.gm.userid_players)
-        self.assertFalse(1 in self.gm.userid_players)
-        self.assertFalse(2 in self.gm.userid_players)
+        assert 0 not in self.gm.chatid_games
+        assert 0 not in self.gm.userid_players
+        assert 1 not in self.gm.userid_players
+        assert 2 not in self.gm.userid_players
 
     def start_and_join(self):
         self.gm.new_game(self.chat0)

@@ -31,15 +31,14 @@ async def show_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.message.chat.type != "private":
         await send_async(
             chat,
-            text=_("Please edit your settings in a private chat with " "the bot."),
+            text=_("Please edit your settings in a private chat with the bot."),
             message_thread_id=update.message.message_thread_id,
         )
         return
 
-    us = UserSetting.get(id=update.message.from_user.id)
-
-    if not us:
-        us = UserSetting(id=update.message.from_user.id)
+    us = UserSetting.get(id=update.message.from_user.id) or UserSetting(
+        id=update.message.from_user.id
+    )
 
     stats = (
         "❌" + " " + _("Delete all statistics")
@@ -105,5 +104,5 @@ def register():
     application.add_handler(CommandHandler("settings", show_settings))
     application.add_handler(MessageHandler(filters.Regex(r"^([📊🌍❌]) .+$"), kb_select))
     application.add_handler(
-        MessageHandler(filters.Regex(r"^(\w\w(_\w\w)?) - .*"), locale_select)
+        MessageHandler(filters.Regex(r"^(\w\w(_\w\w)?) - .*"), locale_select),
     )

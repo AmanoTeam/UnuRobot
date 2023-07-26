@@ -23,9 +23,9 @@ from errors import DeckEmptyError
 
 
 class Deck:
-    """This class represents a deck of cards"""
+    """This class represents a deck of cards."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.cards = []
         self.graveyard = []
         self.logger = logging.getLogger(__name__)
@@ -33,26 +33,26 @@ class Deck:
         self.logger.debug(self.cards)
 
     def shuffle(self):
-        """Shuffles the deck"""
+        """Shuffles the deck."""
         self.logger.debug("Shuffling Deck")
         shuffle(self.cards)
 
     def draw(self):
-        """Draws a card from this deck"""
+        """Draws a card from this deck."""
         try:
             card = self.cards.pop()
             self.logger.debug("Drawing card %s", str(card))
             return card
         except IndexError as e:
             if not self.graveyard:
-                raise DeckEmptyError() from e
+                raise DeckEmptyError from e
             while self.graveyard:
                 self.cards.append(self.graveyard.pop())
             self.shuffle()
             return self.draw()
 
     def dismiss(self, card):
-        """Returns a card to the deck"""
+        """Returns a card to the deck."""
         if card.special:
             card.color = None
         self.graveyard.append(card)

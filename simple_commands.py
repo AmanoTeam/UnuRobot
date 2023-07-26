@@ -26,7 +26,7 @@ from utils import send_async
 
 @user_locale
 async def help_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for the /help command"""
+    """Handler for the /help command."""
     help_text = _(
         "Follow these steps:\n\n"
         "1. Add this bot to a group\n"
@@ -60,7 +60,7 @@ async def help_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "group you want to play a card in.\n"
         "If you enjoy this bot, join the "
         '<a href="https://t.me/UnuRobotUpdates">update channel</a>'
-        " and buy an UNO card game."
+        " and buy an UNO card game.",
     )
 
     await send_async(
@@ -74,7 +74,7 @@ async def help_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @user_locale
 async def modes(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for the /help command"""
+    """Handler for the /help command."""
     modes_explanation = _(
         "This UNO bot has five game modes: Classic, Sanic, Wild, Text and 7-0.\n\n"
         " 🎻 The Classic mode uses the conventional UNO deck and there is no auto skip.\n"
@@ -84,7 +84,7 @@ async def modes(update: Update, context: ContextTypes.DEFAULT_TYPE):
         " 🔫 The 7-0 mode uses the conventional UNO deck but when a player plays a 7, he/she can choose a player to swap cards with."
         " When a player plays a 0, all cards will be swapped between the current players.\n\n"
         "To change the game mode, the GAME CREATOR has to type the bot nickname and a space, "
-        "just like when playing a card, and all gamemode options should appear."
+        "just like when playing a card, and all gamemode options should appear.",
     )
     await send_async(
         update.message.chat,
@@ -97,11 +97,11 @@ async def modes(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @user_locale
 async def source(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for the /help command"""
+    """Handler for the /help command."""
     source_text = _(
         "This bot is Free Software and licensed under the AGPL. "
         "The code is available here: \n"
-        "https://github.com/AmanoTeam/UnuRobot"
+        "https://github.com/AmanoTeam/UnuRobot",
     )
     attributions = _(
         "Attributions:\n"
@@ -110,7 +110,7 @@ async def source(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Pass icon by "
         '<a href="http://delapouite.com/">Delapouite</a>\n'
         "Originals available on http://game-icons.net\n"
-        "Icons edited by ɳick"
+        "Icons edited by ɳick",
     )
 
     await send_async(
@@ -124,7 +124,7 @@ async def source(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @user_locale
 async def news(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for the /news command"""
+    """Handler for the /news command."""
     await send_async(
         update.message.chat,
         text=_("All news here: https://t.me/UnuRobotUpdates"),
@@ -143,14 +143,14 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
             chat,
             text=_(
                 "You did not enable statistics. Use /settings in "
-                "a private chat with the bot to enable them."
+                "a private chat with the bot to enable them.",
             ),
             message_thread_id=update.message.message_thread_id,
         )
     else:
         n = us.games_played
         stats_text = [
-            _("{number} game played", "{number} games played", n).format(number=n)
+            _("{number} game played", "{number} games played", n).format(number=n),
         ]
 
         n = us.first_places
@@ -160,12 +160,12 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 "{number} first place ({percent}%)",
                 "{number} first places ({percent}%)",
                 n,
-            ).format(number=n, percent=m)
+            ).format(number=n, percent=m),
         )
 
         n = us.cards_played
         stats_text.append(
-            _("{number} card played", "{number} cards played", n).format(number=n)
+            _("{number} card played", "{number} cards played", n).format(number=n),
         )
 
         await send_async(

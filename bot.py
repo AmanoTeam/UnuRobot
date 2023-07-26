@@ -82,14 +82,15 @@ from utils import (
 )
 
 logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO,
 )
 logger = logging.getLogger(__name__)
 
 
 @user_locale
 async def notify_me(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for /notify_me command, pm people for next game"""
+    """Handler for /notify_me command, pm people for next game."""
     chat = update.message.chat
 
     if update.message.chat.type == "private":
@@ -97,7 +98,7 @@ async def notify_me(update: Update, context: ContextTypes.DEFAULT_TYPE):
             chat,
             text=_(
                 "Send this command in a group to be notified "
-                "when a new game is started there."
+                "when a new game is started there.",
             ),
             message_thread_id=update.message.message_thread_id,
         )
@@ -112,7 +113,7 @@ async def notify_me(update: Update, context: ContextTypes.DEFAULT_TYPE):
             text=_(
                 "Okay, you will be notified in a private message "
                 "when the next game is started in this chat. "
-                "Make sure that I'm allowed to send you messages."
+                "Make sure that I'm allowed to send you messages.",
             ),
             message_thread_id=update.message.message_thread_id,
         )
@@ -120,19 +121,17 @@ async def notify_me(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @user_locale
 async def new_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for the /new command"""
-
+    """Handler for the /new command."""
     if update.message.chat.type == "private":
         await help_handler(update, context)
 
     else:
-
         if update.message.chat_id in gm.remind_dict:
             for user in gm.remind_dict[update.message.chat_id]:
                 await send_async(
                     user,
                     text=_("A new game has been started in {title}").format(
-                        title=update.message.chat.title
+                        title=update.message.chat.title,
                     ),
                 )
 
@@ -146,14 +145,14 @@ async def new_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
             game,
             text=_(
                 "Created a new game! Join the game with /join "
-                "and start the game with /start"
+                "and start the game with /start",
             ),
         )
 
 
 @user_locale
 async def kill_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for the /kill command"""
+    """Handler for the /kill command."""
     chat = update.message.chat
     user = update.message.from_user
     games = gm.chatid_games.get(chat.id)
@@ -173,7 +172,6 @@ async def kill_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     game = games[-1]
 
     if await user_is_creator_or_admin(user, game, context, chat):
-
         try:
             gm.end_game(chat, user)
             await send_async(game, text=__("Game ended!", multi=game.translate))
@@ -183,7 +181,7 @@ async def kill_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 game,
                 text=_(
                     "The game is not started yet. "
-                    "Join the game with /join and start the game with /start"
+                    "Join the game with /join and start the game with /start",
                 ),
                 reply_to_message_id=update.message.message_id,
             )
@@ -192,7 +190,7 @@ async def kill_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await send_async(
             game,
             text=_("Only the game creator ({name}) and admin can do that.").format(
-                name=game.starter.first_name
+                name=game.starter.first_name,
             ),
             reply_to_message_id=update.message.message_id,
         )
@@ -200,7 +198,7 @@ async def kill_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @user_locale
 async def join_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for the /join command"""
+    """Handler for the /join command."""
     chat = update.message.chat
 
     if update.message.chat.type == "private":
@@ -220,7 +218,7 @@ async def join_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except NoGameInChatError:
         await send_async(
             chat,
-            text=_("No game is running at the moment. " "Create a new game with /new"),
+            text=_("No game is running at the moment. Create a new game with /new"),
             message_thread_id=update.message.message_thread_id,
             reply_to_message_id=update.message.message_id,
         )
@@ -228,7 +226,7 @@ async def join_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except AlreadyJoinedError:
         await send_async(
             chat,
-            text=_("You already joined the game. Start the game " "with /start"),
+            text=_("You already joined the game. Start the game with /start"),
             message_thread_id=update.message.message_thread_id,
             reply_to_message_id=update.message.message_id,
         )
@@ -238,7 +236,7 @@ async def join_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
             chat,
             text=_(
                 "There are not enough cards left in the deck for "
-                "new players to join."
+                "new players to join.",
             ),
             message_thread_id=update.message.message_thread_id,
             reply_to_message_id=update.message.message_id,
@@ -255,7 +253,7 @@ async def join_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @user_locale
 async def leave_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for the /leave command"""
+    """Handler for the /leave command."""
     chat = update.message.chat
     user = update.message.from_user
 
@@ -264,7 +262,7 @@ async def leave_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if player is None:
         await send_async(
             chat,
-            text=_("You are not playing in a game in " "this group."),
+            text=_("You are not playing in a game in this group."),
             message_thread_id=update.message.message_thread_id,
             reply_to_message_id=update.message.message_id,
         )
@@ -279,7 +277,7 @@ async def leave_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except NoGameInChatError:
         await send_async(
             game,
-            text=_("You are not playing in a game in " "this group."),
+            text=_("You are not playing in a game in this group."),
             reply_to_message_id=update.message.message_id,
         )
 
@@ -292,7 +290,7 @@ async def leave_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await send_async(
                 game,
                 text=__("Okay. Next Player: {name}", multi=game.translate).format(
-                    name=display_name(game.current_player.user)
+                    name=display_name(game.current_player.user),
                 ),
                 reply_to_message_id=update.message.message_id,
             )
@@ -300,7 +298,8 @@ async def leave_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await send_async(
                 game,
                 text=__(
-                    "{name} left the game before it started.", multi=game.translate
+                    "{name} left the game before it started.",
+                    multi=game.translate,
                 ).format(name=display_name(user)),
                 reply_to_message_id=update.message.message_id,
             )
@@ -308,8 +307,7 @@ async def leave_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @user_locale
 async def kick_player(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for the /kick command"""
-
+    """Handler for the /kick command."""
     if update.message.chat.type == "private":
         await help_handler(update, context)
         return
@@ -323,7 +321,7 @@ async def kick_player(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except (KeyError, IndexError):
         await send_async(
             chat,
-            text=_("No game is running at the moment. " "Create a new game with /new"),
+            text=_("No game is running at the moment. Create a new game with /new"),
             message_thread_id=update.message.message_thread_id,
             reply_to_message_id=update.message.message_id,
         )
@@ -334,14 +332,13 @@ async def kick_player(update: Update, context: ContextTypes.DEFAULT_TYPE):
             game,
             text=_(
                 "The game is not started yet. "
-                "Join the game with /join and start the game with /start"
+                "Join the game with /join and start the game with /start",
             ),
             reply_to_message_id=update.message.message_id,
         )
         return
 
     if await user_is_creator_or_admin(user, game, context, chat):
-
         if update.message.reply_to_message:
             kicked = update.message.reply_to_message.from_user
 
@@ -353,8 +350,8 @@ async def kick_player(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     game,
                     text=_(
                         "Player {name} is not found in the current game.".format(
-                            name=display_name(kicked)
-                        )
+                            name=display_name(kicked),
+                        ),
                     ),
                     reply_to_message_id=update.message.message_id,
                 )
@@ -365,9 +362,7 @@ async def kick_player(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 await send_async(
                     game,
                     text=_(
-                        "{0} was kicked by {1}".format(
-                            display_name(kicked), display_name(user)
-                        )
+                        f"{display_name(kicked)} was kicked by {display_name(user)}",
                     ),
                 )
                 await send_async(game, text=__("Game ended!", multi=game.translate))
@@ -376,9 +371,7 @@ async def kick_player(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await send_async(
                 game,
                 text=_(
-                    "{0} was kicked by {1}".format(
-                        display_name(kicked), display_name(user)
-                    )
+                    f"{display_name(kicked)} was kicked by {display_name(user)}",
                 ),
             )
 
@@ -386,7 +379,7 @@ async def kick_player(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await send_async(
                 game,
                 text=_(
-                    "Please reply to the person you want to kick and type /kick again."
+                    "Please reply to the person you want to kick and type /kick again.",
                 ),
                 reply_to_message_id=update.message.message_id,
             )
@@ -395,7 +388,7 @@ async def kick_player(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await send_async(
             game,
             text=__("Okay. Next Player: {name}", multi=game.translate).format(
-                name=display_name(game.current_player.user)
+                name=display_name(game.current_player.user),
             ),
             reply_to_message_id=update.message.message_id,
         )
@@ -404,15 +397,14 @@ async def kick_player(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await send_async(
             game,
             text=_("Only the game creator ({name}) and admin can do that.").format(
-                name=game.starter.first_name
+                name=game.starter.first_name,
             ),
             reply_to_message_id=update.message.message_id,
         )
 
 
 async def select_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for callback queries to select the current game"""
-
+    """Handler for callback queries to select the current game."""
     chat_id = int(update.callback_query.data)
     user_id = update.callback_query.from_user.id
     players = gm.userid_players[user_id]
@@ -430,7 +422,12 @@ async def select_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     async def selected(bot):
         back = [
-            [InlineKeyboardButton(text=_("Back to last group"), switch_inline_query="")]
+            [
+                InlineKeyboardButton(
+                    text=_("Back to last group"),
+                    switch_inline_query="",
+                ),
+            ],
         ]
         await context.bot.answerCallbackQuery(
             update.callback_query.id,
@@ -444,7 +441,7 @@ async def select_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
             text=_(
                 "Selected group: {group}\n"
                 "<b>Make sure that you switch to the correct "
-                "group!</b>"
+                "group!</b>",
             ).format(group=gm.userid_current[user_id].game.chat.title),
             reply_markup=InlineKeyboardMarkup(back),
             parse_mode=ParseMode.HTML,
@@ -455,7 +452,7 @@ async def select_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @game_locales
 async def status_update(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Remove player from game if user leaves the group"""
+    """Remove player from game if user leaves the group."""
     chat = update.message.chat
 
     user = update.message.left_chat_member
@@ -477,7 +474,7 @@ async def status_update(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await send_async(
             game,
             text=__("Removing {name} from the game", multi=game.translate).format(
-                name=display_name(user)
+                name=display_name(user),
             ),
         )
 
@@ -485,8 +482,7 @@ async def status_update(update: Update, context: ContextTypes.DEFAULT_TYPE):
 @game_locales
 @user_locale
 async def start_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for the /start command"""
-
+    """Handler for the /start command."""
     args = context.args
 
     if update.message.chat.type != "private":
@@ -499,7 +495,7 @@ async def start_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 chat,
                 text=_(
                     "There is no game running in this chat. Create "
-                    "a new one with /new"
+                    "a new one with /new",
                 ),
             )
             return
@@ -512,7 +508,7 @@ async def start_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 game,
                 text=__(
                     "At least {minplayers} players must /join the game "
-                    "before you can start it"
+                    "before you can start it",
                 ).format(minplayers=MIN_PLAYERS),
             )
 
@@ -525,9 +521,10 @@ async def start_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
             choice = [
                 [
                     InlineKeyboardButton(
-                        text=_("Make your choice!"), switch_inline_query_current_chat=""
-                    )
-                ]
+                        text=_("Make your choice!"),
+                        switch_inline_query_current_chat="",
+                    ),
+                ],
             ]
             first_message = __(
                 "First player: {name}\n"
@@ -537,8 +534,7 @@ async def start_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
             ).format(name=display_name(game.current_player.user))
 
             async def send_first():
-                """Send the first card and player"""
-
+                """Send the first card and player."""
                 await context.bot.send_sticker(
                     chat.id,
                     sticker=c.STICKERS[str(game.last_card)],
@@ -567,9 +563,10 @@ async def start_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
             groups.append(
                 [
                     InlineKeyboardButton(
-                        text=title, callback_data=str(player.game.chat.id)
-                    )
-                ]
+                        text=title,
+                        callback_data=str(player.game.chat.id),
+                    ),
+                ],
             )
 
         await send_async(
@@ -584,7 +581,7 @@ async def start_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @user_locale
 async def close_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for the /close command"""
+    """Handler for the /close command."""
     chat = update.message.chat
     user = update.message.from_user
     games = gm.chatid_games.get(chat.id)
@@ -603,13 +600,13 @@ async def close_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
         game.open = False
         await send_async(
             game,
-            text=_("Closed the lobby. " "No more players can join this game."),
+            text=_("Closed the lobby. No more players can join this game."),
         )
     else:
         await send_async(
             game,
             text=_("Only the game creator ({name}) and admin can do that.").format(
-                name=game.starter.first_name
+                name=game.starter.first_name,
             ),
             reply_to_message_id=update.message.message_id,
         )
@@ -619,7 +616,7 @@ async def close_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @user_locale
 async def open_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for the /open command"""
+    """Handler for the /open command."""
     chat = update.message.chat
     user = update.message.from_user
     games = gm.chatid_games.get(chat.id)
@@ -638,13 +635,13 @@ async def open_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
         game.open = True
         await send_async(
             game,
-            text=_("Opened the lobby. " "New players may /join the game."),
+            text=_("Opened the lobby. New players may /join the game."),
         )
     else:
         await send_async(
             game,
             text=_("Only the game creator ({name}) and admin can do that.").format(
-                name=game.starter.first_name
+                name=game.starter.first_name,
             ),
             reply_to_message_id=update.message.message_id,
         )
@@ -654,7 +651,7 @@ async def open_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @user_locale
 async def enable_translations(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for the /enable_translations command"""
+    """Handler for the /enable_translations command."""
     chat = update.message.chat
     user = update.message.from_user
     games = gm.chatid_games.get(chat.id)
@@ -673,13 +670,13 @@ async def enable_translations(update: Update, context: ContextTypes.DEFAULT_TYPE
         game.translate = True
         await send_async(
             game,
-            text=_("Enabled multi-translations. " "Disable with /disable_translations"),
+            text=_("Enabled multi-translations. Disable with /disable_translations"),
         )
     else:
         await send_async(
             game,
             text=_("Only the game creator ({name}) and admin can do that.").format(
-                name=game.starter.first_name
+                name=game.starter.first_name,
             ),
             reply_to_message_id=update.message.message_id,
         )
@@ -689,7 +686,7 @@ async def enable_translations(update: Update, context: ContextTypes.DEFAULT_TYPE
 
 @user_locale
 async def disable_translations(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for the /disable_translations command"""
+    """Handler for the /disable_translations command."""
     chat = update.message.chat
     user = update.message.from_user
     games = gm.chatid_games.get(chat.id)
@@ -711,14 +708,14 @@ async def disable_translations(update: Update, context: ContextTypes.DEFAULT_TYP
             text=_(
                 "Disabled multi-translations. "
                 "Enable them again with "
-                "/enable_translations"
+                "/enable_translations",
             ),
         )
     else:
         await send_async(
             game,
             text=_("Only the game creator ({name}) and admin can do that.").format(
-                name=game.starter.first_name
+                name=game.starter.first_name,
             ),
             reply_to_message_id=update.message.message_id,
         )
@@ -729,7 +726,7 @@ async def disable_translations(update: Update, context: ContextTypes.DEFAULT_TYP
 @game_locales
 @user_locale
 async def skip_player(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handler for the /skip command"""
+    """Handler for the /skip command."""
     chat = update.message.chat
     user = update.message.from_user
 
@@ -756,7 +753,7 @@ async def skip_player(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await send_async(
             game,
             text=_("Please wait {time} second", "Please wait {time} seconds", n).format(
-                time=n
+                time=n,
             ),
             reply_to_message_id=update.message.message_id,
         )
@@ -767,8 +764,7 @@ async def skip_player(update: Update, context: ContextTypes.DEFAULT_TYPE):
 @game_locales
 @user_locale
 async def reply_to_query(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """
-    Handler for inline queries.
+    """Handler for inline queries.
     Builds the result list for inline queries and answers to the client.
     """
     results = []
@@ -783,7 +779,6 @@ async def reply_to_query(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except KeyError:
         add_no_game(results)
     else:
-
         # The game has not started.
         # The creator may change the game mode, other users just get a "game has not started" message.
         if not game.started:
@@ -851,8 +846,7 @@ async def reply_to_query(update: Update, context: ContextTypes.DEFAULT_TYPE):
 @game_locales
 @user_locale
 async def process_result(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """
-    Handler for chosen inline results.
+    """Handler for chosen inline results.
     Checks the players actions and acts accordingly.
     """
     try:
@@ -860,7 +854,6 @@ async def process_result(update: Update, context: ContextTypes.DEFAULT_TYPE):
         player = gm.userid_current[user.id]
         game = player.game
         result_id = update.chosen_inline_result.result_id
-        chat = game.chat
     except (KeyError, AttributeError):
         return
 
@@ -876,7 +869,7 @@ async def process_result(update: Update, context: ContextTypes.DEFAULT_TYPE):
         mode = result_id[5:]
         game.set_mode(mode)
         logger.info("Gamemode changed to %s", mode)
-        await send_async(game, text=__("Gamemode changed to {mode}".format(mode=mode)))
+        await send_async(game, text=__(f"Gamemode changed to {mode}"))
         return
     elif len(result_id) == 36:  # UUID result
         return
@@ -884,7 +877,7 @@ async def process_result(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await send_async(
             game,
             text=__("Cheat attempt by {name}", multi=game.translate).format(
-                name=display_name(player.user)
+                name=display_name(player.user),
             ),
         )
         return
@@ -925,14 +918,15 @@ async def process_result(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if game_is_running(game):
         nextplayer_message = __("Next player: {name}", multi=game.translate).format(
-            name=display_name(game.current_player.user)
+            name=display_name(game.current_player.user),
         )
         choice = [
             [
                 InlineKeyboardButton(
-                    text=_("Make your choice!"), switch_inline_query_current_chat=""
-                )
-            ]
+                    text=_("Make your choice!"),
+                    switch_inline_query_current_chat="",
+                ),
+            ],
         ]
         await send_async(
             game,
@@ -943,14 +937,13 @@ async def process_result(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def reset_waiting_time(context, player):
-    """Resets waiting time for a player and sends a notice to the group"""
-
+    """Resets waiting time for a player and sends a notice to the group."""
     if player.waiting_time < WAITING_TIME:
         player.waiting_time = WAITING_TIME
         await send_async(
             player.game.thread_id,
             text=__(
-                "Waiting time for {name} has been reset to {time} " "seconds",
+                "Waiting time for {name} has been reset to {time} seconds",
                 multi=player.game.translate,
             ).format(name=display_name(player.user), time=WAITING_TIME),
         )
@@ -975,7 +968,7 @@ application.add_handler(CommandHandler("notify_me", notify_me))
 simple_commands.register()
 settings.register()
 application.add_handler(
-    MessageHandler(filters.StatusUpdate.LEFT_CHAT_MEMBER, status_update)
+    MessageHandler(filters.StatusUpdate.LEFT_CHAT_MEMBER, status_update),
 )
 application.add_error_handler(error)
 

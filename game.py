@@ -25,7 +25,7 @@ from deck import Deck
 
 
 class Game:
-    """This class represents a game of UNO"""
+    """This class represents a game of UNO."""
 
     current_player = None
     reversed = False
@@ -41,7 +41,7 @@ class Game:
     open = OPEN_LOBBY
     translate = ENABLE_TRANSLATIONS
 
-    def __init__(self, chat: Chat, thread_id: int):
+    def __init__(self, chat: Chat, thread_id: int) -> None:
         self.chat = chat
         self.thread_id = thread_id
 
@@ -53,7 +53,7 @@ class Game:
 
     @property
     def players(self):
-        """Returns a list of all players in this game"""
+        """Returns a list of all players in this game."""
         players = []
         if not self.current_player:
             return players
@@ -79,11 +79,11 @@ class Game:
         self.mode = mode
 
     def reverse(self):
-        """Reverses the direction of game"""
+        """Reverses the direction of game."""
         self.reversed = not self.reversed
 
     def turn(self):
-        """Marks the turn as over and change the current player"""
+        """Marks the turn as over and change the current player."""
         self.logger.debug("Next Player")
         self.current_player = self.current_player.next
         self.current_player.drew = False
@@ -106,10 +106,9 @@ class Game:
         self.play_card(self.last_card)
 
     def play_card(self, card):
-        """
-        Plays a card and triggers its effects.
+        """Plays a card and triggers its effects.
         Should be called only from Player.play or on game start to play the
-        first card
+        first card.
         """
         self.deck.dismiss(self.last_card)
         self.last_card = card
@@ -138,6 +137,6 @@ class Game:
             self.choosing_color = True
 
     def choose_color(self, color):
-        """Carries out the color choosing and turns the game"""
+        """Carries out the color choosing and turns the game."""
         self.last_card.color = color
         self.turn()
