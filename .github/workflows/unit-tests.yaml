@@ -22,4 +22,6 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run unittest
-      run: python -m unittest
+      run: |
+        echo '{}' > config.json  # Create an empty config file
+        python -m unittest

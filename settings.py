@@ -37,7 +37,7 @@ async def show_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     us = UserSetting.get(id=update.message.from_user.id) or UserSetting(
-        id=update.message.from_user.id
+        id=update.message.from_user.id,
     )
 
     stats = (
