@@ -25,7 +25,7 @@ class Test(unittest.TestCase):
     game = None
 
     def setUp(self):
-        self.game = Game(None)
+        self.game = Game(None, None)
 
     def test_insert(self):
         p0 = Player(self.game, "Player 0")
