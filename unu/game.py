@@ -1,5 +1,5 @@
 from hydrogram.types import Chat, User
-from deck import Deck
+from unu.deck import Deck
 
 
 class Game:

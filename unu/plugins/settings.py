@@ -4,10 +4,10 @@ from hydrogram.enums import ChatType, ChatMemberStatus
 from hydrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from typing import Union
 from functools import partial
-from card import cards
-from db import Chat, User
+from unu.card import cards
+from unu.db import Chat, User
 from config import games
-from locales import langs, get_locale_string, use_chat_lang, use_user_lang
+from unu.locales import langs, get_locale_string, use_chat_lang, use_user_lang
 from hydrogram.helpers import ikb
 
 
@@ -20,7 +20,7 @@ async def settings(c: Client, m: Union[Message, CallbackQuery], t):
         and m.chat.type == ChatType.PRIVATE
         or isinstance(m, CallbackQuery)
         and m.message.chat.type == ChatType.PRIVATE
-    ):  
+    ):
         print(m)
         if isinstance(m, Message):
             func = m.reply_text

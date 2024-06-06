@@ -2,8 +2,8 @@ from hydrogram import Client, filters
 from hydrogram.types import Message, CallbackQuery
 from hydrogram.helpers import ikb
 from typing import Union
-from db import User
-from locales import use_user_lang
+from unu.db import User
+from unu.locales import use_user_lang
 
 
 @Client.on_message(filters.command("start") & filters.private)

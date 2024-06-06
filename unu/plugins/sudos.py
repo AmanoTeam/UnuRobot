@@ -13,9 +13,9 @@ from hydrogram.types import (
     Message,
 )
 
-from card import cards
+from unu.card import cards
 from config import sudoers
-from db import User
+from unu.db import User
 
 
 async def filter_sudoers_logic(flt, c, u):

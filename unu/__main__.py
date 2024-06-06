@@ -1,8 +1,8 @@
 from config import bot
 from hydrogram import idle
 from tortoise import run_async
-from version import ascii_art
-from db import connect_database
+from unu.version import ascii_art
+from unu.db import connect_database
 import os
 
 

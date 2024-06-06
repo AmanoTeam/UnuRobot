@@ -16,12 +16,12 @@ from hydrogram.types import (
 )
 from hydrogram.errors import ListenerTimeout
 
-from card import COLORS, cards
+from unu.card import COLORS, cards
 from config import games, player_game
-from db import Chat, User
-from game import Game
+from unu.db import Chat, User
+from unu.game import Game
 from typing import Union
-from locales import use_lang
+from unu.locales import use_lang
 
 
 @Client.on_message(filters.command("new"))
@@ -461,7 +461,7 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
         or (pcard[1] and pcard[1] in cards[config.theme]["CARDS"]["THEME_CARDS"])
     ):
         game.deck.cards.append(game.last_card)
-        module = importlib.import_module(f"spetials.{config.theme}")
+        module = importlib.import_module(f"special_cards.{config.theme}")
         function = getattr(
             module,
             pcard[1]

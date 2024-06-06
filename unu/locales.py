@@ -5,11 +5,11 @@ from typing import Dict, List
 from hydrogram.types import Message
 from hydrogram.enums import ChatType
 from config import player_game
-from game import Game
+from unu.game import Game
 
 import yaml
 
-from db import User, Chat
+from unu.db import User, Chat
 
 langs = ["en-US", "pt-BR"]
 

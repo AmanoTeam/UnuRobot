@@ -1,7 +1,7 @@
 from hydrogram import Client
 from hydrogram.types import ChosenInlineResult
 from hydrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from game import Game
+from unu.game import Game
 
 inline_keyb = InlineKeyboardMarkup(
     [[InlineKeyboardButton("Jogar", switch_inline_query_current_chat="")]]

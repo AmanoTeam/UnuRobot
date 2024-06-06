@@ -9,5 +9,5 @@ ascii_art = f"""    ___       ___       ___
    \\/__/     \\/__/     \\/__/  | (_)|_)(_)|_
 
  Version: {version} - Powered by Hydrogram
- 
+
 """
