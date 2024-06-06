@@ -1,83 +1,23 @@
-# Telegram bot to play UNO in group chats
-# Copyright (c) 2016 Jannes Höke <uno@jhoeke.de>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-import logging
-from random import shuffle
-
-import card as c
-from card import Card
-from errors import DeckEmptyError
+import random
+from card import cards
 
 
 class Deck:
-    """This class represents a deck of cards."""
-
-    def __init__(self) -> None:
-        self.cards = []
-        self.graveyard = []
-        self.logger = logging.getLogger(__name__)
-
-        self.logger.debug(self.cards)
+    def __init__(self, theme) -> None:
+        self.cards = [
+            (color, value)
+            for _ in range(2)
+            for color in cards[theme]["CARDS"]["COLORS"]
+            for value in cards[theme]["CARDS"]["VALUES"]
+        ]
+        self.cards += [
+            ("x", car)
+            for car in cards[theme]["CARDS"]["SPECIALS"]
+            for _ in range(cards[theme]["CARDS"]["SPECIALS_INFO"][car][0])
+        ]
 
     def shuffle(self):
-        """Shuffles the deck."""
-        self.logger.debug("Shuffling Deck")
-        shuffle(self.cards)
+        random.shuffle(self.cards)
 
-    def draw(self):
-        """Draws a card from this deck."""
-        try:
-            card = self.cards.pop()
-            self.logger.debug("Drawing card %s", str(card))
-            return card
-        except IndexError as e:
-            if not self.graveyard:
-                raise DeckEmptyError from e
-            while self.graveyard:
-                self.cards.append(self.graveyard.pop())
-            self.shuffle()
-            return self.draw()
-
-    def dismiss(self, card):
-        """Returns a card to the deck."""
-        if card.special:
-            card.color = None
-        self.graveyard.append(card)
-
-    def _fill_classic_(self):
-        # Fill deck with the classic card set
-        self.cards.clear()
-        for color in c.COLORS:
-            for value in c.VALUES:
-                self.cards.append(Card(color, value))
-                if value != c.ZERO:
-                    self.cards.append(Card(color, value))
-        for special in c.SPECIALS:
-            for _ in range(4):
-                self.cards.append(Card(None, None, special=special))
-        self.shuffle()
-
-    def _fill_wild_(self):
-        # Fill deck with a wild card set
-        self.cards.clear()
-        for color in c.COLORS:
-            for value in c.WILD_VALUES:
-                for _ in range(4):
-                    self.cards.append(Card(color, value))
-        for special in c.SPECIALS:
-            for _ in range(6):
-                self.cards.append(Card(None, None, special=special))
-        self.shuffle()
+    def draw(self, amount):
+        return [self.cards.pop(0) for _ in range(amount) if self.cards]

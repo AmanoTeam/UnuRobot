@@ -1,0 +1,69 @@
+lang_name: English
+lang_flag: 🇺🇸
+lang_changed: The language has been changed to English!
+back: Back
+theme: Theme
+info_theme: You choose a theme for the cards
+seven_zero: 7-0
+info_seven: When a 7 is played, the player can swap cards with another player. When a 0 is played, everyone passes their cards to the next player.
+sbluff: Bluff
+info_bluff: When a player plays a +4 card, the next one can challenge. If the player who played the +4 card has another card to play, they draw 4 cards. If not, the one who challenged draws 6.
+one_win: One winner
+info_one_win: When the first player runs out of cards, the game ends and they are the winner.
+one_card: Say UNO
+info_one_card: When a player has only one card, they must say UNO. If they don't, they must draw 2 cards.
+language: Language
+info_lang: You can change the bot's language.
+choose_lang: Choose a language
+start_text: "Hello! I am the UNO Bot, a bot to play UNO on Telegram!\n\nTo play, put me in a group and send /new to start a new game!\n\nor to configure use the buttons below!"
+game_mode: Game Mode
+status: Status
+game_mode_text: "Showing information of available game modes!\n\n"
+settings: "Welcome to the settings menu!\n\nChoose an option below to configure the bot."
+theme_config: "Choose a theme for the cards:"
+minimalist: Minimalist
+classic: Classic
+colorblind: Colorblind
+game_existis: There is already a game in progress!
+only_group: This command only works in groups!
+already_in_game: You are already in another game
+already_joined: You are already in the game!
+join: Join
+leave: Leave
+start_game: Start Game
+game_started: A new game has started!
+no_game: There is no game in progress!
+no_game_text: No game in progress, send /new to start a new game!
+lobby_closed: The lobby is closed!
+lobby_opened: The lobby is open!
+joined_game: You joined the game!
+player_joined: "{} joined the game!"
+no_joinned: You are not in the game!
+next: Next {}
+game_over: The game is over!
+player_left: "{} left the game!"
+left_game: You left the game!
+not_allowed: You are not allowed to do that!
+game_started: The game has already started!
+info_text: 🃏 Game Information:\nCurrent player - {current_player}\nLast card - {last_card}\n
+info_text2: "{player}: {cards} cards, "
+pass: Pass
+buy: Buy {} card(s)
+bluff: I think you're bluffing!
+cards_swapped: "{name1} swapped cards with {name2}"
+not_swapped: Due to the number of players, it was not possible to swap cards!
+swapped: The cards have been swapped!
+bought: You bought {buy} cards!
+bluffed: "{name} You can't bluff!\n{name} drew {draw} cards!"
+not_bluffed: "{name1} You didn't bluff!\n{name2} drew {draw} cards!"
+colorchoose: "{name} choose a color!"
+colorchoosed: I chose the color {color}!
+playerchoose: "{name} choose a player!"
+invalid_card: Invalid move!
+said_uno: "{name} shouted UNO!"
+say_uno: "{name} say UNO or draw 2 cards!"
+not_said_uno: "{name} You didn't shout UNO!\n{name} drew 2 cards!"
+first: " in first"
+won: "{name} won the game{comp}!"
+continuing: continuing the game with {count} players
+play: Play

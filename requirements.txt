@@ -1,2 +1,0 @@
-python-telegram-bot>=20.0a5,<21.0
-pony

@@ -1,0 +1,69 @@
+lang_name: Português
+lang_flag: 🇧🇷
+lang_changed: O idioma foi alterado para Português!
+back: Voltar
+theme: Tema
+info_theme: Você escolhe um tema para as cartas
+seven_zero: 7-0
+info_seven: Quando um 7 é jogado, o jogador pode trocar as cartas com outro jogador. Quando um 0 é jogado, todos passam as cartas para o próximo jogador.
+sbluff: Blefe
+info_bluff: Quando um jogador joga uma carta +4, o próximo pode desafiar. Se o jogador que jogou a carta +4 tiver outra carta para jogar, ele compra 4 cartas. Se não tiver, quem desafiou compra 6.
+one_win: Um vencedor
+info_one_win: Quando o primeiro jogador fica sem cartas, o jogo acaba e ele é o vencedor.
+one_card: Dizer UNO
+info_one_card: Quando um jogador tem apenas uma carta, ele deve dizer UNO. Se ele não disser, ele deve comprar 2 cartas.
+language: Idioma
+info_lang: Você pode alterar o idioma do bot.
+choose_lang: Escolha um idioma
+start_text: "Olá! Eu sou o UNO Bot, um bot para jogar UNO no Telegram!\n\nPara jogar me coloque em um grupo e mande /new para começar um novo jogo!\n\nou para configurar use os botões abaixo!"
+game_mode: Modo de Jogo
+status: Status
+game_mode_text: "Mostrando informações dos modos de jogo disponíveis!\n\n"
+settings: "Bem vindo ao menu de configurações!\n\nEscolha uma opçãoe abaixo para configurar o bot."
+theme_config: "Escolha um tema para as cartas:"
+minimalist: Minimalista
+classic: Clássico
+colorblind: Daltônico
+game_existis: Já existe um jogo em andamento!
+only_group: Esse comando só funciona em grupos!
+already_in_game: Você já está em outro jogo
+already_joined: Você já está no jogo!
+join: Entrar
+leave: Sair
+start_game: Começar Jogo
+game_started: Um novo jogo foi iniciado!
+no_game: Não há jogo em andamento!
+no_game_text: Nenhum jogo em andamento, mande /new para iniciar um novo jogo!
+lobby_closed: O lobby está fechado!
+lobby_opened: O lobby está aberto!
+joined_game: Você entrou no jogo!
+player_joined: "{} entrou no jogo!"
+no_joinned: Você não está no jogo!
+next: Próximo {}
+game_over: O jogo acabou!
+player_left: "{} saiu do jogo!"
+left_game: Você saiu do jogo!
+not_allowed: Você não tem permissão para fazer isso!
+game_started: O jogo já começou!
+info_text: 🃏 Informações do Jogo:\nJogador atual - {current_player}\nÚltima carta - {last_card}\n
+info_text2: "{player}: {cards} cartas, "
+pass: Passar
+buy: Comprar {} carta(s)
+bluff: Eu acho que você está blefando!
+cards_swapped: "{name1} trocou as cartas com {name2}"
+not_swapped: Devido ao numero de jogadores, não foi possível trocar as cartas!
+swapped: As cartas foram trocadas!
+bought: Você comprou {buy} cartas!
+bluffed: "{name} Você não pode blefar!\n{name} comprou {draw} cartas!"
+not_bluffed: "{name1} Você não blefou!\n{name2} comprou {draw} cartas!"
+colorchoose: "{name} escolha uma cor!"
+colorchoosed: Eu escolhi a cor {color}!
+playerchoose: "{name} escolha um jogador!"
+invalid_card: Jogada inválida!
+said_uno: "{name} gritou UNO!"
+say_uno: "{name} fale UNO ou compre 2 cartas!"
+not_said_uno: "{name} Você não gritou UNO!\n{name} comprou 2 cartas!"
+first: " em primeiro"
+won: "{name} ganhou o jogo{comp}!"
+continuing: continuando o jogo com {count} jogadores
+play: Jogar
