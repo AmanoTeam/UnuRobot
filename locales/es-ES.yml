@@ -7,7 +7,7 @@ one_win: Un ganador
 info_one_win: Cuando el primer jugador se queda sin tarjetas, el juego termina y son
   el ganador.
 one_card: Diga UNO
-language: Lengua
+language: Idioma
 game_mode: Modo de juego
 status: Estado
 game_mode_text: "Mostrando información de los modos de juego disponibles!\n\n"
@@ -32,13 +32,13 @@ lang_name: Español
 player_left: ¡{} deja el juego!
 lang_changed: ¡El idioma se ha cambiado a español!
 info_theme: Elige un tema para las tarjetas
-info_lang: Puedes cambiar el lenguaje del bot.
+info_lang: Puedes cambiar el idioma del bot.
 start_text: "¡Hola! ¡Soy UNO Bot, un bot para jugar a UNO en Telegram!\n\nPara jugar,
   ponerme en un grupo y enviar /nuevo para comenzar un nuevo juego!\n\no para configurar
   los botones a continuación!"
 info_one_card: Cuando un jugador tiene una sola tarjeta, deben decir UNO. Si no lo
   hacen, deben dibujar 2 tarjetas.
-choose_lang: Elija un idioma
+choose_lang: Elige un idioma
 classic: Clásico
 game_existis: ¡Ya hay un juego en progreso!
 only_group: ¡Este comando sólo funciona en grupos!
