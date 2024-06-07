@@ -1,5 +1,6 @@
 from asyncio import sleep
 from json import dump
+from pathlib import Path
 
 from hydrogram import Client, filters
 from hydrogram.errors import ListenerTimeout, MediaEmpty
@@ -199,7 +200,7 @@ async def settings_themes_new(c: Client, cq: CallbackQuery):
             except ListenerTimeout:
                 return
 
-    with open(f"cards/{name}.json", "w", encoding="locale") as f:
+    with Path(f"cards/{name}.json").open(mode="w", encoding="locale") as f:
         dump(ncards, f)
 
     await c.send_message(
@@ -267,7 +268,7 @@ async def settings_themes_add(c: Client, cq: CallbackQuery):
     cards[theme]["STICKERS"][code] = stickerc
     cards[theme]["STICKERS_GREY"][code] = stickerg
 
-    with open(f"cards/{theme}.json", "w", encoding="locale") as f:
+    with Path(f"cards/{theme}.json").open(mode="w", encoding="locale") as f:
         dump(cards[theme], f)
 
     await c.send_message(
@@ -354,7 +355,7 @@ async def settings_themes_update(c: Client, cq: CallbackQuery):
 
         cards[theme][cardtm][cardid] = cmessage.sticker.file_id
 
-        with open(f"cards/{theme}.json", "w", encoding="locale") as f:
+        with Path(f"cards/{theme}.json").open(mode="w", encoding="locale") as f:
             dump(cards[theme], f)
 
         await c.send_message(
@@ -395,7 +396,7 @@ async def settings_themes_check(c: Client, cq: CallbackQuery):
                 cards[theme][card_type][card] = cmessage.sticker.file_id
                 await c.send_message(cq.message.chat.id, f"Carta {card} atualizada com sucesso!")
 
-    with open(f"cards/{theme}.json", "w", encoding="locale") as f:
+    with Path(f"cards/{theme}.json").open(mode="w", encoding="locale") as f:
         dump(cards[theme], f)
 
     await c.send_message(cq.message.chat.id, "Cartas verificadas com sucesso!")

@@ -1,6 +1,7 @@
 import os
 from functools import partial, wraps
 from glob import glob
+from pathlib import Path
 from typing import TYPE_CHECKING
 
 import yaml
@@ -23,7 +24,7 @@ def cache_localizations(files: list[str]) -> dict[str, dict[str, dict[str, str]]
     for file in files:
         _, pname = file.split(os.path.sep)
         lang = pname.split(".")[0]
-        with open(file, encoding="locale") as f:
+        with Path(file).open(encoding="locale") as f:
             ldict[lang] = yaml.safe_load(f)
     return ldict
 

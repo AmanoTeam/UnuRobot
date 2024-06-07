@@ -472,18 +472,14 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
             else:
                 # Aqui irá trocar as cartas dos jogadores na ordem do jogo
                 gcards = {}
-                a = 0
-                for i in game.players:
+                for a, i in enumerate(game.players):
                     gcards[a] = game.players[i].cards
-                    a += 1
 
-                a = 1
-                for i in game.players:
+                for a, i in enumerate(game.players, start=1):
                     if a in gcards:
                         game.players[i].cards = gcards[a]
                     else:
                         game.players[i].cards = gcards[0]
-                    a += 1
                     await verify_cards(game, c, ir, game.players[i], ut, ct)
 
                 await c.send_message(game.chat.id, ct("swapped"))

@@ -1,5 +1,6 @@
 import json
 import os
+from pathlib import Path
 
 RED = "r"
 BLUE = "b"
@@ -52,5 +53,5 @@ cards = {}
 for filename in os.listdir("cards"):
     if filename.endswith(".json"):
         name = filename.split(".")[0]
-        with open(f"cards/{filename}", encoding="locale") as f:
+        with Path(f"cards/{filename}").open(encoding="locale") as f:
             cards[name] = json.load(f)
