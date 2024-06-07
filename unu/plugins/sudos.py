@@ -63,12 +63,12 @@ async def settings_sudos_add(c: Client, cq: CallbackQuery):
     await cq.edit_message_text("Envie o ID do usuário que deseja adicionar aos sudos")
     cmessage = None
     # Wait for the user to send a message with the new emoji
-    while cmessage is None:
-        try:
+    try:
+        while cmessage is None:
             cmessage = await cq.message.chat.listen(filters.text)
             print(cmessage)
-        except ListenerTimeout:
-            return
+    except ListenerTimeout:
+        return
 
     text = cmessage.text
     user = await c.get_users(text)
@@ -100,14 +100,15 @@ async def settings_sudos_remove(c: Client, cq: CallbackQuery):
         db_users = await User.filter(sudo=True)
         users = await c.get_users([usr.id for usr in db_users])
         text = "Selecione o usuário que deseja remover dos sudos:\n\n"
-        keyb = []
-        for user in users:
-            keyb.append([
+        keyb = [
+            [
                 InlineKeyboardButton(
                     user.first_name,
                     callback_data=f"settings_sudos_remove_{user.id}",
                 )
-            ])
+            ]
+            for user in users
+        ]
 
         keyb.append([InlineKeyboardButton("Voltar", callback_data="settings_sudos")])
         await cq.edit_message_text(text, reply_markup=InlineKeyboardMarkup(keyb))
@@ -151,12 +152,12 @@ async def settings_themes_new(c: Client, cq: CallbackQuery):
     await cq.edit_message_text("Envie o nome do tema")
     cmessage = None
     # Wait for the user to send a message with the new emoji
-    while cmessage is None:
-        try:
+    try:
+        while cmessage is None:
             cmessage = await cq.message.chat.listen(filters.text)
             print(cmessage)
-        except ListenerTimeout:
-            return
+    except ListenerTimeout:
+        return
 
     name = cmessage.text
 
@@ -168,24 +169,24 @@ async def settings_themes_new(c: Client, cq: CallbackQuery):
 
         cmessage = None
         # Wait for the user to send a message with the new emoji
-        while cmessage is None:
-            try:
+        try:
+            while cmessage is None:
                 cmessage = await cq.message.chat.listen(filters.sticker)
                 ncards["STICKERS"][card] = cmessage.sticker.file_id
-            except ListenerTimeout:
-                return
+        except ListenerTimeout:
+            return
     for card in ncards["STICKERS_GREY"]:
         await c.send_message(cq.message.chat.id, "Mande um sticker para substituir o sticker:")
         await c.send_sticker(cq.message.chat.id, ncards["STICKERS_GREY"][card])
 
         cmessage = None
         # Wait for the user to send a message with the new emoji
-        while cmessage is None:
-            try:
+        try:
+            while cmessage is None:
                 cmessage = await cq.message.chat.listen(filters.sticker)
                 ncards["STICKERS_GREY"][card] = cmessage.sticker.file_id
-            except ListenerTimeout:
-                return
+        except ListenerTimeout:
+            return
 
     with Path(f"cards/{name}.json").open(mode="w", encoding="locale") as f:
         dump(ncards, f)
@@ -220,11 +221,11 @@ async def settings_themes_add(c: Client, cq: CallbackQuery):
 
     cmessage = None
 
-    while cmessage is None:
-        try:
+    try:
+        while cmessage is None:
             cmessage = await cq.message.chat.listen(filters.text)
-        except ListenerTimeout:
-            return
+    except ListenerTimeout:
+        return
 
     code = cmessage.text
 
@@ -232,11 +233,11 @@ async def settings_themes_add(c: Client, cq: CallbackQuery):
 
     cmessage = None
 
-    while cmessage is None:
-        try:
+    try:
+        while cmessage is None:
             cmessage = await cq.message.chat.listen(filters.sticker)
-        except ListenerTimeout:
-            return
+    except ListenerTimeout:
+        return
 
     stickerc = cmessage.sticker.file_id
 
@@ -244,11 +245,11 @@ async def settings_themes_add(c: Client, cq: CallbackQuery):
 
     cmessage = None
 
-    while cmessage is None:
-        try:
+    try:
+        while cmessage is None:
             cmessage = await cq.message.chat.listen(filters.sticker)
-        except ListenerTimeout:
-            return
+    except ListenerTimeout:
+        return
 
     stickerg = cmessage.sticker.file_id
 
@@ -334,11 +335,11 @@ async def settings_themes_update(c: Client, cq: CallbackQuery):
 
         cmessage = None
 
-        while cmessage is None:
-            try:
+        try:
+            while cmessage is None:
                 cmessage = await cq.message.chat.listen(filters.sticker)
-            except ListenerTimeout:
-                return
+        except ListenerTimeout:
+            return
 
         cards[theme][cardtm][cardid] = cmessage.sticker.file_id
 

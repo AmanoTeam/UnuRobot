@@ -220,8 +220,8 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
 
     config = await Chat.get(id=game.chat.id)
     theme = config.theme
-    COLOR_ICONS = cards[theme]["CARDS"]["COLOR_ICONS"]
-    VALUES_ICONS = cards[theme]["CARDS"]["VALUES_ICONS"]
+    color_icons = cards[theme]["CARDS"]["COLOR_ICONS"]
+    values_icons = cards[theme]["CARDS"]["VALUES_ICONS"]
     if game.chosen == "color" and game.next_player.id == m.from_user.id:
         pre = ""
         if game.last_card[1] in cards[theme]["CARDS"]["THEME_CARDS"]:
@@ -229,9 +229,9 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
         articles = [
             InlineQueryResultArticle(
                 id=pre + color,
-                title=COLOR_ICONS[color],
+                title=color_icons[color],
                 input_message_content=InputTextMessageContent(
-                    ct("colorchoosed").format(color=COLOR_ICONS[color])
+                    ct("colorchoosed").format(color=color_icons[color])
                 ),
             )
             for color in COLORS
@@ -261,7 +261,7 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
 
     info_text = ut("info_text").format(
         current_player=game.next_player.mention,
-        last_card=COLOR_ICONS[game.last_card[0]] + VALUES_ICONS[game.last_card[1]],
+        last_card=color_icons[game.last_card[0]] + values_icons[game.last_card[1]],
     )
     for fplayer in game.players:
         info_text += ut("info_text2").format(
@@ -502,7 +502,7 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
     return None
 
 
-async def verify_cards(game, c, ir, user, ut, t):
+async def verify_cards(game: Game, c: Client, ir, user: User, ut, t):
     inline_keyb = InlineKeyboardMarkup([
         [InlineKeyboardButton(t("play"), switch_inline_query_current_chat="")]
     ])
