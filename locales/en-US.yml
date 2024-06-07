@@ -44,7 +44,7 @@ game_over: The game is over!
 player_left: "{} left the game!"
 left_game: You left the game!
 not_allowed: You are not allowed to do that!
-game_started: The game has already started!
+game_already_started: The game has already started!
 info_text: 🃏 Game Information:\nCurrent player - {current_player}\nLast card - {last_card}\n
 info_text2: "{player}: {cards} cards, "
 pass: Pass

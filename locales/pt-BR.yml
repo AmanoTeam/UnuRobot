@@ -44,7 +44,7 @@ game_over: O jogo acabou!
 player_left: "{} saiu do jogo!"
 left_game: Você saiu do jogo!
 not_allowed: Você não tem permissão para fazer isso!
-game_started: O jogo já começou!
+game_already_started: O jogo já começou!
 info_text: 🃏 Informações do Jogo:\nJogador atual - {current_player}\nÚltima carta - {last_card}\n
 info_text2: "{player}: {cards} cartas, "
 pass: Passar
