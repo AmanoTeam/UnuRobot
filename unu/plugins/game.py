@@ -301,15 +301,18 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
         )
     ]
 
-    if game.last_card[1] == "draw_four" and game.draw == 4:
-        if (await Chat.get(id=game.chat.id)).bluff:
-            articles.append(
-                InlineQueryResultCachedSticker(
-                    id="option_bluff",
-                    sticker_file_id=cards[theme]["STICKERS"]["option_bluff"],
-                    input_message_content=InputTextMessageContent(ut("bluff")),
-                )
+    if (
+        game.last_card[1] == "draw_four"
+        and game.draw == 4
+        and (await Chat.get(id=game.chat.id)).bluff
+    ):
+        articles.append(
+            InlineQueryResultCachedSticker(
+                id="option_bluff",
+                sticker_file_id=cards[theme]["STICKERS"]["option_bluff"],
+                input_message_content=InputTextMessageContent(ut("bluff")),
             )
+        )
 
     for num, pcard in enumerate(gcards):
         sticker_type = pcard[1] if pcard[0] == "x" else f"{pcard[0]}_{pcard[1]}"

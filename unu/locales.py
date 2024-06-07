@@ -1,12 +1,11 @@
-import os
 from functools import partial, wraps
-from glob import glob
 from pathlib import Path
 from typing import TYPE_CHECKING
 
 import yaml
+from hydrogram import Client
 from hydrogram.enums import ChatType
-from hydrogram.types import Message
+from hydrogram.types import CallbackQuery, Message
 
 from config import player_game
 from unu.db import Chat, User
@@ -19,28 +18,21 @@ langs = ["en-US", "pt-BR"]
 default_language = "en-US"
 
 
-def cache_localizations(files: list[str]) -> dict[str, dict[str, dict[str, str]]]:
+def load_locales() -> dict[str, dict[str, str]]:
     ldict = {lang: {} for lang in langs}
-    for file in files:
-        _, pname = file.split(os.path.sep)
-        lang = pname.split(".")[0]
-        with Path(file).open(encoding="locale") as f:
+    for lang in langs:
+        with Path(f"locales/{lang}.yml").open(encoding="utf-8") as f:
             ldict[lang] = yaml.safe_load(f)
     return ldict
 
 
-jsons = []
-
-for locale in langs:
-    jsons += glob(os.path.join("locales", f"{locale}.yml"))
-
-langdict = cache_localizations(jsons)
+langdict = load_locales()
 
 
 def use_lang():
     def decorator(func):
         @wraps(func)
-        async def wrapper(client, message):
+        async def wrapper(client: Client, message: CallbackQuery | Message):
             ulang = (await User.get_or_create(id=message.from_user.id))[0].lang
             if not isinstance(message, Message):
                 if message.from_user.id not in player_game:
@@ -63,7 +55,7 @@ def use_lang():
 def use_chat_lang():
     def decorator(func):
         @wraps(func)
-        async def wrapper(client, message):
+        async def wrapper(client: Client, message: CallbackQuery | Message):
             mmessage = message.message if not isinstance(message, Message) else message
             if mmessage.chat.type == ChatType.PRIVATE:
                 clang = (await User.get_or_create(id=mmessage.chat.id))[0].lang
@@ -80,7 +72,7 @@ def use_chat_lang():
 def use_user_lang():
     def decorator(func):
         @wraps(func)
-        async def wrapper(client, message):
+        async def wrapper(client: Client, message: CallbackQuery | Message):
             ulang = (await User.get_or_create(id=message.from_user.id))[0].lang
             ulfunc = partial(get_locale_string, ulang)
             return await func(client, message, ulfunc)
@@ -92,5 +84,4 @@ def use_user_lang():
 
 def get_locale_string(language: str, key: str) -> str:
     print(f"Getting {key} for {language}")
-    res: str = langdict[language].get(key) or key
-    return res
+    return langdict[language].get(key) or key
