@@ -1,4 +1,5 @@
 from hydrogram.types import Chat, User
+
 from unu.deck import Deck
 
 
@@ -7,7 +8,7 @@ class Game:
         self.chat = chat
         self.last_card = None
         self.last_card_2 = None
-        self.next_player:User = None
+        self.next_player: User = None
         self.deck = Deck(theme)
         self.players = {}
         self.is_started = False

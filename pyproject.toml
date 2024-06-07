@@ -1,0 +1,53 @@
+[project]
+name = "unu"
+version = "0.0.0"
+description = "A Telegram bot for playing the UNO cards game"
+readme = "README.rst"
+
+dependencies = [
+  "PyYAML",
+  "hydrogram @ https://github.com/hydrogram/hydrogram/archive/dev.zip",
+  "tgcrypto",
+  "tortoise-orm"
+]
+requires-python = ">=3.10"
+
+authors = [{ name = "Amano LLC", email = "contact@amanoteam.com" }]
+license = { text = "MIT" }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[project.urls]
+homepage = "https://github.com/AmanoTeam/EduuRobot"
+
+[tool.ruff]
+line-length = 99
+target-version = "py310"
+preview = true
+
+[tool.ruff.lint]
+select = [
+    "FURB", # refurb
+    "I",    # isort
+    "E",    # pycodestyle: error
+    "W",    # pycodestyle: warning
+    "UP",   # pyupgrade
+    "F",    # pyflakes
+    "SIM",  # flake8-simplify
+    "RET",  # flake8-return
+    "C4",   # flake8-comprehensions
+    "PTH",  # flake8-use-pathlib
+    "PERF", # perflint
+    "N",    # pep8-naming
+    "RUF",  # ruff
+    "G",    # flake8-logging-format
+    "TID",  # flake8-tidy-imports
+    "TCH",  # flake8-type-checking
+    "FA",   # flake8-future-annotations
+    "PL",   # pylint
+]

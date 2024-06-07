@@ -1,5 +1,5 @@
-import os
 import json
+import os
 
 RED = "r"
 BLUE = "b"
@@ -52,5 +52,5 @@ cards = {}
 for filename in os.listdir("cards"):
     if filename.endswith(".json"):
         name = filename.split(".")[0]
-        with open(f"cards/{filename}", "r") as f:
+        with open(f"cards/{filename}", encoding="locale") as f:
             cards[name] = json.load(f)

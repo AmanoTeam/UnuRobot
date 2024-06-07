@@ -1,9 +1,11 @@
-from config import bot
+import os
+
 from hydrogram import idle
 from tortoise import run_async
-from unu.version import ascii_art
+
+from config import bot
 from unu.db import connect_database
-import os
+from unu.version import ascii_art
 
 
 async def main():

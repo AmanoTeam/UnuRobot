@@ -1,7 +1,7 @@
 from hydrogram import Client, filters
-from hydrogram.types import Message, CallbackQuery
 from hydrogram.helpers import ikb
-from typing import Union
+from hydrogram.types import CallbackQuery, Message
+
 from unu.db import User
 from unu.locales import use_user_lang
 
@@ -9,11 +9,8 @@ from unu.locales import use_user_lang
 @Client.on_message(filters.command("start") & filters.private)
 @Client.on_callback_query(filters.regex("^start$"))
 @use_user_lang()
-async def start(c: Client, m: Union[Message, CallbackQuery], t):
-    if isinstance(m, CallbackQuery):
-        func = m.edit_message_text
-    else:
-        func = m.reply_text
+async def start(c: Client, m: Message | CallbackQuery, t):
+    func = m.edit_message_text if isinstance(m, CallbackQuery) else m.reply_text
     await User.get_or_create(id=m.from_user.id)
     print(m.from_user.id)
     keyb = [[("help", "help"), ("configurações", "settings")]]
@@ -27,9 +24,7 @@ async def help(c: Client, cq: CallbackQuery, t):
         [(t("game_mode"), "help_game")],
         [(t("back"), "start")],
     ]
-    await cq.edit_message_text(
-        "Ecolha uma opção de ajuda abaixo:", reply_markup=ikb(keyb)
-    )
+    await cq.edit_message_text("Ecolha uma opção de ajuda abaixo:", reply_markup=ikb(keyb))
 
 
 @Client.on_callback_query(filters.regex("^help_game$"))
@@ -47,7 +42,7 @@ async def help_game(c: Client, cq: CallbackQuery, t):
 
 @Client.on_message(filters.command("status"))
 @Client.on_callback_query(filters.regex("^status$"))
-async def status(c: Client, m: Union[Message, CallbackQuery]):
+async def status(c: Client, m: Message | CallbackQuery):
     user = await User.get_or_create(id=m.from_user.id)
     porcentagem = (user[0].wins / user[0].matches) * 100 if user[0].matches > 0 else 0
     if (await User.get(id=m.from_user.id)).placar:
@@ -58,6 +53,7 @@ async def status(c: Client, m: Union[Message, CallbackQuery]):
         await m.reply_text(text)
     else:
         await m.answer(text, show_alert=True)
+
 
 @Client.on_callback_query(filters.regex("^ch_status$"))
 async def ch_status(c: Client, cq: CallbackQuery):

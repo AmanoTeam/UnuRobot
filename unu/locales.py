@@ -1,27 +1,29 @@
 import os
 from functools import partial, wraps
 from glob import glob
-from typing import Dict, List
-from hydrogram.types import Message
-from hydrogram.enums import ChatType
-from config import player_game
-from unu.game import Game
+from typing import TYPE_CHECKING
 
 import yaml
+from hydrogram.enums import ChatType
+from hydrogram.types import Message
 
-from unu.db import User, Chat
+from config import player_game
+from unu.db import Chat, User
+
+if TYPE_CHECKING:
+    from unu.game import Game
 
 langs = ["en-US", "pt-BR"]
 
 default_language = "en-US"
 
 
-def cache_localizations(files: List[str]) -> Dict[str, Dict[str, Dict[str, str]]]:
+def cache_localizations(files: list[str]) -> dict[str, dict[str, dict[str, str]]]:
     ldict = {lang: {} for lang in langs}
     for file in files:
         _, pname = file.split(os.path.sep)
         lang = pname.split(".")[0]
-        with open(file, "r") as f:
+        with open(file, encoding="locale") as f:
             ldict[lang] = yaml.safe_load(f)
     return ldict
 

@@ -1,6 +1,5 @@
 from asyncio import sleep
 from json import dump
-from typing import Union
 
 from hydrogram import Client, filters
 from hydrogram.errors import ListenerTimeout, MediaEmpty
@@ -13,8 +12,8 @@ from hydrogram.types import (
     Message,
 )
 
-from unu.card import cards
 from config import sudoers
+from unu.card import cards
 from unu.db import User
 
 
@@ -25,10 +24,7 @@ async def filter_sudoers_logic(flt, c, u):
     db_usr = await User.get_or_none(id=usr.id)
     if not db_usr:
         return False
-    if db_usr.sudo or usr.id in sudoers:
-        return True
-    else:
-        return False
+    return bool(db_usr.sudo or usr.id in sudoers)
 
 
 filter_sudoers = filters.create(filter_sudoers_logic, "FilterSudoers")
@@ -37,22 +33,17 @@ filters.filter_sudoers = filter_sudoers
 
 @Client.on_message(filters.command("sudos") & filters.private & filter_sudoers)
 @Client.on_callback_query(filters.regex("^sudos$") & filter_sudoers)
-async def start(c: Client, m: Union[Message, CallbackQuery]):
-    if isinstance(m, CallbackQuery):
-        func = m.edit_message_text
-    else:
-        func = m.reply_text
-    keyb = InlineKeyboardMarkup(
+async def start(c: Client, m: Message | CallbackQuery):
+    func = m.edit_message_text if isinstance(m, CallbackQuery) else m.reply_text
+    keyb = InlineKeyboardMarkup([
         [
-            [
-                InlineKeyboardButton("Sudos", callback_data="settings_sudos"),
-                InlineKeyboardButton("themes", callback_data="settings_sudo_themc"),
-            ],
-            [
-                InlineKeyboardButton("Voltar", callback_data="settings"),
-            ]
-        ]
-    )
+            InlineKeyboardButton("Sudos", callback_data="settings_sudos"),
+            InlineKeyboardButton("themes", callback_data="settings_sudo_themc"),
+        ],
+        [
+            InlineKeyboardButton("Voltar", callback_data="settings"),
+        ],
+    ])
     await func(
         "Bem vindo ao menu de configurações do UnuRobot, aqui você pode configurar o bot da forma que quiser, para isso basta clicar em um dos botões abaixo!",
         reply_markup=keyb,
@@ -68,15 +59,13 @@ async def settings_sudos(c: Client, cq: CallbackQuery):
     for usr in usrs:
         text += f"👤 {usr.mention}\n"
 
-    keyb = InlineKeyboardMarkup(
+    keyb = InlineKeyboardMarkup([
         [
-            [
-                InlineKeyboardButton("Adicionar", callback_data="settings_sudos_add"),
-                InlineKeyboardButton("Remover", callback_data="settings_sudos_remove"),
-            ],
-            [InlineKeyboardButton("Voltar", callback_data="sudos")],
-        ]
-    )
+            InlineKeyboardButton("Adicionar", callback_data="settings_sudos_add"),
+            InlineKeyboardButton("Remover", callback_data="settings_sudos_remove"),
+        ],
+        [InlineKeyboardButton("Voltar", callback_data="sudos")],
+    ])
 
     await cq.edit_message_text(text, reply_markup=keyb)
 
@@ -111,9 +100,9 @@ async def settings_sudos_add(c: Client, cq: CallbackQuery):
 
     await cmessage.reply_text(
         "Usuário adicionado aos sudos",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Voltar", callback_data="settings_sudos")]]
-        ),
+        reply_markup=InlineKeyboardMarkup([
+            [InlineKeyboardButton("Voltar", callback_data="settings_sudos")]
+        ]),
     )
 
 
@@ -125,14 +114,12 @@ async def settings_sudos_remove(c: Client, cq: CallbackQuery):
         text = "Selecione o usuário que deseja remover dos sudos:\n\n"
         keyb = []
         for user in users:
-            keyb.append(
-                [
-                    InlineKeyboardButton(
-                        user.first_name,
-                        callback_data=f"settings_sudos_remove_{user.id}",
-                    )
-                ]
-            )
+            keyb.append([
+                InlineKeyboardButton(
+                    user.first_name,
+                    callback_data=f"settings_sudos_remove_{user.id}",
+                )
+            ])
 
         keyb.append([InlineKeyboardButton("Voltar", callback_data="settings_sudos")])
         await cq.edit_message_text(text, reply_markup=InlineKeyboardMarkup(keyb))
@@ -150,30 +137,24 @@ async def settings_sudos_remove(c: Client, cq: CallbackQuery):
 
     await cq.edit_message_text(
         "Usuário removido dos sudos",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Voltar", callback_data="settings_sudos")]]
-        ),
+        reply_markup=InlineKeyboardMarkup([
+            [InlineKeyboardButton("Voltar", callback_data="settings_sudos")]
+        ]),
     )
 
 
 @Client.on_callback_query(filters.regex("^settings_sudo_themc$") & filter_sudoers)
 async def settings_sudo_themc(c: Client, cq: CallbackQuery):
-    keyb = InlineKeyboardMarkup(
+    keyb = InlineKeyboardMarkup([
         [
-            [
-                InlineKeyboardButton(
-                    text=theme, callback_data=f"settings_sudo_themc {theme}"
-                )
-                for theme in cards.keys()
-            ],
-            [
-                InlineKeyboardButton(
-                    "Adicionar novo", callback_data="settings_sudo_themc_new"
-                ),
-                InlineKeyboardButton("Voltar", callback_data="sudos"),
-            ],
-        ]
-    )
+            InlineKeyboardButton(text=theme, callback_data=f"settings_sudo_themc {theme}")
+            for theme in cards
+        ],
+        [
+            InlineKeyboardButton("Adicionar novo", callback_data="settings_sudo_themc_new"),
+            InlineKeyboardButton("Voltar", callback_data="sudos"),
+        ],
+    ])
     await cq.edit_message_text("Selecione um tema:", reply_markup=keyb)
 
 
@@ -194,9 +175,7 @@ async def settings_themes_new(c: Client, cq: CallbackQuery):
     ncards = cards["classic"]
 
     for card in ncards["STICKERS"]:
-        await c.send_message(
-            cq.message.chat.id, "Mande um sticker para substituir o sticker:"
-        )
+        await c.send_message(cq.message.chat.id, "Mande um sticker para substituir o sticker:")
         await c.send_sticker(cq.message.chat.id, ncards["STICKERS"][card])
 
         cmessage = None
@@ -208,9 +187,7 @@ async def settings_themes_new(c: Client, cq: CallbackQuery):
             except ListenerTimeout:
                 return
     for card in ncards["STICKERS_GREY"]:
-        await c.send_message(
-            cq.message.chat.id, "Mande um sticker para substituir o sticker:"
-        )
+        await c.send_message(cq.message.chat.id, "Mande um sticker para substituir o sticker:")
         await c.send_sticker(cq.message.chat.id, ncards["STICKERS_GREY"][card])
 
         cmessage = None
@@ -222,40 +199,30 @@ async def settings_themes_new(c: Client, cq: CallbackQuery):
             except ListenerTimeout:
                 return
 
-    with open(f"cards/{name}.json", "w") as f:
+    with open(f"cards/{name}.json", "w", encoding="locale") as f:
         dump(ncards, f)
 
     await c.send_message(
         cq.message.chat.id,
         "Tema adicionado com sucesso!",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Voltar", callback_data="settings_sudo_themc")]]
-        ),
+        reply_markup=InlineKeyboardMarkup([
+            [InlineKeyboardButton("Voltar", callback_data="settings_sudo_themc")]
+        ]),
     )
 
 
 @Client.on_callback_query(filters.regex("^settings_sudo_themc ") & filter_sudoers)
 async def settings_themes(c: Client, cq: CallbackQuery):
     theme = cq.data.split(" ")[1]
-    keyb = InlineKeyboardMarkup(
+    keyb = InlineKeyboardMarkup([
         [
-            [
-                InlineKeyboardButton(
-                    "Adicionar", callback_data="settings_sudo_themc_add " + theme
-                ),
-                InlineKeyboardButton(
-                    "Atualizar", callback_data="settings_sudo_themc_update " + theme
-                ),
-                InlineKeyboardButton(
-                    "Verificar", callback_data="settings_sudo_themc_check " + theme
-                ),
-            ],
-            [InlineKeyboardButton("Voltar", callback_data="settings_sudo_themc")],
-        ]
-    )
-    await cq.edit_message_text(
-        f"O que deseja fazer com o tema {theme}?", reply_markup=keyb
-    )
+            InlineKeyboardButton("Adicionar", callback_data="settings_sudo_themc_add " + theme),
+            InlineKeyboardButton("Atualizar", callback_data="settings_sudo_themc_update " + theme),
+            InlineKeyboardButton("Verificar", callback_data="settings_sudo_themc_check " + theme),
+        ],
+        [InlineKeyboardButton("Voltar", callback_data="settings_sudo_themc")],
+    ])
+    await cq.edit_message_text(f"O que deseja fazer com o tema {theme}?", reply_markup=keyb)
 
 
 @Client.on_callback_query(filters.regex("^settings_sudo_themc_add ") & filter_sudoers)
@@ -300,42 +267,36 @@ async def settings_themes_add(c: Client, cq: CallbackQuery):
     cards[theme]["STICKERS"][code] = stickerc
     cards[theme]["STICKERS_GREY"][code] = stickerg
 
-    with open(f"cards/{theme}.json", "w") as f:
+    with open(f"cards/{theme}.json", "w", encoding="locale") as f:
         dump(cards[theme], f)
 
     await c.send_message(
         cq.message.chat.id,
         "Carta adicionada com sucesso!",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Voltar", callback_data="settings_sudo_themc")]]
-        ),
+        reply_markup=InlineKeyboardMarkup([
+            [InlineKeyboardButton("Voltar", callback_data="settings_sudo_themc")]
+        ]),
     )
 
 
-@Client.on_callback_query(
-    filters.regex("^settings_sudo_themc_update ") & filter_sudoers
-)
+@Client.on_callback_query(filters.regex("^settings_sudo_themc_update ") & filter_sudoers)
 async def settings_themes_update(c: Client, cq: CallbackQuery):
     sp = cq.data.split(" ")[1:]
     print(sp)
     theme = sp[0]
     if len(sp) == 1:
-        keyb = InlineKeyboardMarkup(
+        keyb = InlineKeyboardMarkup([
             [
-                [
-                    InlineKeyboardButton(
-                        "Light",
-                        callback_data=f"settings_sudo_themc_update {theme} Light",
-                    ),
-                    InlineKeyboardButton(
-                        "Dark", callback_data=f"settings_sudo_themc_update {theme} Dark"
-                    ),
-                ],
-            ]
-        )
-        await cq.edit_message_text(
-            "Escolha o tema que deseja atualizar", reply_markup=keyb
-        )
+                InlineKeyboardButton(
+                    "Light",
+                    callback_data=f"settings_sudo_themc_update {theme} Light",
+                ),
+                InlineKeyboardButton(
+                    "Dark", callback_data=f"settings_sudo_themc_update {theme} Dark"
+                ),
+            ],
+        ])
+        await cq.edit_message_text("Escolha o tema que deseja atualizar", reply_markup=keyb)
     if len(sp) == 2:
         keyb = []
         for color in cards[theme]["CARDS"]["COLORS"]:
@@ -359,24 +320,20 @@ async def settings_themes_update(c: Client, cq: CallbackQuery):
         keyb = []
         if sp[2] == "SPECIALS":
             for card in cards[theme]["CARDS"]["SPECIALS"]:
-                keyb.append(
-                    [
-                        InlineKeyboardButton(
-                            card,
-                            callback_data=f"settings_sudo_themc_update {theme} {sp[1]} x {card}",
-                        )
-                    ]
-                )
+                keyb.append([
+                    InlineKeyboardButton(
+                        card,
+                        callback_data=f"settings_sudo_themc_update {theme} {sp[1]} x {card}",
+                    )
+                ])
         else:
             for card in cards[theme]["CARDS"]["VALUES"]:
-                keyb.append(
-                    [
-                        InlineKeyboardButton(
-                            card,
-                            callback_data=f"settings_sudo_themc_update {theme} {sp[1]} {sp[2]} {card}",
-                        )
-                    ]
-                )
+                keyb.append([
+                    InlineKeyboardButton(
+                        card,
+                        callback_data=f"settings_sudo_themc_update {theme} {sp[1]} {sp[2]} {card}",
+                    )
+                ])
         await cq.edit_message_text(
             "Escolha o valor da carta que deseja atualizar",
             reply_markup=InlineKeyboardMarkup(keyb),
@@ -397,15 +354,15 @@ async def settings_themes_update(c: Client, cq: CallbackQuery):
 
         cards[theme][cardtm][cardid] = cmessage.sticker.file_id
 
-        with open(f"cards/{theme}.json", "w") as f:
+        with open(f"cards/{theme}.json", "w", encoding="locale") as f:
             dump(cards[theme], f)
 
         await c.send_message(
             cq.message.chat.id,
             "Carta atualizada com sucesso!",
-            reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("Voltar", callback_data="settings_sudo_themc")]]
-            ),
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("Voltar", callback_data="settings_sudo_themc")]
+            ]),
         )
 
 
@@ -419,9 +376,7 @@ async def settings_themes_check(c: Client, cq: CallbackQuery):
         await c.send_message(cq.message.chat.id, message)
         for card in cards[theme][card_type]:
             try:
-                m2 = await c.send_sticker(
-                    cq.message.chat.id, cards[theme][card_type][card]
-                )
+                m2 = await c.send_sticker(cq.message.chat.id, cards[theme][card_type][card])
                 await m2.delete()
                 await sleep(0.3)
             except MediaEmpty:
@@ -438,11 +393,9 @@ async def settings_themes_check(c: Client, cq: CallbackQuery):
                         return
 
                 cards[theme][card_type][card] = cmessage.sticker.file_id
-                await c.send_message(
-                    cq.message.chat.id, f"Carta {card} atualizada com sucesso!"
-                )
+                await c.send_message(cq.message.chat.id, f"Carta {card} atualizada com sucesso!")
 
-    with open(f"cards/{theme}.json", "w") as f:
+    with open(f"cards/{theme}.json", "w", encoding="locale") as f:
         dump(cards[theme], f)
 
     await c.send_message(cq.message.chat.id, "Cartas verificadas com sucesso!")

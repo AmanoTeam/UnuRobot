@@ -14,6 +14,7 @@ class Chat(Model):
     one_card = fields.BooleanField(default=False)
     lang = fields.CharField(max_length=255, default="en-US")
 
+
 class User(Model):
     id = fields.BigIntField(pk=True)
     placar = fields.BooleanField(default=False)
@@ -25,14 +26,10 @@ class User(Model):
 
 
 async def connect_database():
-    await Tortoise.init(
-        {
-            "connections": {
-                "bot_db": os.getenv("DATABASE_URL", "sqlite://database.sqlite")
-            },
-            "apps": {"bot": {"models": [__name__], "default_connection": "bot_db"}},
-        }
-    )
+    await Tortoise.init({
+        "connections": {"bot_db": os.getenv("DATABASE_URL", "sqlite://database.sqlite")},
+        "apps": {"bot": {"models": [__name__], "default_connection": "bot_db"}},
+    })
 
     conn = connections.get("bot_db")
     conn.capabilities = Capabilities(
