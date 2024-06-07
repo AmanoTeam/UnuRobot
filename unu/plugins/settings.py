@@ -9,71 +9,73 @@ from config import games
 from unu.card import cards
 from unu.db import Chat, User
 from unu.locales import get_locale_string, langs, use_chat_lang, use_user_lang
+from unu.utils import filter_sudoers
 
 
-@Client.on_callback_query(filters.regex("^settings$"))
-@Client.on_message(filters.command("settings"))
+@Client.on_callback_query(filters.regex("^settings$") & filters.private)
+@Client.on_message(filters.command("settings") & filters.private)
+@use_chat_lang()
+async def settings_pvt(c: Client, m: Message | CallbackQuery, t):
+    func = m.reply_text if isinstance(m, Message) else m.edit_message_text
+
+    x = await User.get(id=m.from_user.id)
+    keyb = [
+        [(t("language"), "info_lang"), (t("lang_flag"), "lang")],
+        [(t("status"), "status"), ("✅" if x.placar else "✖️", "ch_status")],
+    ]
+
+    if await filter_sudoers(c, m):
+        keyb.append([("sudos", "sudos")])
+
+    keyb.append([(t("back"), "start")])
+
+    await func(t("settings"), reply_markup=ikb(keyb))
+
+
+@Client.on_callback_query(filters.regex("^settings$") & ~filters.private)
+@Client.on_message(filters.command("settings") & ~filters.private)
 @use_chat_lang()
 async def settings(c: Client, m: Message | CallbackQuery, t):
-    if (isinstance(m, Message) and m.chat.type == ChatType.PRIVATE) or (
-        isinstance(m, CallbackQuery) and m.message.chat.type == ChatType.PRIVATE
-    ):
-        print(m)
-        func = m.reply_text if isinstance(m, Message) else m.edit_message_text
-
-        x = await User.get(id=m.from_user.id)
-        keyb = [
-            [(t("language"), "info_lang"), (t("lang_flag"), "lang")],
-            [(t("status"), "status"), ("✅" if x.placar else "✖️", "ch_status")],
-        ]
-
-        if await filters.filter_sudoers(c, m):
-            keyb.append([("sudos", "sudos")])
-
-        keyb.append([(t("back"), "start")])
-
-        await func(t("settings"), reply_markup=ikb(keyb))
+    chat_id = m.chat.id if isinstance(m, Message) else m.message.chat.id
+    admin = await c.get_chat_member(chat_id, m.from_user.id)
+    print(admin)
+    if admin.status == ChatMemberStatus.MEMBER:
+        await m.reply("You need to be an admin to change the settings!")
+        return
+    if games.get(chat_id) and games[chat_id].is_started:
+        await m.reply("You can't change the settings while a game is running!")
+        return
+    x = (await Chat.get_or_create(id=chat_id))[0]
+    keyb = InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton(t("theme"), callback_data="info_theme"),
+            InlineKeyboardButton(t(x.theme), callback_data="theme"),
+        ],
+        [
+            InlineKeyboardButton(t("seven_zero"), callback_data="info_seven"),
+            InlineKeyboardButton("✅" if x.seven else "✖️", callback_data="mode_seven"),
+        ],
+        [
+            InlineKeyboardButton(t("sbluff"), callback_data="info_bluff"),
+            InlineKeyboardButton("✅" if x.bluff else "✖️", callback_data="mode_bluff"),
+        ],
+        [
+            InlineKeyboardButton(t("one_win"), callback_data="info_one_win"),
+            InlineKeyboardButton("✅" if x.one_win else "✖️", callback_data="mode_one_win"),
+        ],
+        [
+            InlineKeyboardButton(t("one_card"), callback_data="info_one_card"),
+            InlineKeyboardButton("✅" if x.one_card else "✖️", callback_data="mode_one_card"),
+        ],
+        [
+            InlineKeyboardButton(t("language"), callback_data="info_lang"),
+            InlineKeyboardButton(t("lang_flag"), callback_data="lang"),
+        ],
+    ])
+    if isinstance(m, Message):
+        await m.reply_text(t("settings"), reply_markup=keyb)
     else:
-        chat_id = m.chat.id if isinstance(m, Message) else m.message.chat.id
-        admin = await c.get_chat_member(chat_id, m.from_user.id)
-        print(admin)
-        if admin.status == ChatMemberStatus.MEMBER:
-            await m.reply("You need to be an admin to change the settings!")
-            return
-        if games.get(chat_id) and games[chat_id].is_started:
-            await m.reply("You can't change the settings while a game is running!")
-            return
-        x = (await Chat.get_or_create(id=chat_id))[0]
-        keyb = InlineKeyboardMarkup([
-            [
-                InlineKeyboardButton(t("theme"), callback_data="info_theme"),
-                InlineKeyboardButton(t(x.theme), callback_data="theme"),
-            ],
-            [
-                InlineKeyboardButton(t("seven_zero"), callback_data="info_seven"),
-                InlineKeyboardButton("✅" if x.seven else "✖️", callback_data="mode_seven"),
-            ],
-            [
-                InlineKeyboardButton(t("sbluff"), callback_data="info_bluff"),
-                InlineKeyboardButton("✅" if x.bluff else "✖️", callback_data="mode_bluff"),
-            ],
-            [
-                InlineKeyboardButton(t("one_win"), callback_data="info_one_win"),
-                InlineKeyboardButton("✅" if x.one_win else "✖️", callback_data="mode_one_win"),
-            ],
-            [
-                InlineKeyboardButton(t("one_card"), callback_data="info_one_card"),
-                InlineKeyboardButton("✅" if x.one_card else "✖️", callback_data="mode_one_card"),
-            ],
-            [
-                InlineKeyboardButton(t("language"), callback_data="info_lang"),
-                InlineKeyboardButton(t("lang_flag"), callback_data="lang"),
-            ],
-        ])
-        if isinstance(m, Message):
-            await m.reply_text(t("settings"), reply_markup=keyb)
-        else:
-            await m.edit_message_text(t("settings"), reply_markup=keyb)
+        await m.edit_message_text(t("settings"), reply_markup=keyb)
 
 
 @Client.on_callback_query(filters.regex("^theme"))

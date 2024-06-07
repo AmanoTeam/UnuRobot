@@ -16,20 +16,7 @@ from hydrogram.types import (
 from config import sudoers
 from unu.card import cards
 from unu.db import User
-
-
-async def filter_sudoers_logic(flt, c, u):
-    if not u.from_user:
-        return None
-    usr = u.from_user
-    db_usr = await User.get_or_none(id=usr.id)
-    if not db_usr:
-        return False
-    return bool(db_usr.sudo or usr.id in sudoers)
-
-
-filter_sudoers = filters.create(filter_sudoers_logic, "FilterSudoers")
-filters.filter_sudoers = filter_sudoers
+from unu.utils import filter_sudoers
 
 
 @Client.on_message(filters.command("sudos") & filters.private & filter_sudoers)
