@@ -164,7 +164,7 @@ async def lang(c: Client, cq: CallbackQuery, t):
         keyb = InlineKeyboardMarkup([
             [
                 InlineKeyboardButton(
-                    get_locale_string(lang, "lang_name"),
+                    get_locale_string(lang, "lang_name") + " " + get_locale_string(lang, "lang_flag"),
                     callback_data=f"lang_{lang}",
                 )
             ]

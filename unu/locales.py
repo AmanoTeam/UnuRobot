@@ -1,3 +1,4 @@
+import glob
 from functools import partial, wraps
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -13,7 +14,9 @@ from unu.db import Chat, User
 if TYPE_CHECKING:
     from unu.game import Game
 
-langs = ["en-US", "pt-BR"]
+
+file_list = glob.glob("locales/*.yml")
+langs = [Path(file).stem for file in file_list]
 
 default_language = "en-US"
 
