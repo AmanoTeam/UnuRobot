@@ -375,12 +375,13 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
     if game.chosen == "color":
         game.last_card = (ir.result_id, game.last_card[1])
         game.chosen = None
-        await verify_cards(game, c, ir, game.players[ir.from_user.id], ut, ct)
-        return await c.send_message(
-            game.chat.id,
-            ct("next").format(game.next_player.mention),
-            reply_markup=inline_keyb,
-        )
+        if not await verify_cards(game, c, ir, game.players[ir.from_user.id], ut, ct):
+            game.next()
+            return await c.send_message(
+                game.chat.id,
+                ct("next").format(game.next_player.mention),
+                reply_markup=inline_keyb,
+            )
     elif game.chosen == "player" and game.last_card_2["card"][1] == "7":
         game.players[ir.from_user.id].cards, game.players[int(pcard[0])].cards = (
             game.players[int(pcard[0])].cards,
