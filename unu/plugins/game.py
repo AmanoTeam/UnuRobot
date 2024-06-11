@@ -222,6 +222,16 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
     theme = config.theme
     color_icons = cards[theme]["CARDS"]["COLOR_ICONS"]
     values_icons = cards[theme]["CARDS"]["VALUES_ICONS"]
+
+    info_text = ut("info_text").format(
+        current_player=game.next_player.mention,
+        last_card=color_icons[game.last_card[0]] + values_icons[game.last_card[1]],
+    )
+    for fplayer in game.players:
+        info_text += ut("info_text2").format(
+            player=game.players[fplayer].mention, cards=len(game.players[fplayer].cards)
+        )
+
     if game.chosen == "color" and game.next_player.id == m.from_user.id:
         pre = ""
         if game.last_card[1] in cards[theme]["CARDS"]["THEME_CARDS"]:
@@ -236,6 +246,17 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
             )
             for color in COLORS
         ]
+        text_cards = ""
+        for card in game.players[m.from_user.id].cards:
+            text_cards += f"{color_icons[card[0]]}{values_icons[card[1]]}, "
+
+        articles.append(
+            InlineQueryResultArticle(
+                id="info-",
+                title=text_cards,
+                input_message_content=InputTextMessageContent(info_text),
+            )
+        )
         await m.answer(articles, cache_time=0)
         return None
     if game.chosen == "player" and game.next_player.id == m.from_user.id:
@@ -258,15 +279,6 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
                 )
         await m.answer(articles, cache_time=0)
         return None
-
-    info_text = ut("info_text").format(
-        current_player=game.next_player.mention,
-        last_card=color_icons[game.last_card[0]] + values_icons[game.last_card[1]],
-    )
-    for fplayer in game.players:
-        info_text += ut("info_text2").format(
-            player=game.players[fplayer].mention, cards=len(game.players[fplayer].cards)
-        )
 
     if not game or m.from_user.id != game.next_player.id:
         articles = []
@@ -363,6 +375,12 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
     if game.chosen == "color":
         game.last_card = (ir.result_id, game.last_card[1])
         game.chosen = None
+        await verify_cards(game, c, ir, game.players[ir.from_user.id], ut, ct)
+        return await c.send_message(
+            game.chat.id,
+            ct("next").format(game.next_player.mention),
+            reply_markup=inline_keyb,
+        )
     elif game.chosen == "player" and game.last_card_2["card"][1] == "7":
         game.players[ir.from_user.id].cards, game.players[int(pcard[0])].cards = (
             game.players[int(pcard[0])].cards,
@@ -379,6 +397,12 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
         game.next()
         pcard.append("player")
         await verify_cards(game, c, ir, game.players[int(pcard[0])], ut, ct)
+        await verify_cards(game, c, ir, game.players[ir.from_user.id], ut, ct)
+        return await c.send_message(
+            game.chat.id,
+            ct("next").format(game.next_player.mention),
+            reply_markup=inline_keyb,
+        )
     elif pcard[0] == "option_draw":
         buy = game.draw if game.draw > 0 else 1
         game.players[ir.from_user.id].cards.extend(game.deck.draw(buy))
@@ -491,8 +515,7 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
     else:
         return await c.send_message(game.chat.id, ct("invalid_card"))
 
-    if games.get(game.chat.id):
-        await verify_cards(game, c, ir, ir.from_user, ut, ct)
+    if games.get(game.chat.id) and not await verify_cards(game, c, ir, ir.from_user, ut, ct):
         game.next()
         return await c.send_message(
             game.chat.id,
@@ -568,4 +591,5 @@ async def verify_cards(game: Game, c: Client, ir, user: User, ut, t):
                     await db_user.save()
                 player_game.pop(player)
             await c.send_message(game.chat.id, t("game_over"))
-        return
+        return True
+    return False
