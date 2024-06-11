@@ -463,7 +463,7 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
         pcard[1] and pcard[1] in cards[config.theme]["CARDS"]["THEME_CARDS"]
     ):
         game.deck.cards.append(game.last_card)
-        module = importlib.import_module(f"special_cards.{config.theme}")
+        module = importlib.import_module(f"unu.special_cards.{config.theme}")
         function = getattr(
             module,
             pcard[1] if pcard[1] in cards[config.theme]["CARDS"]["THEME_CARDS"] else pcard[0],
