@@ -1,0 +1,78 @@
+lang_flag: 🇪🇸
+theme: Tema
+back: Volver
+seven_zero: 7-0
+sbluff: Farol
+one_win: Un ganador
+info_one_win: Cuando el primer jugador se queda sin tarjetas, el juego termina y son
+  el ganador.
+one_card: Diga UNO
+language: Idioma
+game_mode: Modo de juego
+status: Estado
+game_mode_text: "Mostrando información de los modos de juego disponibles!\n\n"
+settings: "¡Bienvenido al menú de configuración!\n\nElija una opción a continuación
+  para configurar el bot."
+theme_config: 'Elija un tema para las tarjetas:'
+minimalist: Minimalista
+colorblind: Daltónico
+no_joinned: ¡No estás en el juego!
+next: Siguiente {}
+game_over: ¡El juego ha terminado!
+cards_swapped: '{name1} intercambió cartas con {name2}'
+colorchoosed: Elegí el color {color}!
+colorchoose: '{nombre} ¡elige un color!'
+playerchoose: '{name} ¡elige un jugador!'
+invalid_card: ¡Moveos inválidos!
+said_uno: '{name} gritó UNO!'
+say_uno: Diga UNO o dibuje 2 cartas!
+first: ' primero'
+play: Jugar
+lang_name: Español
+player_left: ¡{} deja el juego!
+lang_changed: ¡El idioma se ha cambiado a español!
+info_theme: Elige un tema para las tarjetas
+info_lang: Puedes cambiar el idioma del bot.
+start_text: "¡Hola! ¡Soy UNO Bot, un bot para jugar a UNO en Telegram!\n\nPara jugar,
+  ponerme en un grupo y enviar /nuevo para comenzar un nuevo juego!\n\no para configurar
+  los botones a continuación!"
+info_one_card: Cuando un jugador tiene una sola tarjeta, deben decir UNO. Si no lo
+  hacen, deben dibujar 2 tarjetas.
+choose_lang: Elige un idioma
+classic: Clásico
+game_existis: ¡Ya hay un juego en progreso!
+only_group: ¡Este comando sólo funciona en grupos!
+game_started: ¡Ha comenzado un nuevo juego!
+start_game: Inicio Juego
+not_bluffed: "{name1} ¡no fue un farol!\n{name2} ¡sacó {draw} tarjetas!"
+not_said_uno: "{name} ¡No gritaste a UNO!\n{name} dibujó 2 cartas!"
+won: '{name} ganó el juego {comp}!'
+continuing: continuar el juego con {count} jugadores
+info_seven: Cuando se juega un 7, el jugador puede cambiar tarjetas con otro jugador.
+  Cuando se juega un 0, todos pasan sus tarjetas al siguiente jugador.
+info_bluff: Cuando un jugador juega una tarjeta +4, el siguiente puede desafiar. Si
+  el jugador que jugó la tarjeta +4 tiene otra tarjeta para jugar, dibujan 4 tarjetas.
+  Si no, el que desafió dibuja 6.
+already_in_game: Ya estás en otro juego
+leave: Deja
+no_game: ¡No hay juego en progreso!
+already_joined: ¡Ya estás en el juego!
+join: Únase
+no_game_text: No hay juego en progreso, enviar /nuevo para comenzar un nuevo juego!
+lobby_closed: ¡La sala está cerrada!
+lobby_opened: ¡La sala está abierta!
+joined_game: ¡Te uniste al juego!
+player_joined: ¡{} se unió al juego!
+not_allowed: ¡No se te permite hacer eso!
+info_text: 🃏 Información de la partida:\n Reproductor actual - {current_player}\nÚltima
+  tarjeta - {last_card}\n
+left_game: ¡Dejaste el juego!
+game_already_started: ¡La partida ya ha comenzado!
+info_text2: '{player}: {cards} cartas, '
+pass: Pasar
+buy: Comprar {} tarjeta(s)
+bluff: ¡Creo que vas de farol!
+not_swapped: Debido al número de jugadores, no fue posible cambiar tarjetas!
+swapped: ¡Las cartas han sido intercambiadas!
+bought: ¡Compraste {buy} tarjetas!
+bluffed: "{name} ¡no puedes farolear!\n{name} ¡robó {draw} cartas!"

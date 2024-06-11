@@ -5,21 +5,28 @@ back: Voltar
 theme: Tema
 info_theme: Você escolhe um tema para as cartas
 seven_zero: 7-0
-info_seven: Quando um 7 é jogado, o jogador pode trocar as cartas com outro jogador. Quando um 0 é jogado, todos passam as cartas para o próximo jogador.
+info_seven: Quando um 7 é jogado, o jogador pode trocar as cartas com outro jogador.
+  Quando um 0 é jogado, todos passam as cartas para o próximo jogador.
 sbluff: Blefe
-info_bluff: Quando um jogador joga uma carta +4, o próximo pode desafiar. Se o jogador que jogou a carta +4 tiver outra carta para jogar, ele compra 4 cartas. Se não tiver, quem desafiou compra 6.
+info_bluff: Quando um jogador joga uma carta +4, o próximo pode desafiar. Se o jogador
+  que jogou a carta +4 tiver outra carta para jogar, ele compra 4 cartas. Se não tiver,
+  quem desafiou compra 6.
 one_win: Um vencedor
 info_one_win: Quando o primeiro jogador fica sem cartas, o jogo acaba e ele é o vencedor.
 one_card: Dizer UNO
-info_one_card: Quando um jogador tem apenas uma carta, ele deve dizer UNO. Se ele não disser, ele deve comprar 2 cartas.
+info_one_card: Quando um jogador tem apenas uma carta, ele deve dizer UNO. Se ele
+  não disser, ele deve comprar 2 cartas.
 language: Idioma
 info_lang: Você pode alterar o idioma do bot.
 choose_lang: Escolha um idioma
-start_text: "Olá! Eu sou o UNO Bot, um bot para jogar UNO no Telegram!\n\nPara jogar me coloque em um grupo e mande /new para começar um novo jogo!\n\nou para configurar use os botões abaixo!"
+start_text: "Olá! Eu sou o UNO Bot, um bot para jogar UNO no Telegram!\n\nPara jogar
+  me coloque em um grupo e mande /new para começar um novo jogo!\n\nou para configurar
+  use os botões abaixo!"
 game_mode: Modo de Jogo
 status: Status
 game_mode_text: "Mostrando informações dos modos de jogo disponíveis!\n\n"
-settings: "Bem vindo ao menu de configurações!\n\nEscolha uma opçãoe abaixo para configurar o bot."
+settings: "Bem vindo ao menu de configurações!\n\nEscolha uma opçãoe abaixo para configurar
+  o bot."
 theme_config: "Escolha um tema para as cartas:"
 minimalist: Minimalista
 classic: Clássico
@@ -45,7 +52,8 @@ player_left: "{} saiu do jogo!"
 left_game: Você saiu do jogo!
 not_allowed: Você não tem permissão para fazer isso!
 game_already_started: O jogo já começou!
-info_text: 🃏 Informações do Jogo:\nJogador atual - {current_player}\nÚltima carta - {last_card}\n
+info_text: 🃏 Informações do Jogo:\nJogador atual - {current_player}\nÚltima carta
+  - {last_card}\n
 info_text2: "{player}: {cards} cartas, "
 pass: Passar
 buy: Comprar {} carta(s)
