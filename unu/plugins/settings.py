@@ -40,10 +40,10 @@ async def settings(c: Client, m: Message | CallbackQuery, t):
     admin = await c.get_chat_member(chat_id, m.from_user.id)
     print(admin)
     if admin.status == ChatMemberStatus.MEMBER:
-        await m.reply("You need to be an admin to change the settings!")
+        await m.reply(t("admin_only"))
         return
     if games.get(chat_id) and games[chat_id].is_started:
-        await m.reply("You can't change the settings while a game is running!")
+        await m.reply(t("game_running"))
         return
     x = (await Chat.get_or_create(id=chat_id))[0]
     keyb = InlineKeyboardMarkup([
@@ -82,9 +82,10 @@ async def settings(c: Client, m: Message | CallbackQuery, t):
 @use_chat_lang()
 async def theme(c: Client, cq: CallbackQuery, t):
     if " " in cq.data:
-        await Chat.get(id=cq.message.chat.id).update(theme=cq.data.split(" ")[1])
+        theme = cq.data.split(" ")[1]
+        await Chat.get(id=cq.message.chat.id).update(theme=theme)
         keyb = InlineKeyboardMarkup([[InlineKeyboardButton(t("back"), callback_data="theme")]])
-        await cq.message.edit_text("Theme changed!", reply_markup=keyb)
+        await cq.message.edit_text(t("theme_changed").format(theme=theme), reply_markup=keyb)
     else:
         themes = cards.keys()
         tkeyb = [
@@ -102,7 +103,7 @@ async def theme(c: Client, cq: CallbackQuery, t):
 async def mode(c: Client, cq: CallbackQuery, t):
     admin = await c.get_chat_member(cq.message.chat.id, cq.from_user.id)
     if admin.status is ChatMemberStatus.MEMBER:
-        await cq.answer("You need to be an admin to change the settings!")
+        await cq.answer(t("admin_only"))
         return
     x = await Chat.get(id=cq.message.chat.id)
     if cq.data == "mode_seven":
@@ -150,7 +151,7 @@ async def lang(c: Client, cq: CallbackQuery, t):
     if cq.message.chat.type != ChatType.PRIVATE:
         admin = await c.get_chat_member(cq.message.chat.id, cq.from_user.id)
         if admin.status is ChatMemberStatus.MEMBER:
-            await cq.answer("You need to be an admin to change the theme!")
+            await cq.answer(t("admin_only"))
             return
     if "_" in cq.data:
         nt = partial(get_locale_string, cq.data.split("_")[1])
@@ -164,7 +165,9 @@ async def lang(c: Client, cq: CallbackQuery, t):
         keyb = InlineKeyboardMarkup([
             [
                 InlineKeyboardButton(
-                    get_locale_string(lang, "lang_name") + " " + get_locale_string(lang, "lang_flag"),
+                    get_locale_string(lang, "lang_name")
+                    + " "
+                    + get_locale_string(lang, "lang_flag"),
                     callback_data=f"lang_{lang}",
                 )
             ]

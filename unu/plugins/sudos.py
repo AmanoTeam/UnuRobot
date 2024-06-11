@@ -16,51 +16,55 @@ from hydrogram.types import (
 from config import sudoers
 from unu.card import cards
 from unu.db import User
+from unu.locales import use_user_lang
 from unu.utils import filter_sudoers
 
 
 @Client.on_message(filters.command("sudos") & filters.private & filter_sudoers)
 @Client.on_callback_query(filters.regex("^sudos$") & filter_sudoers)
-async def start(c: Client, m: Message | CallbackQuery):
+@use_user_lang()
+async def start(c: Client, m: Message | CallbackQuery, t):
     func = m.edit_message_text if isinstance(m, CallbackQuery) else m.reply_text
     keyb = InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("Sudos", callback_data="settings_sudos"),
-            InlineKeyboardButton("themes", callback_data="settings_sudo_themc"),
+            InlineKeyboardButton(t("tudos"), callback_data="settings_sudos"),
+            InlineKeyboardButton(t("theme"), callback_data="settings_sudo_themc"),
         ],
         [
-            InlineKeyboardButton("Voltar", callback_data="settings"),
+            InlineKeyboardButton(t("back"), callback_data="settings"),
         ],
     ])
     await func(
-        "Bem vindo ao menu de configurações do UnuRobot, aqui você pode configurar o bot da forma que quiser, para isso basta clicar em um dos botões abaixo!",
+        t("sudo_menu"),
         reply_markup=keyb,
     )
 
 
 @Client.on_callback_query(filters.regex("^settings_sudos$") & filter_sudoers)
-async def settings_sudos(c: Client, cq: CallbackQuery):
+@use_user_lang()
+async def settings_sudos(c: Client, cq: CallbackQuery, t):
     usrs = await c.get_users(sudoers)
     db_usrs = await User.filter(sudo=True)
     usrs += await c.get_users([usr.id for usr in db_usrs])
-    text = "Lista de sudos:\n\n"
+    text = t("sudoers")
     for usr in usrs:
         text += f"👤 {usr.mention}\n"
 
     keyb = InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("Adicionar", callback_data="settings_sudos_add"),
-            InlineKeyboardButton("Remover", callback_data="settings_sudos_remove"),
+            InlineKeyboardButton(t("add_sudo"), callback_data="settings_sudos_add"),
+            InlineKeyboardButton(t("rm_sudo"), callback_data="settings_sudos_remove"),
         ],
-        [InlineKeyboardButton("Voltar", callback_data="sudos")],
+        [InlineKeyboardButton(t("back"), callback_data="sudos")],
     ])
 
     await cq.edit_message_text(text, reply_markup=keyb)
 
 
 @Client.on_callback_query(filters.regex("^settings_sudos_add$") & filter_sudoers)
-async def settings_sudos_add(c: Client, cq: CallbackQuery):
-    await cq.edit_message_text("Envie o ID do usuário que deseja adicionar aos sudos")
+@use_user_lang()
+async def settings_sudos_add(c: Client, cq: CallbackQuery, t):
+    await cq.edit_message_text(t("send_user_id"))
     cmessage = None
     # Wait for the user to send a message with the new emoji
     try:
@@ -74,20 +78,20 @@ async def settings_sudos_add(c: Client, cq: CallbackQuery):
     user = await c.get_users(text)
 
     if not user:
-        await cmessage.reply_text("Usuário não encontrado")
+        await cmessage.reply_text(t("user_not_found"))
         return
 
     user_db = await User.get_or_create(id=user.id)
 
     if user_db[0].sudo:
-        await cmessage.reply_text("Usuário já é sudo")
+        await cmessage.reply_text(t("user_sudoer").format(user=user.mention))
         return
 
     user_db[0].sudo = True
     await user_db[0].save()
 
     await cmessage.reply_text(
-        "Usuário adicionado aos sudos",
+        t("user_added").format(user=user.mention),
         reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton("Voltar", callback_data="settings_sudos")]
         ]),
@@ -95,11 +99,12 @@ async def settings_sudos_add(c: Client, cq: CallbackQuery):
 
 
 @Client.on_callback_query(filters.regex("^settings_sudos_remove") & filter_sudoers)
-async def settings_sudos_remove(c: Client, cq: CallbackQuery):
+@use_user_lang()
+async def settings_sudos_remove(c: Client, cq: CallbackQuery, t):
     if cq.data == "settings_sudos_remove":
         db_users = await User.filter(sudo=True)
         users = await c.get_users([usr.id for usr in db_users])
-        text = "Selecione o usuário que deseja remover dos sudos:\n\n"
+        text = t("select_user")
         keyb = [
             [
                 InlineKeyboardButton(
@@ -110,7 +115,7 @@ async def settings_sudos_remove(c: Client, cq: CallbackQuery):
             for user in users
         ]
 
-        keyb.append([InlineKeyboardButton("Voltar", callback_data="settings_sudos")])
+        keyb.append([InlineKeyboardButton(t("back"), callback_data="settings_sudos")])
         await cq.edit_message_text(text, reply_markup=InlineKeyboardMarkup(keyb))
         return
 
@@ -118,14 +123,15 @@ async def settings_sudos_remove(c: Client, cq: CallbackQuery):
     sudoers = [usr.id for usr in db_users]
 
     user_id = int(cq.data.split("_")[3])
+    user = await c.get_users(user_id)
     if user_id not in sudoers:
-        await cq.answer("Usuário não é sudo")
+        await cq.answer(t("user_not_sudoer").format(user=user.mention))
         return
 
     await User.get(id=user_id).update(sudo=False)
 
     await cq.edit_message_text(
-        "Usuário removido dos sudos",
+        t("user_removed").format(user=user.mention),
         reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton("Voltar", callback_data="settings_sudos")]
         ]),
@@ -133,23 +139,25 @@ async def settings_sudos_remove(c: Client, cq: CallbackQuery):
 
 
 @Client.on_callback_query(filters.regex("^settings_sudo_themc$") & filter_sudoers)
-async def settings_sudo_themc(c: Client, cq: CallbackQuery):
+@use_user_lang()
+async def settings_sudo_themc(c: Client, cq: CallbackQuery, t):
     keyb = InlineKeyboardMarkup([
         [
             InlineKeyboardButton(text=theme, callback_data=f"settings_sudo_themc {theme}")
             for theme in cards
         ],
         [
-            InlineKeyboardButton("Adicionar novo", callback_data="settings_sudo_themc_new"),
-            InlineKeyboardButton("Voltar", callback_data="sudos"),
+            InlineKeyboardButton(t("add_theme"), callback_data="settings_sudo_themc_new"),
+            InlineKeyboardButton(t("theme"), callback_data="sudos"),
         ],
     ])
-    await cq.edit_message_text("Selecione um tema:", reply_markup=keyb)
+    await cq.edit_message_text(t("theme_config"), reply_markup=keyb)
 
 
 @Client.on_callback_query(filters.regex("^settings_sudo_themc_new$") & filter_sudoers)
-async def settings_themes_new(c: Client, cq: CallbackQuery):
-    await cq.edit_message_text("Envie o nome do tema")
+@use_user_lang()
+async def settings_themes_new(c: Client, cq: CallbackQuery, t):
+    await cq.edit_message_text(t("send_theme_name"))
     cmessage = None
     # Wait for the user to send a message with the new emoji
     try:
@@ -164,7 +172,7 @@ async def settings_themes_new(c: Client, cq: CallbackQuery):
     ncards = cards["classic"]
 
     for card in ncards["STICKERS"]:
-        await c.send_message(cq.message.chat.id, "Mande um sticker para substituir o sticker:")
+        await c.send_message(cq.message.chat.id, t("send_sticker"))
         await c.send_sticker(cq.message.chat.id, ncards["STICKERS"][card])
 
         cmessage = None
@@ -176,7 +184,7 @@ async def settings_themes_new(c: Client, cq: CallbackQuery):
         except ListenerTimeout:
             return
     for card in ncards["STICKERS_GREY"]:
-        await c.send_message(cq.message.chat.id, "Mande um sticker para substituir o sticker:")
+        await c.send_message(cq.message.chat.id, t("send_sticker"))
         await c.send_sticker(cq.message.chat.id, ncards["STICKERS_GREY"][card])
 
         cmessage = None
@@ -193,7 +201,7 @@ async def settings_themes_new(c: Client, cq: CallbackQuery):
 
     await c.send_message(
         cq.message.chat.id,
-        "Tema adicionado com sucesso!",
+        t("theme_added").format(name=name),
         reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton("Voltar", callback_data="settings_sudo_themc")]
         ]),
@@ -201,23 +209,29 @@ async def settings_themes_new(c: Client, cq: CallbackQuery):
 
 
 @Client.on_callback_query(filters.regex("^settings_sudo_themc ") & filter_sudoers)
-async def settings_themes(c: Client, cq: CallbackQuery):
+@use_user_lang()
+async def settings_themes(c: Client, cq: CallbackQuery, t):
     theme = cq.data.split(" ")[1]
     keyb = InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("Adicionar", callback_data="settings_sudo_themc_add " + theme),
-            InlineKeyboardButton("Atualizar", callback_data="settings_sudo_themc_update " + theme),
-            InlineKeyboardButton("Verificar", callback_data="settings_sudo_themc_check " + theme),
+            InlineKeyboardButton(t("add_card"), callback_data="settings_sudo_themc_add " + theme),
+            InlineKeyboardButton(
+                t("update_card"), callback_data="settings_sudo_themc_update " + theme
+            ),
+            InlineKeyboardButton(
+                t("verify_card"), callback_data="settings_sudo_themc_check " + theme
+            ),
         ],
         [InlineKeyboardButton("Voltar", callback_data="settings_sudo_themc")],
     ])
-    await cq.edit_message_text(f"O que deseja fazer com o tema {theme}?", reply_markup=keyb)
+    await cq.edit_message_text(t("sudo_theme").format(theme=theme), reply_markup=keyb)
 
 
 @Client.on_callback_query(filters.regex("^settings_sudo_themc_add ") & filter_sudoers)
-async def settings_themes_add(c: Client, cq: CallbackQuery):
+@use_user_lang()
+async def settings_themes_add(c: Client, cq: CallbackQuery, t):
     theme = cq.data.split(" ")[1]
-    await cq.edit_message_text("Envie o código da nova carta")
+    await cq.edit_message_text(t("send_card_code"))
 
     cmessage = None
 
@@ -229,7 +243,7 @@ async def settings_themes_add(c: Client, cq: CallbackQuery):
 
     code = cmessage.text
 
-    await c.send_message(cq.message.chat.id, f"Mande um sticker colorido para o {code}")
+    await c.send_message(cq.message.chat.id, t("send_colored_card").format(code=code))
 
     cmessage = None
 
@@ -241,7 +255,7 @@ async def settings_themes_add(c: Client, cq: CallbackQuery):
 
     stickerc = cmessage.sticker.file_id
 
-    await c.send_message(cq.message.chat.id, f"Mande um sticker cinza para o {code}")
+    await c.send_message(cq.message.chat.id, t("send_grey_card").format(code=code))
 
     cmessage = None
 
@@ -261,15 +275,16 @@ async def settings_themes_add(c: Client, cq: CallbackQuery):
 
     await c.send_message(
         cq.message.chat.id,
-        "Carta adicionada com sucesso!",
+        t("card_added").format(code=code),
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("Voltar", callback_data="settings_sudo_themc")]
+            [InlineKeyboardButton(t("back"), callback_data="settings_sudo_themc")]
         ]),
     )
 
 
 @Client.on_callback_query(filters.regex("^settings_sudo_themc_update ") & filter_sudoers)
-async def settings_themes_update(c: Client, cq: CallbackQuery):
+@use_user_lang()
+async def settings_themes_update(c: Client, cq: CallbackQuery, t):
     sp = cq.data.split(" ")[1:]
     print(sp)
     theme = sp[0]
@@ -277,15 +292,16 @@ async def settings_themes_update(c: Client, cq: CallbackQuery):
         keyb = InlineKeyboardMarkup([
             [
                 InlineKeyboardButton(
-                    "Light",
+                    t("light"),
                     callback_data=f"settings_sudo_themc_update {theme} Light",
                 ),
                 InlineKeyboardButton(
-                    "Dark", callback_data=f"settings_sudo_themc_update {theme} Dark"
+                    t("dark"),
+                    callback_data=f"settings_sudo_themc_update {theme} Dark",
                 ),
             ],
         ])
-        await cq.edit_message_text("Escolha o tema que deseja atualizar", reply_markup=keyb)
+        await cq.edit_message_text(t("theme_config"), reply_markup=keyb)
     if len(sp) == 2:
         keyb = []
         for color in cards[theme]["CARDS"]["COLORS"]:

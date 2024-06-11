@@ -67,3 +67,33 @@ first: " in first"
 won: "{name} won the game{comp}!"
 continuing: continuing the game with {count} players
 play: Play
+admin_only: Only the group admin can use this!
+game_ruinning: You can't change the settings while a game is running!
+theme_changed: The theme has been changed to {theme}!
+sudos: Change sudoers
+sudo_menu: "Welcome to the sudoers menu!\n\nChoose an option below to configure the bot."
+sudoers: "Users with sudo permissions:\n\n"
+add_sudo: Add user
+rm_sudo: Remove user
+send_user_id: Send the user ID or username you want to add to the sudoers
+user_not_found: User not found!
+user_sudoer: "{user} is already a sudoer!"
+user_added: "{user} has been added to the sudoers!"
+select_user: "Select a user to remove from the sudoers\n\n"
+user_not_sudoer: "{user} is not a sudoer!"
+user_removed: "{user} has been removed from the sudoers!"
+add_theme: Add new theme
+send_theme_name: Send the name of the new theme
+send_sticker: "Send a sticker to replace the sticker:"
+theme_added: The theme {name} has been added!
+add_card: Add new card
+update_card: Update card
+verify_card: Verify cards
+sudo_theme: What do you want to do with the theme {theme}?
+send_card_code: Send the code of the card you want to add
+send_colored_card: Send the colored sticker to {code} card
+send_gray_card: Send the gray sticker to {code} card
+card_added: The card {code} has been added!
+light: Light
+dark: Dark
+choose_card: Choose a card to update
