@@ -484,7 +484,7 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
             game.next()
         elif ((await Chat.get(id=game.chat.id)).seven) and (pcard[1] == "7" or pcard[1] == "0"):
             if pcard[1] == "7":
-                if len(game.players) == 1 or len(game.players) == 2:
+                if len(game.players) == 1:
                     await c.send_message(game.chat.id, ct("not_swapped"))
                 else:
                     game.chosen = "player"
