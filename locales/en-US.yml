@@ -3,6 +3,7 @@ lang_flag: 🇺🇸
 lang_changed: The language has been changed to English!
 back: Back
 theme: Theme
+settings_text: Settings
 info_theme: You choose a theme for the cards
 seven_zero: 7-0
 info_seven: When a 7 is played, the player can swap cards with another player. When a 0 is played, everyone passes their cards to the next player.
@@ -49,7 +50,7 @@ player_left: "{} left the game!"
 left_game: You left the game!
 not_allowed: You are not allowed to do that!
 game_already_started: The game has already started!
-info_text: 🃏 Game Information:\nCurrent player - {current_player}\nLast card - {last_card}\n
+info_text: "🃏 Game Information:\nCurrent player - {current_player}\nLast card - {last_card}\n"
 info_text2: "{player}: {cards} cards, "
 pass: Pass
 buy: Buy {} card(s)

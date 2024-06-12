@@ -64,8 +64,8 @@ lobby_opened: ¡La sala está abierta!
 joined_game: ¡Te uniste al juego!
 player_joined: ¡{} se unió al juego!
 not_allowed: ¡No se te permite hacer eso!
-info_text: 🃏 Información de la partida:\n Reproductor actual - {current_player}\nÚltima
-  tarjeta - {last_card}\n
+info_text: 🃏 "Información de la partida:\n Reproductor actual - {current_player}\nÚltima
+  tarjeta - {last_card}\n"
 left_game: ¡Dejaste el juego!
 game_already_started: ¡La partida ya ha comenzado!
 info_text2: '{player}: {cards} cartas, '

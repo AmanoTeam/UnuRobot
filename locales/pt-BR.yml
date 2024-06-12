@@ -3,6 +3,7 @@ lang_flag: 🇧🇷
 lang_changed: O idioma foi alterado para Português!
 back: Voltar
 theme: Tema
+settings_text: Configurações
 info_theme: Você escolhe um tema para as cartas
 seven_zero: 7-0
 info_seven: Quando um 7 é jogado, o jogador pode trocar as cartas com outro jogador.
@@ -52,8 +53,8 @@ player_left: "{} saiu do jogo!"
 left_game: Você saiu do jogo!
 not_allowed: Você não tem permissão para fazer isso!
 game_already_started: O jogo já começou!
-info_text: 🃏 Informações do Jogo:\nJogador atual - {current_player}\nÚltima carta
-  - {last_card}\n
+info_text: "🃏 Informações do Jogo:\nJogador atual - {current_player}\nÚltima carta
+  - {last_card}\n"
 info_text2: "{player}: {cards} cartas, "
 pass: Passar
 buy: Comprar {} carta(s)

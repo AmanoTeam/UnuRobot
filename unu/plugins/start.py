@@ -13,7 +13,7 @@ async def start(c: Client, m: Message | CallbackQuery, t):
     func = m.edit_message_text if isinstance(m, CallbackQuery) else m.reply_text
     await User.get_or_create(id=m.from_user.id)
     print(m.from_user.id)
-    keyb = [[(t("help"), "help"), (t("settings"), "settings")]]
+    keyb = [[(t("help"), "help"), (t("settings_text"), "settings")]]
     await func(t("start_text"), reply_markup=ikb(keyb))
 
 
