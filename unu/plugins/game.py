@@ -16,7 +16,7 @@ from hydrogram.types import (
     Message,
 )
 
-from config import games, player_game
+from config import games, player_game, minimum_players
 from unu.card import COLORS, cards
 from unu.db import Chat, User
 from unu.game import Game
@@ -26,7 +26,7 @@ from unu.locales import use_lang
 @Client.on_message(filters.command("new"))
 @use_lang()
 async def new_game(c: Client, m: Message, ut, ct):
-    await Chat.get_or_create(id=m.chat.id)
+    chat = await Chat.get_or_create(id=m.chat.id)
     if m.chat.id in games or m.chat.type == ChatType.PRIVATE or player_game.get(m.from_user.id):
         return await m.reply_text(
             ut("game_existis")
@@ -47,7 +47,10 @@ async def new_game(c: Client, m: Message, ut, ct):
         ],
         [InlineKeyboardButton(ct("start_game"), callback_data="start_game")],
     ])
-    return await m.reply_text(ct("game_started"), reply_markup=keyb)
+    game.message = await m.reply_text(ct("game_started"), reply_markup=keyb)
+    if chat[0].auto_pin:
+        await game.message.pin()
+    return None
 
 
 @Client.on_message(filters.command("join"))
@@ -103,13 +106,17 @@ async def leave_game(c: Client, m: Message | CallbackQuery, ut, ct):
     del player_game[m.from_user.id]
     chat_id = m.chat.id if isinstance(m, Message) else m.message.chat.id
 
-    if len(game.players) == 0:
+    if len(game.players) < minimum_players:
         games.pop(m.chat.id if isinstance(m, Message) else m.message.chat.id)
         if isinstance(m, CallbackQuery):
             await c.send_message(
                 chat_id=chat_id,
                 text=ct("player_left").format(m.from_user.mention) + ", " + ct("game_over"),
             )
+            game.stop()
+            await game.message.edit_text(ut("game_over"))
+            if (await Chat.get(id=chat_id)).auto_pin:
+                await game.message.unpin()
         return await func(ut("game_over"))
     if isinstance(m, CallbackQuery):
         await c.send_message(chat_id=chat_id, text=ct("player_left").format(m.from_user.mention))
@@ -117,38 +124,71 @@ async def leave_game(c: Client, m: Message | CallbackQuery, ut, ct):
 
 
 @Client.on_message(filters.command("close"))
+@Client.on_callback_query(filters.regex("^close_game$"))
 @use_lang()
-async def close_game(c: Client, m: Message, ut, ct):
-    game = games.get(m.chat.id)
+async def close_game(c: Client, m: Message | CallbackQuery, ut, ct):
+    if isinstance(m, CallbackQuery):
+        func = m.answer
+        chat = m.message.chat
+    else:
+        func = m.reply_text
+        chat = m.chat
+    game = games.get(chat.id)
     if not game or m.from_user != next(iter(game.players.values())):
-        return await m.reply_text(ut("no_game") if not game else ut("not_allowed"))
+        return await func(ut("no_game") if not game else ut("not_allowed"))
 
-    games.closed = True
-    return await m.reply_text(ct("lobby_closed"))
+    game.closed = True
+    if isinstance(m, CallbackQuery):
+        keyb = InlineKeyboardMarkup([
+            [InlineKeyboardButton(ct("open"), callback_data="open_game")]
+        ])
+        await m.message.edit_reply_markup(keyb)
+    return await func(ct("lobby_closed"))
 
 
 @Client.on_message(filters.command("open"))
+@Client.on_callback_query(filters.regex("^open_game$"))
 @use_lang()
 async def open_game(c: Client, m: Message, ut, ct):
-    """Handles the opening of a game."""
-    game = games.get(m.chat.id)
+    if isinstance(m, CallbackQuery):
+        func = m.answer
+        chat = m.message.chat
+    else:
+        func = m.reply_text
+        chat = m.chat
+    game = games.get(chat.id)
     if not game or m.from_user != next(iter(game.players.values())):
-        return await m.reply_text(ut("no_game") if not game else ut("not_allowed"))
+        return await func(ut("no_game") if not game else ut("not_allowed"))
 
-    games.closed = False
-    return await m.reply_text(ct("lobby_opened"))
+    game.closed = False
+    if isinstance(m, CallbackQuery):
+        keyb = InlineKeyboardMarkup([
+            [
+                InlineKeyboardButton(ct("join"), callback_data="join_game"),
+                InlineKeyboardButton(ct("leave"), callback_data="leave_game"),
+            ],
+            [
+                InlineKeyboardButton(ct("close_lobby"), callback_data="close_game"),
+            ],
+        ])
+        await m.message.edit_reply_markup(keyb)
+    return await func(ct("lobby_opened"))
 
 
 @Client.on_message(filters.command("kill"))
 @use_lang()
 async def kill_game(c: Client, m: Message, ut, ct):
-    game = games.get(m.chat.id)
+    game: Game = games.get(m.chat.id)
     if not game or m.from_user != next(iter(game.players.values())):
         return await m.reply_text(ut("no_game") if not game else ut("not_allowed"))
 
     games.pop(m.chat.id)
     for player in game.players:
         player_game.pop(player)
+    game.stop()
+    await game.message.edit_text(ct("game_over"))
+    if (await Chat.get(id=m.chat.id)).auto_pin:
+        await game.message.unpin()
     return await m.reply_text(ct("game_over"))
 
 
@@ -164,17 +204,29 @@ async def start_game(c: Client, m: Message | CallbackQuery, ut, ct):
         chat_id = m.chat.id
     config = await Chat.get(id=chat_id)
     theme = config.theme
-    game = games.get(chat_id)
+    game: Game = games.get(chat_id)
     if not game or m.from_user != next(iter(game.players.values())):
         return await func(ut("no_game") if not game else ut("not_allowed"))
 
-    game.is_started = True
+    if len(game.players) < minimum_players:
+        return await func(ut("minimum_players").format(minimum_players))
+
+    game.start()
     game.deck.shuffle()
     for player in game.players.values():
         player.cards = game.deck.draw(7)
         player.total_cards = 0
-
+    keyb = InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton(ct("join"), callback_data="join_game"),
+            InlineKeyboardButton(ct("leave"), callback_data="leave_game"),
+        ],
+        [
+            InlineKeyboardButton(ct("close_lobby"), callback_data="close_game"),
+        ],
+    ])
     await c.send_message(chat_id=chat_id, text=ct("game_started"))
+    await game.message.edit_text(ct("game_started"), reply_markup=keyb)
     pcard = next(
         (
             lcard
@@ -592,5 +644,9 @@ async def verify_cards(game: Game, c: Client, ir, user: User, ut, t):
                     await db_user.save()
                 player_game.pop(player)
             await c.send_message(game.chat.id, t("game_over"))
+            game.stop()
+            await game.message.edit_text(ct("game_over"))
+            if (await Chat.get(id=game.chat.id)).auto_pin:
+                await game.message.unpin()
         return True
     return False

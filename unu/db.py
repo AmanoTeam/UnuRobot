@@ -13,6 +13,7 @@ class Chat(Model):
     one_win = fields.BooleanField(default=False)
     one_card = fields.BooleanField(default=False)
     lang = fields.CharField(max_length=255, default="en-US")
+    auto_pin = fields.BooleanField(default=False)
 
 
 class User(Model):

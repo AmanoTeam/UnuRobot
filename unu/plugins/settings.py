@@ -32,10 +32,10 @@ async def settings_pvt(c: Client, m: Message | CallbackQuery, t):
     await func(t("settings"), reply_markup=ikb(keyb))
 
 
-@Client.on_callback_query(filters.regex("^settings$") & ~filters.private)
+@Client.on_callback_query(filters.regex("^settings$|^mode_") & ~filters.private)
 @Client.on_message(filters.command("settings") & ~filters.private)
 @use_chat_lang()
-async def settings(c: Client, m: Message | CallbackQuery, t):
+async def settings_and_mode(c: Client, m: Message | CallbackQuery, t):
     chat_id = m.chat.id if isinstance(m, Message) else m.message.chat.id
     admin = await c.get_chat_member(chat_id, m.from_user.id)
     print(admin)
@@ -46,6 +46,25 @@ async def settings(c: Client, m: Message | CallbackQuery, t):
         await m.reply(t("game_running"))
         return
     x = (await Chat.get_or_create(id=chat_id))[0]
+    if isinstance(m, CallbackQuery) and m.data.startswith("mode_"):
+        if m.data == "mode_seven":
+            await Chat.get(id=chat_id).update(seven=not x.seven)
+        elif m.data == "mode_bluff":
+            await Chat.get(id=chat_id).update(bluff=not x.bluff)
+        elif m.data == "mode_one_win":
+            await Chat.get(id=chat_id).update(one_win=not x.one_win)
+        elif m.data == "mode_one_card":
+            await Chat.get(id=chat_id).update(one_card=not x.one_card)
+        elif m.data == "mode_auto_pin":
+            admin = await c.get_chat_member(chat_id, c.me.id)
+            print(admin)
+            if admin.privileges and admin.privileges.can_pin_messages:
+                await Chat.get(id=chat_id).update(auto_pin=not x.auto_pin)
+            else:
+                await m.answer(t("admin_only"))
+                return
+        await m.answer("Done!")
+        x = await Chat.get(id=chat_id)
     keyb = InlineKeyboardMarkup([
         [
             InlineKeyboardButton(t("theme"), callback_data="info_theme"),
@@ -66,6 +85,10 @@ async def settings(c: Client, m: Message | CallbackQuery, t):
         [
             InlineKeyboardButton(t("one_card"), callback_data="info_one_card"),
             InlineKeyboardButton("✅" if x.one_card else "✖️", callback_data="mode_one_card"),
+        ],
+        [
+            InlineKeyboardButton(t("auto_pin"), callback_data="info_auto_pin"),
+            InlineKeyboardButton("✅" if x.auto_pin else "✖️", callback_data="mode_auto_pin"),
         ],
         [
             InlineKeyboardButton(t("language"), callback_data="info_lang"),
@@ -96,53 +119,6 @@ async def theme(c: Client, cq: CallbackQuery, t):
             [InlineKeyboardButton(text=t("back"), callback_data="settings")],
         ])
         await cq.message.edit_text(t("theme_config"), reply_markup=keyb)
-
-
-@Client.on_callback_query(filters.regex("mode_"))
-@use_chat_lang()
-async def mode(c: Client, cq: CallbackQuery, t):
-    admin = await c.get_chat_member(cq.message.chat.id, cq.from_user.id)
-    if admin.status is ChatMemberStatus.MEMBER:
-        await cq.answer(t("admin_only"))
-        return
-    x = await Chat.get(id=cq.message.chat.id)
-    if cq.data == "mode_seven":
-        await Chat.get(id=cq.message.chat.id).update(seven=not x.seven)
-    elif cq.data == "mode_bluff":
-        await Chat.get(id=cq.message.chat.id).update(bluff=not x.bluff)
-    elif cq.data == "mode_one_win":
-        await Chat.get(id=cq.message.chat.id).update(one_win=not x.one_win)
-    elif cq.data == "mode_one_card":
-        await Chat.get(id=cq.message.chat.id).update(one_card=not x.one_card)
-    await cq.answer("Done!")
-    x = await Chat.get(id=cq.message.chat.id)
-    keyb = InlineKeyboardMarkup([
-        [
-            InlineKeyboardButton(t("theme"), callback_data="info_theme"),
-            InlineKeyboardButton(t(x.theme), callback_data="theme"),
-        ],
-        [
-            InlineKeyboardButton(t("seven_zero"), callback_data="info_seven"),
-            InlineKeyboardButton("✅" if x.seven else "✖️", callback_data="mode_seven"),
-        ],
-        [
-            InlineKeyboardButton(t("sbluff"), callback_data="info_bluff"),
-            InlineKeyboardButton("✅" if x.bluff else "✖️", callback_data="mode_bluff"),
-        ],
-        [
-            InlineKeyboardButton(t("one_win"), callback_data="info_one_win"),
-            InlineKeyboardButton("✅" if x.one_win else "✖️", callback_data="mode_one_win"),
-        ],
-        [
-            InlineKeyboardButton(t("one_card"), callback_data="info_one_card"),
-            InlineKeyboardButton("✅" if x.one_card else "✖️", callback_data="mode_one_card"),
-        ],
-        [
-            InlineKeyboardButton(t("language"), callback_data="info_lang"),
-            InlineKeyboardButton(t("lang_flag"), callback_data="lang"),
-        ],
-    ])
-    await cq.message.edit_text(t("settings"), reply_markup=keyb)
 
 
 @Client.on_callback_query(filters.regex("^lang"))

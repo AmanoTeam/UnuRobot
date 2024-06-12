@@ -3,6 +3,9 @@ from hydrogram import Client
 games = {}
 player_game = {}
 
+timeout = 120
+minimum_players = 2
+
 sudoers = [123456789]
 
 API_ID = ""
