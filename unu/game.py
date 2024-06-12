@@ -16,6 +16,7 @@ class Game:
         self.players = {}
         self.is_started = False
         self.draw = 0
+        self.drawed = False
         self.chosen = None
         self.closed = False
         self.winner = True
@@ -24,16 +25,16 @@ class Game:
         self.message: Message = None
 
     def next(self):
-        if self.draw >= 0:
-            indice = list(self.players.keys()).index(self.next_player.id)
-            next_ind = (indice + 1) % len(self.players)
-            next_key = list(self.players.keys())[next_ind]
-            self.next_player = self.players[next_key]
+        self.drawed = False
+        indice = list(self.players.keys()).index(self.next_player.id)
+        next_ind = (indice + 1) % len(self.players)
+        next_key = list(self.players.keys())[next_ind]
+        self.next_player = self.players[next_key]
 
-            if self.timer_task:
-                self.timer_task.cancel()
+        if self.timer_task:
+            self.timer_task.cancel()
 
-            self.timer_task = asyncio.create_task(self.start_timer())
+        self.timer_task = asyncio.create_task(self.start_timer())
 
     def start(self):
         self.is_started = True

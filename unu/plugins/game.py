@@ -238,8 +238,6 @@ async def start_game(c: Client, m: Message | CallbackQuery, ut, ct):
     game.deck.cards.remove(pcard)
     game.deck.cards.append(pcard)
     if pcard[1] == "draw":
-        if game.draw == -1:
-            game.draw = 0
         game.draw += 2
     await c.send_sticker(
         chat_id=chat_id, sticker=cards[theme]["STICKERS"][f"{pcard[0]}_{pcard[1]}"]
@@ -259,7 +257,7 @@ async def start_game(c: Client, m: Message | CallbackQuery, ut, ct):
 @Client.on_inline_query(group=3)
 @use_lang()
 async def inline_query(c: Client, m: InlineQuery, ut, ct):
-    game = player_game.get(m.from_user.id)
+    game: Game = player_game.get(m.from_user.id)
     if not game:
         articles = [
             InlineQueryResultArticle(
@@ -349,10 +347,10 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
     gcards = game.players[m.from_user.id].cards
     lcard = game.last_card if game.draw < 2 else ("p", "draw")
     xcard = f"{lcard[0]}_{lcard[1]}"
-    sticker_id = "option_pass" if game.draw == -1 else "option_draw"
+    sticker_id = "option_pass" if game.drawed else "option_draw"
     sticker_text = (
         ut("pass")
-        if game.draw == -1
+        if game.drawed
         else ut("buy").format(1)
         if game.draw == 0
         else ut("buy").format(game.draw)
@@ -460,7 +458,14 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
         buy = game.draw if game.draw > 0 else 1
         game.players[ir.from_user.id].cards.extend(game.deck.draw(buy))
         await c.send_message(game.chat.id, ct("bought").format(buy=buy))
-        game.draw = 0 if buy >= 2 else -1 if len(game.players) != 1 else 0
+        if len(game.players) != 1 and game.draw == 0:
+            game.drawed = True
+            return await c.send_message(
+                game.chat.id,
+                ct("next").format(game.next_player.mention),
+                reply_markup=inline_keyb,
+            )
+        game.draw = 0
     elif pcard[0] == "option_pass":
         game.draw = 0
     elif pcard[0] == "option_bluff":
@@ -499,8 +504,6 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
     elif pcard[0] == "x" and pcard[1] in {"colorchooser", "draw_four"}:
         game.players[ir.from_user.id].total_cards += 1
         if pcard[1] == "draw_four":
-            if game.draw == -1:
-                game.draw = 0
             game.draw += 4
         game.last_card_2 = {"card": game.last_card, "player": ir.from_user.id}
         game.last_card = game.players[ir.from_user.id].cards.pop(int(ncard))
@@ -563,8 +566,6 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
                     await verify_cards(game, c, ir, game.players[i], ut, ct)
 
                 await c.send_message(game.chat.id, ct("swapped"))
-        if game.draw == -1:
-            game.draw = 0
     else:
         return await c.send_message(game.chat.id, ct("invalid_card"))
 
