@@ -12,10 +12,14 @@ one_win: One winner
 info_one_win: When the first player runs out of cards, the game ends and they are the winner.
 one_card: Say UNO
 info_one_card: When a player has only one card, they must say UNO. If they don't, they must draw 2 cards.
+auto_pin: Auto pin
+info_auto_pin: When a game starts, the bot will automatically pin the game message.
 language: Language
 info_lang: You can change the bot's language.
 choose_lang: Choose a language
 start_text: "Hello! I am the UNO Bot, a bot to play UNO on Telegram!\n\nTo play, put me in a group and send /new to start a new game!\n\nor to configure use the buttons below!"
+help: Help
+settings: Settings
 game_mode: Game Mode
 status: Status
 game_mode_text: "Showing information of available game modes!\n\n"

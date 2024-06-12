@@ -16,7 +16,7 @@ from hydrogram.types import (
     Message,
 )
 
-from config import games, player_game, minimum_players
+from config import games, minimum_players, player_game
 from unu.card import COLORS, cards
 from unu.db import Chat, User
 from unu.game import Game
