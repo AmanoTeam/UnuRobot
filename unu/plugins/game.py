@@ -296,17 +296,18 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
             )
             for color in COLORS
         ]
-        text_cards = ""
-        for card in game.players[m.from_user.id].cards:
-            text_cards += f"{color_icons[card[0]]}{values_icons[card[1]]}, "
+        if len(game.players[m.from_user.id].cards) != 0:
+            text_cards = ""
+            for card in game.players[m.from_user.id].cards:
+                text_cards += f"{color_icons[card[0]]}{values_icons[card[1]]}, "
 
-        articles.append(
-            InlineQueryResultArticle(
-                id="info-",
-                title=text_cards,
-                input_message_content=InputTextMessageContent(info_text),
+            articles.append(
+                InlineQueryResultArticle(
+                    id="info-",
+                    title=text_cards,
+                    input_message_content=InputTextMessageContent(info_text),
+                )
             )
-        )
         await m.answer(articles, cache_time=0)
         return None
     if game.chosen == "player" and game.next_player.id == m.from_user.id:
