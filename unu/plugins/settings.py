@@ -39,7 +39,7 @@ async def settings_and_mode(c: Client, m: Message | CallbackQuery, t):
     chat_id = m.chat.id if isinstance(m, Message) else m.message.chat.id
     admin = await c.get_chat_member(chat_id, m.from_user.id)
     print(admin)
-    if admin.status == ChatMemberStatus.MEMBER:
+    if admin.status == ChatMemberStatus.MEMBER and not await filter_sudoers(c, m):
         await m.reply(t("admin_only"))
         return
     if games.get(chat_id) and games[chat_id].is_started:
@@ -104,6 +104,10 @@ async def settings_and_mode(c: Client, m: Message | CallbackQuery, t):
 @Client.on_callback_query(filters.regex("^theme"))
 @use_chat_lang()
 async def theme(c: Client, cq: CallbackQuery, t):
+    admin = await c.get_chat_member(cq.message.chat.id, cq.from_user.id)
+    if admin.status is ChatMemberStatus.MEMBER and not await filter_sudoers(c, cq):
+        await cq.answer(t("admin_only"))
+        return
     if " " in cq.data:
         theme = cq.data.split(" ")[1]
         await Chat.get(id=cq.message.chat.id).update(theme=theme)
@@ -126,7 +130,7 @@ async def theme(c: Client, cq: CallbackQuery, t):
 async def lang(c: Client, cq: CallbackQuery, t):
     if cq.message.chat.type != ChatType.PRIVATE:
         admin = await c.get_chat_member(cq.message.chat.id, cq.from_user.id)
-        if admin.status is ChatMemberStatus.MEMBER:
+        if admin.status is ChatMemberStatus.MEMBER and not await filter_sudoers(c, cq):
             await cq.answer(t("admin_only"))
             return
     if "_" in cq.data:
