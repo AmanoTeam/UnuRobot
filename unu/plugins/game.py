@@ -604,12 +604,6 @@ async def verify_cards(game: Game, c: Client, ir, user: User, ut, t):
                     break
             if uno and cmessage.from_user.id == user.id:
                 await c.send_message(game.chat.id, t("said_uno").format(name=user.mention))
-            elif uno and cmessage.from_user.id != user.id:
-                game.players[cmessage.from_user.id].cards.extend(game.deck.draw(2))
-                await c.send_message(
-                    game.chat.id,
-                    t("not_said_uno").format(name=cmessage.from_user.mention),
-                )
             else:
                 game.players[user.id].cards.extend(game.deck.draw(2))
                 await c.send_message(
