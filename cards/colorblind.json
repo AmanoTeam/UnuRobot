@@ -141,7 +141,8 @@
       "b": "blue",
       "g": "green",
       "r": "red",
-      "y": "yellow"
+      "y": "yellow",
+      "x": "black"
     },
     "VALUES": [
       "0",
