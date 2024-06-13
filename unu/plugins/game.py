@@ -595,15 +595,21 @@ async def verify_cards(game: Game, c: Client, ir, user: User, ut, t):
             while True:
                 try:
                     cmessage = await game.chat.listen(
-                        filters.text & filters.user(user.id), timeout=5
+                        filters.text, timeout=5
                     )
                     if (cmessage and cmessage.text) and "uno" in cmessage.text.lower():
                         uno = True
                         break
                 except ListenerTimeout:
                     break
-            if uno:
+            if uno and cmessage.from_user.id == user.id:
                 await c.send_message(game.chat.id, t("said_uno").format(name=user.mention))
+            elif uno and cmessage.from_user.id != user.id:
+                game.players[cmessage.from_user.id].cards.extend(game.deck.draw(2))
+                await c.send_message(
+                    game.chat.id,
+                    t("not_said_uno").format(name=cmessage.from_user.mention),
+                )
             else:
                 game.players[user.id].cards.extend(game.deck.draw(2))
                 await c.send_message(
