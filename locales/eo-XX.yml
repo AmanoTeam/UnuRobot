@@ -1,1 +1,111 @@
-{}
+playerchoose: '{name} elektas ludiston!'
+said_uno: '{name} kriegis UNO!'
+not_said_uno: "{name} Vi ne kriegis UNO!\n{name} tiris 2 kartojn!"
+cards_swapped: '{name1} interŝanĝita kartojn kun {name2}'
+bought: Vi aĉetis {buy} kartojn!
+say_uno: '{name} diras UNO aŭ tiro 2 kartoj!'
+continuing: daŭranta la ludon kun {count} ludistoj
+won: '{name} gajnis la ludon{comp}!'
+left_game: Vi lasis la ludon!
+not_allowed: Vi ne rajtas fari tion!
+game_already_started: La ludo jam komenciĝis!
+info_text: "🃏 Ludo-Informo:\nNuna ludanto * {current_player}\nLasta karto - {last_card}\n"
+info_text2: '{ludisto}: {kartaj} kartoj, '
+pass: Pasi
+buy: Aĉetu {} karto(j)n
+bluff: Mi kredas, ke vi estas malklarigita!
+not_swapped: Pro la nombro de ludantoj, ne eblas interŝanĝi kartojn!
+swapped: La kartoj estis interŝanĝitaj!
+bluffed: "{name} Vi povas ne blufon!\n{name} tiris {draw} kartojn!"
+not_bluffed: "{name1} Vi faris ne blufon!\n{name2} tiris {draw} kartojn!"
+colorchoose: '{nomo} elektas koloron!'
+colorchoosed: Mi elektis la koloran {color}!
+invalid_card: Invalida movo!
+first: ' en la unua'
+play: Ludado
+admin_only: Nur la grupo povas uzi tion!
+game_ruinning: Vi ne povas ŝanĝi la agordojn dum ludo kuras!
+theme_changed: La temo estis ŝanĝita al {temo}!
+sudos: Ŝanĝo sudoers
+sudo_menu: "Bonvenon al la interna menuo!\n\nElekti opcion malsupre por agordi la
+  roboton."
+sudoers: "Uzantoj kun internaj permesoj:\n\n"
+add_sudo: Aldonu uzanton
+rm_sudo: Forigu uzanton
+send_user_id: Sendu la uzanto ID aŭ uzantnomo vi volas aldoni al la fremduloj
+user_not_found: Uzanto ne trovita!
+user_sudoer: '{user} estas jam sudoer!'
+user_added: '{user} estis aldonita la sudoers!'
+select_user: "Selektu uzanton forigi de la suduloj\n\n"
+user_not_sudoer: '{user} ne estas sudoer!'
+user_removed: '{user} estis forigita de la sudoers!'
+add_theme: Aldonas novan temon
+send_theme_name: Sendu la nomon de la nova temo
+send_sticker: 'Sendu glumarkon por anstataŭigi la glumarkon:'
+theme_added: La tema {name} estis aldonita!
+update_card: Ĝisdatigita karto
+verify_card: Kontrolu kartojn
+sudo_theme: Kion vi volas fari kun la temo {theme}?
+send_card_code: Sendu la kodon de la karto vi volas aldoni
+send_gray_card: Sendu la grizan glumarkon {code} karto
+send_colored_card: Sendu la koloran glumarkon {code} karto
+card_added: La karto {code} estis aldonita!
+light: Hela
+dark: Malhela
+choose_card: Elektu karton por ĝisdatigi
+add_card: Aldonu novan karton
+lang_name: Esperanto
+lang_flag: 🌐
+lang_changed: La lingvo ŝanĝiĝis al Esperanto!
+info_theme: Vi elektas temon por la kartoj
+seven_zero: 7-0
+sbluff: Blufo
+info_bluff: Kiam ludanto ludas +4 karton, la venonta povas defii. Se la ludanto kiu
+  ludis la +4 karton havas alian karton por ludi, ili tiras 4 kartojn. Se ne, tiu
+  kiu defiis remizojn 6.
+one_win: Unu gajninto
+one_card: Diru al UNO
+info_one_card: Kiam ludanto havas nur unu karton, ili devas diri UNO. Se ili ne faras,
+  ili devas tiri 2 kartojn.
+auto_pin: Aŭtomobila pinglo
+language: Lingvo
+choose_lang: Elektu lingvon
+help: Helpo
+game_mode: Ludreĝimo
+start_text: "Saluton! Mi estas la UNO Bot, roboto por ludi UNO en Telegram!\n\nPor
+  ludi, meti min en grupon kaj sendi /new por komenci novan ludon!\n\naŭ agordi uzi
+  la butonojn malsupre!"
+status: Statuso
+game_mode_text: "Montrante informojn de disponeblaj ludreĝimoj!\n\n"
+settings: "Bonvenon al la agordo menuo!\n\nElekti opcion malsupre por agordi la roboton."
+only_group: Tiu komando funkcias nur en grupoj!
+already_in_game: Vi jam estas en alia ludo
+already_joined: Vi jam estas en la ludo!
+join: Aliĝi
+no_game: Ne ekzistas ludo en progreso!
+no_game_text: Neniu ludo en progreso, sendu /new por komenci novan ludon!
+lobby_closed: La vestiblo estas fermita!
+lobby_opened: La vestiblo estas malfermita!
+joined_game: Vi eniris la ludon!
+player_joined: '{} aliĝis al la ludo!'
+no_joinned: Vi ne estas en la ludo!
+next: Sekva {}
+game_over: La ludo estas finita!
+player_left: '{} lasis la ludon!'
+back: Reen
+theme: Temo
+settings_text: Agordoj
+info_seven: Kiam 7 estas ludita, la ludanto povas interŝanĝi kartojn kun alia ludanto.
+  Kiam 0 estas ludita, ĉiuj pasas siajn kartojn al la venonta ludanto.
+info_one_win: Kiam la unua ludanto elĉerpas kartojn, la ludo finiĝas kaj ili estas
+  la gajninto.
+info_lang: Vi povas ŝanĝi la lingvon de la roboto.
+info_auto_pin: Kiam ludo komenciĝas, la roboto aŭtomate alpinglas la ludmesaĝon.
+colorblind: Koloroblinda
+game_started: Nova ludo komenciĝis!
+theme_config: 'Elektu temon por la kartoj:'
+classic: Klasika Klasikaĵo
+game_existis: Estas jam ludo en progreso!
+minimalist: Minimumisto
+leave: Lasu min foriri
+start_game: Komencu ludon
