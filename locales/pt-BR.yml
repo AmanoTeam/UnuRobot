@@ -13,7 +13,8 @@ info_bluff: Quando um jogador joga uma carta +4, o próximo pode desafiar. Se o 
   que jogou a carta +4 tiver outra carta para jogar, ele compra 4 cartas. Se não tiver,
   quem desafiou compra 6.
 one_win: Um vencedor
-info_one_win: Quando o primeiro jogador fica sem cartas, o jogo acaba e ele é o vencedor.
+info_one_win: Quando o primeiro jogador fica sem cartas, a partida acaba e ele é o
+  vencedor.
 one_card: Dizer UNO
 info_one_card: Quando um jogador tem apenas uma carta, ele deve dizer UNO. Se ele
   não disser, ele deve comprar 2 cartas.
@@ -21,7 +22,7 @@ language: Idioma
 info_lang: Você pode alterar o idioma do bot.
 choose_lang: Escolha um idioma
 start_text: "Olá! Eu sou o UNO Bot, um bot para jogar UNO no Telegram!\n\nPara jogar
-  me coloque em um grupo e mande /new para começar um novo jogo!\n\nou para configurar
+  me coloque em um grupo e mande /new para começar uma nova partida!\n\nou para configurar
   use os botões abaixo!"
 game_mode: Modo de Jogo
 status: Status
@@ -34,26 +35,26 @@ classic: Clássico
 colorblind: Daltônico
 game_existis: Já existe um jogo em andamento!
 only_group: Esse comando só funciona em grupos!
-already_in_game: Você já está em outro jogo
-already_joined: Você já está no jogo!
+already_in_game: Você já está em outra partida
+already_joined: Você já está na partida!
 join: Entrar
 leave: Sair
 start_game: Começar Jogo
-game_started: Um novo jogo foi iniciado!
+game_started: Uma nova partida foi iniciada!
 no_game: Não há jogo em andamento!
-no_game_text: Nenhum jogo em andamento, mande /new para iniciar um novo jogo!
+no_game_text: Nenhuma partida em andamento, mande /new para iniciar uma nova partida!
 lobby_closed: O lobby está fechado!
 lobby_opened: O lobby está aberto!
-joined_game: Você entrou no jogo!
-player_joined: "{} entrou no jogo!"
-no_joinned: Você não está no jogo!
+joined_game: Você entrou na partida!
+player_joined: "{} entrou na partida!"
+no_joinned: Você não está na partida!
 next: Próximo {}
-game_over: O jogo acabou!
-player_left: "{} saiu do jogo!"
-left_game: Você saiu do jogo!
+game_over: A partida acabou!
+player_left: "{} saiu da partida!"
+left_game: Você saiu da partida!
 not_allowed: Você não tem permissão para fazer isso!
-game_already_started: O jogo já começou!
-info_text: "🃏 Informações do Jogo:\nJogador atual - {current_player}\nÚltima carta
+game_already_started: A partida já começou!
+info_text: "🃏 Informações da partida:\nJogador atual - {current_player}\nÚltima carta
   - {last_card}\n"
 info_text2: "{player}: {cards} cartas, "
 pass: Passar
@@ -73,6 +74,41 @@ said_uno: "{name} gritou UNO!"
 say_uno: "{name} fale UNO ou compre 2 cartas!"
 not_said_uno: "{name} Você não gritou UNO!\n{name} comprou 2 cartas!"
 first: " em primeiro"
-won: "{name} ganhou o jogo{comp}!"
-continuing: continuando o jogo com {count} jogadores
+won: "{name} ganhou a partida{comp}!"
+continuing: continuando a partida com {count} jogadores
 play: Jogar
+auto_pin: Auto pin
+info_auto_pin: Quando uma partida começar, o bot irá automaticamente fixar a mensagem
+  da partida.
+sudos: Alterar sudoers
+sudoers: "Usuários com permissões sudo:\n\n"
+user_not_found: Usuário não encontrado!
+add_theme: Adicionar novo tema
+update_card: Atualizar carta
+verify_card: Verificar cartas
+send_colored_card: Envie o sticker colorido para a carta {code}
+light: Claro
+dark: Escuro
+choose_card: Escolha uma carta para atualizar
+user_added: '{user} foi adicionado aos sudoers!'
+user_not_sudoer: '{user} não é um sudoer!'
+user_removed: '{user} foi removido dos sudoers!'
+add_card: Adicionar nova carta
+select_user: "Selecione um usuário para remover dos sudoers\n\n"
+sudo_theme: O que você quer fazer com o tema {theme}?
+send_card_code: Envie o código da carta que você deseja adicionar
+send_theme_name: Envie o nome do novo tema
+send_sticker: 'Envie um sticker para substituir o sticker:'
+theme_added: O tema {name} foi adicionado!
+send_gray_card: Envie o sticker cinza para a carta {code}
+card_added: A carta {code} foi adicionada!
+rm_sudo: Remover usuário
+admin_only: Apenas o administrador do grupo pode usar isso!
+send_user_id: Enviar o ID do usuário ou username que você deseja adicionar aos sudoers
+help: Ajuda
+theme_changed: O tema foi alterado para {theme}!
+add_sudo: Adicionar usuário
+user_sudoer: '{user} já é um sudoer!'
+game_ruinning: Você não pode alterar as configurações enquanto um jogo está em execução!
+sudo_menu: "Bem-vindo ao menu de sudoers!\n\nEscolha uma opção abaixo para configurar
+  o bot."
