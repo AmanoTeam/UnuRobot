@@ -20,7 +20,6 @@ info_lang: You can change the bot's language.
 choose_lang: Choose a language
 start_text: "Hello! I am the UNO Bot, a bot to play UNO on Telegram!\n\nTo play, put me in a group and send /new to start a new game!\n\nor to configure use the buttons below!"
 help: Help
-settings: Settings
 game_mode: Game Mode
 status: Status
 game_mode_text: "Showing information of available game modes!\n\n"
