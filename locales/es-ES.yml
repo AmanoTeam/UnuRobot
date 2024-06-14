@@ -83,14 +83,14 @@ select_user: "Seleccione un usuario para eliminar de los sudoers\n\n"
 user_not_sudoer: ¡{user} no es un sudoer!
 user_removed: ¡{user} se ha quitado de los sudoers!
 add_theme: Agregar nuevo tema
-send_theme_name: Enviar el nombre del nuevo tema
-send_sticker: 'Enviar un sticker para reemplazar lo sticker:'
+send_theme_name: Envía el nombre del nuevo tema
+send_sticker: 'Envía un sticker para reemplazar lo sticker:'
 theme_added: ¡El tema {name} ha sido añadido!
 add_card: Añadir nueva tarjeta
 update_card: Actualizar tarjeta
 verify_card: Verificar tarjetas
 sudo_theme: ¿Qué quieres hacer con el tema {theme}?
-send_card_code: Enviar el código de la tarjeta que desea añadir
+send_card_code: Envía el código de la tarjeta que desea añadir
 send_colored_card: Envía el sticker de color a la tarjeta {code}
 send_gray_card: Envía el sticker gris a la tarjeta {code}
 card_added: ¡La tarjeta {code} ha sido añadida!
@@ -107,7 +107,7 @@ rm_sudo: Eliminar usuario
 theme_changed: El tema ha sido cambiado a {theme}!
 user_not_found: ¡Usuario no encontrado!
 sudos: Cambio de sudoers
-send_user_id: Enviar el ID de usuario o nombre de usuario que desea añadir a los sudoers
+send_user_id: Envía el ID de usuario o nombre de usuario que desea añadir a los sudoers
 add_sudo: Añadir usuario
 sudo_menu: "¡Bienvenido al menú de los sudoers!\n\nElija una opción a continuación
   para configurar el bot."
