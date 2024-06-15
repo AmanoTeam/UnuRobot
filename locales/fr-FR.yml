@@ -1,1 +1,10 @@
-{}
+info_theme: Vous choisissez un thème pour les cartes
+seven_zero: 7-0
+sbluff: Bluff
+lang_name: Français
+lang_flag: 🇫🇷
+lang_changed: La langue a été changée en français !
+theme: Thème
+settings_text: Paramètres
+info_seven: Quand un 7 est joué, le joueur peut échanger des cartes avec un autre
+  joueur. Quand un 0 est joué, tout le monde passe ses cartes au joueur suivant.
