@@ -111,7 +111,7 @@ sudo_theme: Que souhaitez-vous faire avec le thème {theme} ?
 send_card_code: Envoyez le code de la carte que vous voulez ajouter
 send_colored_card: Envoyez l'autocollant de couleur à la carte {code}
 send_gray_card: Envoyer l'autocollant gris à la carte {code}
-card_added: La carte a été ajoutée !
+card_added: La carte {code} a été ajoutée !
 light: légère
 dark: Noir
 choose_card: Choisissez une carte à mettre à jour
