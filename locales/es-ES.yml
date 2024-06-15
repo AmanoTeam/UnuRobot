@@ -34,7 +34,7 @@ lang_changed: ¡El idioma se ha cambiado a español!
 info_theme: Elige un tema para las tarjetas
 info_lang: Puedes cambiar el idioma del bot.
 start_text: "¡Hola! ¡Soy UNO Bot, un bot para jugar a UNO en Telegram!\n\nPara jugar,
-  ponerme en un grupo y enviar /nuevo para comenzar un nuevo juego!\n\no para configurar
+  ponerme en un grupo y enviar /new para comenzar un nuevo juego!\n\no para configurar
   los botones a continuación!"
 info_one_card: Cuando un jugador tiene una sola tarjeta, deben decir UNO. Si no lo
   hacen, deben dibujar 2 tarjetas.
@@ -58,13 +58,13 @@ leave: Deja
 no_game: ¡No hay juego en progreso!
 already_joined: ¡Ya estás en el juego!
 join: Únase
-no_game_text: No hay juego en progreso, enviar /nuevo para comenzar un nuevo juego!
+no_game_text: No hay juego en progreso, enviar /new para comenzar un nuevo juego!
 lobby_closed: ¡La sala está cerrada!
 lobby_opened: ¡La sala está abierta!
 joined_game: ¡Te uniste al juego!
 player_joined: ¡{} se unió al juego!
 not_allowed: ¡No se te permite hacer eso!
-info_text: 🃏 "Información de la partida:\n Reproductor actual - {current_player}\nÚltima
+info_text: "🃏 Información de la partida:\nJugador actual - {current_player}\nÚltima
   tarjeta - {last_card}\n"
 left_game: ¡Dejaste el juego!
 game_already_started: ¡La partida ya ha comenzado!
@@ -76,3 +76,39 @@ not_swapped: Debido al número de jugadores, no fue posible cambiar tarjetas!
 swapped: ¡Las cartas han sido intercambiadas!
 bought: ¡Compraste {buy} tarjetas!
 bluffed: "{name} ¡no puedes farolear!\n{name} ¡robó {draw} cartas!"
+help: Ayuda
+user_sudoer: ¡{user} ya es un sudoer!
+user_added: ¡{user} se ha añadido a los sudoers!
+select_user: "Seleccione un usuario para eliminar de los sudoers\n\n"
+user_not_sudoer: ¡{user} no es un sudoer!
+user_removed: ¡{user} se ha quitado de los sudoers!
+add_theme: Agregar nuevo tema
+send_theme_name: Envía el nombre del nuevo tema
+send_sticker: 'Envía un sticker para reemplazar lo sticker:'
+theme_added: ¡El tema {name} ha sido añadido!
+add_card: Añadir nueva tarjeta
+update_card: Actualizar tarjeta
+verify_card: Verificar tarjetas
+sudo_theme: ¿Qué quieres hacer con el tema {theme}?
+send_card_code: Envía el código de la tarjeta que desea añadir
+send_colored_card: Envía el sticker de color a la tarjeta {code}
+send_gray_card: Envía el sticker gris a la tarjeta {code}
+card_added: ¡La tarjeta {code} ha sido añadida!
+light: Claro
+dark: Oscuro
+choose_card: Elija una tarjeta para actualizar
+settings_text: Ajustes
+auto_pin: Pintor automático
+info_auto_pin: Cuando una partida comienza, el bot automáticamente marcará el mensaje
+  del juego.
+admin_only: ¡Sólo el administrador del grupo puede usar esto!
+game_ruinning: ¡No puedes cambiar la configuración mientras un juego se ejecuta!
+rm_sudo: Eliminar usuario
+theme_changed: El tema ha sido cambiado a {theme}!
+user_not_found: ¡Usuario no encontrado!
+sudos: Cambio de sudoers
+send_user_id: Envía el ID de usuario o nombre de usuario que desea añadir a los sudoers
+add_sudo: Añadir usuario
+sudo_menu: "¡Bienvenido al menú de los sudoers!\n\nElija una opción a continuación
+  para configurar el bot."
+sudoers: "Usuarios con permisos de sudo:\n\n"
