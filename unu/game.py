@@ -1,27 +1,34 @@
 import asyncio
+import json
+from typing import TYPE_CHECKING
 
-from hydrogram.types import Chat, User, Message
+if TYPE_CHECKING:
+    from asyncio.tasks import Task
+
+from hydrogram.types import Chat, Message, User
 
 from config import bot, timeout
+from unu.db import GameModel
 from unu.deck import Deck
 
 
 class Game:
     def __init__(self, chat: Chat, theme) -> None:
-        self.chat = chat
-        self.last_card = None
-        self.last_card_2 = None
+        self.theme = theme
+        self.chat: Chat = chat
+        self.last_card: tuple = None
+        self.last_card_2: dict = None
         self.next_player: User = None
         self.deck = Deck(theme)
-        self.players = {}
-        self.is_started = False
-        self.draw = 0
-        self.drawed = False
-        self.chosen = None
-        self.closed = False
-        self.winner = True
-        self.timer_task = None
-        self.timer_duration = timeout
+        self.players: dict[int, User] = {}
+        self.is_started: bool = False
+        self.draw: int = 0
+        self.drawed: bool = False
+        self.chosen: str = None
+        self.closed: bool = False
+        self.winner: bool = True
+        self.timer_task: Task = None
+        self.timer_duration: int = timeout
         self.message: Message = None
 
     def next(self):
@@ -51,3 +58,56 @@ class Game:
         )
         self.next()
         await bot.send_message(self.chat.id, f"{self.next_player.first_name}'s turn.")
+
+    async def save(self):
+        print("Saving game")
+        players_dict = {
+            player_id: getattr(player, "cards", None)
+            for player_id, player in self.players.items()
+        }
+
+        game = GameModel(
+            id=id(self),
+            theme=self.theme,
+            chat_id=self.chat.id,
+            last_card=self.last_card,
+            last_card_2=self.last_card_2,
+            next_player_id=self.next_player.id if self.next_player else None,
+            deck=json.dumps(self.deck.cards),
+            players=players_dict,
+            is_started=self.is_started,
+            draw=self.draw,
+            drawed=self.drawed,
+            chosen=self.chosen,
+            closed=self.closed,
+            winner=self.winner,
+            timer_duration=self.timer_duration,
+            message_id=self.message.id
+        )
+        if self.timer_task:
+            self.timer_task.cancel()
+        await game.save()
+        print("Game saved")
+    
+    @classmethod
+    async def load(cls, game: GameModel):
+        self = cls(game.chat_id, game.theme)
+        self.theme = game.theme
+        self.chat = await bot.get_chat(game.chat_id)
+        self.last_card = game.last_card
+        self.last_card_2 = game.last_card_2
+        self.deck.cards = game.deck
+        self.players = {}
+        self.is_started = game.is_started
+        self.draw = game.draw
+        self.drawed = game.drawed
+        self.chosen = game.chosen
+        self.closed = game.closed
+        self.winner = game.winner
+        self.timer_duration = game.timer_duration
+        self.message = await bot.get_messages(game.chat_id, game.message_id)
+        for player_id, cards in game.players.items():
+            self.players[int(player_id)] = await bot.get_users(player_id)
+            self.players[int(player_id)].cards = cards
+        self.next_player = self.players[int(game.next_player_id)] if game.next_player_id else None
+        return self

@@ -1,8 +1,9 @@
 from hydrogram import Client, filters
 from hydrogram.types import Message
 
-from config import sudoers
-from unu.db import User
+from config import games, player_game, sudoers
+from unu.db import GameModel, User, GamePlayer
+from unu.game import Game
 
 
 async def filter_sudoers_logic(flt, c: Client, m: Message):
@@ -19,3 +20,22 @@ filter_sudoers = filters.create(filter_sudoers_logic, "FilterSudoers")
 
 
 __all__ = ["filter_sudoers"]
+
+
+async def save_all():
+    for game_id, game in games.items():
+        await game.save()
+    for chat_id, game in player_game.items():
+        await GamePlayer.create(player_id=chat_id, game_chat_id=game.chat.id)
+
+
+async def load_all():
+    # Carregar dados do cache
+    for game in await GameModel.all():
+        sgame = await Game.load(game)
+        games[int(sgame.chat.id)] = sgame
+        await game.delete()
+
+    for player in await GamePlayer.all():
+        player_game[player.player_id] = games[player.game_chat_id]
+        await player.delete()

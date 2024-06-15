@@ -3,6 +3,7 @@ import os
 from tortoise import Tortoise, connections, fields
 from tortoise.backends.base.client import Capabilities
 from tortoise.models import Model
+import json
 
 
 class Chat(Model):
@@ -24,6 +25,29 @@ class User(Model):
     cards = fields.IntField(default=0)
     sudo = fields.BooleanField(default=False)
     lang = fields.CharField(max_length=255, default="en-US")
+
+
+class GameModel(Model):
+    id = fields.IntField(pk=True)
+    theme = fields.CharField(max_length=255)
+    chat_id = fields.IntField(null=True)
+    last_card = fields.JSONField(null=True)
+    last_card_2 = fields.JSONField(null=True)
+    next_player_id = fields.IntField(null=True)
+    deck = fields.JSONField(null=True)
+    players = fields.JSONField(null=True)
+    is_started = fields.BooleanField(default=False)
+    draw = fields.IntField(default=0)
+    drawed = fields.BooleanField(default=False)
+    chosen = fields.CharField(max_length=255, null=True)
+    closed = fields.BooleanField(default=False)
+    winner = fields.BooleanField(default=True)
+    timer_duration = fields.IntField(default=30)
+    message_id = fields.IntField(null=True)
+
+class GamePlayer(Model):
+    player_id = fields.IntField()
+    game_chat_id = fields.IntField()
 
 
 async def connect_database():

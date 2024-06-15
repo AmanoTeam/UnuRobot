@@ -5,6 +5,7 @@ from unu.card import cards
 
 class Deck:
     def __init__(self, theme) -> None:
+        self.theme = theme
         self.cards = [
             (color, value)
             for _ in range(2)
