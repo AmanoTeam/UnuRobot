@@ -8,14 +8,14 @@ theme: Thème
 settings_text: Paramètres
 info_seven: Quand un 7 est joué, le joueur peut échanger des cartes avec un autre
   joueur. Quand un 0 est joué, tout le monde passe ses cartes au joueur suivant.
-back: À l'arrière
-one_win: Un gagnant .
+back: Retourner
+one_win: Un gagnant
 info_bluff: Quand un joueur joue une carte +4, le suivant peut défier. Si le joueur
   qui a joué la carte +4 a une autre carte à jouer, il tire 4 cartes. Si ce n'est
   pas le cas, celui qui a défié tire 6.
 info_one_win: Quand le premier joueur est à court de cartes, la partie se termine
   et il est le gagnant.
-one_card: Dites " un " .
+one_card: Dites UNO
 bluff: Je pense que vous bluffez !
 info_one_card: Quand un joueur n'a qu'une seule carte, il doit dire UNO. S'ils ne
   le font pas, ils doivent tirer 2 cartes.
@@ -25,19 +25,19 @@ info_auto_pin: Lorsqu'un jeu démarre, le bot épingle automatiquement le messag
 language: Langue
 info_lang: Vous pouvez changer la langue du bot.
 choose_lang: Choisissez une langue
-start_text: "Je vous salue ! Je suis le bot UNO, un bot pour jouer à UNO sur Telegram
-  !\n\nPour jouer, mettez-moi dans un groupe et envoyez /nouveau pour commencer un
-  nouveau jeu!\n\nou pour configurer utilisez les boutons ci-dessous!"
+start_text: "Je vous salue ! Je suis le bot UNO, un bot pour jouer à UNO sur Telegram !\n
+  \nPour jouer, mettez-moi dans un groupe et envoyez /new pour commencer un nouveau
+  jeu !\n\nou pour configurer utilisez les boutons ci-dessous !"
 help: Aide
 game_mode: Mode de jeu
 status: État
 game_mode_text: "Affichage des informations sur les modes de jeu disponibles !\n\n"
 settings: "Bienvenue dans le menu des réglages !\n\nChoisissez une option ci-dessous
   pour configurer le bot."
-theme_config: 'Choisissez un thème pour les cartes:'
+theme_config: 'Choisissez un thème pour les cartes :'
 minimalist: Minimaliste
 classic: Classique
-colorblind: daltonisme
+colorblind: Daltonisme
 game_existis: Il y a déjà un jeu en cours !
 only_group: Cette commande ne fonctionne qu'en groupe !
 already_in_game: Vous êtes déjà dans un autre jeu
@@ -47,40 +47,40 @@ leave: congé
 start_game: Commencer le jeu
 game_started: Un nouveau jeu a commencé !
 no_game: Il n'y a pas de jeu en cours !
-no_game_text: Pas de jeu en cours, envoyez /nouveau pour commencer un nouveau jeu!
+no_game_text: Pas de jeu en cours, envoyez /new pour commencer un nouveau jeu !
 lobby_closed: Le hall est fermé !
 lobby_opened: Le hall est ouvert !
 joined_game: Tu as rejoint le jeu !
-player_joined: '{} rejoint le jeu!'
+player_joined: '{} rejoint le jeu !'
 no_joinned: Tu n'es pas dans le jeu !
-next: Suivant .
+next: Suivant {}
 game_over: Le jeu est terminé !
-player_left: '{} a quitté le jeu!'
+player_left: '{} a quitté le jeu !'
 left_game: Tu as quitté le jeu !
 not_allowed: Vous n'avez pas le droit de faire ça !
 game_already_started: Le jeu a déjà commencé !
-info_text: "⁇  Informations sur le jeu:\nJoueur actuel - {current_player}\nDernière
-  carte\n"
-info_text2: '{joueur}: {cartes} les cartes, '
+info_text: "🃏 Informations sur le jeu:\nJoueur actuel - {current_player}\nDernière
+  carte - {last_card}\n"
+info_text2: '{player} : {cards} les cartes, '
 pass: Passé
-buy: Acheter une carte
-cards_swapped: '{nom1} a échangé des cartes avec {nom2}'
+buy: Acheter {} carte(s)
+cards_swapped: '{name1} a échangé des cartes avec {name2}'
 not_swapped: En raison du nombre de joueurs, il n'était pas possible d'échanger les
   cartes !
 swapped: Les cartes ont été échangées !
-bought: Tu as acheté des cartes !
-bluffed: "Tu ne peux pas bluffer !\nJ'ai tiré des cartes !"
-not_bluffed: "Vous n'avez pas bluffé !\nJ'ai tiré des cartes !"
-colorchoose: '{Nom} choisissez une couleur !'
-colorchoosed: J'ai choisi la couleur !
-playerchoose: '{Nom} choisissez un joueur !'
+bought: Vous avez acheté {buy} cartes !
+bluffed: "{name} Vous ne pouvez pas bluffer !\n{name} a tiré {draw} cartes !"
+not_bluffed: "{name1} Vous n'avez pas bluffé !\n{name2} a tiré {draw} cartes !"
+colorchoose: '{name} choisissez une couleur !'
+colorchoosed: J'ai choisi la couleur {color} !
+playerchoose: '{name} choisissez un joueur !'
 invalid_card: Un mouvement invalide !
-said_uno: '{nom} a crié UNO!'
-say_uno: '{Nom} dis UNO ou tire 2 cartes !'
-not_said_uno: "Vous n'avez pas crié UNO !\n{nom} a tiré deux cartes !"
+said_uno: '{name} a crié UNO !'
+say_uno: '{name} dis UNO ou tire 2 cartes !'
+not_said_uno: "{name} Vous n'avez pas crié UNO !\n{name} a pioché 2 cartes !"
 first: ' dans le premier'
-won: '{Nom} a gagné le jeu {comp}!'
-continuing: Continuer le jeu avec {nombre} de joueurs
+won: '{name} a gagné le jeu{comp} !'
+continuing: Continuer le jeu avec {count} de joueurs
 play: Jouer
 admin_only: Seul l'administrateur du groupe peut l'utiliser !
 game_ruinning: Tu ne peux pas changer les réglages pendant qu'un jeu est en cours
@@ -95,19 +95,19 @@ rm_sudo: Supprimer l' utilisateur
 send_user_id: Envoyez l' ID ou le nom d' utilisateur que vous souhaitez ajouter aux
   sudoers
 user_not_found: Utilisateur non trouvé !
-user_sudoer: '{user} est déjà un souscripteur!'
-user_added: '{user} a été ajouté aux sudoers!'
+user_sudoer: '{user} est déjà un souscripteur !'
+user_added: '{user} a été ajouté aux sudoers !'
 select_user: "Sélectionner un utilisateur à supprimer des sudoers\n\n"
 user_not_sudoer: "{user} n'est pas un souscripteur !"
-user_removed: '{user} a été retiré des sudoers!'
+user_removed: '{user} a été retiré des sudoers !'
 add_theme: Ajouter un nouveau thème
 send_theme_name: Envoyer le nom du nouveau thème
-send_sticker: 'Envoyer un autocollant pour le remplacer:'
-theme_added: Le thème {nom} a été ajouté !
+send_sticker: 'Envoyer un autocollant pour le remplacer :'
+theme_added: Le thème {name} a été ajouté !
 add_card: Ajouter une nouvelle carte
 update_card: Carte de mise à jour
 verify_card: Vérifier les cartes
-sudo_theme: Que voulez-vous faire avec le thème ?
+sudo_theme: Que souhaitez-vous faire avec le thème {theme} ?
 send_card_code: Envoyez le code de la carte que vous voulez ajouter
 send_colored_card: Envoyez l'autocollant de couleur à la carte {code}
 send_gray_card: Envoyer l'autocollant gris à la carte {code}
