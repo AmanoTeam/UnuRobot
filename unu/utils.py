@@ -37,5 +37,6 @@ async def load_all():
         await game.delete()
 
     for player in await GamePlayer.all():
-        player_game[player.player_id] = games[player.game_chat_id]
-        await player.delete()
+        if player.game_chat_id in games:
+            player_game[player.player_id] = games[player.game_chat_id]
+            await player.delete()

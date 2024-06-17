@@ -7,7 +7,7 @@ if TYPE_CHECKING:
 
 from hydrogram.types import Chat, Message, User
 
-from config import bot, timeout
+from config import bot, timeout, games
 from unu.db import GameModel
 from unu.deck import Deck
 
@@ -53,11 +53,12 @@ class Game:
 
     async def start_timer(self):
         await asyncio.sleep(self.timer_duration)
-        await bot.send_message(
-            self.chat.id, f"Time's up! {self.next_player.first_name} has been skipped."
-        )
-        self.next()
-        await bot.send_message(self.chat.id, f"{self.next_player.first_name}'s turn.")
+        if self.chat.id in games and games[self.chat.id] == self:
+            await bot.send_message(
+                self.chat.id, f"Time's up! {self.next_player.first_name} has been skipped."
+            )
+            self.next()
+            await bot.send_message(self.chat.id, f"{self.next_player.first_name}'s turn.")
 
     async def save(self):
         print("Saving game")
