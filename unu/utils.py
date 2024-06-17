@@ -2,7 +2,7 @@ from hydrogram import Client, filters
 from hydrogram.types import Message
 
 from config import games, player_game, sudoers
-from unu.db import GameModel, User, GamePlayer
+from unu.db import GameModel, GamePlayer, User
 from unu.game import Game
 
 
@@ -23,7 +23,7 @@ __all__ = ["filter_sudoers"]
 
 
 async def save_all():
-    for game_id, game in games.items():
+    for game in games.values():
         await game.save()
     for chat_id, game in player_game.items():
         await GamePlayer.create(player_id=chat_id, game_chat_id=game.chat.id)

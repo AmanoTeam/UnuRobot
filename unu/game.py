@@ -7,7 +7,7 @@ if TYPE_CHECKING:
 
 from hydrogram.types import Chat, Message, User
 
-from config import bot, timeout, games
+from config import bot, games, timeout
 from unu.db import GameModel
 from unu.deck import Deck
 
@@ -63,8 +63,7 @@ class Game:
     async def save(self):
         print("Saving game")
         players_dict = {
-            player_id: getattr(player, "cards", None)
-            for player_id, player in self.players.items()
+            player_id: getattr(player, "cards", None) for player_id, player in self.players.items()
         }
 
         game = GameModel(
@@ -83,13 +82,13 @@ class Game:
             closed=self.closed,
             winner=self.winner,
             timer_duration=self.timer_duration,
-            message_id=self.message.id
+            message_id=self.message.id,
         )
         if self.timer_task:
             self.timer_task.cancel()
         await game.save()
         print("Game saved")
-    
+
     @classmethod
     async def load(cls, game: GameModel):
         self = cls(game.chat_id, game.theme)

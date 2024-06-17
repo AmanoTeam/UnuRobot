@@ -3,7 +3,6 @@ import os
 from tortoise import Tortoise, connections, fields
 from tortoise.backends.base.client import Capabilities
 from tortoise.models import Model
-import json
 
 
 class Chat(Model):
@@ -44,6 +43,7 @@ class GameModel(Model):
     winner = fields.BooleanField(default=True)
     timer_duration = fields.IntField(default=30)
     message_id = fields.IntField(null=True)
+
 
 class GamePlayer(Model):
     player_id = fields.IntField()

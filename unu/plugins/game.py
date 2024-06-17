@@ -595,9 +595,7 @@ async def verify_cards(game: Game, c: Client, ir, user: User, ut, t):
             uno = False
             while True:
                 try:
-                    cmessage = await game.chat.listen(
-                        filters.text, timeout=5
-                    )
+                    cmessage = await game.chat.listen(filters.text, timeout=5)
                     if (cmessage and cmessage.text) and "uno" in cmessage.text.lower():
                         uno = True
                         break
