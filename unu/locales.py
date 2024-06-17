@@ -84,4 +84,4 @@ def use_user_lang():
 
 def get_locale_string(language: str, key: str) -> str:
     print(f"Getting {key} for {language}")
-    return langdict[language].get(key) or key
+    return langdict[language].get(key) or langdict[default_language].get(key) or key
