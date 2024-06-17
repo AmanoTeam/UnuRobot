@@ -95,7 +95,7 @@ start_text: "Olá! Eu sou o UNO Bot, um bot para jogar UNO no Telegram!\n\nPara 
   usa os botões abaixo!"
 start_game: Iniciar o jogo
 not_allowed: Não é permitido fazer isso!
-lang_name: Português
+lang_name: Português (Portugal)
 info_one_card: Quando um jogador tem apenas uma carta, deve dizer UNO. Se não o fizer,
   tem de comprar 2 cartas.
 no_game_text: Não há jogo em curso, enviar /new para iniciar um novo jogo!
