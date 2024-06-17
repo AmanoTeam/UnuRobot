@@ -39,13 +39,13 @@ start_text: "Hallo! Ich bin der UNO-Bot, ein Bot zum Spielen von UNO auf Telegra
   Spiel zu starten!\n\noder zum Konfigurieren benutze die Buttons unten!"
 bought: Sie haben {buy} Karten gekauft!
 won: '{name} das Spiel gewonnen{comp}!'
-lang_flag: 🇺🇸
+lang_flag: 🇩🇪
 info_bluff: Wenn ein Spieler eine +4-Karte ausspielt, kann der nächste Spieler antreten.
   Wenn der Spieler, der die +4-Karte gespielt hat, eine weitere Karte ausspielen kann,
   zieht er 4 Karten. Wenn nicht, zieht derjenige, der die Karte herausgefordert hat,
   6 Karten.
 theme: Thema
-lang_name: Englisch
+lang_name: Deutsch
 one_card: Sag UNO
 colorchoosed: Ich habe die Farbe {color} gewählt!
 colorchoose: '{name} Wählen Sie eine Farbe!'
@@ -57,7 +57,7 @@ send_user_id: Senden Sie die Benutzer-ID oder den Benutzernamen, den Sie zu den 
   hinzufügen möchten
 send_colored_card: Senden Sie den farbigen Aufkleber an {code} card
 player_left: '{} das Spiel verlassen!'
-lang_changed: Die Sprache wurde auf Englisch umgestellt!
+lang_changed: Die Sprache wurde auf Deutsch umgestellt!
 theme_config: 'Wählen Sie ein Thema für die Karten:'
 not_said_uno: "{name} Du hast nicht UNO geschrien!\n{name} hat 2 Karten gezogen!"
 admin_only: Nur der Gruppenadministrator kann dies verwenden!
