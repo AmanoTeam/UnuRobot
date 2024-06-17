@@ -580,13 +580,13 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
     return None
 
 
-async def verify_cards(game: Game, c: Client, ir, user: User, ut, t):
+async def verify_cards(game: Game, c: Client, ir, user: User, ut, ct):
     inline_keyb = InlineKeyboardMarkup([
-        [InlineKeyboardButton(t("play"), switch_inline_query_current_chat="")]
+        [InlineKeyboardButton(ct("play"), switch_inline_query_current_chat="")]
     ])
     if len(game.players[user.id].cards) == 1:
         if not (await Chat.get(id=game.chat.id)).one_card:
-            await c.send_message(game.chat.id, t("said_uno").format(name=user.mention))
+            await c.send_message(game.chat.id, ct("said_uno").format(name=user.mention))
         else:
             await c.send_message(
                 game.chat.id,
@@ -602,17 +602,17 @@ async def verify_cards(game: Game, c: Client, ir, user: User, ut, t):
                 except ListenerTimeout:
                     break
             if uno and cmessage.from_user.id == user.id:
-                await c.send_message(game.chat.id, t("said_uno").format(name=user.mention))
+                await c.send_message(game.chat.id, ct("said_uno").format(name=user.mention))
             else:
                 game.players[user.id].cards.extend(game.deck.draw(2))
                 await c.send_message(
                     game.chat.id,
-                    t("not_said_uno").format(name=user.mention),
+                    ct("not_said_uno").format(name=user.mention),
                 )
 
     elif len(game.players[user.id].cards) == 0:
-        comp_text = t("first") if game.winner else ""
-        await c.send_message(game.chat.id, t("won").format(name=user.mention, comp=comp_text))
+        comp_text = ct("first") if game.winner else ""
+        await c.send_message(game.chat.id, ct("won").format(name=user.mention, comp=comp_text))
         if game.winner:
             game.winner = False
             db_user = await User.get_or_none(id=user.id)
@@ -628,10 +628,10 @@ async def verify_cards(game: Game, c: Client, ir, user: User, ut, t):
             game.next()
             game.players.pop(user.id)
             player_game.pop(user.id)
-            await c.send_message(game.chat.id, t("continuing").format(count=len(game.players)))
+            await c.send_message(game.chat.id, ct("continuing").format(count=len(game.players)))
             await c.send_message(
                 game.chat.id,
-                t("next").format(game.next_player.mention),
+                ct("next").format(game.next_player.mention),
                 reply_markup=inline_keyb,
             )
         else:
@@ -643,7 +643,7 @@ async def verify_cards(game: Game, c: Client, ir, user: User, ut, t):
                     db_user.cards += game.players[player].total_cards
                     await db_user.save()
                 player_game.pop(player)
-            await c.send_message(game.chat.id, t("game_over"))
+            await c.send_message(game.chat.id, ct("game_over"))
             game.stop()
             await game.message.edit_text(ct("game_over"))
             if (await Chat.get(id=game.chat.id)).auto_pin:

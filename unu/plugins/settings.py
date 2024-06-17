@@ -8,7 +8,7 @@ from hydrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardM
 from config import games
 from unu.card import cards
 from unu.db import Chat, User
-from unu.locales import get_locale_string, langs, use_chat_lang, use_user_lang
+from unu.locales import get_locale_string, langdict, use_chat_lang, use_user_lang
 from unu.utils import filter_sudoers
 
 
@@ -151,7 +151,7 @@ async def lang(c: Client, cq: CallbackQuery, t):
                     callback_data=f"lang_{lang}",
                 )
             ]
-            for lang in langs
+            for lang in langdict
         ])
         await cq.message.edit_text(t("choose_lang"), reply_markup=keyb)
 

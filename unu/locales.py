@@ -1,4 +1,3 @@
-import glob
 from functools import partial, wraps
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -15,17 +14,15 @@ if TYPE_CHECKING:
     from unu.game import Game
 
 
-file_list = glob.glob("locales/*.yml")
-langs = [Path(file).stem for file in file_list]
-
 default_language = "en-US"
 
 
 def load_locales() -> dict[str, dict[str, str]]:
-    ldict = {lang: {} for lang in langs}
-    for lang in langs:
-        with Path(f"locales/{lang}.yml").open(encoding="utf-8") as f:
-            ldict[lang] = yaml.safe_load(f)
+    ldict = {}
+    for lang_file in Path("locales").glob("*.yml"):
+        with lang_file.open(encoding="utf-8") as f:
+            ldict[lang_file.stem] = yaml.safe_load(f)
+
     return ldict
 
 
