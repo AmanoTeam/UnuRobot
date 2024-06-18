@@ -52,8 +52,8 @@ async def settings_sudos(c: Client, cq: CallbackQuery, t):
 
     keyb = InlineKeyboardMarkup([
         [
-            InlineKeyboardButton(t("add_sudo"), callback_data="settings_sudos_add"),
-            InlineKeyboardButton(t("rm_sudo"), callback_data="settings_sudos_remove"),
+            InlineKeyboardButton(t("add_sudoer"), callback_data="settings_sudos_add"),
+            InlineKeyboardButton(t("remove_sudoer"), callback_data="settings_sudos_remove"),
         ],
         [InlineKeyboardButton(t("back"), callback_data="sudos")],
     ])
@@ -84,7 +84,7 @@ async def settings_sudos_add(c: Client, cq: CallbackQuery, t):
     user_db = await User.get_or_create(id=user.id)
 
     if user_db[0].sudo:
-        await cmessage.reply_text(t("user_sudoer").format(user=user.mention))
+        await cmessage.reply_text(t("user_already_sudoer").format(user=user.mention))
         return
 
     user_db[0].sudo = True
@@ -219,7 +219,7 @@ async def settings_themes(c: Client, cq: CallbackQuery, t):
                 t("update_card"), callback_data="settings_sudo_themc_update " + theme
             ),
             InlineKeyboardButton(
-                t("verify_card"), callback_data="settings_sudo_themc_check " + theme
+                t("verify_cards"), callback_data="settings_sudo_themc_check " + theme
             ),
         ],
         [InlineKeyboardButton("Voltar", callback_data="settings_sudo_themc")],

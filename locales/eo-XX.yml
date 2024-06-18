@@ -1,10 +1,10 @@
-playerchoose: '{name} elektas ludiston!'
-said_uno: '{name} kriegis UNO!'
-not_said_uno: "{name} Vi ne kriegis UNO!\n{name} tiris 2 kartojn!"
+choose_player: '{name} elektas ludiston!'
+shouted_uno: '{name} kriegis UNO!'
+did_not_say_uno: "{name} Vi ne kriegis UNO!\n{name} tiris 2 kartojn!"
 cards_swapped: '{name1} interŝanĝita kartojn kun {name2}'
-bought: Vi aĉetis {number} kartojn!
+drawn: Vi aĉetis {number} kartojn!
 say_uno: '{name} diras UNO aŭ tiro 2 kartoj!'
-continuing: daŭranta la ludon kun {count} ludistoj
+continuing_game: daŭranta la ludon kun {count} ludistoj
 won: '{name} gajnis la ludon!'
 left_game: Vi lasis la ludon!
 not_allowed: Vi ne rajtas fari tion!
@@ -12,14 +12,14 @@ game_already_started: La ludo jam komenciĝis!
 info_text: "🃏 Ludo-Informo:\nNuna ludanto * {current_player}\nLasta karto - {last_card}\n"
 info_text2: '{player}: {cards} kartoj, '
 pass: Pasi
-buy: Aĉetu {number} karto(j)n
-bluff: Mi kredas, ke vi estas malklarigita!
+draw: Aĉetu {number} karto(j)n
+bluff_call: Mi kredas, ke vi estas malklarigita!
 not_swapped: Pro la nombro de ludantoj, ne eblas interŝanĝi kartojn!
 swapped: La kartoj estis interŝanĝitaj!
-bluffed: "{name} Vi povas ne blufon!\n{name} tiris {draw} kartojn!"
-not_bluffed: "{name1} Vi faris ne blufon!\n{name2} tiris {draw} kartojn!"
-colorchoose: '{name} elektas koloron!'
-colorchoosed: Mi elektis la koloran {color}!
+bluff_failed: "{name} Vi povas ne blufon!\n{name} tiris {draw} kartojn!"
+bluff_successful: "{name1} Vi faris ne blufon!\n{name2} tiris {draw} kartojn!"
+choose_color: '{name} elektas koloron!'
+color_chosen: Mi elektis la koloran {color}!
 invalid_move: Invalida movo!
 play: Ludado
 admin_only: Nur la grupo povas uzi tion!
@@ -29,11 +29,11 @@ sudos: Ŝanĝo sudoers
 sudo_menu: "Bonvenon al la interna menuo!\n\nElekti opcion malsupre por agordi la
   roboton."
 sudoers: "Uzantoj kun internaj permesoj:\n\n"
-add_sudo: Aldonu uzanton
-rm_sudo: Forigu uzanton
+add_sudoer: Aldonu uzanton
+remove_sudoer: Forigu uzanton
 send_user_id: Sendu la uzanto ID aŭ uzantnomo vi volas aldoni al la fremduloj
 user_not_found: Uzanto ne trovita!
-user_sudoer: '{user} estas jam sudoer!'
+user_already_sudoer: '{user} estas jam sudoer!'
 user_added: '{user} estis aldonita la sudoers!'
 select_user: "Selektu uzanton forigi de la suduloj\n\n"
 user_not_sudoer: '{user} ne estas sudoer!'
@@ -43,7 +43,7 @@ send_theme_name: Sendu la nomon de la nova temo
 send_sticker: 'Sendu glumarkon por anstataŭigi la glumarkon:'
 theme_added: La tema {name} estis aldonita!
 update_card: Ĝisdatigita karto
-verify_card: Kontrolu kartojn
+verify_cards: Kontrolu kartojn
 sudo_theme: Kion vi volas fari kun la temo {theme}?
 send_card_code: Sendu la kodon de la karto vi volas aldoni
 send_gray_card: Sendu la grizan glumarkon {code} karto
@@ -58,17 +58,17 @@ lang_flag: 🌐
 lang_changed: La lingvo ŝanĝiĝis al Esperanto!
 info_theme: Vi elektas temon por la kartoj
 seven_zero: 7-0
-sbluff: Blufo
-info_bluff: Kiam ludanto ludas +4 karton, la venonta povas defii. Se la ludanto kiu
+sbluff_call: Blufo
+info_bluff_call: Kiam ludanto ludas +4 karton, la venonta povas defii. Se la ludanto kiu
   ludis la +4 karton havas alian karton por ludi, ili tiras 4 kartojn. Se ne, tiu
   kiu defiis remizojn 6.
-one_win: Unu gajninto
-one_card: Diru al UNO
-info_one_card: Kiam ludanto havas nur unu karton, ili devas diri UNO. Se ili ne faras,
+one_winner: Unu gajninto
+say_uno: Diru al UNO
+info_say_uno: Kiam ludanto havas nur unu karton, ili devas diri UNO. Se ili ne faras,
   ili devas tiri 2 kartojn.
 auto_pin: Aŭtomobila pinglo
 language: Lingvo
-choose_lang: Elektu lingvon
+choose_language: Elektu lingvon
 help: Helpo
 game_mode: Ludreĝimo
 start_text: "Saluton! Mi estas la UNO Bot, roboto por ludi UNO en Telegram!\n\nPor
@@ -87,8 +87,8 @@ lobby_closed: La vestiblo estas fermita!
 lobby_opened: La vestiblo estas malfermita!
 joined_game: Vi eniris la ludon!
 player_joined: '{name} aliĝis al la ludo!'
-no_joinned: Vi ne estas en la ludo!
-next: Sekva {name}
+not_joined: Vi ne estas en la ludo!
+next_player: Sekva {name}
 game_over: La ludo estas finita!
 player_left: '{name} lasis la ludon!'
 back: Reen
@@ -96,9 +96,9 @@ theme: Temo
 settings_text: Agordoj
 info_seven: Kiam 7 estas ludita, la ludanto povas interŝanĝi kartojn kun alia ludanto.
   Kiam 0 estas ludita, ĉiuj pasas siajn kartojn al la venonta ludanto.
-info_one_win: Kiam la unua ludanto elĉerpas kartojn, la ludo finiĝas kaj ili estas
+info_one_winner: Kiam la unua ludanto elĉerpas kartojn, la ludo finiĝas kaj ili estas
   la gajninto.
-info_lang: Vi povas ŝanĝi la lingvon de la roboto.
+info_language: Vi povas ŝanĝi la lingvon de la roboto.
 info_auto_pin: Kiam ludo komenciĝas, la roboto aŭtomate alpinglas la ludmesaĝon.
 colorblind: Koloroblinda
 game_started: Nova ludo komenciĝis!
@@ -108,4 +108,4 @@ game_exists: Estas jam ludo en progreso!
 minimalist: Minimumisto
 leave: Lasu min foriri
 start_game: Komencu ludon
-won_first: '{name} gajnis la ludon en unua loko!'
+first_place: '{name} gajnis la ludon en unua loko!'

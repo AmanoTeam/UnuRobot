@@ -10,8 +10,8 @@ class Chat(Model):
     theme = fields.CharField(max_length=255, default="classic")
     bluff = fields.BooleanField(default=True)
     seven = fields.BooleanField(default=False)
-    one_win = fields.BooleanField(default=False)
-    one_card = fields.BooleanField(default=False)
+    one_winner = fields.BooleanField(default=False)
+    say_uno = fields.BooleanField(default=False)
     lang = fields.CharField(max_length=255, default="en-US")
     auto_pin = fields.BooleanField(default=False)
 

@@ -2,11 +2,11 @@ lang_flag: 🇪🇸
 theme: Tema
 back: Volver
 seven_zero: 7-0
-sbluff: Farol
-one_win: Un ganador
-info_one_win: Cuando el primer jugador se queda sin tarjetas, la partida termina y
+sbluff_call: Farol
+one_winner: Un ganador
+info_one_winner: Cuando el primer jugador se queda sin tarjetas, la partida termina y
   son el ganador.
-one_card: Diga UNO
+say_uno: Diga UNO
 language: Idioma
 game_mode: Modo de juego
 status: Estado
@@ -16,40 +16,40 @@ settings: "¡Bienvenido al menú de configuración!\n\nElija una opción a conti
 theme_config: 'Elija un tema para las tarjetas:'
 minimalist: Minimalista
 colorblind: Daltónico
-no_joinned: ¡No estás en la partida!
-next: Siguiente {name}
+not_joined: ¡No estás en la partida!
+next_player: Siguiente {name}
 game_over: ¡Se acabó la partida!
 cards_swapped: '{name1} intercambió cartas con {name2}'
-colorchoosed: Elegí el color {color}!
-colorchoose: '{name} ¡elige un color!'
-playerchoose: '{name} ¡elige un jugador!'
+color_chosen: Elegí el color {color}!
+choose_color: '{name} ¡elige un color!'
+choose_player: '{name} ¡elige un jugador!'
 invalid_move: ¡Moveos inválidos!
-said_uno: '{name} gritó UNO!'
+shouted_uno: '{name} gritó UNO!'
 say_uno: '{name} ¡Di UNO o dibuje 2 cartas!'
 play: Jugar
 lang_name: Español
 player_left: '{name} ¡dejó la partida!'
 lang_changed: ¡El idioma se ha cambiado a español!
 info_theme: Elige un tema para las tarjetas
-info_lang: Puedes cambiar el idioma del bot.
+info_language: Puedes cambiar el idioma del bot.
 start_text: "¡Hola! Soy el UNO Bot, ¡un bot para jugar al UNO en Telegram!\n\n¡Para
   jugar, ponme en un grupo y envía /new para empezar una nueva partida!\n\n¡o para
   configurarlo usa los botones de abajo!"
-info_one_card: Cuando un jugador tiene una sola tarjeta, deben decir UNO. Si no lo
+info_say_uno: Cuando un jugador tiene una sola tarjeta, deben decir UNO. Si no lo
   hacen, deben dibujar 2 tarjetas.
-choose_lang: Elige un idioma
+choose_language: Elige un idioma
 classic: Clásico
 game_exists: ¡Ya hay una partida en marcha!
 only_group: ¡Este comando sólo funciona en grupos!
 game_started: ¡Ha empezado una nueva partida!
 start_game: Iniciar partida
-not_bluffed: "{name1} ¡no fue un farol!\n{name2} ¡sacó {draw} tarjetas!"
-not_said_uno: "{name} ¡No gritaste a UNO!\n{name} dibujó 2 cartas!"
+bluff_successful: "{name1} ¡no fue un farol!\n{name2} ¡sacó {draw} tarjetas!"
+did_not_say_uno: "{name} ¡No gritaste a UNO!\n{name} dibujó 2 cartas!"
 won: '{name} ¡ganó el partido!'
-continuing: continuación de la partida con {count} jugadores
+continuing_game: continuación de la partida con {count} jugadores
 info_seven: Cuando se juega un 7, el jugador puede cambiar tarjetas con otro jugador.
   Cuando se juega un 0, todos pasan sus tarjetas al siguiente jugador.
-info_bluff: Cuando un jugador juega una tarjeta +4, el siguiente puede desafiar. Si
+info_bluff_call: Cuando un jugador juega una tarjeta +4, el siguiente puede desafiar. Si
   el jugador que jugó la tarjeta +4 tiene otra tarjeta para jugar, dibujan 4 tarjetas.
   Si no, el que desafió dibuja 6.
 already_in_game: Ya estás en otra partida
@@ -70,14 +70,14 @@ left_game: ¡Has abandonado la partida!
 game_already_started: ¡La partida ya ha comenzado!
 info_text2: '{player}: {cards} cartas, '
 pass: Pasar
-buy: Comprar {number} tarjeta(s)
-bluff: ¡Creo que vas de farol!
+draw: Comprar {number} tarjeta(s)
+bluff_call: ¡Creo que vas de farol!
 not_swapped: Debido al número de jugadores, no fue posible cambiar tarjetas!
 swapped: ¡Las cartas han sido intercambiadas!
-bought: ¡Compraste {number} tarjetas!
-bluffed: "{name} ¡no puedes farolear!\n{name} ¡robó {draw} cartas!"
+drawn: ¡Compraste {number} tarjetas!
+bluff_failed: "{name} ¡no puedes farolear!\n{name} ¡robó {draw} cartas!"
 help: Ayuda
-user_sudoer: ¡{user} ya es un sudoer!
+user_already_sudoer: ¡{user} ya es un sudoer!
 user_added: ¡{user} se ha añadido a los sudoers!
 select_user: "Seleccione un usuario para eliminar de los sudoers\n\n"
 user_not_sudoer: ¡{user} no es un sudoer!
@@ -88,7 +88,7 @@ send_sticker: 'Envía un sticker para reemplazar lo sticker:'
 theme_added: ¡El tema {name} ha sido añadido!
 add_card: Añadir nueva tarjeta
 update_card: Actualizar tarjeta
-verify_card: Verificar tarjetas
+verify_cards: Verificar tarjetas
 sudo_theme: ¿Qué quieres hacer con el tema {theme}?
 send_card_code: Envía el código de la tarjeta que desea añadir
 send_colored_card: Envía el sticker de color a la tarjeta {code}
@@ -104,13 +104,13 @@ info_auto_pin: Cuando empiece una partida, el bot fijará automáticamente el me
 admin_only: ¡Sólo el administrador del grupo puede usar esto!
 game_ruinning: No se puede cambiar la configuración mientras se está ejecutando una
   partida!
-rm_sudo: Eliminar usuario
+remove_sudoer: Eliminar usuario
 theme_changed: El tema ha sido cambiado a {theme}!
 user_not_found: ¡Usuario no encontrado!
 sudos: Cambio de sudoers
 send_user_id: Envía el ID de usuario o nombre de usuario que desea añadir a los sudoers
-add_sudo: Añadir usuario
+add_sudoer: Añadir usuario
 sudo_menu: "¡Bienvenido al menú de los sudoers!\n\nElija una opción a continuación
   para configurar el bot."
 sudoers: "Usuarios con permisos de sudo:\n\n"
-won_first: '{name} ¡ganó el partido en primer lugar!'
+first_place: '{name} ¡ganó el partido en primer lugar!'

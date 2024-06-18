@@ -20,7 +20,7 @@ async def settings_pvt(c: Client, m: Message | CallbackQuery, t):
 
     x = await User.get(id=m.from_user.id)
     keyb = [
-        [(t("language"), "info_lang"), (t("lang_flag"), "lang")],
+        [(t("language"), "info_language"), (t("lang_flag"), "lang")],
         [(t("status"), "status"), ("✅" if x.placar else "✖️", "ch_status")],
     ]
 
@@ -51,10 +51,10 @@ async def settings_and_mode(c: Client, m: Message | CallbackQuery, t):
             await Chat.get(id=chat_id).update(seven=not x.seven)
         elif m.data == "mode_bluff":
             await Chat.get(id=chat_id).update(bluff=not x.bluff)
-        elif m.data == "mode_one_win":
-            await Chat.get(id=chat_id).update(one_win=not x.one_win)
-        elif m.data == "mode_one_card":
-            await Chat.get(id=chat_id).update(one_card=not x.one_card)
+        elif m.data == "mode_one_winner":
+            await Chat.get(id=chat_id).update(one_winner=not x.one_winner)
+        elif m.data == "mode_say_uno":
+            await Chat.get(id=chat_id).update(say_uno=not x.say_uno)
         elif m.data == "mode_auto_pin":
             admin = await c.get_chat_member(chat_id, c.me.id)
             print(admin)
@@ -79,19 +79,19 @@ async def settings_and_mode(c: Client, m: Message | CallbackQuery, t):
             InlineKeyboardButton("✅" if x.bluff else "✖️", callback_data="mode_bluff"),
         ],
         [
-            InlineKeyboardButton(t("one_win"), callback_data="info_one_win"),
-            InlineKeyboardButton("✅" if x.one_win else "✖️", callback_data="mode_one_win"),
+            InlineKeyboardButton(t("one_winner"), callback_data="info_one_winner"),
+            InlineKeyboardButton("✅" if x.one_winner else "✖️", callback_data="mode_one_winner"),
         ],
         [
-            InlineKeyboardButton(t("one_card"), callback_data="info_one_card"),
-            InlineKeyboardButton("✅" if x.one_card else "✖️", callback_data="mode_one_card"),
+            InlineKeyboardButton(t("say_uno"), callback_data="info_say_uno"),
+            InlineKeyboardButton("✅" if x.say_uno else "✖️", callback_data="mode_say_uno"),
         ],
         [
             InlineKeyboardButton(t("auto_pin"), callback_data="info_auto_pin"),
             InlineKeyboardButton("✅" if x.auto_pin else "✖️", callback_data="mode_auto_pin"),
         ],
         [
-            InlineKeyboardButton(t("language"), callback_data="info_lang"),
+            InlineKeyboardButton(t("language"), callback_data="info_language"),
             InlineKeyboardButton(t("lang_flag"), callback_data="lang"),
         ],
     ])
@@ -153,7 +153,7 @@ async def lang(c: Client, cq: CallbackQuery, t):
             ]
             for lang in langdict
         ])
-        await cq.message.edit_text(t("choose_lang"), reply_markup=keyb)
+        await cq.message.edit_text(t("choose_language"), reply_markup=keyb)
 
 
 @Client.on_callback_query(filters.regex("^info_"))

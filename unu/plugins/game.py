@@ -92,7 +92,7 @@ async def leave_game(c: Client, m: Message | CallbackQuery, ut, ct):
     func = m.answer if isinstance(m, CallbackQuery) else m.reply_text
     game: Game = games.get(m.chat.id if isinstance(m, Message) else m.message.chat.id)
     if not game or m.from_user.id not in game.players:
-        return await func(ut("no_game") if not game else ut("no_joinned"))
+        return await func(ut("no_game") if not game else ut("not_joined"))
 
     if game.is_started and game.next_player.id == m.from_user.id:
         inline_keyb = InlineKeyboardMarkup([
@@ -101,7 +101,7 @@ async def leave_game(c: Client, m: Message | CallbackQuery, ut, ct):
         game.next()
         await c.send_message(
             game.chat.id,
-            ct("next").format(name=game.next_player.mention),
+            ct("next_player").format(name=game.next_player.mention),
             reply_markup=inline_keyb,
         )
     del game.players[m.from_user.id]
@@ -253,7 +253,7 @@ async def start_game(c: Client, m: Message | CallbackQuery, ut, ct):
     ])
     return await c.send_message(
         chat_id,
-        ct("next").format(name=game.next_player.mention),
+        ct("next_player").format(name=game.next_player.mention),
         reply_markup=inline_keyb,
     )
 
@@ -295,7 +295,7 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
                 id=pre + color,
                 title=color_icons[color],
                 input_message_content=InputTextMessageContent(
-                    ct("colorchoosed").format(color=color_icons[color])
+                    ct("color_chosen").format(color=color_icons[color])
                 ),
             )
             for color in COLORS
@@ -356,9 +356,9 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
     sticker_text = (
         ut("pass")
         if game.drawed
-        else ut("buy").format(number=1)
+        else ut("draw").format(number=1)
         if game.draw == 0
-        else ut("buy").format(number=game.draw)
+        else ut("draw").format(number=game.draw)
     )
     articles = [
         InlineQueryResultCachedSticker(
@@ -437,7 +437,7 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
             game.next()
             return await c.send_message(
                 game.chat.id,
-                ct("next").format(name=game.next_player.mention),
+                ct("next_player").format(name=game.next_player.mention),
                 reply_markup=inline_keyb,
             )
     elif game.chosen == "player" and game.last_card_2["card"][1] == "7":
@@ -459,18 +459,18 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
         await verify_cards(game, c, ir, game.players[ir.from_user.id], ut, ct)
         return await c.send_message(
             game.chat.id,
-            ct("next").format(name=game.next_player.mention),
+            ct("next_player").format(name=game.next_player.mention),
             reply_markup=inline_keyb,
         )
     elif pcard[0] == "option_draw":
         buy = game.draw if game.draw > 0 else 1
         game.players[ir.from_user.id].cards.extend(game.deck.draw(buy))
-        await c.send_message(game.chat.id, ct("bought").format(number=buy))
+        await c.send_message(game.chat.id, ct("drawn").format(number=buy))
         if len(game.players) != 1 and game.draw == 0:
             game.drawed = True
             return await c.send_message(
                 game.chat.id,
-                ct("next").format(name=game.next_player.mention),
+                ct("next_player").format(name=game.next_player.mention),
                 reply_markup=inline_keyb,
             )
         game.draw = 0
@@ -483,19 +483,19 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
             lplayer.cards.extend(game.deck.draw(game.draw))
             await c.send_message(
                 game.chat.id,
-                ct("bluffed").format(name=lplayer.mention, draw=game.draw),
+                ct("bluff_failed").format(name=lplayer.mention, draw=game.draw),
             )
             game.draw = 0
             await c.send_message(
                 game.chat.id,
-                ct("next").format(name=game.next_player.mention),
+                ct("next_player").format(name=game.next_player.mention),
                 reply_markup=inline_keyb,
             )
             return None
         game.players[ir.from_user.id].cards.extend(game.deck.draw(game.draw + 2))
         await c.send_message(
             game.chat.id,
-            ct("not_bluffed").format(
+            ct("bluff_successful").format(
                 name1=lplayer.mention,
                 name2=ir.from_user.mention,
                 draw=game.draw + 2,
@@ -519,7 +519,7 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
         game.chosen = "color"
         return await c.send_message(
             game.chat.id,
-            ct("colorchoose").format(name=game.next_player.mention),
+            ct("choose_color").format(name=game.next_player.mention),
             reply_markup=inline_keyb,
         )
     elif pcard[0] in cards[config.theme]["CARDS"]["THEME_CARDS"] or (
@@ -557,7 +557,7 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
                     }
                     return await c.send_message(
                         game.chat.id,
-                        ct("playerchoose").format(name=game.next_player.mention),
+                        ct("choose_player").format(name=game.next_player.mention),
                         reply_markup=inline_keyb,
                     )
             else:
@@ -581,7 +581,7 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
         game.next()
         return await c.send_message(
             game.chat.id,
-            ct("next").format(name=game.next_player.mention),
+            ct("next_player").format(name=game.next_player.mention),
             reply_markup=inline_keyb,
         )
     return None
@@ -592,8 +592,8 @@ async def verify_cards(game: Game, c: Client, ir, user: User, ut, ct):
         [InlineKeyboardButton(ct("play"), switch_inline_query_current_chat="")]
     ])
     if len(game.players[user.id].cards) == 1:
-        if not (await Chat.get(id=game.chat.id)).one_card:
-            await c.send_message(game.chat.id, ct("said_uno").format(name=user.mention))
+        if not (await Chat.get(id=game.chat.id)).say_uno:
+            await c.send_message(game.chat.id, ct("shouted_uno").format(name=user.mention))
         else:
             await c.send_message(
                 game.chat.id,
@@ -609,16 +609,16 @@ async def verify_cards(game: Game, c: Client, ir, user: User, ut, ct):
                 except ListenerTimeout:
                     break
             if uno and cmessage.from_user.id == user.id:
-                await c.send_message(game.chat.id, ct("said_uno").format(name=user.mention))
+                await c.send_message(game.chat.id, ct("shouted_uno").format(name=user.mention))
             else:
                 game.players[user.id].cards.extend(game.deck.draw(2))
                 await c.send_message(
                     game.chat.id,
-                    ct("not_said_uno").format(name=user.mention),
+                    ct("did_not_say_uno").format(name=user.mention),
                 )
 
     elif len(game.players[user.id].cards) == 0:
-        string = ct("won_first") if game.winner else ct("won")
+        string = ct("first_place") if game.winner else ct("won")
 
         await c.send_message(game.chat.id, string.format(name=user.mention))
         if game.winner:
@@ -627,7 +627,7 @@ async def verify_cards(game: Game, c: Client, ir, user: User, ut, ct):
             if db_user and db_user.placar:
                 db_user.wins += 1
                 await db_user.save()
-        if (await Chat.get(id=game.chat.id)).one_win and len(game.players) > 2:
+        if (await Chat.get(id=game.chat.id)).one_winner and len(game.players) > 2:
             db_user = await User.get_or_none(id=user.id)
             if db_user and db_user.placar:
                 db_user.matches += 1
@@ -636,10 +636,10 @@ async def verify_cards(game: Game, c: Client, ir, user: User, ut, ct):
             game.next()
             game.players.pop(user.id)
             player_game.pop(user.id)
-            await c.send_message(game.chat.id, ct("continuing").format(count=len(game.players)))
+            await c.send_message(game.chat.id, ct("continuing_game").format(count=len(game.players)))
             await c.send_message(
                 game.chat.id,
-                ct("next").format(name=game.next_player.mention),
+                ct("next_player").format(name=game.next_player.mention),
                 reply_markup=inline_keyb,
             )
         else:

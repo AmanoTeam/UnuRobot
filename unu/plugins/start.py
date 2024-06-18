@@ -33,8 +33,8 @@ async def help_game(c: Client, cq: CallbackQuery, t):
     text = t("game_mode_text")
     text += "<b>" + t("seven_zero") + "</b>: <i>" + t("info_seven") + "</i>\n\n"
     text += "<b>" + t("sbluff") + "</b>: <i>" + t("info_bluff") + "</i>\n\n"
-    text += "<b>" + t("one_win") + "</b>: <i>" + t("info_one_win") + "</i>\n\n"
-    text += "<b>" + t("one_card") + "</b>: <i>" + t("info_one_card") + "</i>\n\n"
+    text += "<b>" + t("one_winner") + "</b>: <i>" + t("info_one_winner") + "</i>\n\n"
+    text += "<b>" + t("say_uno") + "</b>: <i>" + t("info_say_uno") + "</i>\n\n"
     keyb = [[(t("back"), "help")]]
 
     await cq.edit_message_text(text, reply_markup=ikb(keyb))
