@@ -1,11 +1,11 @@
-game_already_started: O jogo já começou!
+game_already_started: A partida já começou!
 info_text2: '{player}: {cards} cartas, '
 pass: Passar
-buy: Comprar {} carta(s)
+buy: Comprar {number} carta(s)
 cards_swapped: '{name1} trocou cartas com {name2}'
 not_swapped: Devido ao número de jogadores, não foi possível trocar as cartas!
 swapped: As cartas foram trocadas!
-bought: Comprou {buy} cartas!
+bought: Comprou {number} cartas!
 bluff: Acho que está a fazer blefe!
 not_bluffed: "{name1} Não fizeste bluff!\n{name2} sacou {draw} cartas!"
 colorchoose: '{name} escolha uma cor!'
@@ -19,11 +19,12 @@ info_bluff: Quando um jogador joga uma carta +4, o próximo jogador pode desafia
   Se o jogador que jogou a carta +4 tiver outra carta para jogar, ele compra 4 cartas.
   Caso contrário, o jogador que desafiou tira 6.
 one_win: Um vencedor
-info_one_win: Quando o primeiro jogador ficar sem cartas, o jogo termina e ele é o
-  vencedor.
+info_one_win: Quando o primeiro jogador ficar sem cartas, a partida termina e ele
+  é o vencedor.
 one_card: Dizer UNO
 auto_pin: Fixação automática
-info_auto_pin: Quando um jogo começa, o bot fixa automaticamente a mensagem do jogo.
+info_auto_pin: Quando uma partida começa, o bot fixa automaticamente a mensagem da
+  partida.
 language: Língua
 info_lang: Pode alterar o idioma do bot.
 choose_lang: Escolher uma língua
@@ -37,28 +38,27 @@ theme_config: 'Escolha um tema para as cartas:'
 minimalist: Minimalista
 classic: Clássico
 colorblind: Daltónico
-game_existis: Já está a decorrer um jogo!
+game_existis: Já está a decorrer uma partida!
 only_group: Este comando só funciona em grupos!
-already_in_game: Já está noutro jogo
-already_joined: Já estás no jogo!
+already_in_game: Já está noutra partida
+already_joined: Já estás na partida!
 join: Aderir
 leave: Sair
-game_started: Começou um novo jogo!
-no_game: Não há nenhum jogo em curso!
+game_started: Começou uma nova partida!
+no_game: Não há nenhuma partida em curso!
 lobby_closed: O átrio está fechado!
 lobby_opened: O átrio está aberto!
-joined_game: Entraste no jogo!
-player_joined: '{} entrou no jogo!'
-no_joinned: Não estás no jogo!
-next: Seguinte {}
-game_over: O jogo acabou!
-player_left: '{} deixou o jogo!'
-left_game: Deixaste o jogo!
+joined_game: Entraste na partida!
+player_joined: '{name} entrou na partida!'
+no_joinned: Não estás na partida!
+next: Seguinte {name}
+game_over: A partida acabou!
+player_left: '{name} deixou a partida!'
+left_game: Deixaste a partida!
 said_uno: '{name} gritou UNO!'
 say_uno: '{name} diz UNO ou compra 2 cartas!'
 not_said_uno: "{name} Não gritaste UNO!\n{name} sacou 2 cartas!"
-first: ' em primeiro lugar'
-continuing: continuar o jogo com {count} jogadores
+continuing: continuar a partida com {count} jogadores
 play: Jogar
 admin_only: Apenas o administrador do grupo pode utilizar esta opção!
 theme_changed: O tema foi alterado para {theme}!
@@ -88,18 +88,18 @@ dark: Escuro
 choose_card: Escolher uma carta para atualizar
 info_seven: Quando é jogado um 7, o jogador pode trocar cartas com outro jogador.
   Quando é jogado um 0, todos passam as suas cartas para o jogador seguinte.
-game_ruinning: Não é possível alterar as definições enquanto um jogo está a decorrer!
+game_ruinning: Não é possível alterar as definições enquanto uma partida está a decorrer!
 info_theme: Escolhe um tema para as cartas
 start_text: "Olá! Eu sou o UNO Bot, um bot para jogar UNO no Telegram!\n\nPara jogar,
-  coloca-me num grupo e envia /new para começar um novo jogo!\n\nou para configurar
+  coloca-me num grupo e envia /new para começar uma nova partida!\n\nou para configurar
   usa os botões abaixo!"
-start_game: Iniciar o jogo
+start_game: Iniciar a partida
 not_allowed: Não é permitido fazer isso!
 lang_name: Português (Portugal)
 info_one_card: Quando um jogador tem apenas uma carta, deve dizer UNO. Se não o fizer,
   tem de comprar 2 cartas.
-no_game_text: Não há jogo em curso, enviar /new para iniciar um novo jogo!
-info_text: "🃏 Informações sobre o jogo:\nJogador atual - {current_player}\nÚltima
+no_game_text: Não há partida em curso, enviar /new para iniciar uma nova partida!
+info_text: "🃏 Informações sobre a partida:\nJogador atual - {current_player}\nÚltima
   carta - {last_card}\n"
 invalid_card: Movimento inválido!
 send_colored_card: Enviar o sticker colorido para a carta {code}
@@ -107,8 +107,9 @@ lang_flag: 🇵🇹
 lang_changed: A língua foi alterada para português!
 bluffed: "{name} Não se pode fazer blefe!\n{name} sacou {draw} cartas!"
 playerchoose: '{name} escolha um jogador!'
-won: '{name} ganhou o jogo{comp}!'
+won: '{name} ganhou a partida!'
 verify_card: Verificar cartas
 user_removed: '{user} foi removido dos sudoers!'
 send_user_id: Enviar o ID de utilizador ou o nome de utilizador que pretende adicionar
   aos sudoers
+won_first: '{name} ganhou a partida em primeiro lugar!'

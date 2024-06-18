@@ -51,11 +51,11 @@ no_game_text: Pas de jeu en cours, envoyez /new pour commencer un nouveau jeu 
 lobby_closed: Le hall est fermé !
 lobby_opened: Le hall est ouvert !
 joined_game: Tu as rejoint le jeu !
-player_joined: '{} rejoint le jeu !'
+player_joined: '{name} a rejoint le jeu !'
 no_joinned: Tu n'es pas dans le jeu !
-next: Suivant {}
+next: Suivant {name}
 game_over: Le jeu est terminé !
-player_left: '{} a quitté le jeu !'
+player_left: '{name} a quitté le jeu !'
 left_game: Tu as quitté le jeu !
 not_allowed: Vous n'avez pas le droit de faire ça !
 game_already_started: Le jeu a déjà commencé !
@@ -63,12 +63,12 @@ info_text: "🃏 Informations sur le jeu:\nJoueur actuel - {current_player}\nDer
   carte - {last_card}\n"
 info_text2: '{player} : {cards} les cartes, '
 pass: Passé
-buy: Acheter {} carte(s)
+buy: Acheter la/les carte(s) {number}
 cards_swapped: '{name1} a échangé des cartes avec {name2}'
 not_swapped: En raison du nombre de joueurs, il n'était pas possible d'échanger les
   cartes !
 swapped: Les cartes ont été échangées !
-bought: Vous avez acheté {buy} cartes !
+bought: Vous avez acheté des cartes {number}!
 bluffed: "{name} Vous ne pouvez pas bluffer !\n{name} a tiré {draw} cartes !"
 not_bluffed: "{name1} Vous n'avez pas bluffé !\n{name2} a tiré {draw} cartes !"
 colorchoose: '{name} choisissez une couleur !'
@@ -78,8 +78,7 @@ invalid_card: Un mouvement invalide !
 said_uno: '{name} a crié UNO !'
 say_uno: '{name} dis UNO ou tire 2 cartes !'
 not_said_uno: "{name} Vous n'avez pas crié UNO !\n{name} a pioché 2 cartes !"
-first: ' dans le premier'
-won: '{name} a gagné le jeu{comp} !'
+won: '{name} a gagné le match !'
 continuing: Continuer le jeu avec {count} de joueurs
 play: Jouer
 admin_only: Seul l'administrateur du groupe peut l'utiliser !
