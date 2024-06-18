@@ -28,23 +28,23 @@ theme_config: "Choose a theme for the cards:"
 minimalist: Minimalist
 classic: Classic
 colorblind: Colorblind
-game_existis: There is already a game in progress.
+game_exists: There is already a game in progress!
 only_group: This command only works in groups.
-already_in_game: You are already in another game.
-already_joined: You are already in the game.
+already_in_game: You are already in another game!
+already_joined: You are already in the game!
 join: Join
 leave: Leave
 start_game: Start Game
 game_started: A new game has started.
 no_game: There is no game in progress.
 no_game_text: No game in progress, send /new to start a new game.
-lobby_closed: The lobby is closed.
-lobby_opened: The lobby is open.
-joined_game: You joined the game.
-player_joined: "{name} joined the game."
-no_joinned: You are not in the game.
+lobby_closed: The lobby is closed!
+lobby_opened: The lobby is open!
+joined_game: You joined the game!
+player_joined: "{name} joined the game!"
+no_joinned: You are not in the game!
 next: Next {name}
-game_over: The game is over.
+game_over: The game is over!
 player_left: "{name} left the game."
 left_game: You left the game.
 not_allowed: You are not allowed to do that.
@@ -56,17 +56,17 @@ buy: Buy {number} card(s)
 bluff: "{name}, I think you're bluffing!"
 cards_swapped: "{name1} swapped cards with {name2}."
 not_swapped: Due to the number of players, it was not possible to swap cards.
-swapped: The cards have been swapped.
+swapped: The cards have been swapped!
 bought: You bought {number} cards.
 bluffed: "{name}, you can't bluff!\n\n{name} drew {draw} cards."
 not_bluffed: "{name1} didn't bluff!\n\n{name2} drew {draw} cards."
-colorchoose: "{name} chose a color."
-colorchoosed: I chose the color {color}.
-playerchoose: "{name} chose a player."
-invalid_card: Invalid move.
-said_uno: "{name} shouted UNO."
-say_uno: "{name}, say UNO or draw 2 cards."
-not_said_uno: "{name}, you didn't shout UNO!\n\n{name} drew 2 cards."
+colorchoose: "{name} chose a color:"
+colorchoosed: I chose the color {color}!
+playerchoose: "{name} chose a player:"
+invalid_move: Invalid move!
+said_uno: "{name} shouted UNO!"
+say_uno: "{name}, say UNO or draw 2 cards!"
+not_said_uno: "{name} didn't shout UNO!\n\n{name} drew 2 cards."
 won: "{name} won the game!"
 won_first: "{name} won the game in first place!"
 continuing: Continuing the game with {count} players.
@@ -88,7 +88,7 @@ user_not_sudoer: "{user} is not a sudoer."
 user_removed: "{user} has been removed from the sudoers."
 add_theme: Add new theme
 send_theme_name: Send the name of the new theme
-send_sticker: "Send a sticker to replace the sticker:"
+send_sticker: "Send a sticker to replace the current sticker:"
 theme_added: The theme {name} has been added.
 add_card: Add new card
 update_card: Update card

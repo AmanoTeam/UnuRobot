@@ -20,7 +20,7 @@ bluffed: "{name} Vi povas ne blufon!\n{name} tiris {draw} kartojn!"
 not_bluffed: "{name1} Vi faris ne blufon!\n{name2} tiris {draw} kartojn!"
 colorchoose: '{name} elektas koloron!'
 colorchoosed: Mi elektis la koloran {color}!
-invalid_card: Invalida movo!
+invalid_move: Invalida movo!
 play: Ludado
 admin_only: Nur la grupo povas uzi tion!
 game_ruinning: Vi ne povas ŝanĝi la agordojn dum ludo kuras!
@@ -104,7 +104,7 @@ colorblind: Koloroblinda
 game_started: Nova ludo komenciĝis!
 theme_config: 'Elektu temon por la kartoj:'
 classic: Klasika Klasikaĵo
-game_existis: Estas jam ludo en progreso!
+game_exists: Estas jam ludo en progreso!
 minimalist: Minimumisto
 leave: Lasu min foriri
 start_game: Komencu ludon

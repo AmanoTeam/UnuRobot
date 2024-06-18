@@ -65,7 +65,7 @@ leave: Verlassen Sie
 playerchoose: '{name} wähle einen Spieler!'
 user_removed: '{user} wurde aus den sudoers entfernt!'
 joined_game: Du bist dem Spiel beigetreten!
-invalid_card: Ungültige Bewegung!
+invalid_move: Ungültige Bewegung!
 info_one_win: Wenn der erste Spieler keine Karten mehr hat, endet das Spiel und er
   ist der Gewinner.
 status: Status
@@ -91,7 +91,7 @@ user_not_found: Benutzer nicht gefunden!
 player_joined: '{name} dem Spiel beigetreten!'
 user_not_sudoer: '{user} ist kein sudoer!'
 game_ruinning: Sie können die Einstellungen nicht ändern, während ein Spiel läuft!
-game_existis: Es ist bereits ein Spiel im Gange!
+game_exists: Es ist bereits ein Spiel im Gange!
 one_win: Ein Gewinner
 choose_lang: Wählen Sie eine Sprache
 info_text: "🃏 Spielinformationen:\nAktueller Spieler - {current_player}\nLetzte Karte

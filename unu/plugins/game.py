@@ -29,7 +29,7 @@ async def new_game(c: Client, m: Message, ut, ct):
     chat = await Chat.get_or_create(id=m.chat.id)
     if m.chat.id in games or m.chat.type == ChatType.PRIVATE or player_game.get(m.from_user.id):
         return await m.reply_text(
-            ut("game_existis")
+            ut("game_exists")
             if m.chat.id in games
             else ut("only_group")
             if m.chat.type == ChatType.PRIVATE
@@ -575,7 +575,7 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
 
                 await c.send_message(game.chat.id, ct("swapped"))
     else:
-        return await c.send_message(game.chat.id, ct("invalid_card"))
+        return await c.send_message(game.chat.id, ct("invalid_move"))
 
     if games.get(game.chat.id) and not await verify_cards(game, c, ir, ir.from_user, ut, ct):
         game.next()

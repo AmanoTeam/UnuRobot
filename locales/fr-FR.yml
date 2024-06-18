@@ -38,7 +38,7 @@ theme_config: 'Choisissez un thème pour les cartes :'
 minimalist: Minimaliste
 classic: Classique
 colorblind: Daltonisme
-game_existis: Il y a déjà un jeu en cours !
+game_exists: Il y a déjà un jeu en cours !
 only_group: Cette commande ne fonctionne qu'en groupe !
 already_in_game: Vous êtes déjà dans un autre jeu
 already_joined: Tu es déjà dans le jeu !
@@ -74,7 +74,7 @@ not_bluffed: "{name1} Vous n'avez pas bluffé !\n{name2} a tiré {draw} cartes
 colorchoose: '{name} choisissez une couleur !'
 colorchoosed: J'ai choisi la couleur {color} !
 playerchoose: '{name} choisissez un joueur !'
-invalid_card: Un mouvement invalide !
+invalid_move: Un mouvement invalide !
 said_uno: '{name} a crié UNO !'
 say_uno: '{name} dis UNO ou tire 2 cartes !'
 not_said_uno: "{name} Vous n'avez pas crié UNO !\n{name} a pioché 2 cartes !"

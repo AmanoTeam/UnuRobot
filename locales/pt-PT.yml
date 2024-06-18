@@ -101,7 +101,7 @@ info_one_card: Quando um jogador tem apenas uma carta, deve dizer UNO. Se não o
 no_game_text: Não há partida em curso, enviar /new para iniciar uma nova partida!
 info_text: "🃏 Informações sobre a partida:\nJogador atual - {current_player}\nÚltima
   carta - {last_card}\n"
-invalid_card: Movimento inválido!
+invalid_move: Movimento inválido!
 send_colored_card: Enviar o sticker colorido para a carta {code}
 lang_flag: 🇵🇹
 lang_changed: A língua foi alterada para português!

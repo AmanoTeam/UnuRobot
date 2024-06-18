@@ -33,7 +33,7 @@ theme_config: "Escolha um tema para as cartas:"
 minimalist: Minimalista
 classic: Clássico
 colorblind: Daltônico
-game_existis: Já existe uma partida em andamento!
+game_exists: Já existe uma partida em andamento!
 only_group: Esse comando só funciona em grupos!
 already_in_game: Você já está em outra partida
 already_joined: Você já está na partida!
@@ -69,7 +69,7 @@ not_bluffed: "{name1} Você não blefou!\n{name2} comprou {draw} cartas!"
 colorchoose: "{name} escolha uma cor!"
 colorchoosed: Eu escolhi a cor {color}!
 playerchoose: "{name} escolha um jogador!"
-invalid_card: Jogada inválida!
+invalid_move: Jogada inválida!
 said_uno: "{name} gritou UNO!"
 say_uno: "{name} fale UNO ou compre 2 cartas!"
 not_said_uno: "{name} Você não gritou UNO!\n{name} comprou 2 cartas!"

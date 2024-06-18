@@ -23,7 +23,7 @@ cards_swapped: '{name1} intercambió cartas con {name2}'
 colorchoosed: Elegí el color {color}!
 colorchoose: '{name} ¡elige un color!'
 playerchoose: '{name} ¡elige un jugador!'
-invalid_card: ¡Moveos inválidos!
+invalid_move: ¡Moveos inválidos!
 said_uno: '{name} gritó UNO!'
 say_uno: '{name} ¡Di UNO o dibuje 2 cartas!'
 play: Jugar
@@ -39,7 +39,7 @@ info_one_card: Cuando un jugador tiene una sola tarjeta, deben decir UNO. Si no 
   hacen, deben dibujar 2 tarjetas.
 choose_lang: Elige un idioma
 classic: Clásico
-game_existis: ¡Ya hay una partida en marcha!
+game_exists: ¡Ya hay una partida en marcha!
 only_group: ¡Este comando sólo funciona en grupos!
 game_started: ¡Ha empezado una nueva partida!
 start_game: Iniciar partida
