@@ -60,9 +60,9 @@ swapped: The cards have been swapped!
 bought: You bought {number} cards.
 bluffed: "{name}, you can't bluff!\n\n{name} drew {draw} cards."
 not_bluffed: "{name1} didn't bluff!\n\n{name2} drew {draw} cards."
-colorchoose: "{name} chose a color:"
+colorchoose: "{name} choose a color:"
 colorchoosed: I chose the color {color}!
-playerchoose: "{name} chose a player:"
+playerchoose: "{name} choose a player:"
 invalid_move: Invalid move!
 said_uno: "{name} shouted UNO!"
 say_uno: "{name}, say UNO or draw 2 cards!"
