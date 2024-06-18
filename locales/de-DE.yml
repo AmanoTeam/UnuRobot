@@ -29,7 +29,7 @@ only_group: Dieser Befehl funktioniert nur in Gruppen!
 not_swapped: Aufgrund der Anzahl der Spieler war es nicht möglich, Karten zu tauschen!
 bluffed: "{name} Du kannst nicht bluffen!\n{name} zog {draw} Karten!"
 join: Beitreten
-next: Weiter {}
+next: Weiter {name}
 sbluff: Bluff
 cards_swapped: '{name1} tauschte Karten mit {name2}'
 lobby_opened: Die Lobby ist geöffnet!
@@ -37,8 +37,8 @@ already_in_game: Sie sind bereits in einem anderen Spiel
 start_text: "Hallo! Ich bin der UNO-Bot, ein Bot zum Spielen von UNO auf Telegram!\n
   \nUm zu spielen, setzen Sie mich in einer Gruppe und senden Sie /new, um ein neues
   Spiel zu starten!\n\noder zum Konfigurieren benutze die Buttons unten!"
-bought: Sie haben {buy} Karten gekauft!
-won: '{name} das Spiel gewonnen{comp}!'
+bought: Sie haben {number} Karten gekauft!
+won: '{name} das Spiel gewonnen!'
 lang_flag: 🇩🇪
 info_bluff: Wenn ein Spieler eine +4-Karte ausspielt, kann der nächste Spieler antreten.
   Wenn der Spieler, der die +4-Karte gespielt hat, eine weitere Karte ausspielen kann,
@@ -56,7 +56,7 @@ no_game: Es ist kein Spiel im Gange!
 send_user_id: Senden Sie die Benutzer-ID oder den Benutzernamen, den Sie zu den sudoers
   hinzufügen möchten
 send_colored_card: Senden Sie den farbigen Aufkleber an {code} card
-player_left: '{} das Spiel verlassen!'
+player_left: '{name} das Spiel verlassen!'
 lang_changed: Die Sprache wurde auf Deutsch umgestellt!
 theme_config: 'Wählen Sie ein Thema für die Karten:'
 not_said_uno: "{name} Du hast nicht UNO geschrien!\n{name} hat 2 Karten gezogen!"
@@ -88,7 +88,7 @@ theme_added: Das Thema {name} wurde hinzugefügt!
 choose_card: Wählen Sie eine zu aktualisierende Karte
 language: Sprache
 user_not_found: Benutzer nicht gefunden!
-player_joined: '{} dem Spiel beigetreten!'
+player_joined: '{name} dem Spiel beigetreten!'
 user_not_sudoer: '{user} ist kein sudoer!'
 game_ruinning: Sie können die Einstellungen nicht ändern, während ein Spiel läuft!
 game_existis: Es ist bereits ein Spiel im Gange!
@@ -109,8 +109,9 @@ add_card: Neue Karte hinzufügen
 game_started: Ein neues Spiel hat begonnen!
 not_bluffed: "{name1} Du hast nicht geblufft!\n{name2} {draw} Karten gezogen!"
 info_text2: '{player}: {cards} Karten, '
-buy: '{} Karte(n) kaufen'
+buy: '{number} Karte(n) kaufen'
 minimalist: Minimalistisch
 sudo_menu: "Willkommen im sudoers-Menü!\n\nWählen Sie unten eine Option, um den Bot
   zu konfigurieren."
 auto_pin: Auto-Pin
+won_first: '{name} das Spiel auf dem ersten Platz gewonnen!'
