@@ -33,15 +33,15 @@ theme_config: "Escolha um tema para as cartas:"
 minimalist: Minimalista
 classic: Clássico
 colorblind: Daltônico
-game_existis: Já existe um jogo em andamento!
+game_existis: Já existe uma partida em andamento!
 only_group: Esse comando só funciona em grupos!
 already_in_game: Você já está em outra partida
 already_joined: Você já está na partida!
 join: Entrar
 leave: Sair
-start_game: Começar Jogo
+start_game: Iniciar partida
 game_started: Uma nova partida foi iniciada!
-no_game: Não há jogo em andamento!
+no_game: Não há nenhuma partida em andamento!
 no_game_text: Nenhuma partida em andamento, mande /new para iniciar uma nova partida!
 lobby_closed: O lobby está fechado!
 lobby_opened: O lobby está aberto!
@@ -73,7 +73,7 @@ invalid_card: Jogada inválida!
 said_uno: "{name} gritou UNO!"
 say_uno: "{name} fale UNO ou compre 2 cartas!"
 not_said_uno: "{name} Você não gritou UNO!\n{name} comprou 2 cartas!"
-won: "{name} ganhou a partida{comp}!"
+won: "{name} ganhou a partida!"
 continuing: continuando a partida com {count} jogadores
 play: Jogar
 auto_pin: Auto pin
@@ -108,6 +108,8 @@ help: Ajuda
 theme_changed: O tema foi alterado para {theme}!
 add_sudo: Adicionar usuário
 user_sudoer: '{user} já é um sudoer!'
-game_ruinning: Você não pode alterar as configurações enquanto um jogo está em execução!
+game_ruinning: Não é possível alterar as configurações enquanto uma partida estiver
+  em andamento!
 sudo_menu: "Bem-vindo ao menu de sudoers!\n\nEscolha uma opção abaixo para configurar
   o bot."
+won_first: '{name} ganhou a partida em primeiro lugar!'
