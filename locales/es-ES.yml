@@ -45,7 +45,7 @@ game_started: ¡Ha comenzado un nuevo juego!
 start_game: Inicio Juego
 not_bluffed: "{name1} ¡no fue un farol!\n{name2} ¡sacó {draw} tarjetas!"
 not_said_uno: "{name} ¡No gritaste a UNO!\n{name} dibujó 2 cartas!"
-won: '{name} ganó el juego {comp}!'
+won: '{name} ¡ganó el partido!'
 continuing: continuar el juego con {count} jugadores
 info_seven: Cuando se juega un 7, el jugador puede cambiar tarjetas con otro jugador.
   Cuando se juega un 0, todos pasan sus tarjetas al siguiente jugador.
@@ -111,3 +111,4 @@ add_sudo: Añadir usuario
 sudo_menu: "¡Bienvenido al menú de los sudoers!\n\nElija una opción a continuación
   para configurar el bot."
 sudoers: "Usuarios con permisos de sudo:\n\n"
+won_first: '{name} ¡ganó el partido en primer lugar!'
