@@ -57,7 +57,6 @@ left_game: Deixaste o jogo!
 said_uno: '{name} gritou UNO!'
 say_uno: '{name} diz UNO ou compra 2 cartas!'
 not_said_uno: "{name} Não gritaste UNO!\n{name} sacou 2 cartas!"
-first: ' em primeiro lugar'
 continuing: continuar o jogo com {count} jogadores
 play: Jogar
 admin_only: Apenas o administrador do grupo pode utilizar esta opção!

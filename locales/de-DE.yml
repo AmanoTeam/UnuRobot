@@ -84,7 +84,6 @@ swapped: Die Karten sind vertauscht worden!
 no_game_text: Kein Spiel im Gange, sende /new um ein neues Spiel zu beginnen!
 card_added: Die Karte {code} wurde hinzugefügt!
 send_sticker: 'Senden Sie einen Aufkleber, um den Aufkleber zu ersetzen:'
-first: ' in erster Linie'
 theme_added: Das Thema {name} wurde hinzugefügt!
 choose_card: Wählen Sie eine zu aktualisierende Karte
 language: Sprache

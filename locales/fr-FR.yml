@@ -78,7 +78,6 @@ invalid_card: Un mouvement invalide !
 said_uno: '{name} a crié UNO !'
 say_uno: '{name} dis UNO ou tire 2 cartes !'
 not_said_uno: "{name} Vous n'avez pas crié UNO !\n{name} a pioché 2 cartes !"
-first: ' dans le premier'
 won: '{name} a gagné le jeu{comp} !'
 continuing: Continuer le jeu avec {count} de joueurs
 play: Jouer
