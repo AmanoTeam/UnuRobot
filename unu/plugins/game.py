@@ -373,11 +373,14 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
         and game.draw == 4
         and (await Chat.get(id=game.chat.id)).bluff
     ):
+        lplayer = game.players[game.last_card_2["player"]]
         articles.append(
             InlineQueryResultCachedSticker(
                 id="option_bluff",
                 sticker_file_id=cards[theme]["STICKERS"]["option_bluff"],
-                input_message_content=InputTextMessageContent(ut("bluff")),
+                input_message_content=InputTextMessageContent(
+                    ut("bluff").format(name=lplayer.mention)
+                ),
             )
         )
 
