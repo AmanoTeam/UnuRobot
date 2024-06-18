@@ -46,11 +46,11 @@ no_game_text: Nenhuma partida em andamento, mande /new para iniciar uma nova par
 lobby_closed: O lobby está fechado!
 lobby_opened: O lobby está aberto!
 joined_game: Você entrou na partida!
-player_joined: "{} entrou na partida!"
+player_joined: "{name} entrou na partida!"
 no_joinned: Você não está na partida!
-next: Próximo {}
+next: Próximo {name}
 game_over: A partida acabou!
-player_left: "{} saiu da partida!"
+player_left: "{name} saiu da partida!"
 left_game: Você saiu da partida!
 not_allowed: Você não tem permissão para fazer isso!
 game_already_started: A partida já começou!
@@ -58,12 +58,12 @@ info_text: "🃏 Informações da partida:\nJogador atual - {current_player}\nÚ
   - {last_card}\n"
 info_text2: "{player}: {cards} cartas, "
 pass: Passar
-buy: Comprar {} carta(s)
+buy: Comprar {number} carta(s)
 bluff: Eu acho que você está blefando!
 cards_swapped: "{name1} trocou as cartas com {name2}"
 not_swapped: Devido ao numero de jogadores, não foi possível trocar as cartas!
 swapped: As cartas foram trocadas!
-bought: Você comprou {buy} cartas!
+bought: Você comprou {number} cartas!
 bluffed: "{name} Você não pode blefar!\n{name} comprou {draw} cartas!"
 not_bluffed: "{name1} Você não blefou!\n{name2} comprou {draw} cartas!"
 colorchoose: "{name} escolha uma cor!"
@@ -73,7 +73,6 @@ invalid_card: Jogada inválida!
 said_uno: "{name} gritou UNO!"
 say_uno: "{name} fale UNO ou compre 2 cartas!"
 not_said_uno: "{name} Você não gritou UNO!\n{name} comprou 2 cartas!"
-first: " em primeiro"
 won: "{name} ganhou a partida{comp}!"
 continuing: continuando a partida com {count} jogadores
 play: Jogar

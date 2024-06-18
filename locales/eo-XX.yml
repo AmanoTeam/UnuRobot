@@ -2,7 +2,7 @@ playerchoose: '{name} elektas ludiston!'
 said_uno: '{name} kriegis UNO!'
 not_said_uno: "{name} Vi ne kriegis UNO!\n{name} tiris 2 kartojn!"
 cards_swapped: '{name1} interŝanĝita kartojn kun {name2}'
-bought: Vi aĉetis {buy} kartojn!
+bought: Vi aĉetis {number} kartojn!
 say_uno: '{name} diras UNO aŭ tiro 2 kartoj!'
 continuing: daŭranta la ludon kun {count} ludistoj
 won: '{name} gajnis la ludon{comp}!'
@@ -12,7 +12,7 @@ game_already_started: La ludo jam komenciĝis!
 info_text: "🃏 Ludo-Informo:\nNuna ludanto * {current_player}\nLasta karto - {last_card}\n"
 info_text2: '{player}: {cards} kartoj, '
 pass: Pasi
-buy: Aĉetu {} karto(j)n
+buy: Aĉetu {number} karto(j)n
 bluff: Mi kredas, ke vi estas malklarigita!
 not_swapped: Pro la nombro de ludantoj, ne eblas interŝanĝi kartojn!
 swapped: La kartoj estis interŝanĝitaj!
@@ -21,7 +21,6 @@ not_bluffed: "{name1} Vi faris ne blufon!\n{name2} tiris {draw} kartojn!"
 colorchoose: '{name} elektas koloron!'
 colorchoosed: Mi elektis la koloran {color}!
 invalid_card: Invalida movo!
-first: ' en la unua'
 play: Ludado
 admin_only: Nur la grupo povas uzi tion!
 game_ruinning: Vi ne povas ŝanĝi la agordojn dum ludo kuras!
@@ -87,11 +86,11 @@ no_game_text: Neniu ludo en progreso, sendu /new por komenci novan ludon!
 lobby_closed: La vestiblo estas fermita!
 lobby_opened: La vestiblo estas malfermita!
 joined_game: Vi eniris la ludon!
-player_joined: '{} aliĝis al la ludo!'
+player_joined: '{name} aliĝis al la ludo!'
 no_joinned: Vi ne estas en la ludo!
-next: Sekva {}
+next: Sekva {name}
 game_over: La ludo estas finita!
-player_left: '{} lasis la ludon!'
+player_left: '{name} lasis la ludon!'
 back: Reen
 theme: Temo
 settings_text: Agordoj

@@ -41,23 +41,23 @@ no_game_text: No game in progress, send /new to start a new game!
 lobby_closed: The lobby is closed!
 lobby_opened: The lobby is open!
 joined_game: You joined the game!
-player_joined: "{} joined the game!"
+player_joined: "{name} joined the game!"
 no_joinned: You are not in the game!
-next: Next {}
+next: Next {name}
 game_over: The game is over!
-player_left: "{} left the game!"
+player_left: "{name} left the game!"
 left_game: You left the game!
 not_allowed: You are not allowed to do that!
 game_already_started: The game has already started!
 info_text: "🃏 Game Information:\nCurrent player - {current_player}\nLast card - {last_card}\n"
 info_text2: "{player}: {cards} cards, "
 pass: Pass
-buy: Buy {} card(s)
+buy: Buy {number} card(s)
 bluff: I think you're bluffing!
 cards_swapped: "{name1} swapped cards with {name2}"
 not_swapped: Due to the number of players, it was not possible to swap cards!
 swapped: The cards have been swapped!
-bought: You bought {buy} cards!
+bought: You bought {number} cards!
 bluffed: "{name} You can't bluff!\n{name} drew {draw} cards!"
 not_bluffed: "{name1} You didn't bluff!\n{name2} drew {draw} cards!"
 colorchoose: "{name} choose a color!"
@@ -67,8 +67,8 @@ invalid_card: Invalid move!
 said_uno: "{name} shouted UNO!"
 say_uno: "{name} say UNO or draw 2 cards!"
 not_said_uno: "{name} You didn't shout UNO!\n{name} drew 2 cards!"
-first: " in first"
-won: "{name} won the game{comp}!"
+won: "{name} won the game!"
+won_first: "{name} won the game in first place!"
 continuing: continuing the game with {count} players
 play: Play
 admin_only: Only the group admin can use this!

@@ -17,7 +17,7 @@ theme_config: 'Elija un tema para las tarjetas:'
 minimalist: Minimalista
 colorblind: Daltónico
 no_joinned: ¡No estás en el juego!
-next: Siguiente {}
+next: Siguiente {name}
 game_over: ¡El juego ha terminado!
 cards_swapped: '{name1} intercambió cartas con {name2}'
 colorchoosed: Elegí el color {color}!
@@ -26,10 +26,9 @@ playerchoose: '{name} ¡elige un jugador!'
 invalid_card: ¡Moveos inválidos!
 said_uno: '{name} gritó UNO!'
 say_uno: '{name} ¡Di UNO o dibuje 2 cartas!'
-first: ' primero'
 play: Jugar
 lang_name: Español
-player_left: ¡{} deja el juego!
+player_left: ¡{name} deja el juego!
 lang_changed: ¡El idioma se ha cambiado a español!
 info_theme: Elige un tema para las tarjetas
 info_lang: Puedes cambiar el idioma del bot.
@@ -62,7 +61,7 @@ no_game_text: No hay juego en progreso, enviar /new para comenzar un nuevo juego
 lobby_closed: ¡La sala está cerrada!
 lobby_opened: ¡La sala está abierta!
 joined_game: ¡Te uniste al juego!
-player_joined: ¡{} se unió al juego!
+player_joined: ¡{name} se unió al juego!
 not_allowed: ¡No se te permite hacer eso!
 info_text: "🃏 Información de la partida:\nJugador actual - {current_player}\nÚltima
   tarjeta - {last_card}\n"
@@ -70,11 +69,11 @@ left_game: ¡Dejaste el juego!
 game_already_started: ¡La partida ya ha comenzado!
 info_text2: '{player}: {cards} cartas, '
 pass: Pasar
-buy: Comprar {} tarjeta(s)
+buy: Comprar {number} tarjeta(s)
 bluff: ¡Creo que vas de farol!
 not_swapped: Debido al número de jugadores, no fue posible cambiar tarjetas!
 swapped: ¡Las cartas han sido intercambiadas!
-bought: ¡Compraste {buy} tarjetas!
+bought: ¡Compraste {number} tarjetas!
 bluffed: "{name} ¡no puedes farolear!\n{name} ¡robó {draw} cartas!"
 help: Ayuda
 user_sudoer: ¡{user} ya es un sudoer!
