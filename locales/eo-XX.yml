@@ -10,7 +10,7 @@ left_game: Vi lasis la ludon!
 not_allowed: Vi ne rajtas fari tion!
 game_already_started: La ludo jam komenciĝis!
 info_text: "🃏 Ludo-Informo:\nNuna ludanto * {current_player}\nLasta karto - {last_card}\n"
-info_text2: '{ludisto}: {kartaj} kartoj, '
+info_text2: '{player}: {cards} kartoj, '
 pass: Pasi
 buy: Aĉetu {} karto(j)n
 bluff: Mi kredas, ke vi estas malklarigita!
@@ -18,14 +18,14 @@ not_swapped: Pro la nombro de ludantoj, ne eblas interŝanĝi kartojn!
 swapped: La kartoj estis interŝanĝitaj!
 bluffed: "{name} Vi povas ne blufon!\n{name} tiris {draw} kartojn!"
 not_bluffed: "{name1} Vi faris ne blufon!\n{name2} tiris {draw} kartojn!"
-colorchoose: '{nomo} elektas koloron!'
+colorchoose: '{name} elektas koloron!'
 colorchoosed: Mi elektis la koloran {color}!
 invalid_card: Invalida movo!
 first: ' en la unua'
 play: Ludado
 admin_only: Nur la grupo povas uzi tion!
 game_ruinning: Vi ne povas ŝanĝi la agordojn dum ludo kuras!
-theme_changed: La temo estis ŝanĝita al {temo}!
+theme_changed: La temo estis ŝanĝita al {theme}!
 sudos: Ŝanĝo sudoers
 sudo_menu: "Bonvenon al la interna menuo!\n\nElekti opcion malsupre por agordi la
   roboton."

@@ -21,11 +21,11 @@ next: Siguiente {}
 game_over: ¡El juego ha terminado!
 cards_swapped: '{name1} intercambió cartas con {name2}'
 colorchoosed: Elegí el color {color}!
-colorchoose: '{nombre} ¡elige un color!'
+colorchoose: '{name} ¡elige un color!'
 playerchoose: '{name} ¡elige un jugador!'
 invalid_card: ¡Moveos inválidos!
 said_uno: '{name} gritó UNO!'
-say_uno: Diga UNO o dibuje 2 cartas!
+say_uno: '{name} ¡Di UNO o dibuje 2 cartas!'
 first: ' primero'
 play: Jugar
 lang_name: Español
