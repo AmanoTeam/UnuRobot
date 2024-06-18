@@ -109,6 +109,8 @@ async def leave_game(c: Client, m: Message | CallbackQuery, ut, ct):
     chat_id = m.chat.id if isinstance(m, Message) else m.message.chat.id
 
     if len(game.players) < minimum_players:
+        for player in game.players:
+            player_game.pop(player)
         games.pop(m.chat.id if isinstance(m, Message) else m.message.chat.id)
         if isinstance(m, CallbackQuery):
             await c.send_message(
