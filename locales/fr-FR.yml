@@ -40,7 +40,7 @@ classic: Classique
 colorblind: Daltonisme
 game_existis: Il y a déjà un jeu en cours !
 only_group: Cette commande ne fonctionne qu'en groupe !
-already_in_game: Vous êtes déjà dans un autre jeu
+already_in_game: Tu es déjà dans un autre jeu.
 already_joined: Tu es déjà dans le jeu !
 join: Joignez-vous
 leave: congé
@@ -86,7 +86,7 @@ game_ruinning: Tu ne peux pas changer les réglages pendant qu'un jeu est en cou
   !
 theme_changed: Le thème a été changé en {theme} !
 sudos: Modifier les sous-titres
-sudo_menu: "Bienvenue dans le menu des sudistes !\n\nChoisissez une option ci-dessous
+sudo_menu: "Bienvenue dans le menu des soudeurs !\n\nChoisissez une option ci-dessous
   pour configurer le bot."
 sudoers: "Utilisateurs avec les autorisations sudo:\n\n"
 add_sudo: Ajouter un utilisateur
@@ -109,7 +109,7 @@ verify_card: Vérifier les cartes
 sudo_theme: Que souhaitez-vous faire avec le thème {theme} ?
 send_card_code: Envoyez le code de la carte que vous voulez ajouter
 send_colored_card: Envoyez l'autocollant de couleur à la carte {code}
-send_gray_card: Envoyer l'autocollant gris à la carte {code}
+send_gray_card: Envoyez l'autocollant gris à la carte {code}
 card_added: La carte {code} a été ajoutée !
 light: légère
 dark: Noir
