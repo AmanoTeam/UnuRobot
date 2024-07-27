@@ -114,3 +114,4 @@ card_added: La carte {code} a été ajoutée !
 light: Lumière
 dark: Sombre
 choose_card: Choisissez une carte à mettre à jour
+won_first: '{name} a remporté la partie, arrivant en première position!'
