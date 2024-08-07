@@ -22,15 +22,15 @@ info_one_card: Quand un joueur n'a qu'une seule carte, il doit dire UNO. S'ils n
 auto_pin: Épingle automatique
 info_auto_pin: Lorsqu'un jeu démarre, le bot épingle automatiquement le message du
   jeu.
-language: Langue
+language: Sélection de langue
 info_lang: Vous pouvez changer la langue du bot.
-choose_lang: Choisissez une langue
+choose_lang: Choisir une langue
 start_text: "Je vous salue ! Je suis le bot UNO, un bot pour jouer à UNO sur Telegram !\n
   \nPour jouer, mettez-moi dans un groupe et envoyez /new pour commencer un nouveau
   jeu !\n\nou pour configurer utilisez les boutons ci-dessous !"
-help: Aide
+help: Aider
 game_mode: Mode de jeu
-status: État
+status: Etat
 game_mode_text: "Affichage des informations sur les modes de jeu disponibles !\n\n"
 settings: "Bienvenue dans le menu des réglages !\n\nChoisissez une option ci-dessous
   pour configurer le bot."
@@ -40,11 +40,11 @@ classic: Classique
 colorblind: Daltonisme
 game_existis: Il y a déjà un jeu en cours !
 only_group: Cette commande ne fonctionne qu'en groupe !
-already_in_game: Vous êtes déjà dans un autre jeu
+already_in_game: Tu es déjà dans un autre jeu.
 already_joined: Tu es déjà dans le jeu !
-join: Joignez-vous
-leave: congé
-start_game: Commencer le jeu
+join: Rejoindre
+leave: Quitter
+start_game: Commencez le jeux
 game_started: Un nouveau jeu a commencé !
 no_game: Il n'y a pas de jeu en cours !
 no_game_text: Pas de jeu en cours, envoyez /new pour commencer un nouveau jeu !
@@ -54,15 +54,15 @@ joined_game: Tu as rejoint le jeu !
 player_joined: '{name} a rejoint le jeu !'
 no_joinned: Tu n'es pas dans le jeu !
 next: Suivant {name}
-game_over: Le jeu est terminé !
+game_over: La partie est perdue!
 player_left: '{name} a quitté le jeu !'
 left_game: Tu as quitté le jeu !
-not_allowed: Vous n'avez pas le droit de faire ça !
+not_allowed: Vous n’êtes pas autorisé à effectuer cela
 game_already_started: Le jeu a déjà commencé !
 info_text: "🃏 Informations sur le jeu:\nJoueur actuel - {current_player}\nDernière
   carte - {last_card}\n"
 info_text2: '{player} : {cards} les cartes, '
-pass: Passé
+pass: Réusi
 buy: Acheter la/les carte(s) {number}
 cards_swapped: '{name1} a échangé des cartes avec {name2}'
 not_swapped: En raison du nombre de joueurs, il n'était pas possible d'échanger les
@@ -74,7 +74,7 @@ not_bluffed: "{name1} Vous n'avez pas bluffé !\n{name2} a tiré {draw} cartes
 colorchoose: '{name} choisissez une couleur !'
 colorchoosed: J'ai choisi la couleur {color} !
 playerchoose: '{name} choisissez un joueur !'
-invalid_card: Un mouvement invalide !
+invalid_card: Déplacement invalide
 said_uno: '{name} a crié UNO !'
 say_uno: '{name} dis UNO ou tire 2 cartes !'
 not_said_uno: "{name} Vous n'avez pas crié UNO !\n{name} a pioché 2 cartes !"
@@ -86,14 +86,14 @@ game_ruinning: Tu ne peux pas changer les réglages pendant qu'un jeu est en cou
   !
 theme_changed: Le thème a été changé en {theme} !
 sudos: Modifier les sous-titres
-sudo_menu: "Bienvenue dans le menu des sudistes !\n\nChoisissez une option ci-dessous
+sudo_menu: "Bienvenue dans le menu des soudeurs !\n\nChoisissez une option ci-dessous
   pour configurer le bot."
 sudoers: "Utilisateurs avec les autorisations sudo:\n\n"
 add_sudo: Ajouter un utilisateur
-rm_sudo: Supprimer l' utilisateur
+rm_sudo: Supprimer l’utilisateur
 send_user_id: Envoyez l' ID ou le nom d' utilisateur que vous souhaitez ajouter aux
   sudoers
-user_not_found: Utilisateur non trouvé !
+user_not_found: Utilisateur introuvable !
 user_sudoer: '{user} est déjà un souscripteur !'
 user_added: '{user} a été ajouté aux sudoers !'
 select_user: "Sélectionner un utilisateur à supprimer des sudoers\n\n"
@@ -104,13 +104,14 @@ send_theme_name: Envoyer le nom du nouveau thème
 send_sticker: 'Envoyer un autocollant pour le remplacer :'
 theme_added: Le thème {name} a été ajouté !
 add_card: Ajouter une nouvelle carte
-update_card: Carte de mise à jour
+update_card: Mettre à jour la carte
 verify_card: Vérifier les cartes
 sudo_theme: Que souhaitez-vous faire avec le thème {theme} ?
 send_card_code: Envoyez le code de la carte que vous voulez ajouter
 send_colored_card: Envoyez l'autocollant de couleur à la carte {code}
-send_gray_card: Envoyer l'autocollant gris à la carte {code}
+send_gray_card: Envoyez l'autocollant gris à la carte {code}
 card_added: La carte {code} a été ajoutée !
-light: légère
-dark: Noir
+light: Lumière
+dark: Sombre
 choose_card: Choisissez une carte à mettre à jour
+won_first: '{name} a remporté la partie, arrivant en première position!'
