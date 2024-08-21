@@ -55,6 +55,8 @@ async def settings_and_mode(c: Client, m: Message | CallbackQuery, t):
             await Chat.get(id=chat_id).update(one_win=not x.one_win)
         elif m.data == "mode_one_card":
             await Chat.get(id=chat_id).update(one_card=not x.one_card)
+        elif m.data == "mode_stack":
+            await Chat.get(id=chat_id).update(satack=not x.satack)
         elif m.data == "mode_auto_pin":
             admin = await c.get_chat_member(chat_id, c.me.id)
             print(admin)
@@ -89,6 +91,10 @@ async def settings_and_mode(c: Client, m: Message | CallbackQuery, t):
         [
             InlineKeyboardButton(t("auto_pin"), callback_data="info_auto_pin"),
             InlineKeyboardButton("✅" if x.auto_pin else "✖️", callback_data="mode_auto_pin"),
+        ],
+        [
+            InlineKeyboardButton(t("stack"), callback_data="info_stack"),
+            InlineKeyboardButton("✅" if x.satack else "✖️", callback_data="mode_stack"),
         ],
         [
             InlineKeyboardButton(t("language"), callback_data="info_lang"),

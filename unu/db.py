@@ -14,6 +14,7 @@ class Chat(Model):
     one_card = fields.BooleanField(default=False)
     lang = fields.CharField(max_length=255, default="en-US")
     auto_pin = fields.BooleanField(default=False)
+    satack = fields.BooleanField(default=True)
 
 
 class User(Model):

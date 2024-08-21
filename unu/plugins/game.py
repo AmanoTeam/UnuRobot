@@ -221,6 +221,8 @@ async def start_game(c: Client, m: Message | CallbackQuery, ut, ct):
     game.deck.shuffle()
     for player in game.players.values():
         player.cards = game.deck.draw(7)
+        player.cards.append(("r", "draw"))
+        player.cards.append(("x", "draw_four"))
         player.total_cards = 0
     keyb = InlineKeyboardMarkup([
         [
@@ -241,6 +243,7 @@ async def start_game(c: Client, m: Message | CallbackQuery, ut, ct):
         ),
         None,
     )
+    pcard = ("r", "draw")
     game.deck.cards.remove(pcard)
     game.deck.cards.append(pcard)
     if pcard[1] == "draw":
@@ -385,13 +388,17 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
 
     for num, pcard in enumerate(gcards):
         sticker_type = pcard[1] if pcard[0] == "x" else f"{pcard[0]}_{pcard[1]}"
+        stack = ("draw" in pcard[1] and game.draw >= 2) and not (
+            await Chat.get(id=game.chat.id)
+        ).satack
         if (
             (
                 pcard[1] in cards[theme]["CARDS"]["SPECIALS_INFO"]
                 and re.search(cards[theme]["CARDS"]["SPECIALS_INFO"][pcard[1]][1], string=xcard)
+                and not stack
             )
-            or pcard[0] == lcard[0]
-            or pcard[1] == lcard[1]
+            or (pcard[0] == lcard[0] or pcard[1] == lcard[1])
+            and not stack
         ):
             articles.append(
                 InlineQueryResultCachedSticker(

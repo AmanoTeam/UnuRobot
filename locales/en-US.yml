@@ -15,6 +15,8 @@ one_card: Say UNO
 info_one_card: When a player has only one card, they must say UNO. If they don't, they must draw 2 cards.
 auto_pin: Auto pin
 info_auto_pin: When a game starts, the bot will automatically pin the game message.
+stack: Stack draw cards
+info_stack: When a player receives a +2 or +4 card, they can play another +2 or +4 card. The next player must draw the sum of the cards.
 language: Language
 info_lang: You can change the bot's language.
 choose_lang: Choose a language
