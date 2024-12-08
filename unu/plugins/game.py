@@ -140,7 +140,7 @@ async def close_game(c: Client, m: Message | CallbackQuery, ut, ct):
         func = m.reply_text
         chat = m.chat
     game = games.get(chat.id)
-    if not game or m.from_user != next(iter(game.players.values())):
+    if not game:
         return await func(ut("no_game") if not game else ut("not_allowed"))
 
     game.closed = True
@@ -163,7 +163,7 @@ async def open_game(c: Client, m: Message, ut, ct):
         func = m.reply_text
         chat = m.chat
     game = games.get(chat.id)
-    if not game or m.from_user != next(iter(game.players.values())):
+    if not game:
         return await func(ut("no_game") if not game else ut("not_allowed"))
 
     game.closed = False
@@ -185,7 +185,7 @@ async def open_game(c: Client, m: Message, ut, ct):
 @use_lang()
 async def kill_game(c: Client, m: Message, ut, ct):
     game: Game = games.get(m.chat.id)
-    if not game or m.from_user != next(iter(game.players.values())):
+    if not game:
         return await m.reply_text(ut("no_game") if not game else ut("not_allowed"))
 
     games.pop(m.chat.id)
@@ -211,7 +211,7 @@ async def start_game(c: Client, m: Message | CallbackQuery, ut, ct):
     config = await Chat.get(id=chat_id)
     theme = config.theme
     game: Game = games.get(chat_id)
-    if not game or m.from_user != next(iter(game.players.values())):
+    if not game:
         return await func(ut("no_game") if not game else ut("not_allowed"))
 
     if len(game.players) < minimum_players:
