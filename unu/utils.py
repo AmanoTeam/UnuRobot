@@ -32,9 +32,12 @@ async def save_all():
 async def load_all():
     # Carregar dados do cache
     for game in await GameModel.all():
-        sgame = await Game.load(game)
-        games[int(sgame.chat.id)] = sgame
-        await game.delete()
+        try:
+            sgame = await Game.load(game)
+            games[int(sgame.chat.id)] = sgame
+            await game.delete()
+        except:
+            continue
 
     for player in await GamePlayer.all():
         if player.game_chat_id in games:

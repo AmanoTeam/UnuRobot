@@ -33,7 +33,7 @@ async def new_game(c: Client, m: Message, ut, ct):
             if m.chat.id in games
             else ut("only_group")
             if m.chat.type == ChatType.PRIVATE
-            else ut("already_in_game")
+            else ut("already_in_game") + str(player_game.get(m.from_user.id).chat.title)
         )
 
     game = Game(m.chat, (await Chat.get(id=m.chat.id)).theme)
@@ -65,7 +65,7 @@ async def join_game(c: Client, m: Message | CallbackQuery, ut, ct):
             if not game
             else ut("already_joined")
             if m.from_user.id in game.players
-            else ut("already_in_game")
+            else ut("already_in_game") + str(player_game.get(m.from_user.id).chat.title)
         )
     if game.closed:
         return await func(ct("lobby_closed"))
