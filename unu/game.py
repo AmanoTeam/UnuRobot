@@ -30,6 +30,8 @@ class Game:
         self.timer_task: Task = None
         self.timer_duration: int = timeout
         self.message: Message = None
+        self.is_dev = False
+        self.bluff = False
 
     def next(self):
         self.drawed = False
@@ -37,6 +39,12 @@ class Game:
         next_ind = (indice + 1) % len(self.players)
         next_key = list(self.players.keys())[next_ind]
         self.next_player = self.players[next_key]
+
+        if not ((self.last_card[1] == "draw_four" and self.draw == 4) or
+                (self.last_card[1] == "draw_six" and self.draw == 6) or
+                (self.last_card[1] == "draw_ten" and self.draw == 10)):
+            print("draw reset")
+            self.bluff = False
 
         if self.timer_task:
             self.timer_task.cancel()
@@ -63,7 +71,7 @@ class Game:
     async def save(self):
         print("Saving game")
         players_dict = {
-            player_id: getattr(player, "cards", None) for player_id, player in self.players.items()
+            player_id: {"cards": getattr(player, "cards", None), "tcards": getattr(player, "total_cards", None)} for player_id, player in self.players.items()
         }
 
         game = GameModel(
@@ -81,6 +89,8 @@ class Game:
             chosen=self.chosen,
             closed=self.closed,
             winner=self.winner,
+            is_dev=self.is_dev,
+            bluff=self.bluff,
             timer_duration=self.timer_duration,
             message_id=self.message.id,
         )
@@ -91,7 +101,8 @@ class Game:
 
     @classmethod
     async def load(cls, game: GameModel):
-        self = cls(game.chat_id, game.theme)
+        chat = await bot.get_chat(game.chat_id)
+        self = cls(chat, game.theme)
         self.theme = game.theme
         self.chat = await bot.get_chat(game.chat_id)
         self.last_card = game.last_card
@@ -104,10 +115,15 @@ class Game:
         self.chosen = game.chosen
         self.closed = game.closed
         self.winner = game.winner
+        self.is_dev = game.is_dev
+        self.bluff = game.bluff
         self.timer_duration = game.timer_duration
         self.message = await bot.get_messages(game.chat_id, game.message_id)
         for player_id, cards in game.players.items():
             self.players[int(player_id)] = await bot.get_users(player_id)
-            self.players[int(player_id)].cards = cards
+            self.players[int(player_id)].cards = []
+            for card in cards["cards"]:
+                self.players[int(player_id)].cards.append(tuple(card))
+            self.players[int(player_id)].total_cards = cards["tcards"]
         self.next_player = self.players[int(game.next_player_id)] if game.next_player_id else None
         return self

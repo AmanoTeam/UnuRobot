@@ -17,6 +17,8 @@ auto_pin: Auto pin
 info_auto_pin: When a game starts, the bot will automatically pin the game message.
 stack: Stack draw cards
 info_stack: When a player receives a +2 or +4 card, they can play another +2 or +4 card. The next player must draw the sum of the cards.
+draw_one: Draw one card
+info_draw_one: When a player can't play a card, they must draw one card and pass the turn.
 language: Language
 info_lang: You can change the bot's language.
 choose_lang: Choose a language
@@ -30,6 +32,7 @@ theme_config: "Choose a theme for the cards:"
 minimalist: Minimalist
 classic: Classic
 colorblind: Colorblind
+nomercy: No Mercy
 game_existis: There is already a game in progress!
 only_group: This command only works in groups!
 already_in_game: You are already in another game
@@ -60,6 +63,7 @@ cards_swapped: "{name1} swapped cards with {name2}"
 not_swapped: Due to the number of players, it was not possible to swap cards!
 swapped: The cards have been swapped!
 bought: You bought {number} cards!
+pbought: "{name} bought {number} cards!"
 bluffed: "{name} You can't bluff!\n{name} drew {draw} cards!"
 not_bluffed: "{name1} You didn't bluff!\n{name2} drew {draw} cards!"
 colorchoose: "{name} choose a color!"
@@ -100,6 +104,10 @@ send_card_code: Send the code of the card you want to add
 send_colored_card: Send the colored sticker to {code} card
 send_gray_card: Send the gray sticker to {code} card
 card_added: The card {code} has been added!
+card_removed: The card {code} has been removed!
 light: Light
 dark: Dark
 choose_card: Choose a card to update
+skip_all: "{name} skipped all players!"
+discarted_all: "{name} discarded {count} cards!"
+dev_mode: \nDeveloper mode

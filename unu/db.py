@@ -15,6 +15,7 @@ class Chat(Model):
     lang = fields.CharField(max_length=255, default="en-US")
     auto_pin = fields.BooleanField(default=False)
     satack = fields.BooleanField(default=True)
+    draw_one = fields.BooleanField(default=True)
 
 
 class User(Model):
@@ -44,6 +45,8 @@ class GameModel(Model):
     winner = fields.BooleanField(default=True)
     timer_duration = fields.IntField(default=30)
     message_id = fields.IntField(null=True)
+    is_dev = fields.BooleanField(default=False)
+    bluff = fields.BooleanField(default=False)
 
 
 class GamePlayer(Model):

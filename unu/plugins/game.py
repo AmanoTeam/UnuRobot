@@ -21,9 +21,11 @@ from unu.card import COLORS, cards
 from unu.db import Chat, User
 from unu.game import Game
 from unu.locales import use_lang
+from unu.utils import filter_sudoers
 
 
 @Client.on_message(filters.command("new"))
+@Client.on_message(filters.command("new_dev") & filter_sudoers)
 @use_lang()
 async def new_game(c: Client, m: Message, ut, ct):
     chat = await Chat.get_or_create(id=m.chat.id)
@@ -37,6 +39,8 @@ async def new_game(c: Client, m: Message, ut, ct):
         )
 
     game = Game(m.chat, (await Chat.get(id=m.chat.id)).theme)
+    if m.command[0] == "new_dev":
+        game.is_dev = True
     game.players[m.from_user.id] = m.from_user
     games[m.chat.id] = game
     player_game[m.from_user.id] = game
@@ -47,10 +51,86 @@ async def new_game(c: Client, m: Message, ut, ct):
         ],
         [InlineKeyboardButton(ct("start_game"), callback_data="start_game")],
     ])
-    game.message = await m.reply_text(ct("game_started"), reply_markup=keyb)
+    text = ct("game_started")
+    if game.is_dev:
+        text += ct("dev_mode")
+    game.message = await m.reply_text(text, reply_markup=keyb)
     if chat[0].auto_pin:
         await game.message.pin()
     return None
+
+
+@Client.on_message(filters.command("add_card"))
+@use_lang()
+async def add_card(c: Client, m: Message, ut, ct):
+    # /add_card <player_or_none> <card>
+    game: Game = games.get(m.chat.id)
+    if not game:
+        return await m.reply_text(ut("no_game") if not game else ut("not_allowed"))
+    elif not game.is_dev:
+        return await m.reply_text(ut("not_allowed"))
+    text = m.text.split(" ", 1)
+    text = text[1].split(" ", 1)
+    if len(text) != 1:
+        playerid = await c.get_users(text[0])
+        if not playerid:
+            return await m.reply_text(ut("invalid_player"))
+        playerid = playerid.id
+        card = text[1].split("_", 1)
+    else:
+        playerid = m.from_user.id
+        card = text[0].split("_", 1)
+    if playerid not in game.players:
+        return await m.reply_text(ut("player_not_in_game"))
+    if len(card) != 2:
+        return await m.reply_text(ut("invalid_card"))
+    game.players[playerid].cards.append(tuple(card))
+
+    theme = (await Chat.get(id=m.chat.id)).theme
+    color_icons = cards[theme]["CARDS"]["COLOR_ICONS"]
+    values_icons = cards[theme]["CARDS"]["VALUES_ICONS"]
+
+    return await m.reply_text(
+        ct("card_added").format(code=f"{color_icons[card[0]]}{values_icons[card[1]]}")
+    )
+
+
+@Client.on_message(filters.command("remove_card"))
+@use_lang()
+async def remove_card(c: Client, m: Message, ut, ct):
+    # /remove_card <player_or_none> <card>
+    game: Game = games.get(m.chat.id)
+    if not game:
+        return await m.reply_text(ut("no_game") if not game else ut("not_allowed"))
+    elif not game.is_dev:
+        return await m.reply_text(ut("not_allowed"))
+    text = m.text.split(" ", 1)
+    text = text[1].split(" ", 1)
+    if len(text) != 1:
+        playerid = await c.get_users(text[0])
+        if not playerid:
+            return await m.reply_text(ut("invalid_player"))
+        playerid = playerid.id
+        card = text[1].split("_", 1)
+    else:
+        playerid = m.from_user.id
+        card = text[0].split("_", 1)
+    if playerid not in game.players:
+        return await m.reply_text(ut("player_not_in_game"))
+    if len(card) != 2:
+        return await m.reply_text(ut("invalid_card"))
+    print(tuple(card))
+    print(game.players[playerid].cards)
+    game.players[playerid].cards.remove(tuple(card))
+    game.deck.cards.append(tuple(card))
+
+    theme = (await Chat.get(id=m.chat.id)).theme
+    color_icons = cards[theme]["CARDS"]["COLOR_ICONS"]
+    values_icons = cards[theme]["CARDS"]["VALUES_ICONS"]
+
+    return await m.reply_text(
+        ct("card_removed").format(code=f"{color_icons[card[0]]}{values_icons[card[1]]}")
+    )
 
 
 @Client.on_message(filters.command("join"))
@@ -221,8 +301,6 @@ async def start_game(c: Client, m: Message | CallbackQuery, ut, ct):
     game.deck.shuffle()
     for player in game.players.values():
         player.cards = game.deck.draw(7)
-        player.cards.append(("r", "draw"))
-        player.cards.append(("x", "draw_four"))
         player.total_cards = 0
     keyb = InlineKeyboardMarkup([
         [
@@ -243,7 +321,6 @@ async def start_game(c: Client, m: Message | CallbackQuery, ut, ct):
         ),
         None,
     )
-    pcard = ("r", "draw")
     game.deck.cards.remove(pcard)
     game.deck.cards.append(pcard)
     if pcard[1] == "draw":
@@ -321,7 +398,8 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
         return None
     if game.chosen == "player" and game.next_player.id == m.from_user.id:
         players = list(game.players.keys())
-        players.remove(m.from_user.id)
+        if len(players) != 1:
+            players.remove(m.from_user.id)
         articles = []
         pre = ""
         if game.last_card[1] in cards[theme]["CARDS"]["THEME_CARDS"]:
@@ -372,12 +450,8 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
             input_message_content=InputTextMessageContent(sticker_text),
         )
     ]
-
-    if (
-        game.last_card[1] == "draw_four"
-        and game.draw == 4
-        and (await Chat.get(id=game.chat.id)).bluff
-    ):
+    print(game.bluff)
+    if game.bluff and (await Chat.get(id=game.chat.id)).bluff:
         articles.append(
             InlineQueryResultCachedSticker(
                 id="option_bluff",
@@ -388,7 +462,7 @@ async def inline_query(c: Client, m: InlineQuery, ut, ct):
 
     for num, pcard in enumerate(gcards):
         sticker_type = pcard[1] if pcard[0] == "x" else f"{pcard[0]}_{pcard[1]}"
-        stack = ("draw" in pcard[1] and game.draw >= 2) and not (
+        stack = ("draw" in str(pcard[1]) and game.draw >= 2) and not (
             await Chat.get(id=game.chat.id)
         ).satack
         if (
@@ -430,23 +504,34 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
     pcard = ir.result_id.split("-")[:2]
     ncard = ir.result_id.split("-")[2] if len(ir.result_id.split("-")) > 2 else None
     lcard = game.last_card if game.draw <= 1 else ("y", "draw")
-    print(game.deck.cards)
     inline_keyb = InlineKeyboardMarkup([
         [InlineKeyboardButton(ct("play"), switch_inline_query_current_chat="")]
     ])
     if pcard[0] == "info":
         return None
+    print(pcard)
+    print(lcard)
+    config = await Chat.get(id=game.chat.id)
+    theme = config.theme
     if game.chosen == "color":
         game.last_card = (ir.result_id, game.last_card[1])
         game.chosen = None
         if not await verify_cards(game, c, ir, game.players[ir.from_user.id], ut, ct):
-            game.next()
+            if game.last_card[1] == "buycolor":
+                game.chosen = "player"
+                return await c.send_message(
+                    game.chat.id,
+                    ct("playerchoose").format(name=game.next_player.mention),
+                    reply_markup=inline_keyb,
+                )
+            elif not (theme == "nomercy" and game.last_card[1] == "draw_four"):
+                game.next()
             return await c.send_message(
                 game.chat.id,
                 ct("next").format(name=game.next_player.mention),
                 reply_markup=inline_keyb,
             )
-    elif game.chosen == "player" and game.last_card_2["card"][1] == "7":
+    elif game.chosen == "player" and lcard[1] == "7":
         game.players[ir.from_user.id].cards, game.players[int(pcard[0])].cards = (
             game.players[int(pcard[0])].cards,
             game.players[ir.from_user.id].cards,
@@ -468,9 +553,49 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
             ct("next").format(name=game.next_player.mention),
             reply_markup=inline_keyb,
         )
+    elif game.chosen == "player" and lcard[1] == "buycolor":
+        # o player escolhido irá comprar cartas até que a carta seja da cor escolhida
+        game.chosen = None
+        player = game.players[int(pcard[0])]
+        buy = 0
+        ncards = []
+        while True:
+            card = game.deck.draw(1)[0]
+            player.cards.extend([card])
+            ncards.append(card)
+            buy += 1
+            if card[0] == game.last_card[0]:
+                break
+
+        config = await Chat.get(id=game.chat.id)
+        theme = config.theme
+
+        color_icons = cards[theme]["CARDS"]["COLOR_ICONS"]
+        values_icons = cards[theme]["CARDS"]["VALUES_ICONS"]
+        await c.send_message(
+            game.chat.id,
+            ct("pbought").format(name=player.mention, number=len(ncards))
+            + f"\n{', '.join([f'{color_icons[card[0]]}{values_icons[card[1]]}' for card in ncards])}",
+        )
     elif pcard[0] == "option_draw":
         buy = game.draw if game.draw > 0 else 1
-        game.players[ir.from_user.id].cards.extend(game.deck.draw(buy))
+        config = await Chat.get(id=game.chat.id)
+        print(config.draw_one, buy)
+        if not config.draw_one and buy == 1:
+            # comprar até a ultima carta comprada pode ser jogada
+            while True:
+                card = game.deck.draw(1)[0]
+                print(card)
+                game.players[ir.from_user.id].cards.extend([card])
+                if (
+                    card[1] == lcard[1]
+                    or card[0] == lcard[0]
+                    or ("draw" in card[1] and "draw" in lcard[1])
+                ):
+                    break
+                buy += 1
+        else:
+            game.players[ir.from_user.id].cards.extend(game.deck.draw(buy))
         await c.send_message(game.chat.id, ct("bought").format(number=buy))
         if len(game.players) != 1 and game.draw == 0:
             game.drawed = True
@@ -483,6 +608,7 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
     elif pcard[0] == "option_pass":
         game.draw = 0
     elif pcard[0] == "option_bluff":
+        game.bluff = False
         lplayer = game.players[game.last_card_2["player"]]
         bcard = game.last_card_2["card"]
         if any(bcard[0] in tupla or bcard[1] in tupla for tupla in lplayer.cards):
@@ -492,11 +618,12 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
                 ct("bluffed").format(name=lplayer.mention, draw=game.draw),
             )
             game.draw = 0
-            await c.send_message(
-                game.chat.id,
-                ct("next").format(name=game.next_player.mention),
-                reply_markup=inline_keyb,
-            )
+            if not await verify_cards(game, c, ir, lplayer, ut, ct):
+                await c.send_message(
+                    game.chat.id,
+                    ct("next").format(name=game.next_player.mention),
+                    reply_markup=inline_keyb,
+                )
             return None
         game.players[ir.from_user.id].cards.extend(game.deck.draw(game.draw + 2))
         await c.send_message(
@@ -509,16 +636,33 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
         )
         game.draw = 0
         game.next()
-        await c.send_message(
-            game.chat.id,
-            f"Próximo: {game.next_player.mention}",
-            reply_markup=inline_keyb,
-        )
+        if not (await verify_cards(game, c, ir, game.players[ir.from_user.id], ut, ct)):
+            await c.send_message(
+                game.chat.id,
+                ct("next").format(name=game.next_player.mention),
+                reply_markup=inline_keyb,
+            )
         return None
-    elif pcard[0] == "x" and pcard[1] in {"colorchooser", "draw_four"}:
+    elif pcard[0] == "x" and pcard[1] in {
+        "colorchooser",
+        "draw_four",
+        "draw_six",
+        "draw_ten",
+        "buycolor",
+    }:
         game.players[ir.from_user.id].total_cards += 1
         if pcard[1] == "draw_four":
+            if theme == "nomercy":
+                # aqui ele inverte a lista de jogadores mas mantem o jogador atual
+                game.players = {k: game.players[k] for k in reversed(list(game.players.keys()))}
+            game.bluff = True
             game.draw += 4
+        elif pcard[1] == "draw_six":
+            game.bluff = True
+            game.draw += 6
+        elif pcard[1] == "draw_ten":
+            game.bluff = True
+            game.draw += 10
         game.last_card_2 = {"card": game.last_card, "player": ir.from_user.id}
         game.last_card = game.players[ir.from_user.id].cards.pop(int(ncard))
         game.deck.cards.append(game.last_card)
@@ -540,9 +684,11 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
         ret = await function(c, ir, game)
         if ret:
             return None
-    elif pcard[0] != "x" and (pcard[1] == lcard[1] or pcard[0] == lcard[0]):
+    elif pcard[0] != "x" and (
+        pcard[1] == lcard[1] or pcard[0] == lcard[0] or ("draw" in lcard[1] and "draw" in pcard[1])
+    ):
         game.players[ir.from_user.id].total_cards += 1
-        game.draw += 2 if pcard[1] == "draw" else 0
+        game.draw += 2 if pcard[1] == "draw" else +4 if pcard[1] == "draw_four" else 0
         game.last_card_2 = {"card": game.last_card, "player": ir.from_user.id}
         game.last_card = game.players[ir.from_user.id].cards.pop(int(ncard))
         game.deck.cards.append(game.last_card)
@@ -551,6 +697,32 @@ async def choosen(c: Client, ir: ChosenInlineResult, ut, ct):
             game.next() if len(game.players) == 2 else None
         elif pcard[1] == "skip":
             game.next()
+        elif pcard[1] == "discart_all":
+            # Aqui irá descartar todas as cartas do jogador que seja da mesma cor que o da carta jogada
+            dcards = []
+            for card in game.players[ir.from_user.id].cards[:]:
+                if card[0] == game.last_card[0]:
+                    dcards.append(card)
+                    game.players[ir.from_user.id].cards.remove(card)
+                    game.deck.cards.append(card)
+
+            color_icons = cards[theme]["CARDS"]["COLOR_ICONS"]
+            values_icons = cards[theme]["CARDS"]["VALUES_ICONS"]
+            await c.send_message(
+                game.chat.id,
+                ct("discarted_all").format(name=ir.from_user.mention, count=len(dcards))
+                + f"\n{', '.join([f'{color_icons[card[0]]}{values_icons[card[1]]}' for card in dcards])}",
+            )
+        elif pcard[1] == "skipall":
+            await c.send_message(game.chat.id, ct("skip_all").format(name=ir.from_user.mention))
+            if games.get(game.chat.id) and not await verify_cards(
+                game, c, ir, ir.from_user, ut, ct
+            ):
+                return await c.send_message(
+                    game.chat.id,
+                    ct("next").format(name=game.next_player.mention),
+                    reply_markup=inline_keyb,
+                )
         elif ((await Chat.get(id=game.chat.id)).seven) and (pcard[1] == "7" or pcard[1] == "0"):
             if pcard[1] == "7":
                 if len(game.players) == 1:
@@ -629,16 +801,18 @@ async def verify_cards(game: Game, c: Client, ir, user: User, ut, ct):
         await c.send_message(game.chat.id, string.format(name=user.mention))
         if game.winner:
             game.winner = False
-            db_user = await User.get_or_none(id=user.id)
-            if db_user and db_user.placar:
-                db_user.wins += 1
-                await db_user.save()
+            if not game.is_dev:
+                db_user = await User.get_or_none(id=user.id)
+                if db_user and db_user.placar:
+                    db_user.wins += 1
+                    await db_user.save()
         if (await Chat.get(id=game.chat.id)).one_win and len(game.players) > 2:
-            db_user = await User.get_or_none(id=user.id)
-            if db_user and db_user.placar:
-                db_user.matches += 1
-                db_user.cards += game.players[user.id].total_cards
-                await db_user.save()
+            if not game.is_dev:
+                db_user = await User.get_or_none(id=user.id)
+                if db_user and db_user.placar:
+                    db_user.matches += 1
+                    db_user.cards += game.players[user.id].total_cards
+                    await db_user.save()
             game.next()
             game.players.pop(user.id)
             player_game.pop(user.id)
@@ -662,5 +836,33 @@ async def verify_cards(game: Game, c: Client, ir, user: User, ut, ct):
             await game.message.edit_text(ct("game_over"))
             if (await Chat.get(id=game.chat.id)).auto_pin:
                 await game.message.unpin()
+        return True
+    elif (await Chat.get(id=game.chat.id)).theme == "nomercy" and len(
+        game.players[user.id].cards
+    ) >= 25:
+        # ao ter 25 cartas ou mais o jogador é eliminado
+        await c.send_message(
+            game.chat.id,
+            ct("too_many_cards").format(name=user.mention),
+        )
+        game.next()
+        game.players.pop(user.id)
+        player_game.pop(user.id)
+        # agora ele verifica se o tem minimum_players jogadores ou mais, caso contrário o jogo acaba
+        if len(game.players) < minimum_players:
+            for player in game.players:
+                player_game.pop(player)
+            games.pop(game.chat.id)
+            await c.send_message(game.chat.id, ct("game_over"))
+            game.stop()
+            await game.message.edit_text(ct("game_over"))
+            if (await Chat.get(id=game.chat.id)).auto_pin:
+                await game.message.unpin()
+        else:
+            await c.send_message(
+                game.chat.id,
+                ct("next").format(name=game.next_player.mention),
+                reply_markup=inline_keyb,
+            )
         return True
     return False
